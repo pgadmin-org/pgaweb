@@ -1,5 +1,15 @@
+##########################################################################
+#
+# pgAdmin Website
+#
+# Copyright (C) 2017, The pgAdmin Development Team
+# This software is released under the PostgreSQL Licence
+#
+##########################################################################
+
 from datetime import date
 from django.db import models
+
 
 class News(models.Model):
     display = models.BooleanField(null=False, blank=False, default=False)
