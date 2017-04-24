@@ -1,0 +1,17 @@
+{
+  "name": "pgadmin-www",
+  "version": "1.0.0",
+  "description": "pgAdmin Website",
+  "repository": "git://git.postgresql.org/git/pgadmin-www.git",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-mfizz": "^1.2.2",
+    "jquery": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dave Page",
+  "license": "PostgreSQL"
+}
