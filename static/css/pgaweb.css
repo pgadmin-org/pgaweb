@@ -40,13 +40,24 @@ body {
 	h1, h2, h3, h4 { text-align: center; }
 }
 
+/* margin-bottom is the top of the content section
+ * margin-top is the top of the image
+ */
+ @media (min-width: 0px) {
+	.header h1 { font-size: 55px; }
+	.header h2 { font-size: 30px; }
+	.header p { font-size: 15px; }
+
+	#illustration { margin-bottom: -130px; }
+	.expand img { margin-bottom: 120px !important; margin-top: -100px !important; }
+}
 @media (min-width: 482px) {
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
 
-	#illustration { margin-bottom: -215px; }
-	.expand img{ margin-bottom:200px; margin-top: -180px; }
+	#illustration { margin-bottom: -310px; }
+	.expand img { margin-bottom: 200px !important; margin-top: -225px !important; }
 }
 @media (min-width: 768px) {
 	.header h1 { font-size: 55px; }
@@ -55,7 +66,7 @@ body {
 	.header .lead { font-size: 22px; }
 
 	#illustration { margin-bottom: -310px;}
-	.expand img { margin-bottom: 300px; margin-top: -190px; }
+	.expand img { margin-bottom: 300px !important; margin-top: -260px !important; }
 }
 
 @media (min-width: 992px) {
@@ -63,8 +74,8 @@ body {
 	.header h2 { margin-bottom: 40px;}
 	.header p { font-size: 15px; }
 
-	#illustration { margin-bottom: -380px; }
-	.expand img { margin-bottom: 370px; margin-top: -260px; }
+	#illustration { margin-bottom: -400px; }
+	.expand img { margin-bottom: 400px !important; margin-top: -300px !important; }
 
 	.space-before { padding-top: 40px; }
 	.space-after { padding-bottom: 40px; }
@@ -74,7 +85,6 @@ body {
     z-index: 1;
     text-align: center;
     width: 100%;
-    margin-bottom: -400px;
 }
 
 #illustration img {
