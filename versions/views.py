@@ -9,11 +9,11 @@
 
 from django.shortcuts import render_to_response
 
-from news.models import News
+from versions.models import Version
 
 
 # Handle the static pages
-def index(request):
-    news = News.objects.filter(display=True)
-    return render_to_response('pgaweb/index.html', {'news': news})
+def versions(request):
+    versions = Version.objects.filter(active=True)
+    return render_to_response('versions/versions.json', {'versions': versions})
 

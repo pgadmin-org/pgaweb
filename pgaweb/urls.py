@@ -28,6 +28,7 @@ from django.contrib import admin
 urlpatterns = [
     # Static pages
     url(r'^$', 'pgaweb.views.index', name='index'),
+    url(r'^versions.json$', 'versions.views.versions', name='versions'),
 
     url(r'^admin/', include(admin.site.urls)),
 ]

@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news'
+    'news',
+    'versions'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,7 +68,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             'templates',
-            '../templates'
+            'pgaweb/templates',
+            'versions/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

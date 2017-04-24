@@ -7,13 +7,8 @@
 #
 ##########################################################################
 
-from django.shortcuts import render_to_response
+from django.contrib import admin
 
-from news.models import News
+from .models import Version
 
-
-# Handle the static pages
-def index(request):
-    news = News.objects.filter(display=True)
-    return render_to_response('pgaweb/index.html', {'news': news})
-
+admin.site.register(Version)
