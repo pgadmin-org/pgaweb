@@ -56,7 +56,7 @@ body {
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
 
-	#illustration { margin-bottom: -310px; }
+	#illustration { margin-bottom: -260px; }
 	.expand img { margin-bottom: 200px !important; margin-top: -225px !important; }
 }
 @media (min-width: 768px) {
