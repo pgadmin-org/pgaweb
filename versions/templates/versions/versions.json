@@ -1,9 +1,7 @@
-{
-{% for version in versions.all %}
-	"{{ version.package }}": {
-		"version": "{{ version.version_str }}",
-        "version_int": {{ version.version_int }},
-		"download_url": "{{ version.download_url }}"
-	}{% if not forloop.last %},{% endif %}
-{% endfor %}
-}
+{{% for version in versions.all %}
+ "{{ version.package }}": {
+  "version": "{{ version.version_str }}",
+  "version_int": {{ version.version_int }},
+  "download_url": "{{ version.download_url }}"
+ }{% if not forloop.last %},{% endif %}
+{% endfor %}}

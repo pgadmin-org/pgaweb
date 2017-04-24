@@ -15,5 +15,5 @@ from versions.models import Version
 # Handle the static pages
 def versions(request):
     versions = Version.objects.filter(active=True)
-    return render_to_response('versions/versions.json', {'versions': versions})
+    return render_to_response('versions/versions.json', {'versions': versions}, content_type='text/json')
 
