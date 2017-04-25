@@ -1,8 +1,10 @@
+/* Main body */
 body {
   padding-top: 50px;
   padding-bottom: 30px;
 }
 
+/* Navbar and menus */
 .dropdown-header {
     font-weight: bold;
     font-style: italic;
@@ -23,6 +25,7 @@ body {
     color: #009DCF;
 }
 
+/* Home page header image with expansion */
 .header {
 	background: #005363 url(../img/header.jpg) top center;
 	-webkit-background-size: cover;
@@ -40,9 +43,6 @@ body {
 	h1, h2, h3, h4 { text-align: center; }
 }
 
-/* margin-bottom is the top of the content section
- * margin-top is the top of the image
- */
  @media (min-width: 0px) {
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 30px; }
@@ -105,4 +105,18 @@ body {
 	z-index: 999;
 	margin-bottom: 40px;
 	background: #fff;
+}
+
+/* END: Home page header image with expansion */
+
+/* HTML anchor offset */
+.anchor {
+    padding-top: 60px;
+}
+
+:target:before {
+    content:"";
+    display:block;
+    height:60px; /* fixed header height*/
+    margin:-60px 0 0; /* negative fixed header height */
 }

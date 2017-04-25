@@ -9,11 +9,12 @@
 
 from django.shortcuts import render_to_response
 
-from versions.models import Version
+from faq.models import Faq
 
 
 # Handle the static pages
 def index(request):
-    versions = Version.objects.filter(active=True)
-    return render_to_response('versions/versions.json', {'versions': versions}, content_type='text/json')
+    faqs = Faq.objects.filter(active=True)
+
+    return render_to_response('faq/faq.html', {'faqs': faqs})
 

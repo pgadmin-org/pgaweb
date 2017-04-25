@@ -1,0 +1,28 @@
+{% extends "pgaweb/page.html" %}
+{% load staticfiles %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">FAQ</h1>
+
+    {% regroup faqs by category as faq_list %}
+    {% for category in faq_list %}
+    <h4>{{ category.grouper }}</h4>
+    <ul>
+        {% for faq in category.list %}
+        <li><a href="#{{ faq.id }}">{{ faq.question }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+
+    {% for category in faq_list %}
+    <h3>{{ category.grouper }}</h3>
+
+    {% for faq in category.list %}
+    <h4 id="{{ faq.id }}">{{ faq.question }}</h4>
+    {{ faq.answer | safe }}
+    {% endfor %}
+
+{% endfor %}
+{% endblock %}
