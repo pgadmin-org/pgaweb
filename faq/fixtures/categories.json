@@ -1,0 +1,1 @@
+[{"fields": {"order": 0, "name": "General"}, "model": "faq.category", "pk": 1}, {"fields": {"order": 100, "name": "Configuration"}, "model": "faq.category", "pk": 2}, {"fields": {"order": 200, "name": "Troubleshooting"}, "model": "faq.category", "pk": 3}]
