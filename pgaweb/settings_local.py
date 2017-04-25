@@ -15,3 +15,5 @@ DATABASES={
                 'PORT': 5434
                 }
         }
+
+ALLOWED_HOSTS = ['wwwdevel.pgadmin.org',]
