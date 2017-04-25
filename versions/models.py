@@ -14,9 +14,9 @@ from django.db import models
 class Version(models.Model):
     active = models.BooleanField(null=False, blank=False)
     package = models.CharField(null=False, blank=False, max_length=50)
-    version_str = models.CharField(null=False, blank=False, max_length=20)
-    version_int = models.IntegerField(null=False, blank=False)
-    download_url = models.CharField(null=False, blank=False, max_length=150)
+    version_str = models.CharField(null=False, blank=False, max_length=20, verbose_name="Version (String)")
+    version_int = models.IntegerField(null=False, blank=False, verbose_name="Version (Integer)")
+    download_url = models.CharField(null=False, blank=False, max_length=150, verbose_name="Download URL")
 
     class Meta:
         ordering = ('version_int',)
