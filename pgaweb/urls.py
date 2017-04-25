@@ -26,9 +26,14 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    # Static pages
     url(r'^$', 'pgaweb.views.index', name='index'),
+    url(r'^contributing$', 'pgaweb.views.contributing', name='contributing'),
+    url(r'^features$', 'pgaweb.views.features', name='features'),
+    url(r'^licence$', 'pgaweb.views.licence', name='licence'),
+    url(r'^privacy_policy$', 'pgaweb.views.privacy_policy', name='privacy_policy'),
+
     url(r'^faq$', 'faq.views.index', name='faq'),
+
     url(r'^versions.json$', 'versions.views.index', name='versions.json'),
 
     url(r'^admin/', include(admin.site.urls)),

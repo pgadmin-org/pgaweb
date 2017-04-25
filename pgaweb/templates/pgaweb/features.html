@@ -1,0 +1,106 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Features{% endblock %}
+
+{% block content %}
+
+<h1>Features</h1>
+
+<p>pgAdmin has a huge array of features and by far the best way to see them all is to <a href="download/">download</a>
+    a copy and give it a try. Here's a brief list to give you an idea of its capabilities:</p>
+
+<h2>Multiplatform</h2>
+<ul>
+  <li>Microsoft Windows &trade;</li>
+  <li>Linux</li>
+  <li>macOS</li>
+</ul>
+
+<h2>Designed for multiple PostgreSQL versions and derivatives</h2>
+<ul>
+  <li>PostgreSQL 9.2 and above</li>
+  <li>EDB Postgres Advanced Server 9.2 and above</li>
+</ul>
+
+<h2>Extensive documentation</h2>
+<ul>
+  <li>pgAdmin application documentation</li>
+  <li>PostgreSQL documentation links</li>
+</ul>
+
+<h2>Multiple deployment models</h2>
+<ul>
+  <li>Desktop mode, using a purpose built runtime</li>
+  <li>Server mode, supporting multiple users over the web</li>
+</ul>
+
+<h2>Tools</h2>
+<ul>
+  <li>Powerful query tool with colour syntax highlighting</li>
+  <li>Fast datagrid for display/entry of data</li>
+  <li>Graphical query plan display</li>
+  <li>Grant Wizard for rapid updates to ACLs</li>
+  <li>Procedural language debugger (supporting pl/pgsql and edb-spl)</li>
+</ul>
+
+<h2>Routine maintenance</h2>
+<ul>
+  <li>Auto-vacuum management</li>
+  <li>Monitoring dashboard</li>
+  <li>Backup, restore, vacuum and analyze on demand</li>
+  <li>SQL/shell/batch job scheduling agent</li>
+</ul>
+
+<h2>Create, view and edit all common PostgreSQL objects</h2>
+<p>Objects are displayed with their SQL definition, and a user friendly list of properties. Dependent, and dependency
+    objects may also be browsed, and object statistics viewed where appropriate.</p>
+<ul>
+  <li>Aggregates</li>
+  <li>Casts</li>
+  <li>Columns</li>
+  <li>Constraints</li>
+  <li>Databases</li>
+  <li>Domains</li>
+  <li>Foreign tables</li>
+  <li>Foreign servers</li>
+  <li>Foreign data wrappers</li>
+  <li>FTS configurations</li>
+  <li>FTS dictionaries</li>
+  <li>FTS parsers</li>
+  <li>FTS templates</li>
+  <li>Functions</li>
+  <li>Indexes</li>
+  <li>Languages</li>
+  <li>Materialized views</li>
+  <li>Roles</li>
+  <li>Rules</li>
+  <li>Procedural languages</li>
+  <li>Schemas</li>
+  <li>Sequences</li>
+  <li>Tables</li>
+  <li>Tablespaces</li>
+  <li>Trigger functions</li>
+  <li>Types</li>
+  <li>Views</li>
+  <li>EDB Postgres Advanced Server objects (such as packages, procedures and synonyms)</li>
+  <li>pgAgent objects (such as jobs, schedules)</li>
+</ul>
+
+<h2>Multibyte support</h2>
+<p>pgAdmin supports most PostgreSQL server-side encodings:</p>
+<ul>
+  <li>SQL_ASCII</li>
+  <li>EUC_JP, EUC_CN, EUC_KR, EUC_TW</li>
+  <li>JOHAB</li>
+  <li>LATIN1, LATIN2, LATIN3, LATIN4, LATIN5, LATIN6, LATIN7, LATIN8, LATIN9, LATIN10</li>
+  <li>ISO_8859_5, ISO_8859_6, ISO_8859_7, ISO_8859_8</li>
+  <li>UNICODE/UTF-8</li>
+  <li>MULE_INTERNAL</li>
+  <li>KOI8</li>
+  <li>WIN</li>
+  <li>ALT</li>
+  <li>WIN1256</li>
+  <li>TCVN</li>
+  <li>WIN874</li>
+</ul>
+{% endblock %}

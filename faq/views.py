@@ -12,9 +12,8 @@ from django.shortcuts import render_to_response
 from faq.models import Faq
 
 
-# Handle the static pages
+# Handle the various pages
 def index(request):
     faqs = Faq.objects.filter(active=True)
 
     return render_to_response('faq/faq.html', {'faqs': faqs})
-
