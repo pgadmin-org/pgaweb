@@ -12,7 +12,7 @@ from django.shortcuts import render_to_response
 from news.models import News
 
 
-# Handle the various pages
+# Handle the root level pages
 def index(request):
     news = News.objects.filter(display=True)
     return render_to_response('pgaweb/index.html', {'news': news})
@@ -32,3 +32,16 @@ def licence(request):
 
 def privacy_policy(request):
     return render_to_response('pgaweb/privacy_policy.html', {})
+
+
+# Handle the Development level pages
+def development_index(request):
+    return render_to_response('pgaweb/development/index.html', {})
+
+
+def development_resources(request):
+    return render_to_response('pgaweb/development/resources.html', {})
+
+
+def development_team(request):
+    return render_to_response('pgaweb/development/team.html', {})

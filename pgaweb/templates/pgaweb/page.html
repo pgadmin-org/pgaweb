@@ -3,22 +3,24 @@
 {% block body %}
 <main class="content">
 
-<div class="row">
-    <!-- Action panel -->
-    <div class="col-sm-2 sidebar sidebar-left">
-        {% include "pgaweb/action.html" %}
-    </div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Action panel -->
+        <div class="col-sm-2 sidebar sidebar-left">
+            {% include "pgaweb/action.html" %}
+        </div>
 
-    <!-- News -->
-    <div class="col-sm-8">
-        {% block content %}{% endblock %}
-    </div>
+        <!-- News -->
+        <div class="col-sm-8">
+            {% block content %}{% endblock %}
+        </div>
 
-    <!-- Ad -->
-    <div class="col-sm-2 sidebar sidebar-right">
-        {% include "pgaweb/ad.html" %}
+        <!-- Ad -->
+        <div class="col-sm-2 sidebar sidebar-right">
+            {% include "pgaweb/ad.html" %}
+        </div>
     </div>
-</div>
+ </div>
 
 </main>
 {% endblock %}

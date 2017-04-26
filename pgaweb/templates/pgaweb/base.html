@@ -59,12 +59,10 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Development <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Introduction</a></li>
-                <li><a href="#">GIT Access</a></li>
-                <li><a href="#">Mailing List</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Change Log</a></li>
-                <li><a href="#">TODO List</a></li>
+                <li><a href="{% url 'development_index' %}">Introduction</a></li>
+                <li><a href="{% url 'development_resources' %}">Resources</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{% url 'development_team' %}">Team</a></li>
               </ul>
             </li>
 
