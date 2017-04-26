@@ -114,9 +114,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Introduction</a></li>
-                <li><a href="#">Mailing List</a></li>
-                <li><a href="#">Known Issues</a></li>
+                <li><a href="{% url 'support_index' %}">Introduction</a></li>
+                <li><a href="{% url 'support_list' %}">Mailing List</a></li>
+                <li><a href="{% url 'support_issues' %}">Known Issues</a></li>
               </ul>
             </li>
           </ul>

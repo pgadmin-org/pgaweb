@@ -1,0 +1,33 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Support Mailing List{% endblock %}
+
+{% block content %}
+<h1>Support Mailing List</h1>
+
+<p>The pgadmin-support mailing list is intended for end user support and bug reports. To subscribe to the mailing list,
+    send an email to <a href="mailto:pgadmin-support-request@postgresql.org">pgadmin-support-request@postgresql.org</a>
+    with the word 'subscribe', without quotes, as the body of message. To unsubscribe, send the word 'unsubscribe'.</p>
+
+<p>If you are posting a bug report, please include the following information where possible:</p>
+<ul>
+  <li>The version of pgAdmin you are running. If it is a development snapshot, please include the build date from the
+      <i>Help -&gt; About</i> screen, and GIT repository version if known.</li>
+  <li>The configure options used (if compiled from source)</li>
+  <li>The operating system and version details - e.g. Windows 10, or macOS 10.11.5</li>
+  <li>Whether you're running in server or desktop mode</li>
+  <li>The Qt version and configure options used (if compiled from source)</li>
+  <li>The Python version and configure options used (if running in server mode)</li>
+  <li>The output from <code>pip freeze</code> (if running in server mode)</li>
+  <li>Steps required to reproduce the problem. Please include a simple schema with optional data if required. This may
+      be sent privately <b>upon request from a developer</b> if you are concerned about posting sample code or data to
+      a public mailing list.</li>
+</ul>
+
+<p>Messages sent to the list are archived publicly and permanently at the
+    <a href="http://archives.postgresql.org/pgadmin-support/">PostgreSQL Archives</a>.</p>
+
+<p>Please <b>do not</b> send an email directly to one of the developers; they might miss it, or even be the wrong
+    person at all. Using the mailing list helps ensure that your request isn't lost and will be answered in a timely
+    fashion.</p>
+{% endblock %}

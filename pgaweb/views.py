@@ -45,3 +45,16 @@ def development_resources(request):
 
 def development_team(request):
     return render_to_response('pgaweb/development/team.html', {})
+
+
+# Handle the Support level pages
+def support_index(request):
+    return render_to_response('pgaweb/support/index.html', {})
+
+
+def support_issues(request):
+    return render_to_response('pgaweb/support/issues.html', {})
+
+
+def support_list(request):
+    return render_to_response('pgaweb/support/list.html', {})
