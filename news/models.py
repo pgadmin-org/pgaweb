@@ -22,7 +22,7 @@ class News(models.Model):
         return self.date.strftime("%Y-%m-%d")
 
     class Meta:
-        ordering = ('date',)
+        ordering = ('-date',)
         verbose_name_plural = "News Articles"
 
     def __unicode__(self):
