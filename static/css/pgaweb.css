@@ -155,3 +155,25 @@ h2 {
 h3, h4 {
   margin-top: 25px;
 }
+
+/* Quicklinks box */
+.quicklinks {
+    text-align: center;
+}
+
+.quicklinks h2 {
+    text-align: center;
+    margin-top: 0px !important;
+    margin-bottom: 20px !important;
+
+}
+
+.quicklinks p {
+    font-size: 15px !important;
+}
+
+.quicklinks i {
+    font-size: 40px !important;
+    margin-top: 20px;
+    color: #000000 !important;
+}

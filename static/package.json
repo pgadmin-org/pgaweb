@@ -5,6 +5,7 @@
   "repository": "git://git.postgresql.org/git/pgadmin-www.git",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
     "font-mfizz": "^1.2.2",
     "jquery": "^3.2.0"
   },
