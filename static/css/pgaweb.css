@@ -15,14 +15,15 @@ body {
 .navbar-brand > i {
     vertical-align: middle;
     font-size: 25px;
+    color: #FFFFFF;
 }
 
 .navbar-inverse .navbar-brand {
-    color: #009DCF;
+    color: #2C76B4;
 }
 
 .navbar-inverse .navbar-brand:hover {
-    color: #009DCF;
+    color: #2C76B4;
 }
 
 /* Home page header image with expansion */
@@ -35,8 +36,10 @@ body {
 	color: white;
 }
 
-.header h1 {
+.header h1, .header h2 {
     color: white;
+    background-color: transparent;
+    text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -71,7 +74,7 @@ body {
 
 @media (min-width: 992px) {
 	.header h1 { font-size: 55px; margin-top: 50px; }
-	.header h2 { margin-bottom: 40px;}
+	.header h2 { font-size: 20px; margin-bottom: 40px;}
 	.header p { font-size: 15px; }
 
 	#illustration { margin-bottom: -400px; }
@@ -128,4 +131,27 @@ body {
 
 .sidebar-right {
     margin-right: 0px;
+}
+
+/* Title styles */
+h1 {
+  display: block;
+  text-align: left;
+  margin-bottom: 20px;
+  background-color: #2C76B4;
+  border-radius:5px;
+  padding: 5px 7px;
+  color: #FFFFFF;
+  font-size: 30px;
+}
+
+h2 {
+  text-align: left;
+  margin-bottom: 1px;
+  color: #2C76B4;
+  font-size: 20px;
+}
+
+h3, h4 {
+  margin-top: 25px;
 }

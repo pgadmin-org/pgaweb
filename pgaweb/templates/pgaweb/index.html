@@ -41,7 +41,7 @@
 
 		<!-- News -->
 		<div class="col-sm-8">
-			<h1 class="text-center">News</h1>
+			<h1>News</h1>
 			{% for article in news.all %}
 			  <h2>{{ article.display_date }} - {{ article.title }}</h2>
 			  <p>{{ article.content|safe }}</p>
