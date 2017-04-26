@@ -110,13 +110,22 @@ body {
 /* END: Home page header image with expansion */
 
 /* HTML anchor offset */
-.anchor {
-    padding-top: 60px;
-}
-
 :target:before {
     content:"";
     display:block;
     height:60px; /* fixed header height*/
     margin:-60px 0 0; /* negative fixed header height */
+}
+
+/* Side-bar borders */
+.sidebar {
+    margin-top: 20px;
+}
+
+.sidebar-left {
+    margin-left: 0px;
+}
+
+.sidebar-right {
+    margin-right: 0px;
 }
