@@ -26,6 +26,10 @@ body {
     color: #2C76B4;
 }
 
+.navbar-inverse .navbar-brand:focus {
+    color: #2C76B4;
+}
+
 /* Home page header image with expansion */
 .header {
 	background: #005363 url(../img/header.jpg) top center;
