@@ -1,0 +1,30 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Download{% endblock %}
+
+{% block content %}
+<h1>{{ distribution }}</h1>
+
+<p><b>Maintainer:</b> {{ distribution.maintainer }}</p>
+
+{{ distribution.description | safe }}
+
+<p>
+  <ul>
+    {% for download in downloads.all %}
+    <li><a href="{{ download.download_url }}">{{ download.version }}</a> (released {{ download.version.released }})</li>
+    {% endfor %}
+  </ul>
+</p>
+
+{{ distribution.notes | safe }}
+
+<p>
+  <ul>
+    {% for download in downloads.all %}{% if download.notes_url != "" %}
+    <li><a href="{{ download.notes_url }}">Release notes</a> ({{ download.version }})</li>
+    {% endif %}{% endfor %}
+  </ul>
+</p>
+
+{% endblock %}

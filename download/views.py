@@ -7,10 +7,19 @@
 #
 ##########################################################################
 
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
+
+from download.models import Distribution, Download, Package
 
 
 # Handle the Download pages
 def index(request):
-    return render_to_response('download/index.html', {})
+    packages = Package.objects.filter(active=True)
+    return render_to_response('download/index.html', {'packages': packages})
 
+
+def download_list(request, slug):
+    distribution = get_object_or_404(Distribution, slug=slug, active=True)
+    downloads = Download.objects.filter(distribution=distribution, active=True)
+
+    return render_to_response('download/distribution.html', {'distribution': distribution, 'downloads': downloads})

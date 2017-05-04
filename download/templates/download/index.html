@@ -16,4 +16,22 @@
 
 <p>Finally, pgAdmin is included by default in many Linux distributions, such as RedHat, Fedora, Debian and Ubuntu.
     Please check your package manager for details.</p>
+
+{% for package in packages.all %}
+<h2>{{ package.name }}</h2>
+
+<p>{{ package.description }}</p>
+<div class="well table">
+    <div class="row">
+        {% for distribution in package.distribution_set.all %}
+        <div class="cell quicklinks">
+            <a href="{% url 'download_list' distribution.slug %}"><i class="fa {{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endfor %}
 {% endblock %}

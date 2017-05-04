@@ -38,7 +38,8 @@ urlpatterns = [
     url(r'^support/issues$', 'pgaweb.views.support_issues', name='support_issues'),
     url(r'^support/list$', 'pgaweb.views.support_list', name='support_list'),
 
-    url(r'^download', 'download.views.index', name='download_index'),
+    url(r'^download$', 'download.views.index', name='download_index'),
+    url(r'^download/(?P<slug>[\w-]+)$', 'download.views.download_list', name='download_list'),
 
     url(r'^faq$', 'faq.views.index', name='faq'),
 

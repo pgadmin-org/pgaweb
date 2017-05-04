@@ -16,4 +16,4 @@ DATABASES={
                 }
         }
 
-ALLOWED_HOSTS = ['wwwdevel.pgadmin.org',]
+ALLOWED_HOSTS = ['wwwdevel.pgadmin.org','127.0.0.1']

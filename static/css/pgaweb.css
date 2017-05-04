@@ -181,3 +181,15 @@ h3, h4 {
     margin-top: 20px;
     color: #000000 !important;
 }
+
+/* Table-like layout */
+.table {
+    display: table;
+    width: 100%;
+}
+.table .row {
+    display: table-row;
+}
+.table .row .cell {
+    display: table-cell;
+}
