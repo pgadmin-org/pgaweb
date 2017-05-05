@@ -4,8 +4,8 @@
 
 {% block content %}
 <h1>{{ distribution }}</h1>
-
-<p><b>Maintainer:</b> {{ distribution.maintainer }}</p>
+<h2>Download</h2>
+<h3>Maintainer: {{ distribution.maintainer }}</h3>
 
 {{ distribution.description | safe }}
 
@@ -17,6 +17,7 @@
   </ul>
 </p>
 
+<h2>Notes</h2>
 {{ distribution.notes | safe }}
 
 <p>
@@ -26,5 +27,7 @@
     {% endif %}{% endfor %}
   </ul>
 </p>
+
+
 
 {% endblock %}

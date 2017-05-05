@@ -8,7 +8,7 @@
 
     {% regroup faqs by category as faq_list %}
     {% for category in faq_list %}
-    <h4>{{ category.grouper }}</h4>
+    <h3>{{ category.grouper }}</h3>
     <ul>
         {% for faq in category.list %}
         <li><a href="#{{ faq.id }}">{{ faq.question }}</a></li>
@@ -17,10 +17,10 @@
     {% endfor %}
 
     {% for category in faq_list %}
-    <h3>{{ category.grouper }}</h3>
+    <h2>{{ category.grouper }}</h2>
 
     {% for faq in category.list %}
-    <h4 id="{{ faq.id }}">{{ faq.question }}</h4>
+    <h3 id="{{ faq.id }}">{{ faq.question }}</h3>
     {{ faq.answer | safe }}
     {% endfor %}
 
