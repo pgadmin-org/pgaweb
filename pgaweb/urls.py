@@ -7,21 +7,6 @@
 #
 ##########################################################################
 
-"""pgaweb URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
-
 from django.conf.urls import include, url
 from django.contrib import admin
 
@@ -38,8 +23,7 @@ urlpatterns = [
     url(r'^support/issues$', 'pgaweb.views.support_issues', name='support_issues'),
     url(r'^support/list$', 'pgaweb.views.support_list', name='support_list'),
 
-    url(r'^download$', 'download.views.index', name='download_index'),
-    url(r'^download/(?P<slug>[\w-]+)$', 'download.views.download_list', name='download_list'),
+    url(r'^download/', include('download.urls')),
 
     url(r'^faq$', 'faq.views.index', name='faq'),
 
