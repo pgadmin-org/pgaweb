@@ -5,19 +5,18 @@
 {% block content %}
 <h1>{{ distribution }}</h1>
 <h2>Download</h2>
-<h3>Maintainer: {{ distribution.maintainer }}</h3>
-
+<p><b>Maintainer:</b> {{ distribution.maintainer }}</p>
 {{ distribution.description | safe }}
 
-<p>
-  <ul>
+<div class="well downloads">
+  <ul class="fa-ul">
     {% for download in downloads.all %}
-    <li><a href="{{ download.download_url }}">{{ download.version }}</a> (released {{ download.version.released }})</li>
+    <li><i class="fa-li fa fa-download" aria-hidden="true"></i><a href="{{ download.download_url }}">{{ download.version }}</a> (released {{ download.version.released }})</li>
     {% endfor %}
   </ul>
-</p>
+</div>
 
-<h2>Notes</h2>
+{% if distribution.notes != "" %}<h2>Notes</h2>{% endif %}
 {{ distribution.notes | safe }}
 
 <p>
@@ -28,6 +27,14 @@
   </ul>
 </p>
 
-
-
+<h2>Alternative Distributions</h2>
+<div class="well table">
+    <div class="row">
+        {% for distribution in distributions.all %}
+        <div class="cell quicklinks">
+            <a href="{% url 'download_list' distribution.slug %}"><i class="fa {{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

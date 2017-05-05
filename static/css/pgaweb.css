@@ -190,6 +190,20 @@ h4 {
     color: #000000 !important;
 }
 
+/* Downloads box */
+.downloads {
+   font-size: 1.2em;
+}
+
+.downloads ul {
+    margin-bottom: 0px;
+    line-height: 2em;
+}
+
+.downloads i {
+    line-height: 2em;
+}
+
 /* Table-like layout */
 .table {
     display: table;
