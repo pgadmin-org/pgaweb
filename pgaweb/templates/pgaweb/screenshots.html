@@ -1,0 +1,34 @@
+{% extends "pgaweb/page.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+<link  href="{% static 'node_modules/fotorama/fotorama.css' %}" rel="stylesheet"> <!-- 3 KB -->
+<script src="{% static 'node_modules/fotorama/fotorama.js' %}"></script>
+{% endblock %}
+
+{% block title %}Screenshots{% endblock %}
+
+{% block content %}
+
+<h1>Screenshots</h1>
+
+<div class="fotorama"
+     data-allowfullscreen="native"
+     data-width="100%" data-nav="thumbs"
+     data-navposition="top"
+     data-hash="true"
+     data-keyboard="true"
+     data-arrows="true"
+     data-click="true"
+     data-swipe="true"
+     data-loop="true">
+  <img src="{% static 'img/screenshots/pgadmin4-welcome.png' %}" alt="Welcome screen" data-caption="Welcome screen">
+  <img src="{% static 'img/screenshots/pgadmin4-dashboard.png' %}" alt="Server dashboard" data-caption="Server dashboard">
+  <img src="{% static 'img/screenshots/pgadmin4-properties.png' %}" alt="Object properties" data-caption="Object properties">
+  <img src="{% static 'img/screenshots/pgadmin4-help.png' %}" alt="Embedded help links" data-caption="Embedded help links">
+  <img src="{% static 'img/screenshots/pgadmin4-viewdata.png' %}" alt="Query tool & data editor" data-caption="Query tool & data editor">
+  <img src="{% static 'img/screenshots/pgadmin4-explain.png' %}" alt="Graphical EXPLAIN" data-caption="Graphical EXPLAIN">
+  <img src="{% static 'img/screenshots/pgadmin4-debugger.png' %}" alt="Procedural language debugger" data-caption="Procedural language debugger">
+  <img src="{% static 'img/screenshots/pgadmin4-runtime.png' %}" alt="Desktop runtime & dockable UI" data-caption="Desktop runtime & dockable UI">
+</div>
+{% endblock %}

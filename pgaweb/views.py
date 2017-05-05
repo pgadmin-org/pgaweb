@@ -34,6 +34,10 @@ def privacy_policy(request):
     return render_to_response('pgaweb/privacy_policy.html', {})
 
 
+def screenshots(request):
+    return render_to_response('pgaweb/screenshots.html', {})
+
+
 # Handle the Development level pages
 def development_index(request):
     return render_to_response('pgaweb/development/index.html', {})
