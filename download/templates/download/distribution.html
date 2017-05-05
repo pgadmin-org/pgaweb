@@ -27,6 +27,7 @@
   </ul>
 </p>
 
+{% if distributions %}
 <h2>Alternative Distributions</h2>
 <div class="well table">
     <div class="row">
@@ -37,4 +38,5 @@
         {% endfor %}
     </div>
 </div>
+{% endif %}
 {% endblock %}

@@ -20,7 +20,7 @@ def index(request):
 
 def download_list(request, slug):
     distribution = get_object_or_404(Distribution, slug=slug, active=True)
-    distributions = Distribution.objects.filter(package=distribution.package, active=True)
+    distributions = Distribution.objects.filter(package=distribution.package, active=True).exclude(id=distribution.id)
     downloads = Download.objects.filter(distribution=distribution, active=True)
 
     return render_to_response('download/distribution.html', {'distribution': distribution,
