@@ -22,6 +22,10 @@ def contributing(request):
     return render_to_response('pgaweb/contributing.html', {})
 
 
+def docs(request):
+    return render_to_response('pgaweb/docs.html', {})
+
+
 def features(request):
     return render_to_response('pgaweb/features.html', {})
 

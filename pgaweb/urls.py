@@ -13,6 +13,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^$', 'pgaweb.views.index', name='index'),
     url(r'^contributing/$', 'pgaweb.views.contributing', name='contributing'),
+    url(r'^docs/$', 'pgaweb.views.docs', name='docs'),
     url(r'^features/$', 'pgaweb.views.features', name='features'),
     url(r'^licence/$', 'pgaweb.views.licence', name='licence'),
     url(r'^privacy_policy/$', 'pgaweb.views.privacy_policy', name='privacy_policy'),

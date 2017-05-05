@@ -1,0 +1,13 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Documentation{% endblock %}
+
+{% block content %}
+<h1>Documentation</h1>
+
+<p>The pgAdmin documentation for the current development code, and recent major releases of the application is available
+    for online browsing. Please select the documentation version you would like to view from the section menu.</p>
+
+<p>The documentation is automatically imported from the pgAdmin <a href="{% url 'development_resources' %}#git">GIT</a>
+    source code repository, and is only available in English.</p>
+{% endblock %}
