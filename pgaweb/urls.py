@@ -7,8 +7,17 @@
 #
 ##########################################################################
 
-from django.conf.urls import include, url
+from django.conf.urls import handler400, handler403, handler404, handler500, include, url
 from django.contrib import admin
+
+import settings
+
+
+handler400 = 'pgaweb.views.bad_request'
+handler403 = 'pgaweb.views.permission_denied'
+handler404 = 'pgaweb.views.page_not_found'
+handler500 = 'pgaweb.views.server_error'
+
 
 urlpatterns = [
     url(r'^$', 'pgaweb.views.index', name='index'),
@@ -33,5 +42,14 @@ urlpatterns = [
 
     url(r'^versions.json$', 'versions.views.index', name='versions.json'),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls))
 ]
+
+if settings.DEBUG:
+    urlpatterns = urlpatterns + [
+        url(r'^400/$', 'pgaweb.views.bad_request'),
+        url(r'^403/$', 'pgaweb.views.permission_denied'),
+        url(r'^404/$', 'pgaweb.views.page_not_found'),
+        url(r'^500/$', 'pgaweb.views.server_error')
+    ]
+

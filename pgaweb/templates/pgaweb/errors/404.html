@@ -1,0 +1,17 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+<h1>Page Not Found (404)</h1>
+
+<p>Looks like the page you requested doesn't exist. Why not try one of the Quick Links on the left, or the menu bar
+    above to find a page with more interesting content?</p>
+
+<pre class="terminal">
+postgres=# SELECT page FROM website WHERE url = '{{ path }}';
+ page
+------
+(0 rows)
+</pre>
+{% endblock %}

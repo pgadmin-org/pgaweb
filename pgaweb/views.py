@@ -8,9 +8,10 @@
 ##########################################################################
 
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from news.models import News
-
+import pprint
 
 # Handle the root level pages
 def index(request):
@@ -66,3 +67,32 @@ def support_issues(request):
 
 def support_list(request):
     return render_to_response('pgaweb/support/list.html', {})
+
+
+# Error handlers
+def bad_request(request):
+    response = render_to_response('pgaweb/errors/400.html')
+    response.status_code = 400
+
+    return response
+
+
+def permission_denied(request):
+    response = render_to_response('pgaweb/errors/403.html', {'path': request.path})
+    response.status_code = 403
+
+    return response
+
+
+def page_not_found(request):
+    response = render_to_response('pgaweb/errors/404.html', {'path': request.path})
+    response.status_code = 404
+
+    return response
+
+
+def server_error(request):
+    response = render_to_response('pgaweb/errors/500.html', { })
+    response.status_code = 500
+
+    return response

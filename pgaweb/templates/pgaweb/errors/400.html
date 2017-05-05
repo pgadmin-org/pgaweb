@@ -1,0 +1,15 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Bad Request{% endblock %}
+
+{% block content %}
+<h1>Bad Request (400)</h1>
+
+<p>The server could not process the request received. Did you fall asleep on the keyboard perhaps?</p>
+
+<pre class="terminal">
+postgres=# SELECT page FROM website WHERE url Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz;
+ERROR:  syntax error at or near "Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+LINE 1: SELECT page FROM website WHERE url Zzzzzzzzzzzzzzzzzzzzzzzzz...
+</pre>
+{% endblock %}

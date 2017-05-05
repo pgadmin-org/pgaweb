@@ -1,0 +1,14 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Forbidden{% endblock %}
+
+{% block content %}
+<h1>Forbidden (403)</h1>
+
+<p>Sorry, you do not have the required security clearances to access {{ path }}.</p>
+
+<pre class="terminal">
+postgres=> SELECT page FROM website WHERE url = '{{ path }}';
+ERROR:  permission denied for relation website
+</pre>
+{% endblock %}

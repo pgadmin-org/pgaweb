@@ -215,3 +215,9 @@ h4 {
 .table .row .cell {
     display: table-cell;
 }
+
+/* Terminal-like code display */
+.terminal {
+    background-color: #000000;
+    color: #47d147;
+}
