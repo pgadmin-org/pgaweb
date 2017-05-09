@@ -7,13 +7,13 @@
 
 <h2 id="git">GIT access</h2>
 
-<p>pgAdmin is available subject to the terms of the <a href="../licence.php">licence</a>. pgAdmin is developed using a
+<p>pgAdmin is available subject to the terms of the <a href="{% url 'licence' %}">licence</a>. pgAdmin is developed using a
     number of GIT repositories to hold the source code. Access to the repository is available through a
     <a href="https://git.postgresql.org/gitweb/?p=pgadmin4.git">web interface</a> or using your favourite GIT
     client.</p>
 
 <p>To checkout the source from the command line and get started, you might use commands such as shown below on a Linux
-    or Unix system. For further details, please see the <a href="../download/source.php">source code</a> build
+    or Unix system. For further details, please see the <a href="{% url 'download_index' %}pgadmin-4-source-code/">source code</a> build
     instructions.</p>
 
 <pre>
@@ -25,7 +25,7 @@ more README
 <h2 id="list">Mailing List</h2>
 
 <p>The pgadmin-hackers mailing list is intended for developers who wish to contribute to pgAdmin project. You are more
-    than welcome to subscribe, but please remember to use <a href="../support/list.php">pgadmin-support</a> list for end
+    than welcome to subscribe, but please remember to use <a href="{% url 'support_list' %}">pgadmin-support</a> list for end
     user support issues. To subscribe to the mailing list, send an email to
     <a href="mailto:pgadmin-hackers-request@postgresql.org">pgadmin-hackers-request@postgresql.org</a> with the word
     'subscribe', without quotes, as the body of message. To unsubscribe, send the word 'unsubscribe'.</p>
