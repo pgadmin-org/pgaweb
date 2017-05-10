@@ -50,7 +50,7 @@ body {
 }
 
 @media (min-width: 0px) {
-    .header { background: #005363 url(../img/header-s.jpg) top center; }
+    .header { background: #005363 url(../img/header-s.jpg) top center; background-size: cover; }
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
@@ -59,7 +59,7 @@ body {
 	.expand img { margin-bottom: 120px !important; margin-top: -100px !important; }
 }
 @media (min-width: 482px) {
-    .header { background: #005363 url(../img/header-m.jpg) top center; }
+    .header { background: #005363 url(../img/header-m.jpg) top center; background-size: cover; }
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
@@ -68,7 +68,7 @@ body {
 	.expand img { margin-bottom: 200px !important; margin-top: -225px !important; }
 }
 @media (min-width: 768px) {
-    .header { background: #005363 url(../img/header-m.jpg) top center; }
+    .header { background: #005363 url(../img/header-m.jpg) top center; background-size: cover; }
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 20px; }
 	.header p { font-size: 15px; }
@@ -79,7 +79,7 @@ body {
 }
 
 @media (min-width: 992px) {
-    .header { background: #005363 url(../img/header-l.jpg) top center; }
+    .header { background: #005363 url(../img/header-l.jpg) top center; background-size: cover; }
 	.header h1 { font-size: 55px; margin-top: 50px; }
 	.header h2 { font-size: 20px; margin-bottom: 40px;}
 	.header p { font-size: 15px; }
