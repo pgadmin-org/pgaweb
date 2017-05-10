@@ -8,15 +8,15 @@
 ##########################################################################
 
 from django.shortcuts import render_to_response
-from django.template import RequestContext
 
 from news.models import News
-import pprint
+from versions.models import Version
 
 # Handle the root level pages
 def index(request):
     news = News.objects.filter(display=True)
-    return render_to_response('pgaweb/index.html', {'news': news})
+    version = Version.objects.get(package='pgadmin4', active=True)
+    return render_to_response('pgaweb/index.html', {'news': news, 'version': version})
 
 
 def contributing(request):

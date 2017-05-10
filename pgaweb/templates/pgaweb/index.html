@@ -43,6 +43,11 @@
 				  <h2>{{ article.display_date }} - {{ article.title }}</h2>
 				  <p>{{ article.content|safe }}</p>
 				{% endfor %}
+                {% if version.version_str != "" %}
+				<div class="well version">
+				    <p>The current version of pgAdmin 4 is <a href="{%  url 'download_index' %}">{{ version.version_str }}</a></p>
+		    	</div>
+				{% endif %}
 			</div>
 
 			<!-- Ad -->
