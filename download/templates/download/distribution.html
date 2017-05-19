@@ -8,6 +8,7 @@
 <p><b>Maintainer:</b> {{ distribution.maintainer }}</p>
 {{ distribution.description | safe }}
 
+{% if downloads %}
 <div class="well downloads">
   <ul class="fa-ul">
     {% for download in downloads.all %}
@@ -15,6 +16,7 @@
     {% endfor %}
   </ul>
 </div>
+{% endif %}
 
 {% if distribution.notes != "" %}<h2>Notes</h2>{% endif %}
 {{ distribution.notes | safe }}
