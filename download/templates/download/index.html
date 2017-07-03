@@ -22,7 +22,7 @@
     <div class="row">
         {% for distribution in package.distribution_set.all %}
         <div class="cell quicklinks">
-            <a href="{% url 'download_list' distribution.slug %}"><i class="fa {{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
+            <a href="{% url 'download_list' distribution.slug %}"><i class="{{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
         </div>
         {% endfor %}
     </div>

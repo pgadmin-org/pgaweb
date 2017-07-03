@@ -6,7 +6,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
-    "font-mfizz": "^1.2.2",
+    "font-mfizz": "^2.3.0",
     "fotorama": "^4.6.4",
     "jquery": "^3.2.0"
   },

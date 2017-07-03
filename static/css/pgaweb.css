@@ -246,3 +246,28 @@ h4 {
     border-left: 6px solid #ffeb3b;
     padding: 5px;
 }
+
+/*
+ FontAwesome have removed support for mfizz icon support for Apple, Windows, Linux etc
+ So we need to handle it manuaaly and we will redirect mfizz icon to fontawesome icon
+ fa-apple, fa-linux, fa-windows.
+*/
+.icon-apple:before,
+.icon-windows:before,
+.icon-linux:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-apple:before {
+  content: "\f179";
+}
+.icon-windows:before {
+  content: "\f17a";
+}
+.icon-linux:before {
+  content: "\f17c";
+}
