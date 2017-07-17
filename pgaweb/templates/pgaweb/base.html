@@ -1,4 +1,7 @@
 {% load staticfiles %}
+{% load compile_static %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +18,7 @@
     <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'node_modules/font-mfizz/dist/font-mfizz.css' %}" rel="stylesheet" >
     <link href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/pgaweb.css' %}?2017060701" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/pgaweb.scss"|compile %}" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

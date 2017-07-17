@@ -2,3 +2,5 @@
 .idea
 node_modules/
 pgaweb/settings_local.py
+*.pyc
+static/COMPILED/
