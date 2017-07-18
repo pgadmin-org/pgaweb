@@ -32,6 +32,10 @@ urlpatterns = [
     url(r'^development/resources/$', 'pgaweb.views.development_resources', name='development_resources'),
     url(r'^development/team/$', 'pgaweb.views.development_team', name='development_team'),
 
+    url(r'^styleguide/$', 'pgaweb.views.styleguide_index', name='styleguide_index'),
+    url(r'^styleguide/colors$', 'pgaweb.views.styleguide_colors', name='styleguide_colors'),
+    url(r'^styleguide/alerts', 'pgaweb.views.styleguide_alerts', name='styleguide_alerts'),
+
     url(r'^support/$', 'pgaweb.views.support_index', name='support_index'),
     url(r'^support/issues/$', 'pgaweb.views.support_issues', name='support_issues'),
     url(r'^support/list/$', 'pgaweb.views.support_list', name='support_list'),

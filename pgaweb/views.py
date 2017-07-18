@@ -56,6 +56,19 @@ def development_team(request):
     return render_to_response('pgaweb/development/team.html', {})
 
 
+# Handle the Styleguide level pages
+def styleguide_index(request):
+    return render_to_response('pgaweb/styleguide/index.html', {})
+
+
+def styleguide_colors(request):
+    return render_to_response('pgaweb/styleguide/colors.html', {})
+
+
+def styleguide_alerts(request):
+    return render_to_response('pgaweb/styleguide/alerts.html', {})
+
+
 # Handle the Support level pages
 def support_index(request):
     return render_to_response('pgaweb/support/index.html', {})

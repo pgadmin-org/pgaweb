@@ -1,0 +1,169 @@
+{% extends "pgaweb/styleguide/base.html" %}
+
+{% block styleguide-page %}
+  <h2 class="styleguide-title">Colors</h2>
+  <div class="styleguide-inner">
+    <p class="styleguide">Below are the colors for pgadmin4. To use, copy and paste the hex codes into the CSS.</p>
+    <p class="styleguide">The current app may have more colors than what is included here. When a color is encountered
+      in the app that is not documented here, default to replacing that color with one that is documented here.</p>
+    <p class="styleguide">Each color listed on this page can be used for Background, Font, and Border. Pre-pend each
+      class name with <strong>.bg-</strong> or <strong>.font-</strong> or <strong>.border-</strong> to use as background
+      or border.</p>
+    <h5>
+      <i>Example:</i>
+    </h5>
+
+    <div>
+      To use a background color use the class:
+    </div>
+    <div class="codeBlock">
+      <div class="highlight">
+        <pre>bg-color-yellow</pre>
+      </div>
+    </div>
+
+    <div>
+      To use a border color use the class:
+    </div>
+    <div class="codeBlock">
+      <div class="highlight">
+        <pre>border-color-yellow</pre>
+      </div>
+    </div>
+
+    <div>
+      To use a font color use the class:
+    </div>
+    <div class="codeBlock">
+      <div class="highlight">
+        <pre>font-color-yellow</pre>
+      </div>
+    </div>
+
+    <h3 id="colors-primaryblue" class="styleguide">Primary blue</h3>
+    <p class="styleguide">This color should be used to call attention to the main part of the app. Use sparingly.</p>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-primary-blue font-white">
+          primary-blue
+        </div>
+        $primary-blue<br/>
+        #2c76b4
+      </div>
+    </div>
+
+    <h3 id="Grays" class="styleguide">Grays</h3>
+    <p class="styleguide">For text, avoid using black or #000 to lower the contrast between the background and text.</p>
+    <div class="row">
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-gray-1">
+          gray-1
+        </div>
+        $color-gray-1<br/>
+        #f9f9f9
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-gray-2">
+          gray-2
+        </div>
+        $color-gray-2<br/>
+        #e8e8e8
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-gray-3">
+          gray-3
+        </div>
+        $color-gray-3<br/>
+        #cccccc
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-gray-4 font-white">
+          gray-4
+        </div>
+        $color-gray-4<br/>
+        #888888
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-gray-5 font-white">
+          gray-5
+        </div>
+        $color-gray-5<br/>
+        #555555
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-gray-6 font-white">
+          gray-6
+        </div>
+        $color-gray-6<br/>
+        #333333
+      </div>
+    </div>
+
+    <h3 id="z-othercolors" class="styleguide">Others</h3>
+    <p class="styleguide">These colors should be used to highlight hover options in dropdown menus and catalog browser
+      or to tell the user when something is right or wrong.</p>
+    <div class="row">
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-blue-1">
+          blue-1
+        </div>
+        $color-blue-1<br/>
+        #e7f2ff
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-blue-2">
+          blue-2
+        </div>
+        $color-blue-2<br/>
+        #84acdd
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-red-1">
+          red-1
+        </div>
+        $color-red-1<br/>
+        #f2dede
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-red-2 font-white">
+          red-2
+        </div>
+        $color-red-2<br/>
+        #de8585
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-red-3 font-white">
+          red-3
+        </div>
+        $color-red-3<br/>
+        #d0021b
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-green-1">
+          green-1
+        </div>
+        $color-green-1<br/>
+        #dff0d7
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-green-2">
+          green-2
+        </div>
+        $color-green-2<br/>
+        #a2c189
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-green-3 font-white">
+          green-3
+        </div>
+        $color-green-3<br/>
+        #3a773a
+      </div>
+    </div>
+  </div>
+{% endblock %}
