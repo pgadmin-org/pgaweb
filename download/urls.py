@@ -8,9 +8,9 @@
 ##########################################################################
 
 from django.conf.urls import include, url
-
+from download import views as download_views
 
 urlpatterns = [
-    url(r'^$', 'download.views.index', name='download_index'),
-    url(r'^(?P<slug>[\w-]+)/$', 'download.views.download_list', name='download_list'),
+    url(r'^$', download_views.index, name='download_index'),
+    url(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
 ]

@@ -9,6 +9,9 @@
 
 from django.conf.urls import handler400, handler403, handler404, handler500, include, url
 from django.contrib import admin
+from pgaweb import views as pgaweb_views
+from faq import views as faq_views
+from versions import views as versions_views
 
 import settings
 
@@ -20,40 +23,40 @@ handler500 = 'pgaweb.views.server_error'
 
 
 urlpatterns = [
-    url(r'^$', 'pgaweb.views.index', name='index'),
-    url(r'^contributing/$', 'pgaweb.views.contributing', name='contributing'),
-    url(r'^docs/$', 'pgaweb.views.docs', name='docs'),
-    url(r'^features/$', 'pgaweb.views.features', name='features'),
-    url(r'^licence/$', 'pgaweb.views.licence', name='licence'),
-    url(r'^privacy_policy/$', 'pgaweb.views.privacy_policy', name='privacy_policy'),
-    url(r'^screenshots/$', 'pgaweb.views.screenshots', name='screenshots'),
+    url(r'^$', pgaweb_views.index, name='index'),
+    url(r'^contributing/$', pgaweb_views.contributing, name='contributing'),
+    url(r'^docs/$', pgaweb_views.docs, name='docs'),
+    url(r'^features/$', pgaweb_views.features, name='features'),
+    url(r'^licence/$', pgaweb_views.licence, name='licence'),
+    url(r'^privacy_policy/$', pgaweb_views.privacy_policy, name='privacy_policy'),
+    url(r'^screenshots/$', pgaweb_views.screenshots, name='screenshots'),
 
-    url(r'^development/$', 'pgaweb.views.development_index', name='development_index'),
-    url(r'^development/resources/$', 'pgaweb.views.development_resources', name='development_resources'),
-    url(r'^development/team/$', 'pgaweb.views.development_team', name='development_team'),
+    url(r'^development/$', pgaweb_views.development_index, name='development_index'),
+    url(r'^development/resources/$', pgaweb_views.development_resources, name='development_resources'),
+    url(r'^development/team/$', pgaweb_views.development_team, name='development_team'),
 
-    url(r'^styleguide/$', 'pgaweb.views.styleguide_index', name='styleguide_index'),
-    url(r'^styleguide/colors$', 'pgaweb.views.styleguide_colors', name='styleguide_colors'),
-    url(r'^styleguide/alerts', 'pgaweb.views.styleguide_alerts', name='styleguide_alerts'),
+    url(r'^styleguide/$', pgaweb_views.styleguide_index, name='styleguide_index'),
+    url(r'^styleguide/colors$', pgaweb_views.styleguide_colors, name='styleguide_colors'),
+    url(r'^styleguide/alerts', pgaweb_views.styleguide_alerts, name='styleguide_alerts'),
 
-    url(r'^support/$', 'pgaweb.views.support_index', name='support_index'),
-    url(r'^support/issues/$', 'pgaweb.views.support_issues', name='support_issues'),
-    url(r'^support/list/$', 'pgaweb.views.support_list', name='support_list'),
+    url(r'^support/$', pgaweb_views.support_index, name='support_index'),
+    url(r'^support/issues/$', pgaweb_views.support_issues, name='support_issues'),
+    url(r'^support/list/$', pgaweb_views.support_list, name='support_list'),
 
     url(r'^download/', include('download.urls')),
 
-    url(r'^faq/$', 'faq.views.index', name='faq'),
+    url(r'^faq/$', faq_views.index, name='faq'),
 
-    url(r'^versions.json$', 'versions.views.index', name='versions.json'),
+    url(r'^versions.json$', versions_views.index, name='versions.json'),
 
     url(r'^admin/', include(admin.site.urls))
 ]
 
 if settings.DEBUG:
     urlpatterns = urlpatterns + [
-        url(r'^400/$', 'pgaweb.views.bad_request'),
-        url(r'^403/$', 'pgaweb.views.permission_denied'),
-        url(r'^404/$', 'pgaweb.views.page_not_found'),
-        url(r'^500/$', 'pgaweb.views.server_error')
+        url(r'^400/$', pgaweb_views.bad_request),
+        url(r'^403/$', pgaweb_views.permission_denied),
+        url(r'^404/$', pgaweb_views.page_not_found),
+        url(r'^500/$', pgaweb_views.server_error)
     ]
 
