@@ -3,11 +3,11 @@
 {% block styleguide-page %}
   <h2 class="styleguide-title">Colors</h2>
   <div class="styleguide-inner">
-    <p class="styleguide">Below are the colors for pgadmin4. To use, copy and paste the hex codes into the CSS.</p>
+    <p class="styleguide">pgadmin4 follows naming convention similar to Bootstrap for color variables.</p>
     <p class="styleguide">The current app may have more colors than what is included here. When a color is encountered
       in the app that is not documented here, default to replacing that color with one that is documented here.</p>
-    <p class="styleguide">Each color listed on this page can be used for Background, Font, and Border. Pre-pend each
-      class name with <strong>.bg-</strong> or <strong>.font-</strong> or <strong>.border-</strong> to use as background
+    <p class="styleguide">Each color listed on this page can be used for Background, Text, and Border. Pre-pend each
+      class name with <strong>.bg-</strong> or <strong>.text-</strong> or <strong>.border-</strong> to use as background
       or border.</p>
     <h5>
       <i>Example:</i>
@@ -18,7 +18,7 @@
     </div>
     <div class="codeBlock">
       <div class="highlight">
-        <pre>bg-color-yellow</pre>
+        <pre>bg-primary</pre>
       </div>
     </div>
 
@@ -27,142 +27,252 @@
     </div>
     <div class="codeBlock">
       <div class="highlight">
-        <pre>border-color-yellow</pre>
+        <pre>border-primary</pre>
       </div>
     </div>
 
     <div>
-      To use a font color use the class:
+      To use a text color use the class:
     </div>
     <div class="codeBlock">
       <div class="highlight">
-        <pre>font-color-yellow</pre>
+        <pre>text-primary</pre>
       </div>
     </div>
 
-    <h3 id="colors-primaryblue" class="styleguide">Primary blue</h3>
-    <p class="styleguide">This color should be used to call attention to the main part of the app. Use sparingly.</p>
+    <h3 id="colors-primaryblue" class="styleguide">Color variables</h3>
+    <p class="styleguide">These colors should be used in the SCSS files. The name of the colors suggests where to use the variable. The primary color should be used to call attention to the main part of the app. Use sparingly.</p>
 
     <div class="row">
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-primary-blue font-white">
-          primary-blue
+      <div class="col-md-2 chip-container">
+        <div class="color-chip bg-primary-lighter">
+          primary-lighter
         </div>
-        $primary-blue<br/>
-        #2c76b4
+        $color-primary-lighter<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-primary-light">
+          primary-light
+        </div>
+        $color-primary-light<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-primary font-white">
+          primary
+        </div>
+        $color-primary<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-primary-dark font-white">
+          primary-dark
+        </div>
+        $color-primary-dark<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-primary-darker font-white">
+          primary-darker
+        </div>
+        $color-primary-darker<br/>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-2 chip-container">
+        <div class="color-chip bg-danger-lighter">
+          danger-lighter
+        </div>
+        $color-danger-lighter<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-danger-light">
+          danger-light
+        </div>
+        $color-danger-light<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-danger font-white">
+          danger
+        </div>
+        $color-danger<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-danger-dark font-white">
+          danger-dark
+        </div>
+        $color-danger-dark<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-danger-darker font-white">
+          danger-darker
+        </div>
+        $color-danger-darker<br/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 chip-container">
+        <div class="color-chip bg-success-lighter">
+          success-lighter
+        </div>
+        $color-success-lighter<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-success-light">
+          success-light
+        </div>
+        $color-success-light<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-success font-white">
+          success
+        </div>
+        $color-success<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-success-dark font-white">
+          success-dark
+        </div>
+        $color-success-dark<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-success-darker font-white">
+          success-darker
+        </div>
+        $color-success-darker<br/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 chip-container">
+        <div class="color-chip bg-warning-lighter">
+          warning-lighter
+        </div>
+        $color-warning-lighter<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-warning-light">
+          warning-light
+        </div>
+        $color-warning-light<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-warning font-white">
+          warning
+        </div>
+        $color-warning<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-warning-dark font-white">
+          warning-dark
+        </div>
+        $color-warning-dark<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-warning-darker font-white">
+          warning-darker
+        </div>
+        $color-warning-darker<br/>
+      </div>
+    </div>
     <h3 id="Grays" class="styleguide">Grays</h3>
     <p class="styleguide">For text, avoid using black or #000 to lower the contrast between the background and text.</p>
     <div class="row">
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-1">
-          gray-1
+        <div class="color-chip bg-gray-white">
+          gray-white
         </div>
-        $color-gray-1<br/>
-        #f9f9f9
+        $color-gray-white<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-2">
-          gray-2
+        <div class="color-chip bg-gray-lighter">
+          gray-lighter
         </div>
-        $color-gray-2<br/>
-        #e8e8e8
+        $color-gray-lighter<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-3">
-          gray-3
+        <div class="color-chip bg-gray-light">
+          gray-light
         </div>
-        $color-gray-3<br/>
-        #cccccc
+        $color-gray-light<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-4 font-white">
-          gray-4
+        <div class="color-chip bg-gray font-white">
+          gray
         </div>
-        $color-gray-4<br/>
-        #888888
+        $color-gray<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-5 font-white">
-          gray-5
+        <div class="color-chip bg-gray-dark font-white">
+          gray-dark
         </div>
-        $color-gray-5<br/>
-        #555555
+        $color-gray-dark<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-6 font-white">
-          gray-6
+        <div class="color-chip bg-gray-darker font-white">
+          gray-darker
         </div>
-        $color-gray-6<br/>
-        #333333
+        $color-gray-darker<br/>
       </div>
     </div>
 
     <h3 id="z-othercolors" class="styleguide">Others</h3>
-    <p class="styleguide">These colors should be used to highlight hover options in dropdown menus and catalog browser
-      or to tell the user when something is right or wrong.</p>
+    <p class="styleguide">Use these variables for foreground and background colors instead of white and black respectively. This will help in switching the colors easily if planned for a dark theme.</p>
     <div class="row">
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-blue-1">
-          blue-1
+        <div class="color-chip chip-text-fg">
+          bg
         </div>
-        $color-blue-1<br/>
-        #e7f2ff
+        $color-bg<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-blue-2">
-          blue-2
+        <div class="color-chip chip-text-fg-inverse">
+          bg-inverse
         </div>
-        $color-blue-2<br/>
-        #84acdd
+        $color-bg-inverse<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip chip-text-fg-inverse">
+          fg
+        </div>
+        $color-fg<br/>
+      </div>
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip chip-text-fg">
+          fg-inverse
+        </div>
+        $color-fg-inverse<br/>
       </div>
     </div>
+
+    <h3 id="z-othercolors" class="styleguide">SQL editor</h3>
+    <p class="styleguide">These are the color variables used by SQL editor</p>
     <div class="row">
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-red-1">
-          red-1
+        <div class="color-chip chip-editor-bg">
+          bg
         </div>
-        $color-red-1<br/>
-        #f2dede
+        $color-editor-bg<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-red-2 font-white">
-          red-2
+        <div class="color-chip chip-editor-keyword">
+          keyword
         </div>
-        $color-red-2<br/>
-        #de8585
+        $color-editor-keyword<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-red-3 font-white">
-          red-3
+        <div class="color-chip chip-editor-number">
+          number
         </div>
-        $color-red-3<br/>
-        #d0021b
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-green-1">
-          green-1
-        </div>
-        $color-green-1<br/>
-        #dff0d7
+        $color-editor-number<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-green-2">
-          green-2
+        <div class="color-chip chip-editor-foldmarker">
+          foldmarker
         </div>
-        $color-green-2<br/>
-        #a2c189
+        $color-editor-foldmarker<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-green-3 font-white">
-          green-3
+        <div class="color-chip chip-editor-activeline">
+          activeline
         </div>
-        $color-green-3<br/>
-        #3a773a
+        $color-editor-activeline<br/>
       </div>
     </div>
   </div>

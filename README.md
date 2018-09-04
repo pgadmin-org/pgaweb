@@ -25,6 +25,14 @@ Create a new database using the command
 createdb pgaweb
 ```
 
+### Create Migrations for individual modules
+```bash
+./manager.py makemigrations download
+./manager.py makemigrations faq
+./manager.py makemigrations news
+./manager.py makemigrations versions
+```
+
 ### Migrate database
 
 ```bash

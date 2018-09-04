@@ -1,33 +1,55 @@
-.color-chip {
-  align-items: center;
-  border-radius: 3px;
-  box-shadow: inset 0 -3px 0 0 rgba(0, 0, 0, .15);
-  color: rgba(0, 0, 0, .65);
-  display: flex;
-  font-size: 1.15em;
-  height: 70px;
-  justify-content: center;
-  width: 100%;
-  margin: 0 0 10px;
-}
-
 .chip-container {
   margin-bottom: 10px;
   margin-top: 15px;
 }
 
-@import "styleguide/primaryblue";
-@import "styleguide/othercolors";
-@import "styleguide/colorsgrey";
-@import "styleguide/typography";
-@import "styleguide/alert";
 @import "styleguide/github";
+@import 'styleguide/pgadmin.resources.scss';
+@import "styleguide/alert";
+
+
+.chip-text-fg {
+  color: $color-fg;
+  background-color: $color-bg;
+  border: 1px solid $color-gray-white;
+}
+
+.chip-text-fg-inverse {
+  color: $color-fg-inverse;
+  background-color: $color-bg-inverse;
+}
+
+.chip-editor-bg {
+  background-color: $color-bg;
+  border: 1px solid $color-gray-white;
+}
+
+.chip-editor-keyword {
+  background-color: $color-editor-keyword;
+  color: $color-fg-inverse;
+}
+
+.chip-editor-number {
+  background-color: $color-editor-number;
+  color: $color-fg-inverse;
+}
+
+.chip-editor-foldmarker {
+  background-color: $color-editor-foldmarker;
+  color: $color-fg-inverse;
+}
+
+.chip-editor-activeline {
+  background-color: $color-editor-foldmarker;
+  color: $color-fg-inverse;
+}
+
 
 .page-container {
   .navbar {
 
     li.current-page {
-      border: 3px solid $primary-blue;
+      border: 3px solid $color-primary;
       border-radius: 5px;
 
       a {
