@@ -138,4 +138,4 @@ STATIC_PRECOMPILER_COMPILERS = (
 )
 
 # Load local settings overrides
-from settings_local import *
+from .settings_local import *

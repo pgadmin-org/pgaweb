@@ -5,45 +5,69 @@
 
 @import "styleguide/github";
 @import 'styleguide/pgadmin.resources.scss';
+@import "styleguide/_pgadmin.style.scss";
 @import "styleguide/alert";
 
 
-.chip-text-fg {
-  color: $color-fg;
-  background-color: $color-bg;
-  border: 1px solid $color-gray-white;
+.chip-gray {
+  background-color: $color-gray;
+
+  &-lighter {
+    background-color: $color-gray-lighter;
+  }
+  &-light {
+    background-color: $color-gray-light;
+  }
+  &-dark {
+    background-color: $color-gray-dark;
+  }
+  &-darker {
+    background-color: $color-gray-darker;
+  }
 }
 
-.chip-text-fg-inverse {
-  color: $color-fg-inverse;
-  background-color: $color-bg-inverse;
+.chip-bg-theme {
+  background: $color-bg-theme;
+  color: $color-fg-theme;
+}
+
+.chip-fg-theme {
+  background: $color-fg-theme;
+  color: $color-bg-theme;
 }
 
 .chip-editor-bg {
-  background-color: $color-bg;
-  border: 1px solid $color-gray-white;
+  background-color: $color-editor-bg;
+  border: 1px solid $color-gray-lighter;
 }
 
 .chip-editor-keyword {
   background-color: $color-editor-keyword;
-  color: $color-fg-inverse;
+  color: $white;
 }
 
 .chip-editor-number {
   background-color: $color-editor-number;
-  color: $color-fg-inverse;
+  color: $white;
 }
 
 .chip-editor-foldmarker {
   background-color: $color-editor-foldmarker;
-  color: $color-fg-inverse;
+  color: $white;
 }
 
 .chip-editor-activeline {
   background-color: $color-editor-foldmarker;
-  color: $color-fg-inverse;
+  color: $white;
 }
 
+.chip-border-color {
+  background-color: $border-color;
+}
+
+.chip-table-hover-border {
+  background-color: $table-hover-border-color;
+}
 
 .page-container {
   .navbar {
@@ -92,4 +116,29 @@
       color: #ffffff;
     }
   }
+}
+
+.ajs-message {
+  border-radius: $border-radius;
+  padding: 0.75rem 1.25rem;
+  display: inline-block;
+
+  .ajs-icon {
+    margin-right: 1.25rem;
+  }
+}
+
+.ajs-message.ajs-error.ajs-visible {
+  background: $color-danger-lighter;
+  border: $border-width solid $color-danger;
+}
+
+.ajs-message.ajs-success.ajs-visible {
+  background: $color-success-light;
+  border: $border-width solid $color-success;
+}
+
+.ajs-message.ajs-visible {
+  background: $color-primary-light;
+  border: $border-width solid $color-primary;
 }

@@ -3,12 +3,11 @@
 {% block styleguide-page %}
   <h2 class="styleguide-title">Colors</h2>
   <div class="styleguide-inner">
-    <p class="styleguide">pgadmin4 follows naming convention similar to Bootstrap for color variables.</p>
-    <p class="styleguide">The current app may have more colors than what is included here. When a color is encountered
-      in the app that is not documented here, default to replacing that color with one that is documented here.</p>
-    <p class="styleguide">Each color listed on this page can be used for Background, Text, and Border. Pre-pend each
-      class name with <strong>.bg-</strong> or <strong>.text-</strong> or <strong>.border-</strong> to use as background
-      or border.</p>
+    <p class="styleguide">pgAdmin styling, colors and usage of colors has been changed since version 4.0 largely to improve the consistency, user experience and ease of development</p>
+    <p class="styleguide">The app uses fixed set of colors throughout to give uniform look and feel across different dialogs, controls and tools.</p>
+    <p class="styleguide">Colors listed on this page are used for specific purpose. Class names starting with
+      <strong>.bg-</strong> or <strong>.text-</strong> or <strong>.border-</strong> are defined for quick use, but not to be used out of the theme 
+      on which pgAdmin is build.</p>
     <h5>
       <i>Example:</i>
     </h5>
@@ -41,15 +40,14 @@
     </div>
 
     <h3 id="colors-primaryblue" class="styleguide">Color variables</h3>
-    <p class="styleguide">These colors should be used in the SCSS files. The name of the colors suggests where to use the variable. The primary color should be used to call attention to the main part of the app. Use sparingly.</p>
-
+    <p class="styleguide">The colors used by pgAdmin are described in this section. pgAdmin majorly uses three colors namely primary, secondary and gray. 
+      There are few more colors which are used based on the specific context. To make the application more customizable, variables are defined specific to 
+      modules and takes values from the standard available colors. These variables should be used in the SCSS files and if required new variables can be added 
+      based on the module requirements, but the values should be taken from the available colors. Please note, all the required colors are defined and there
+      is no need to add any new colors.</p>
+    <p>Available colors are:</p>
+    <p>The primary color should be used to call attention to the main part of the app. Use sparingly.</p>
     <div class="row">
-      <div class="col-md-2 chip-container">
-        <div class="color-chip bg-primary-lighter">
-          primary-lighter
-        </div>
-        $color-primary-lighter<br/>
-      </div>
       <div class="col-xs-6 col-md-2 chip-container">
         <div class="color-chip bg-primary-light">
           primary-light
@@ -69,12 +67,22 @@
         $color-primary-dark<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-primary-darker font-white">
-          primary-darker
+        <div class="color-chip border-gray-lighter">
+          primary-fg
         </div>
-        $color-primary-darker<br/>
+        $color-primary-fg<br/>
       </div>
     </div>
+    <p>Secondary color is used in places like secondary buttons (Cancel, Next, etc.), toolbar buttons apart from the primary use buttons.</p>
+    <div class="row">
+      <div class="col-xs-6 col-md-2 chip-container">
+        <div class="color-chip bg-secondary border-gray-lighter">
+          secondary
+        </div>
+        $color-secondary<br/>
+      </div>
+    </div>
+    <p>Danger color is used to highlight errors and failures</p>
     <div class="row">
       <div class="col-md-2 chip-container">
         <div class="color-chip bg-danger-lighter">
@@ -94,26 +102,9 @@
         </div>
         $color-danger<br/>
       </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-danger-dark font-white">
-          danger-dark
-        </div>
-        $color-danger-dark<br/>
-      </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-danger-darker font-white">
-          danger-darker
-        </div>
-        $color-danger-darker<br/>
-      </div>
     </div>
+    <p>Success colors are used to highlight success and completions</p>
     <div class="row">
-      <div class="col-md-2 chip-container">
-        <div class="color-chip bg-success-lighter">
-          success-lighter
-        </div>
-        $color-success-lighter<br/>
-      </div>
       <div class="col-xs-6 col-md-2 chip-container">
         <div class="color-chip bg-success-light">
           success-light
@@ -126,26 +117,9 @@
         </div>
         $color-success<br/>
       </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-success-dark font-white">
-          success-dark
-        </div>
-        $color-success-dark<br/>
-      </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-success-darker font-white">
-          success-darker
-        </div>
-        $color-success-darker<br/>
-      </div>
     </div>
+    <p>Warning colors are used to give informative warnings</p>
     <div class="row">
-      <div class="col-md-2 chip-container">
-        <div class="color-chip bg-warning-lighter">
-          warning-lighter
-        </div>
-        $color-warning-lighter<br/>
-      </div>
       <div class="col-xs-6 col-md-2 chip-container">
         <div class="color-chip bg-warning-light">
           warning-light
@@ -158,28 +132,10 @@
         </div>
         $color-warning<br/>
       </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-warning-dark font-white">
-          warning-dark
-        </div>
-        $color-warning-dark<br/>
-      </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-warning-darker font-white">
-          warning-darker
-        </div>
-        $color-warning-darker<br/>
-      </div>
     </div>
     <h3 id="Grays" class="styleguide">Grays</h3>
-    <p class="styleguide">For text, avoid using black or #000 to lower the contrast between the background and text.</p>
+    <p class="styleguide">Grays should be used for borders, negative/empty spaces, disabled texts only. They are generally used for framing the controls.</p>
     <div class="row">
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip bg-gray-white">
-          gray-white
-        </div>
-        $color-gray-white<br/>
-      </div>
       <div class="col-xs-6 col-md-2 chip-container">
         <div class="color-chip bg-gray-lighter">
           gray-lighter
@@ -216,28 +172,22 @@
     <p class="styleguide">Use these variables for foreground and background colors instead of white and black respectively. This will help in switching the colors easily if planned for a dark theme.</p>
     <div class="row">
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip chip-text-fg">
-          bg
+        <div class="color-chip chip-bg-theme">
+          bg-theme
         </div>
-        $color-bg<br/>
+        $color-bg-theme<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip chip-text-fg-inverse">
-          bg-inverse
+        <div class="color-chip chip-fg-theme">
+          fg-theme
         </div>
-        $color-bg-inverse<br/>
+        $color-fg-theme<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip chip-text-fg-inverse">
-          fg
+        <div class="color-chip chip-border-color">
+          border-color
         </div>
-        $color-fg<br/>
-      </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip chip-text-fg">
-          fg-inverse
-        </div>
-        $color-fg-inverse<br/>
+        $border-color<br/>
       </div>
     </div>
 
@@ -255,12 +205,6 @@
           keyword
         </div>
         $color-editor-keyword<br/>
-      </div>
-      <div class="col-xs-6 col-md-2 chip-container">
-        <div class="color-chip chip-editor-number">
-          number
-        </div>
-        $color-editor-number<br/>
       </div>
       <div class="col-xs-6 col-md-2 chip-container">
         <div class="color-chip chip-editor-foldmarker">

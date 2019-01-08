@@ -1,4 +1,6 @@
 /* Main body */
+@import './styleguide/_default.variables.scss';
+
 body {
   padding-top: 50px;
   padding-bottom: 30px;
@@ -19,15 +21,15 @@ body {
 }
 
 .navbar-inverse .navbar-brand {
-    color: #2C76B4;
+    color: $color-primary;
 }
 
 .navbar-inverse .navbar-brand:hover {
-    color: #2C76B4;
+    color: $color-primary;
 }
 
 .navbar-inverse .navbar-brand:focus {
-    color: #2C76B4;
+    color: $color-primary;
 }
 
 /* Home page header image with expansion */
@@ -145,7 +147,7 @@ h1 {
   display: block;
   text-align: left;
   margin-bottom: 20px;
-  background-color: #2C76B4;
+  background-color: $color-primary;
   border-radius:5px;
   padding: 5px 7px;
   color: #FFFFFF;
@@ -155,7 +157,7 @@ h1 {
 h2 {
   text-align: left;
   margin-bottom: 10px;
-  color: #2C76B4;
+  color: $color-primary;
   font-size: 20px;
 }
 

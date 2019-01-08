@@ -1,0 +1,23 @@
+{% extends "pgaweb/styleguide/base.html" %}
+
+{% block styleguide-page %}
+  <h2 class="styleguide-title">Fonts</h2>
+  <div class="styleguide-inner">
+    <p class="styleguide">
+        pgAdmin primarily uses Google Roboto for the overall
+        content. The font FontAwesome is used for icons and Source Code Pro
+        is used for SQL and other code. Variables are defined for these fonts
+        and can be used directly for font-family property of css.
+    </p>
+    <p class="styleguide"></p>
+
+    <div class="codeBlock">
+        <div class="highlight">
+          <pre>
+  $font-family-primary: "Roboto" !default;
+  $font-family-editor: 'Source Code Pro' !default;
+  $font-family-icon: 'FontAwesome' !default;</pre>
+        </div>
+      </div>    
+  </div>
+{% endblock %}

@@ -12,235 +12,64 @@
     manually style them in most cases.
   </p>
 
+    <!-- return alertify.orig_success(alertMessage, timeout, callback);
+  },
+  error: function(message, timeout, callback) {
+    var alertMessage =
+    `<div class="d-flex px-3 py-2">
+      <div class="pr-2">
+        <i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>
+      </div>
+      <div class="text-body">${message}</div>
+    </div>`;
+    return alertify.orig_error(alertMessage, timeout, callback);
+  },
+  info: function(message, timeout) {
+    var alertMessage =
+    `<div class="d-flex px-3 py-2">
+      <div class="mr-3">
+        <i class="fa fa-info text-primary" aria-hidden="true"></i>
+      </div>
+      <div class="text-body">${message}</div> -->
   <h3>Success alert</h3>
   <div class="alert-row">
-    <div class="alert alert-success border-success-light text-success text-14 alert-box">
-      <div class="media">
-        <div class="media-body media-middle">
-          <div class="alert-icon success-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
-          <div class="alert-text"> Successfully run. Total query runtime: 32 msec. 1 row retrieved</div>
+    <div class="ajs-message ajs-success ajs-visible">
+        <div class="ajs-body">
+            <span class="ajs-icon">
+              <i class="fa fa-check text-success" aria-hidden="true"></i>
+            </span>
+            <span class="text-body">Successfully run. Total query runtime: 32 msec. 1 row retrieved</span>
         </div>
-      </div>
     </div>
   </div>
-  <p>Use this to provide feedback on an event that happened correctly:</p>
-
-  <div class="codeBlock">
-    <div class="highlight">
-      <pre>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-row"</span><span
-          class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-success border-success-light text-success text-14 alert-box"</span><span
-          class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span
-          class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span
-          class="s">"media-body media-middle"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span
-          class="s">"alert-icon success-icon"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-check"</span> <span
-          class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/i&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-text"</span><span
-          class="nt">&gt;</span>
-          Successfully run. Total query runtime: 32 msec. 1 row retrieved
-        <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></pre>
-    </div>
-  </div>
+  <p>Use this to provide feedback on an event that happened correctly</p>
 
   <h3>Error alert</h3>
   <div class="alert-row">
-    <div class="alert alert-danger border-danger-light text-danger text-14 alert-box">
-      <div class="media">
-        <div class="media-body media-middle">
-          <div class="alert-icon error-icon"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
-          <div class="alert-text">
-            Error retrieving properties - INTERNAL SERVER ERROR
-          </div>
+    <div class="ajs-message ajs-error ajs-visible">
+        <div class="ajs-body">
+            <span class="ajs-icon">
+              <i class="fa fa-times text-danger" aria-hidden="true"></i>
+            </span>
+            <span class="text-body">Error retrieving properties - INTERNAL SERVER ERROR</span>
         </div>
-      </div>
     </div>
   </div>
   <p>Use this to provide feedback that something went wrong:</p>
 
-  <div class="codeBlock">
-    <div class="highlight">
-      <pre>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-row"</span><span
-          class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-danger border-danger-light text-danger text-14 alert-box"</span><span
-          class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span
-          class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span
-          class="s">"media-body media-middle"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span
-          class="s">"alert-icon error-icon"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;i</span> <span class="na">class=</span><span
-          class="s">"fa fa-exclamation-triangle"</span> <span class="na">aria-hidden=</span><span
-          class="s">"true"</span><span class="nt">&gt;&lt;/i&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-text"</span><span
-          class="nt">&gt;</span>
-          Error retrieving properties - INTERNAL SERVER ERROR
-        <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></pre>
-    </div>
-  </div>
-
   <h3>Info alert</h3>
   <div class="alert-row">
-    <div class="alert alert-info border-primary-light text-primary text-14 alert-box">
-      <div class="media">
-        <div class="media-body media-middle">
-          <div class="alert-text">
-            This is a neutral message
-          </div>
+    <div class="ajs-message ajs-visible">
+        <div class="ajs-body">
+            <span class="ajs-icon">
+              <i class="fa fa-info text-primary" aria-hidden="true"></i>
+            </span>
+            <span class="text-body">This is a neutral message</span>
         </div>
-      </div>
     </div>
   </div>
   <p>
     Use this for non urgent info that users should know.
     Links can also be placed within the banner if needed.
   </p>
-
-  <div class="codeBlock">
-    <div class="highlight">
-      <pre>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-row"</span><span
-          class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-info border-primary-light text-primary text-14 alert-box"</span><span
-          class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span
-          class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span
-          class="s">"media-body media-middle"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-text"</span><span
-          class="nt">&gt;</span>
-          This is a neutral message
-        <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></pre>
-    </div>
-  </div>
-
-  <h3>Small alerts</h3>
-  <div class="pg-prop-status-bar">
-    <div class="success-in-footer alert-success border-success-light text-success text-14 alert-box">
-      <div class="media">
-        <div class="media-body media-middle">
-          <div class="alert-icon success-icon">
-            <i class="fa fa-check" aria-hidden="true"></i>
-          </div>
-          <div class="alert-text">
-            Successfully run. Total query runtime: 32 msec. 1 row retrieved
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pg-prop-status-bar">
-    <div class="error-in-footer alert-danger border-danger-light text-danger text-14 alert-box">
-      <div class="media">
-        <div class="media-body media-middle">
-          <div class="alert-icon error-icon">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-          </div>
-          <div class="alert-text">
-            Error retrieving properties - INTERNAL SERVER ERROR
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pg-prop-status-bar">
-    <div class="info-in-footer alert-info border-primary-light text-primary text-14 alert-box">
-      <div class="media">
-        <div class="media-body media-middle">
-          <div class="alert-text">
-            This is a neutral message
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <p></p>
-
-  <div class="codeBlock">
-    <div class="highlight">
-      <pre><span class="nt">&lt;div</span> <span class="na">class=</span><span
-          class="s">"pg-prop-status-bar"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"success-in-footer alert-success border-success-light text-success text-14 alert-box"</span><span
-            class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span
-            class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span
-            class="s">"media-body media-middle"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span
-            class="s">"alert-icon success-icon"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-check"</span> <span
-            class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/i&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-text"</span><span
-            class="nt">&gt;</span>
-          Successfully run. Total query runtime: 32 msec. 1 row retrieved
-        <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pg-prop-status-bar"</span><span
-            class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"error-in-footer alert-danger border-danger-light text-danger text-14 alert-box"</span><span
-            class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span
-            class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span
-            class="s">"media-body media-middle"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span
-            class="s">"alert-icon error-icon"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;i</span> <span class="na">class=</span><span
-            class="s">"fa fa-exclamation-triangle"</span> <span class="na">aria-hidden=</span><span
-            class="s">"true"</span><span class="nt">&gt;&lt;/i&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-text"</span><span
-            class="nt">&gt;</span>
-          Error retrieving properties - INTERNAL SERVER ERROR
-        <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pg-prop-status-bar"</span><span
-            class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"info-in-footer alert-info border-primary-light text-primary text-14 alert-box"</span><span
-            class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span
-            class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span
-            class="s">"media-body media-middle"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert-text"</span><span
-            class="nt">&gt;</span>
-          This is a neutral message
-        <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></pre>
-    </div>
-  </div>
 {% endblock %}

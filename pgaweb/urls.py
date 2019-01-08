@@ -13,7 +13,7 @@ from pgaweb import views as pgaweb_views
 from faq import views as faq_views
 from versions import views as versions_views
 
-import settings
+from . import settings
 
 
 handler400 = 'pgaweb.views.bad_request'
@@ -38,6 +38,8 @@ urlpatterns = [
     url(r'^styleguide/$', pgaweb_views.styleguide_index, name='styleguide_index'),
     url(r'^styleguide/colors$', pgaweb_views.styleguide_colors, name='styleguide_colors'),
     url(r'^styleguide/alerts', pgaweb_views.styleguide_alerts, name='styleguide_alerts'),
+    url(r'^styleguide/fonts', pgaweb_views.styleguide_fonts, name='styleguide_fonts'),
+    url(r'^styleguide/othervars', pgaweb_views.styleguide_othervars, name='styleguide_othervars'),
 
     url(r'^support/$', pgaweb_views.support_index, name='support_index'),
     url(r'^support/issues/$', pgaweb_views.support_issues, name='support_issues'),

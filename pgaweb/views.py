@@ -68,6 +68,11 @@ def styleguide_colors(request):
 def styleguide_alerts(request):
     return render_to_response('pgaweb/styleguide/alerts.html', {})
 
+def styleguide_fonts(request):
+    return render_to_response('pgaweb/styleguide/fonts.html', {})
+
+def styleguide_othervars(request):
+    return render_to_response('pgaweb/styleguide/othervars.html', {})
 
 # Handle the Support level pages
 def support_index(request):
