@@ -7,13 +7,21 @@
 #
 ##########################################################################
 
-from django.shortcuts import render_to_response
+from django.http import JsonResponse
 
 from versions.models import Version
 
 
-# Handle the static pages
+# The version list used for upgrade checks.
 def index(request):
-    versions = Version.objects.filter(active=True)
-    return render_to_response('versions/versions.json', {'versions': versions}, content_type='text/json')
+    versions = list(Version.objects.filter(active=True).values())
+
+    json = {}
+    for version in versions:
+        data = {'version': version['version_str'],
+                'version_int': version['version_int'],
+                'download_url': version['download_url']}
+        json[version['package']] = data
+
+    return JsonResponse(json, json_dumps_params={'indent': 1})
 
