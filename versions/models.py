@@ -31,5 +31,5 @@ class Version(models.Model):
         ordering = ('version_int',)
         unique_together = ('active', 'package',)
 
-    def __unicode__(self):
+    def __str__(self):
        return '%s - v%s' % (self.package, self.version_str)

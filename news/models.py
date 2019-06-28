@@ -36,5 +36,5 @@ class News(models.Model):
         ordering = ('-date',)
         verbose_name_plural = "News Articles"
 
-    def __unicode__(self):
+    def __str__(self):
        return '%s - %s' % (self.display_date, self.title)

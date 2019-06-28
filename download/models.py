@@ -32,7 +32,7 @@ class Package(models.Model):
     class Meta:
         ordering = ('order', 'name')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -50,7 +50,7 @@ class Distribution(models.Model):
     class Meta:
         ordering = ('order', 'package', 'name')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.package, self.name)
 
     def save(self, *args, **kwargs):
@@ -69,7 +69,7 @@ class Version(models.Model):
     class Meta:
         ordering = ('-released', 'name')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s v%s" % (self.package, self.name)
 
 
@@ -83,5 +83,5 @@ class Download(models.Model):
     class Meta:
         ordering = ('version', 'distribution')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.version, self.distribution.name)

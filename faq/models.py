@@ -28,7 +28,7 @@ class Category(models.Model):
         ordering = ('order',)
         verbose_name_plural = "FAQ Categories"
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -44,5 +44,5 @@ class Faq(models.Model):
         verbose_name = "FAQ"
         verbose_name_plural = "FAQs"
 
-    def __unicode__(self):
+    def __str__(self):
        return self.question
