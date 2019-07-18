@@ -16,7 +16,6 @@ from django.dispatch import receiver
 @receiver(post_save)
 def clear_the_cache(**kwargs):
     if kwargs['sender']._meta.label != 'admin.LogEntry':
-        print("Clearing the Django cache...")
         cache.clear()
 
 

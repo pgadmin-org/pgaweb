@@ -19,7 +19,6 @@ from django.template.defaultfilters import slugify
 @receiver(post_save)
 def clear_the_cache(**kwargs):
     if kwargs['sender']._meta.label != 'admin.LogEntry':
-        print("Clearing the Django cache...")
         cache.clear()
 
 
