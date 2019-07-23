@@ -45,7 +45,7 @@ def page(request, package, version, file='index.html'):
         version = Version.objects.filter(active=True,
                                          released__isnull=False,
                                          package__slug=package,
-                                         page__isnull=False).first().name
+                                         page__isnull=False).first().slug
 
     pages = Page.objects.filter(file=file,
                                 version__package__slug=package,
@@ -53,8 +53,10 @@ def page(request, package, version, file='index.html'):
                                 version__package__active=True)
 
     for page in pages:
-        if page.version.name == version:
+        if page.version.slug == version:
             break
+        else:
+            page = None
 
     if page is None:
         raise Http404("The requested page could not be found.")
