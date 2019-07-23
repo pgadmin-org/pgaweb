@@ -108,7 +108,7 @@ class Version(models.Model):
         if not self.id:
             self.slug = version_slugify("%s %s" % (self.package, self.name))
 
-        super(Distribution, self).save(*args, **kwargs)
+        super(Version, self).save(*args, **kwargs)
 
 
 class Download(models.Model):
