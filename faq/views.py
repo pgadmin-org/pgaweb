@@ -7,7 +7,7 @@
 #
 ##########################################################################
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from faq.models import Faq
 
@@ -16,4 +16,4 @@ from faq.models import Faq
 def index(request):
     faqs = Faq.objects.filter(active=True)
 
-    return render_to_response('faq/faq.html', {'faqs': faqs})
+    return render(request, 'faq/faq.html', {'faqs': faqs})

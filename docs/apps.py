@@ -7,10 +7,10 @@
 #
 ##########################################################################
 
-from django.conf.urls import url
-from download import views as download_views
+from __future__ import unicode_literals
 
-urlpatterns = [
-    url(r'^$', download_views.index, name='download_index'),
-    url(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
-]
+from django.apps import AppConfig
+
+
+class DocsConfig(AppConfig):
+    name = 'docs'

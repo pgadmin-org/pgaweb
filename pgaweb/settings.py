@@ -47,10 +47,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'download',
+    'docs',
     'faq',
     'news',
+    'search',
     'versions',
-    'static_precompiler'
+    'static_precompiler',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,6 +84,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pgaweb.context_processors.get_docs',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -99,13 +102,13 @@ WSGI_APPLICATION = 'pgaweb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'pgaweb',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
+        'ENGINE': 'pgaweb.db',
+        'NAME': 'pgaweb',
+
         'USER': 'pgaweb',
         'PASSWORD': '',
-        'HOST': '/var/run/postgresql',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': '/var/run/postgresql',
+        'PORT': '',
     }
 }
 

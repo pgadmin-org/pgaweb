@@ -7,110 +7,108 @@
 #
 ##########################################################################
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from news.models import News
 from versions.models import Version
+
 
 # Handle the root level pages
 def index(request):
     news = News.objects.filter(display=True)
     version = Version.objects.get(package='pgadmin4', active=True)
-    return render_to_response('pgaweb/index.html', {'news': news, 'version': version})
+    return render(request, 'pgaweb/index.html',
+                  {'news': news, 'version': version})
 
 
 def contributing(request):
-    return render_to_response('pgaweb/contributing.html', {})
-
-
-def docs(request):
-    return render_to_response('pgaweb/docs.html', {})
+    return render(request, 'pgaweb/contributing.html', {})
 
 
 def features(request):
-    return render_to_response('pgaweb/features.html', {})
+    return render(request, 'pgaweb/features.html', {})
 
 
 def licence(request):
-    return render_to_response('pgaweb/licence.html', {})
+    return render(request, 'pgaweb/licence.html', {})
 
 
 def privacy_policy(request):
-    return render_to_response('pgaweb/privacy_policy.html', {})
+    return render(request, 'pgaweb/privacy_policy.html', {})
 
 
 def screenshots(request):
-    return render_to_response('pgaweb/screenshots.html', {})
+    return render(request, 'pgaweb/screenshots.html', {})
 
 
 # Handle the Development level pages
 def development_index(request):
-    return render_to_response('pgaweb/development/index.html', {})
+    return render(request, 'pgaweb/development/index.html', {})
 
 
 def development_resources(request):
-    return render_to_response('pgaweb/development/resources.html', {})
+    return render(request, 'pgaweb/development/resources.html', {})
 
 
 def development_team(request):
-    return render_to_response('pgaweb/development/team.html', {})
+    return render(request, 'pgaweb/development/team.html', {})
 
 
 # Handle the Styleguide level pages
 def styleguide_index(request):
-    return render_to_response('pgaweb/styleguide/index.html', {})
+    return render(request, 'pgaweb/styleguide/index.html', {})
 
 
 def styleguide_colors(request):
-    return render_to_response('pgaweb/styleguide/colors.html', {})
+    return render(request, 'pgaweb/styleguide/colors.html', {})
 
 
 def styleguide_alerts(request):
-    return render_to_response('pgaweb/styleguide/alerts.html', {})
+    return render(request, 'pgaweb/styleguide/alerts.html', {})
 
 def styleguide_fonts(request):
-    return render_to_response('pgaweb/styleguide/fonts.html', {})
+    return render(request, 'pgaweb/styleguide/fonts.html', {})
 
 def styleguide_othervars(request):
-    return render_to_response('pgaweb/styleguide/othervars.html', {})
+    return render(request, 'pgaweb/styleguide/othervars.html', {})
 
 # Handle the Support level pages
 def support_index(request):
-    return render_to_response('pgaweb/support/index.html', {})
+    return render(request, 'pgaweb/support/index.html', {})
 
 
 def support_issues(request):
-    return render_to_response('pgaweb/support/issues.html', {})
+    return render(request, 'pgaweb/support/issues.html', {})
 
 
 def support_list(request):
-    return render_to_response('pgaweb/support/list.html', {})
+    return render(request, 'pgaweb/support/list.html', {})
 
 
 # Error handlers
 def bad_request(request):
-    response = render_to_response('pgaweb/errors/400.html')
+    response = render(request, 'pgaweb/errors/400.html')
     response.status_code = 400
 
     return response
 
 
 def permission_denied(request):
-    response = render_to_response('pgaweb/errors/403.html', {'path': request.path})
+    response = render(request, 'pgaweb/errors/403.html', {'path': request.path})
     response.status_code = 403
 
     return response
 
 
 def page_not_found(request):
-    response = render_to_response('pgaweb/errors/404.html', {'path': request.path})
+    response = render(request, 'pgaweb/errors/404.html', {'path': request.path})
     response.status_code = 404
 
     return response
 
 
 def server_error(request):
-    response = render_to_response('pgaweb/errors/500.html', { })
+    response = render(request, 'pgaweb/errors/500.html', { })
     response.status_code = 500
 
     return response

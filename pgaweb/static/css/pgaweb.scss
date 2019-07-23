@@ -1,11 +1,6 @@
 /* Main body */
 @import './styleguide/_default.variables.scss';
 
-body {
-  padding-top: 50px;
-  padding-bottom: 30px;
-}
-
 /* Navbar and menus */
 .dropdown-header {
     font-weight: bold;
@@ -14,22 +9,67 @@ body {
     margin-left: -10px;
 }
 
+.dropdown-item:hover,
+.dropdown-item:active,
+{
+  background-color: $color-gray-light;
+  color: $color-fg;
+}
+
+.navbar {
+    height: 50px;
+}
+
+.navbar-brand {
+    height: 50px;
+    line-height: 50px;
+    padding-top: 0px;
+}
+
 .navbar-brand > i {
     vertical-align: middle;
-    font-size: 25px;
-    color: #FFFFFF;
+    font-size: 30px;
+    color: white;
+}
+
+.navbar-toggle {
+  margin-top: 8px;
+  padding: 9px 10px !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: $color-gray;
 }
 
 .navbar-inverse .navbar-brand {
-    color: $color-primary;
+    font-size: 22px;
+    color: $color-gray;
 }
 
 .navbar-inverse .navbar-brand:hover {
-    color: $color-primary;
+    font-size: 22px;
+    color: $color-gray;
 }
 
 .navbar-inverse .navbar-brand:focus {
-    color: $color-primary;
+    font-size: 22px;
+    color: $color-gray;
+}
+
+
+.navbar-inverse .navbar-nav>li>a {
+    color: $color-gray-light;
+}
+
+.navbar-collapse {
+    background-color: #343a40;
+    padding: 5px;
+    z-index: 9999;
+}
+
+/* Bootstrap colours */
+.well, pre {
+    background-color: $color-gray-lighter;
 }
 
 /* Home page header image with expansion */
@@ -57,7 +97,9 @@ body {
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
 
-	#illustration { margin-bottom: -130px; }
+    .navbar { padding: 0rem 1rem; }
+
+	#pga-illustration { margin-bottom: -130px; }
 	.expand img { margin-bottom: 120px !important; margin-top: -100px !important; }
 }
 @media (min-width: 482px) {
@@ -66,8 +108,8 @@ body {
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
 
-	#illustration { margin-bottom: -260px; }
-	.expand img { margin-bottom: 200px !important; margin-top: -225px !important; }
+	#pga-illustration { margin-bottom: -200px; }
+	.expand img { margin-bottom: 200px !important; margin-top: -220px !important; }
 }
 @media (min-width: 768px) {
     .header { background: #005363 url(../img/header-m.jpg) top center; background-size: cover; }
@@ -76,8 +118,8 @@ body {
 	.header p { font-size: 15px; }
 	.header .lead { font-size: 22px; }
 
-	#illustration { margin-bottom: -310px;}
-	.expand img { margin-bottom: 300px !important; margin-top: -260px !important; }
+	#pga-illustration { margin-bottom: -290px;}
+	.expand img { margin-bottom: 280px !important; margin-top: -260px !important; }
 }
 
 @media (min-width: 992px) {
@@ -86,20 +128,20 @@ body {
 	.header h2 { font-size: 20px; margin-bottom: 40px;}
 	.header p { font-size: 15px; }
 
-	#illustration { margin-bottom: -400px; }
+	#pga-illustration { margin-bottom: -400px; }
 	.expand img { margin-bottom: 400px !important; margin-top: -300px !important; }
 
 	.space-before { padding-top: 40px; }
 	.space-after { padding-bottom: 40px; }
 }
 
-#illustration {
+#pga-illustration {
     z-index: 1;
     text-align: center;
     width: 100%;
 }
 
-#illustration img {
+#pga-illustration img {
 	max-width:100%;
 	-webkit-transition: all 0.8s;
 	-o-transition: all 0.8s;
@@ -112,9 +154,10 @@ body {
     margin-top: -300px;
 }
 
-.content {
+.pga-content {
 	position: relative;
 	z-index: 999;
+	padding-top: 15px;
 	margin-bottom: 40px;
 	background: #fff;
 }
@@ -130,15 +173,12 @@ body {
 }
 
 /* Side-bar borders */
-.sidebar {
-    margin-top: 20px;
-}
-
-.sidebar-left {
+.pga-sidebar-left {
     margin-left: 0px;
 }
 
-.sidebar-right {
+.pga-sidebar-right {
+    text-align: center;
     margin-right: 0px;
 }
 
@@ -174,53 +214,71 @@ h4 {
 }
 
 /* Quicklinks box */
-.quicklinks {
+.pga-quicklinks {
     text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.quicklinks h2 {
+.pga-quicklinks h2 {
     text-align: center;
     margin-top: 0px !important;
     margin-bottom: 20px !important;
-
 }
 
-.quicklinks p {
-    font-size: 15px !important;
+.pga-quicklinks p {
+    font-size: 1.1em;
 }
 
-.quicklinks i {
+.pga-quicklinks i {
     font-size: 40px !important;
     margin-top: 20px;
     color: #000000 !important;
 }
 
 /* Downloads box */
-.downloads {
-   font-size: 1.2em;
+.pga-downloads {
+   font-size: 1.1em;
+   padding: 15px;
+   margin-bottom: 15px;
 }
 
-.downloads ul {
+.pga-downloads table {
+   border: none;
+}
+
+.pga-downloads.table>tbody>tr>td,
+.pga-downloads.table>tbody>tr>th,
+.pga-downloads.table>tfoot>tr>td,
+.pga-downloads.table>tfoot>tr>th,
+.pga-downloads.table>thead>tr>td,
+.pga-downloads.table>thead>tr>th {
+   border: none;
+}
+
+.pga-downloads ul {
     margin-bottom: 0px;
     line-height: 2em;
 }
 
-.downloads i {
+.pga-downloads i {
     line-height: 2em;
 }
 
 /* Version box */
-.version {
+.pga-version {
     text-align: center;
     margin-top: 30px;
 }
 
-.version p {
+.pga-version p {
     font-size: 16px !important;
     margin-bottom: 0px;
 }
 
-.version a {
+.pga-version a {
     font-weight: bolder !important;
 }
 
@@ -237,7 +295,7 @@ h4 {
 }
 
 /* Terminal-like code display */
-.terminal {
+.pga-terminal {
     background-color: #000000;
     color: #47d147;
 }
@@ -249,9 +307,164 @@ h4 {
     padding: 5px;
 }
 
+/* Doc pages */
+.page-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.pga-doccurrent {
+    text-decoration: underline;
+}
+
+.pga-docwrapper {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.pga-docbody {
+    padding: 0px;
+}
+
+.pga-docbody h1 {
+    margin-top: 0px;
+}
+
+.pga-docbody img {
+    max-width: 100%;
+}
+
+.pga-docbody img.align-center {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pga-docbody img.align-right {
+    clear: right;
+    float: right;
+    margin-left: 1em;
+}
+
+.pga-docbody a.headerlink {
+    margin-left: 0.5em;
+    color: $color-gray;
+}
+
+.pga-docbody a.headerlink:hover {
+    color: $color-gray-dark;
+}
+
+.pga-docbody h1 a.headerlink {
+    color: $color-gray-dark;
+}
+
+.pga-docbody h1 a.headerlink:hover {
+    color: $color-gray;
+}
+
+.pga-docbody div.highlight {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: $color-gray-lighter;
+}
+
+.pga-docbody div.highlight pre {
+    margin: 0px;
+}
+
+.pga-docbody table {
+  border: 1px solid $color-gray-dark;
+  background-color: $color-gray-light;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.pga-docbody table p {
+  margin: 4px;
+}
+
+.pga-docbody table td, table.pga-docbody th {
+  border-left: 1px solid $color-gray;
+  padding: 3px 2px;
+}
+
+.pga-docbody table tr:nth-child(even) {
+  background: $color-gray-lighter;
+}
+.pga-docbody table thead {
+  background: $color-primary;
+  border-bottom: 2px solid $color-gray;
+}
+.pga-docbody table thead th {
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid $color-gray;
+}
+.pga-docbody table thead th:first-child {
+  border-left: none;
+}
+
+.pga-docheader {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.pga-docheader h3 {
+    display: none;
+}
+
+.pga-docheader ul {
+    margin: 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+}
+
+.pga-docheader li {
+    display: inline;
+}
+
+.pga-docheader li.right {
+    float: right;
+    margin-right: 5px;
+}
+
+.pga-docheaderinfo {
+    margin-left: 10px;
+}
+
+.pga-doccontents {
+    padding: 5px;
+}
+
+.pga-doccontents h2 {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.pga-doccontents ul {
+    padding-left: 15px;
+    margin: 5px;
+}
+
+.pga-footer p {
+    padding: 15px;
+    margin-bottom: 0px;
+}
+
+.form-advanced-search {
+    margin-top: 15px;
+    margin-bottom: 5px
+}
+
 /*
  FontAwesome have removed support for mfizz icon support for Apple, Windows, Linux etc
- So we need to handle it manuaaly and we will redirect mfizz icon to fontawesome icon
+ So we need to handle it manually and we will redirect mfizz icon to fontawesome icon
  fa-apple, fa-linux, fa-windows.
 */
 .icon-apple:before,
@@ -273,3 +486,74 @@ h4 {
 .icon-linux:before {
   content: "\f17c";
 }
+
+/* Pygments styles */
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #eeffcc; }
+.highlight .c { color: #408090; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #007020; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408090; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408090; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #007020 } /* Comment.Preproc */
+.highlight .cpf { color: #408090; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408090; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408090; background-color: #fff0f0 } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #333333 } /* Generic.Output */
+.highlight .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #007020 } /* Keyword.Pseudo */
+.highlight .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #902000 } /* Keyword.Type */
+.highlight .m { color: #208050 } /* Literal.Number */
+.highlight .s { color: #4070a0 } /* Literal.String */
+.highlight .na { color: #4070a0 } /* Name.Attribute */
+.highlight .nb { color: #007020 } /* Name.Builtin */
+.highlight .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.highlight .no { color: #60add5 } /* Name.Constant */
+.highlight .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.highlight .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #007020 } /* Name.Exception */
+.highlight .nf { color: #06287e } /* Name.Function */
+.highlight .nl { color: #002070; font-weight: bold } /* Name.Label */
+.highlight .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #bb60d5 } /* Name.Variable */
+.highlight .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #208050 } /* Literal.Number.Bin */
+.highlight .mf { color: #208050 } /* Literal.Number.Float */
+.highlight .mh { color: #208050 } /* Literal.Number.Hex */
+.highlight .mi { color: #208050 } /* Literal.Number.Integer */
+.highlight .mo { color: #208050 } /* Literal.Number.Oct */
+.highlight .sa { color: #4070a0 } /* Literal.String.Affix */
+.highlight .sb { color: #4070a0 } /* Literal.String.Backtick */
+.highlight .sc { color: #4070a0 } /* Literal.String.Char */
+.highlight .dl { color: #4070a0 } /* Literal.String.Delimiter */
+.highlight .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #4070a0 } /* Literal.String.Double */
+.highlight .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #4070a0 } /* Literal.String.Heredoc */
+.highlight .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.highlight .sx { color: #c65d09 } /* Literal.String.Other */
+.highlight .sr { color: #235388 } /* Literal.String.Regex */
+.highlight .s1 { color: #4070a0 } /* Literal.String.Single */
+.highlight .ss { color: #517918 } /* Literal.String.Symbol */
+.highlight .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #06287e } /* Name.Function.Magic */
+.highlight .vc { color: #bb60d5 } /* Name.Variable.Class */
+.highlight .vg { color: #bb60d5 } /* Name.Variable.Global */
+.highlight .vi { color: #bb60d5 } /* Name.Variable.Instance */
+.highlight .vm { color: #bb60d5 } /* Name.Variable.Magic */
+.highlight .il { color: #208050 } /* Literal.Number.Integer.Long */

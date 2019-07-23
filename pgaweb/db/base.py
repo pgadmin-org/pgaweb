@@ -7,10 +7,9 @@
 #
 ##########################################################################
 
-from django.conf.urls import url
-from download import views as download_views
+from django.db.backends.postgresql import base
+import tsvector_field
 
-urlpatterns = [
-    url(r'^$', download_views.index, name='download_index'),
-    url(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
-]
+
+class DatabaseWrapper(base.DatabaseWrapper):
+    SchemaEditorClass = tsvector_field.DatabaseSchemaEditor

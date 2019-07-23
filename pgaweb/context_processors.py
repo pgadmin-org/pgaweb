@@ -7,10 +7,13 @@
 #
 ##########################################################################
 
-from django.conf.urls import url
-from download import views as download_views
 
-urlpatterns = [
-    url(r'^$', download_views.index, name='download_index'),
-    url(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
-]
+from docs.models import Page
+
+
+def get_docs(request):
+    pages = Page.objects.filter(version__active=True,
+                                version__package__active=True,
+                                file='index.html')
+
+    return {'docs': pages}

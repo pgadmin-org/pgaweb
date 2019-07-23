@@ -8,9 +8,10 @@
 ##########################################################################
 
 from django.conf.urls import url
-from download import views as download_views
+from docs import views as docs_views
 
 urlpatterns = [
-    url(r'^$', download_views.index, name='download_index'),
-    url(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
+    url(r'^$', docs_views.docs, name='docs'),
+    url(r'^([^/]+)/([^/]+)/$', docs_views.page, name='page'),
+    url(r'^([^/]+)/([^/]+)/(.+)$', docs_views.page, name='page'),
 ]

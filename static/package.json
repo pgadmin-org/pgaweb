@@ -4,11 +4,11 @@
   "description": "pgAdmin Website",
   "repository": "git://git.postgresql.org/git/pgadmin-www.git",
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "font-mfizz": "^2.3.0",
     "fotorama": "^4.6.4",
-    "jquery": "^3.2.0"
+    "jquery": "^3.4.1"
   },
   "devDependencies": {},
   "scripts": {

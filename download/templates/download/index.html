@@ -18,14 +18,18 @@
 <h2>{{ package.name }}</h2>
 
 {{ package.description | safe }}
-<div class="well table">
-    <div class="row">
-        {% for distribution in package.distribution_set.all %}
-        <div class="cell quicklinks">
-            <a href="{% url 'download_list' distribution.slug %}"><i class="{{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
-        </div>
-        {% endfor %}
-    </div>
+<div class="well">
+    <table class="table pga-downloads">
+        <tbody>
+            <tr class="pga-quicklinks">
+                {% for distribution in package.distribution_set.all %}
+                <td width="{% widthratio 100 package.distribution_set.count 1 %}%">
+                    <a href="{% url 'download_list' distribution.slug %}"><i class="{{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 

@@ -11,6 +11,7 @@ from django.conf.urls import handler400, handler403, handler404, handler500, inc
 from django.contrib import admin
 from pgaweb import views as pgaweb_views
 from faq import views as faq_views
+from search import views as search_views
 from versions import views as versions_views
 
 from . import settings
@@ -25,7 +26,6 @@ handler500 = 'pgaweb.views.server_error'
 urlpatterns = [
     url(r'^$', pgaweb_views.index, name='index'),
     url(r'^contributing/$', pgaweb_views.contributing, name='contributing'),
-    url(r'^docs/$', pgaweb_views.docs, name='docs'),
     url(r'^features/$', pgaweb_views.features, name='features'),
     url(r'^licence/$', pgaweb_views.licence, name='licence'),
     url(r'^privacy_policy/$', pgaweb_views.privacy_policy, name='privacy_policy'),
@@ -45,9 +45,13 @@ urlpatterns = [
     url(r'^support/issues/$', pgaweb_views.support_issues, name='support_issues'),
     url(r'^support/list/$', pgaweb_views.support_list, name='support_list'),
 
+    url(r'^docs/', include('docs.urls')),
+
     url(r'^download/', include('download.urls')),
 
     url(r'^faq/$', faq_views.index, name='faq'),
+
+    url(r'^search/', include('search.urls')),
 
     url(r'^versions.json$', versions_views.index, name='versions.json'),
 
@@ -61,4 +65,3 @@ if settings.DEBUG:
         url(r'^404/$', pgaweb_views.page_not_found),
         url(r'^500/$', pgaweb_views.server_error)
     ]
-

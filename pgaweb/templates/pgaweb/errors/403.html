@@ -7,7 +7,7 @@
 
 <p>Sorry, you do not have the required security clearances to access {{ path }}.</p>
 
-<pre class="terminal">
+<pre class="pga-terminal">
 postgres=> SELECT page FROM website WHERE url = '{{ path }}';
 ERROR:  permission denied for relation website
 </pre>

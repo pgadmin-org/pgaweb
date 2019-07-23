@@ -1,22 +1,22 @@
 {% extends "pgaweb/base.html" %}
 
 {% block body %}
-<main class="content">
+<main class="pga-content">
 
 <div class="container-fluid">
     <div class="row">
         <!-- Action panel -->
-        <div class="col-sm-2 sidebar sidebar-left">
+        <div class="col-sm-2 pga-sidebar pga-sidebar-left">
             {% include "pgaweb/action.html" %}
         </div>
 
         <!-- Content -->
-        <div class="col-sm-8 page-container">
+        <div class="col-sm-8">
             {% block content %}{% endblock %}
         </div>
 
         <!-- Ad -->
-        <div class="col-sm-2 sidebar sidebar-right">
+        <div class="col-sm-2 pga-sidebar pga-sidebar-right">
             {% include "pgaweb/ad.html" %}
         </div>
     </div>

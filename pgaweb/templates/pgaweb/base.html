@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="pgAdmin Website">
+    <meta name="description" content="pgAdmin - PostgreSQL Tools for Windows, Mac, Linux and the Web">
     <meta name="author" content="Dave Page">
     <link rel="icon" href="{% static 'img/favicon.ico' %}">
 
@@ -31,78 +31,77 @@
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">pgAdmin</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'index' %}"><i class="icon-postgres-alt"></i> pgAdmin</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+      <a class="navbar-brand" href="{% url 'index' %}"><i class="icon-postgres-alt"></i> pgAdmin</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
             <!-- Home menu -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'index' %}">Introduction</a></li>
-                <li><a href="{% url 'faq' %}">FAQ</a></li>
-                <li><a href="{% url 'features' %}">Features</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{% url 'contributing' %}">Contributing</a></li>
-                <li><a href="{% url 'licence' %}">Licence</a></li>
-                <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-              </ul>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
+              <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                <a class="dropdown-item" href="{% url 'index' %}">Introduction</a>
+                <a class="dropdown-item" href="{% url 'faq' %}">FAQ</a>
+                <a class="dropdown-item" href="{% url 'features' %}">Features</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'contributing' %}">Contributing</a>
+                <a class="dropdown-item" href="{% url 'licence' %}">Licence</a>
+                <a class="dropdown-item" href="{% url 'privacy_policy' %}">Privacy Policy</a>
+              </div>
             </li>
 
             <!-- Development menu -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Development <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'development_index' %}">Introduction</a></li>
-                <li><a href="{% url 'development_resources' %}">Resources</a></li>
-                <li><a href="{% url 'styleguide_index' %}">Style Guide</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{% url 'development_team' %}">Team</a></li>
-              </ul>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Development <span class="caret"></span></a>
+              <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                <a class="dropdown-item" href="{% url 'development_index' %}">Introduction</a>
+                <a class="dropdown-item" href="{% url 'development_resources' %}">Resources</a>
+                <a class="dropdown-item" href="{% url 'styleguide_index' %}">Style Guide</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'development_team' %}">Team</a>
+              </div>
             </li>
 
             <!-- Documentation menu -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'docs' %}">Introduction</a></li>
-                <li><a href="{% url 'screenshots' %}">Screenshots</a></li>
-                <li class="dropdown-header">pgAdmin 4:</li>
-                <li><a href="{% url 'docs' %}pgadmin4/dev/">Development</a></li>
-                <li><a href="{% url 'docs' %}pgadmin4/4.x/">Release 4.x</a></li>
-                <li><a href="{% url 'docs' %}pgadmin4/3.6/">Release 3.6</a></li>
-                <li><a href="{% url 'docs' %}pgadmin4/2.1/">Release 2.1</a></li>
-                <li><a href="{% url 'docs' %}pgadmin4/1.6/">Release 1.6</a></li>
-                <li class="dropdown-header">pgAdmin 3:</li>
-                <li><a href="{% url 'docs' %}pgadmin3/1.22/">Release 1.22</a></li>
-              </ul>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
+              <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
+                <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
+                {% regroup docs by version.package.name as doc_list %}
+                {% for doc in doc_list %}
+                <a class="dropdown-header">{{ doc.grouper }}:</a>
+                  {% for v in doc.list %}
+                  <a class="dropdown-item" href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{ v.version.list_string }}</a>
+                  {% endfor %}
+                {% endfor %}
+              </div>
             </li>
 
             <!-- Download menu -->
-            <li><a href="{% url 'download_index' %}">Download</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'download_index' %}">Download</a></li>
 
             <!-- Support menu -->
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'support_index' %}">Introduction</a></li>
-                <li><a href="{% url 'support_list' %}">Mailing List</a></li>
-                <li><a href="{% url 'support_issues' %}">Known Issues</a></li>
-              </ul>
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
+              <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                <a class="dropdown-item" href="{% url 'support_index' %}">Introduction</a>
+                <a class="dropdown-item" href="{% url 'support_list' %}">Mailing List</a>
+                <a class="dropdown-item" href="{% url 'support_issues' %}">Known Issues</a>
+              </div>
             </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0" id="search_button">
+          <button type="button" class="btn btn-default btn-outline-primary" aria-label="Right Align">
+            <span class="fa fa-search fa-lg" aria-hidden="true"></span>
+          </button>
+        </form>
+      </ul>
     </nav>
 
     <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
@@ -111,6 +110,18 @@
 
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
     {% block scripts %}{% endblock %}
+
+     <script>
+      $('#search_button').click(function(){
+
+        var $form = '<form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">\
+<input name="q" class="form-control mr-sm-2" type="text" placeholder="{% block search_prompt %}Search latest docs{% endblock %}" size="20" aria-label="Search">\
+<button class="btn btn-primary my-2 my-sm-0" type="submit"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>\
+{% block search_fields %}{% endblock %}</form>';
+
+        $('#search_button').replaceWith($form);
+      });
+    </script>
 
     <!-- Google Analytics -->
     <script src="https://www.google-analytics.com/urchin.js" type="text/javascript"></script>
