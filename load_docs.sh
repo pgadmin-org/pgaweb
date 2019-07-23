@@ -2,7 +2,6 @@
 
 ./manage.py docloader "pgAdmin 4" 4.10 pgadmin4-4.10-docs
 ./manage.py docloader "pgAdmin 4" 4.9 pgadmin4-4.9-docs
-./manage.py docloader "pgAdmin 4" 4.9 pgadmin4-4.9-docs
 ./manage.py docloader "pgAdmin 4" 4.8 pgadmin4-4.8-docs
 ./manage.py docloader "pgAdmin 4" 4.7 pgadmin4-4.7-docs
 ./manage.py docloader "pgAdmin 4" 4.6 pgadmin4-4.6-docs
@@ -16,3 +15,4 @@
 ./manage.py docloader "pgAdmin 4" 2.1 pgadmin4-2.1-docs
 ./manage.py docloader "pgAdmin 4" 1.6 pgadmin4-1.6-docs
 ./manage.py docloader "pgAdmin 4" Development pgadmin4-dev/docs/en_US/_build/html
+./manage.py docloader "pgAdmin 3" 1.22.2 pgadmin3-1.22.2-docs
