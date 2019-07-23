@@ -15,8 +15,8 @@
     <div id="version_select" class="input-group mb-2 mr-sm-2">
       <select class="custom-select mr-sm-2" id="v" name="v">
         <option value="">Latest package versions</option>
-        {% for page in pages %}
-        <option {% ifequal request.GET.v|slugify page.version.id|slugify %}selected {% endifequal %}value="{{ page.version.id }}">{{ page.version.package.name }} {{ page.version.name }}</option>
+        {% for doc in docs %}
+        <option {% ifequal request.GET.v|slugify doc.version.id|slugify %}selected {% endifequal %}value="{{ doc.version.id }}">{{ doc.version.package.name }} {{ doc.version.name }}</option>
         {% endfor %}
       </select>
     </div>
