@@ -7,6 +7,7 @@
 #
 ##########################################################################
 
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from news.models import News
@@ -19,6 +20,11 @@ def index(request):
     version = Version.objects.get(package='pgadmin4', active=True)
     return render(request, 'pgaweb/index.html',
                   {'news': news, 'version': version})
+
+
+def ads_txt(request):
+    return HttpResponse(
+        "google.com, pub-7509009547019933, DIRECT, f08c47fec0942fa0")
 
 
 def contributing(request):

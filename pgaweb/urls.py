@@ -25,6 +25,7 @@ handler500 = 'pgaweb.views.server_error'
 
 urlpatterns = [
     url(r'^$', pgaweb_views.index, name='index'),
+    url(r'^ads.txt$', pgaweb_views.ads_txt, name='ads_txt'),
     url(r'^contributing/$', pgaweb_views.contributing, name='contributing'),
     url(r'^features/$', pgaweb_views.features, name='features'),
     url(r'^licence/$', pgaweb_views.licence, name='licence'),

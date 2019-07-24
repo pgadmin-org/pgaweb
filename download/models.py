@@ -84,10 +84,15 @@ class Distribution(models.Model):
 class Version(models.Model):
     package = models.ForeignKey('Package', on_delete=models.PROTECT)
     name = models.CharField(null=False, blank=False, max_length=50)
-    slug = models.SlugField(null=False, blank=True)
+    # Note that this slug field is defined as a CharField as we allow a custom
+    # format (specifically, we allow full stops to remain.
+    slug = models.CharField(null=False, blank=True, max_length=50)
     active = models.BooleanField(null=False, blank=False)
     released = models.DateField(null=True, blank=True, default=datetime.date.today)
     pre_release = models.BooleanField(null=False, blank=False, default=False)
+    pdf_doc = models.BooleanField(null=False, blank=False, default=False)
+    epub_doc = models.BooleanField(null=False, blank=False, default=False)
+    tarball_doc = models.BooleanField(null=False, blank=False, default=False)
 
     class Meta:
         ordering = ('package__order', 'pre_release', '-released', 'name')

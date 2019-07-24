@@ -17,6 +17,15 @@
                     {% if not forloop.last %} | {% endif %}
                     {% endfor %}
                 </p>
+                {% if page.version.pdf_doc or page.version.epub_doc or page.version.tarball_doc %}
+                <p class="pga-docheaderinfo">This document in other formats:
+                    {% if page.version.pdf_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.pdf">PDF</a>{% endif %}
+                    {% if page.version.pdf_doc %}{% if page.version.epub_doc or page.version.tarball_doc %}|{% endif %}{% endif %}
+                    {% if page.version.epub_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.epub">ePub</a>{% endif %}
+                    {% if page.version.epub_doc %}{% if page.version.tarball_doc %}|{% endif %}{% endif %}
+                    {% if page.version.tarball_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}-docs.tar.gz">Tarball</a>{% endif %}
+                </p>
+                {% endif %}
                 {{ page.header|safe }}
             </div>
             {% if page.version.pre_release %}
