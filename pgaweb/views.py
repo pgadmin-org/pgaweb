@@ -47,6 +47,10 @@ def screenshots(request):
     return render(request, 'pgaweb/screenshots.html', {})
 
 
+def try_pgadmin(request):
+    return render(request, 'pgaweb/try_pgadmin.html', {})
+
+
 # Handle the Development level pages
 def development_index(request):
     return render(request, 'pgaweb/development/index.html', {})

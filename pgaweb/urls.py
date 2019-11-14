@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^licence/$', pgaweb_views.licence, name='licence'),
     url(r'^privacy_policy/$', pgaweb_views.privacy_policy, name='privacy_policy'),
     url(r'^screenshots/$', pgaweb_views.screenshots, name='screenshots'),
+    url(r'^try/$', pgaweb_views.try_pgadmin, name='try_pgadmin'),
 
     url(r'^development/$', pgaweb_views.development_index, name='development_index'),
     url(r'^development/resources/$', pgaweb_views.development_resources, name='development_resources'),
