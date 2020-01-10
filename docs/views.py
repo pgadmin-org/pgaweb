@@ -52,11 +52,10 @@ def page(request, package, version, file='index.html'):
                                 version__active=True,
                                 version__package__active=True)
 
+    page = None
     for page in pages:
         if page.version.slug == version:
             break
-        else:
-            page = None
 
     if page is None:
         raise Http404("The requested page could not be found.")
