@@ -41,7 +41,9 @@ def page(request, package, version, file='index.html'):
     :template:`docs/page.html`
     """
     # Find the latest version of the docs if requested
+    canonical = False
     if version and version == 'latest':
+        canonical = True
         version = Version.objects.filter(active=True,
                                          released__isnull=False,
                                          package__slug=package,
@@ -62,5 +64,11 @@ def page(request, package, version, file='index.html'):
 
     data = {'page': page, 'pages': pages}
 
-    return render(request, 'docs/page.html', data)
+    response = render(request, 'docs/page.html', data)
+
+    # 'latest' version links should be canonical
+    if canonical:
+        response['rel'] = 'canonical'
+
+    return response
 
