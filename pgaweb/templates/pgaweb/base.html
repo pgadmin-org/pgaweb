@@ -26,6 +26,9 @@
 
     <title>{% block title %}{% endblock %}</title>
 
+    <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'js/webp.js' %}"></script>
+
     <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'node_modules/font-mfizz/dist/font-mfizz.css' %}" rel="stylesheet" >
     <link href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
@@ -114,8 +117,6 @@
         </form>
       </ul>
     </nav>
-
-    <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
 
 {% block body %}{% endblock %}
 

@@ -21,7 +21,11 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div id="pga-illustration">
-					<img src="{% static 'img/screenshot.png' %}" alt="" >
+					<picture title="Screenshot of pgAdmin">
+                        <source type="image/webp" srcset="{% static 'img/screenshot.webp' %}">
+						<source type="image/png" srcset="{% static 'img/screenshot.png' %}">
+                        <img src="{% static 'img/screenshot.png' %}" alt="Screenshot of pgAdmin">
+                    </picture>
 				</div>
 			</div>
 		</div>
