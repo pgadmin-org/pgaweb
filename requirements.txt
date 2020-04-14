@@ -1,5 +1,4 @@
-Django==1.11.18
+Django==2.2.12
 psycopg2-binary>=2.7.1
 django-static-precompiler[libsass]>=1.7
-django-tsvector-field==0.9.4
-beautifulsoup4==4.7.1
+beautifulsoup4>=4.7.1

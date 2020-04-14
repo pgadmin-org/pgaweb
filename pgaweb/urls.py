@@ -57,7 +57,7 @@ urlpatterns = [
 
     url(r'^versions.json$', versions_views.index, name='versions.json'),
 
-    url(r'^admin/', include(admin.site.urls))
+    url(r'^admin/', admin.site.urls)
 ]
 
 if settings.DEBUG:

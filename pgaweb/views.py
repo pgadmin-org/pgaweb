@@ -96,21 +96,21 @@ def support_list(request):
 
 
 # Error handlers
-def bad_request(request):
+def bad_request(request, exception):
     response = render(request, 'pgaweb/errors/400.html')
     response.status_code = 400
 
     return response
 
 
-def permission_denied(request):
+def permission_denied(request, exception):
     response = render(request, 'pgaweb/errors/403.html', {'path': request.path})
     response.status_code = 403
 
     return response
 
 
-def page_not_found(request):
+def page_not_found(request, exception):
     response = render(request, 'pgaweb/errors/404.html', {'path': request.path})
     response.status_code = 404
 
