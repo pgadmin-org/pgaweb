@@ -1,0 +1,6 @@
+COMPILED
+node_modules
+vendor
+templates/
+templates\
+ycache

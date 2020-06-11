@@ -67,8 +67,8 @@
 }
 
 @media (min-width: 0px) {
-    .webp .header { background: #005363 url(../img/header-s.webp) top center; background-size: cover; }
-	.no-webp .header { background: #005363 url(../img/header-s.jpg) top center; background-size: cover; }
+    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-s.webp") top center; background-size: cover; }
+	.no-webp .header { background: #005363 url("/static/COMPILED/assets/img/header-s.jpg") top center; background-size: cover; }
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
@@ -79,8 +79,8 @@
 	.expand img { margin-bottom: 120px !important; margin-top: -100px !important; }
 }
 @media (min-width: 482px) {
-    .webp .header { background: #005363 url(../img/header-m.webp) top center; background-size: cover; }
-    .no-webp .header { background: #005363 url(../img/header-m.jpg) top center; background-size: cover; }
+    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-m.webp") top center; background-size: cover; }
+    .no-webp .header { background: #005363 url("/static/COMPILED/assets/img/header-m.jpg") top center; background-size: cover; }
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 30px; }
 	.header p { font-size: 15px; }
@@ -89,8 +89,8 @@
 	.expand img { margin-bottom: 200px !important; margin-top: -220px !important; }
 }
 @media (min-width: 768px) {
-    .webp .header { background: #005363 url(../img/header-m.webp) top center; background-size: cover; }
-    .no-web .header { background: #005363 url(../img/header-m.jpg) top center; background-size: cover; }
+    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-m.webp") top center; background-size: cover; }
+    .no-web .header { background: #005363 url("/static/COMPILED/assets/img/header-m.jpg") top center; background-size: cover; }
 	.header h1 { font-size: 55px; }
 	.header h2 { font-size: 20px; }
 	.header p { font-size: 15px; }
@@ -101,8 +101,8 @@
 }
 
 @media (min-width: 992px) {
-    .webp .header { background: #005363 url(../img/header-l.webp) top center; background-size: cover; }
-    .no-webp .header { background: #005363 url(../img/header-l.jpg) top center; background-size: cover; }
+    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-l.webp") top center; background-size: cover; }
+    .no-webp .header { background: #005363 url("/static/COMPILED/assets/img/header-l.jpg") top center; background-size: cover; }
 	.header h1 { font-size: 55px; margin-top: 50px; }
 	.header h2 { font-size: 20px; margin-bottom: 40px;}
 	.header p { font-size: 15px; }
@@ -197,7 +197,7 @@ a {
 .pga-quicklinks h2 {
     text-align: center;
     margin-top: 0px !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 2.5em !important;
 }
 
 .pga-quicklinks p {
@@ -208,6 +208,7 @@ a {
     font-size: 40px !important;
     margin-top: 20px;
     color: #000000 !important;
+    line-height: 0.8em;
 }
 
 /* Downloads box */
@@ -215,6 +216,10 @@ a {
    font-size: 1.1em;
    padding: 15px;
    margin-bottom: 15px;
+}
+
+.pga-quicklinks td i:before {
+  line-height: 0.5em;
 }
 
 .pga-downloads table {
@@ -235,6 +240,13 @@ a {
 
 .pga-downloads i {
     line-height: 2em;
+}
+
+.well > p {
+  margin-bottom: 2em;
+}
+.pga-downloads .pga-quicklinks td {
+  padding-top: 2.2em;
 }
 
 /* Version box */
@@ -439,29 +451,8 @@ a {
     margin-bottom: 5px
 }
 
-/*
- FontAwesome have removed support for mfizz icon support for Apple, Windows, Linux etc
- So we need to handle it manually and we will redirect mfizz icon to fontawesome icon
- fa-apple, fa-linux, fa-windows.
-*/
-.icon-apple:before,
-.icon-windows:before,
-.icon-linux:before {
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-apple:before {
-  content: "\f179";
-}
-.icon-windows:before {
-  content: "\f17a";
-}
-.icon-linux:before {
-  content: "\f17c";
+.svg-inline--fa {
+  color: #000;
 }
 
 /* Pygments styles */

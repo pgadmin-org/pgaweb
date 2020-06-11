@@ -34,7 +34,8 @@ urlpatterns = [
     url(r'^try/$', pgaweb_views.try_pgadmin, name='try_pgadmin'),
 
     url(r'^development/$', pgaweb_views.development_index, name='development_index'),
-    url(r'^development/resources/$', pgaweb_views.development_resources, name='development_resources'),
+    url(r'^development/resources/$', pgaweb_views.development_resources,
+        name='development_resources'),
     url(r'^development/team/$', pgaweb_views.development_team, name='development_team'),
 
     url(r'^styleguide/$', pgaweb_views.styleguide_index, name='styleguide_index'),
@@ -53,7 +54,7 @@ urlpatterns = [
 
     url(r'^versions.json$', versions_views.index, name='versions.json'),
 
-    url(r'^admin/', admin.site.urls)
+    url(r'^admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

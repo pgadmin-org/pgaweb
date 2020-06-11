@@ -1,12 +1,10 @@
 {% extends "pgaweb/page.html" %}
-
-{% load compile_static %}
 {% load static %}
 
 {% block title %}Style Guide{% endblock %}
 
 {% block content %}
-  <link rel="stylesheet" href="{% static "css/styleguide.scss"|compile %}" />
+  <link rel="stylesheet" href="{% static 'COMPILED/assets/css/styleguide.css' %}?{{gitrev}}" />
   <h2 class="styleguide-title">Introduction</h2>
   <p>
     Welcome to the style guide for UI elements in pgAdmin4 to help the product stay consistent as it grows.

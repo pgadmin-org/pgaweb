@@ -36,4 +36,4 @@ class News(models.Model):
         verbose_name_plural = "News Articles"
 
     def __str__(self):
-       return '%s - %s' % (self.display_date, self.title)
+        return '%s - %s' % (self.display_date, self.title)

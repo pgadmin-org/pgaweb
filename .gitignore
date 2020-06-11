@@ -1,7 +1,41 @@
-.DS_Store
-.idea
-node_modules/
+#Python
 pgaweb/settings_local.py
 *.pyc
+
+# Apple
+.DS_Store
+
+# Intellij
+.idea
+*.iml
+*.log
+
+# ui
+node
+node_modules
 static/COMPILED/
 static/docs
+static/dist
+static_final
+staticfiles
+.cache
+static/optimize/**
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

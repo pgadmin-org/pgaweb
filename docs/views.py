@@ -71,4 +71,3 @@ def page(request, package, version, file='index.html'):
         response['rel'] = 'canonical'
 
     return response
-

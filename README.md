@@ -1,4 +1,5 @@
-PGAdmin Website
+pgAdmin Website
+===============
 
 # Installation instructions
 
@@ -62,10 +63,40 @@ you will need to repeat this for the other fixtures:
 
 ## Install frontend requirements
 
+
+
+# Dependencies
+
+In order for yarn build to run successfully for generating critical css on 
+Debian or Centos systems, additional libraries need to be installed on the 
+system. Please install the dependencies below on respective systems.
+
+For CentOS:
+
+```
+yum install alsa-lib atk cups-libs GConf2 gtk3 ipa-gothic-fonts libXcomposite \
+  libXcursor libXdamage libXext libXi libXrandr libXScrnSaver libXtst pango \
+  xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-fonts-cyrillic \
+  xorg-x11-fonts-misc xorg-x11-fonts-Type1 xorg-x11-utils
+```
+
+For Debian:
+
+```
+apt-get install ca-certificates fonts-liberation gconf-service \
+  libappindicator1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 \
+  libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 \
+  libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 \
+  libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
+  libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
+  libxss1 libxtst6 lsb-release wget xdg-utils
+```
+
+# Run the build
+
 ```bash
-pushd static
 yarn install
-popd
+yarn run build
 ```
 
 # Start the application

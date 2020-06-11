@@ -12,7 +12,7 @@
 <div class="well pga-downloads">
   <ul class="fa-ul">
     {% for download in downloads.all %}
-    <li><i class="fa-li fa fa-download" aria-hidden="true"></i><a href="{{ download.download_url }}">{{ download.version }}</a> (released {{ download.version.released }})</li>
+    <li><i class="fa-li fa fa-download" aria-hidden="true" style="top: 0.5em;"></i><a href="{{ download.download_url }}">{{ download.version }}</a> (released {{ download.version.released }})</li>
     {% endfor %}
   </ul>
 </div>

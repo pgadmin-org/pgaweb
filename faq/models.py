@@ -39,9 +39,9 @@ class Faq(models.Model):
     answer = models.TextField(null=False, blank=False)
 
     class Meta:
-        ordering = ('category','order')
+        ordering = ('category', 'order')
         verbose_name = "FAQ"
         verbose_name_plural = "FAQs"
 
     def __str__(self):
-       return self.question
+        return self.question

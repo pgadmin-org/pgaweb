@@ -24,7 +24,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -35,7 +34,6 @@ SECRET_KEY = 'ej-9h5qep4ju^7zmxi*e*pe6=_22!i=oh+r804#_fgot4dht^-'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -52,7 +50,6 @@ INSTALLED_APPS = (
     'news',
     'search',
     'versions',
-    'static_precompiler',
 )
 
 MIDDLEWARE = (
@@ -85,6 +82,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'pgaweb.context_processors.get_docs',
+                'pgaweb.context_processors.PGAWebContextProcessor'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -95,7 +93,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pgaweb.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -125,22 +122,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'pgaweb', 'static'))
-
-STATIC_PRECOMPILER_ROOT = 'static'
-
-STATIC_PRECOMPILER_COMPILERS = (
-    ('static_precompiler.compilers.libsass.SCSS', {
-        "sourcemap_enabled": True,
-        # "load_paths": ["/static/css"],
-        "precision": 8,
-    }),
-)
 
 # Django caching
 CACHES = {
@@ -158,4 +145,7 @@ CACHE_MIDDLEWARE_SECONDS = 3600
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 # Load local settings overrides
-from .settings_local import *
+try:
+    from .settings_local import *
+except Exception as e:
+    pass

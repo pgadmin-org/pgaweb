@@ -7,10 +7,11 @@ async function supportsWebp() {
 }
 
 (async () => {
+  var element = document.querySelector('html');
   if(await supportsWebp()) {
-    $("html").addClass("webp");
+    element.classList.add('webp');
   }
   else {
-    $("html").addClass("no-webp");
+    element.classList.add('no-webp');
   }
 })();
