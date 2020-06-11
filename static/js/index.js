@@ -12,10 +12,10 @@ import 'font-mfizz/dist/font-mfizz.css';
 import '../../pgaweb/static/css/pgaweb.scss';
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faFileArchive } from '@fortawesome/free-solid-svg-icons';
 import { faWindows, faApple, faPython, faDocker, faUbuntu, faRedhat } from '@fortawesome/free-brands-svg-icons';
 
-library.add(faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faWindows, faApple, faPython, faDocker, faUbuntu, faRedhat);
+library.add(faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faFileArchive, faWindows, faApple, faPython, faDocker, faUbuntu, faRedhat);
 dom.watch();
 
 //Do not delete
