@@ -116,8 +116,7 @@
                         <a class="dropdown-header">{{ doc.grouper }}:</a>
                         {% for v in doc.list %}
                         <a class="dropdown-item"
-                           href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{
-                            v.version.list_string }}</a>
+                           href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{ v.version.list_string }}</a>
                         {% endfor %}
                         {% endfor %}
                     </div>
