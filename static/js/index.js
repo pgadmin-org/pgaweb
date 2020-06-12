@@ -1,4 +1,3 @@
-
 import 'popper.js';
 import $ from 'jquery';
 window.jQuery = $;
@@ -7,15 +6,14 @@ window.$ = $;
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-import 'font-mfizz/dist/font-mfizz.css';
-
 import '../../pgaweb/static/css/pgaweb.scss';
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faFileArchive } from '@fortawesome/free-solid-svg-icons';
-import { faWindows, faApple, faPython, faDocker, faUbuntu, faRedhat } from '@fortawesome/free-brands-svg-icons';
+import { faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faWindows, faApple, faDocker, faUbuntu, faPython, faRedhat } from '@fortawesome/free-brands-svg-icons';
+import { faFileArchive } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faFileArchive, faWindows, faApple, faPython, faDocker, faUbuntu, faRedhat);
+library.add(faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faWindows, faApple, faDocker, faFileArchive, faUbuntu, faPython, faRedhat);
 dom.watch();
 
 //Do not delete
@@ -30,4 +28,3 @@ function importAll(r) {
 
 importAll(require.context('fotorama/', false, /\.(png|jpe?g|svg)$/));
 importAll(require.context('@fortawesome/fontawesome-free/webfonts/', false, /\.(eot|svg|ttf|woff|woff2|)$/));
-importAll(require.context('font-mfizz/dist/', false, /\.(eot|svg|ttf|woff|woff2|)$/));

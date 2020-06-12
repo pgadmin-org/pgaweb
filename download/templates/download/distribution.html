@@ -37,7 +37,7 @@
             <tr class="pga-quicklinks">
                 {% for distribution in distributions.all %}
                 <td width="{% widthratio 100 distributions.count 1 %}%">
-                    <a href="{% url 'download_list' distribution.slug %}"><i class="{{ distribution.icon }}" aria-hidden="true"></i><br />{{ distribution.name }}</a>
+                    <a href="{% url 'download_list' distribution.slug %}"><i class="{{ distribution.icon }} fa-2x" aria-hidden="true"></i><br />{{ distribution.name }}</a>
                 </td>
                 {% endfor %}
             </tr>

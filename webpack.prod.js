@@ -46,12 +46,6 @@ var plugins = [
     filename: 'assets/css/[name].css',
     ignoreOrder: false,
   }),
-  // ifProd(
-  //   new webpack.SourceMapDevToolPlugin({
-  //     filename: '[file].map[query]',
-  //     exclude: ['vendor.js'],
-  //   }),
-  // ),
   new webpack.ProvidePlugin({
     $: ['jquery', 'jQuery'],
     jQuery: 'jquery',
@@ -79,13 +73,7 @@ var plugins = [
 
 module.exports = (env, argv) => {
   const isProductionMode = argv.mode === 'production';
-  // const ifProd = (x) => isProductionMode && x;
-  // eslint-disable-next-line no-console
-  console.log('optimize: ' + argv.optimize);
   const isOptimizeMode = (argv.optimize === 'false') ? false : true;
-  // eslint-disable-next-line no-console
-  console.log('isOptimizeMode: ' + isOptimizeMode);
-  // const optimize = (x) => isOptimizeMode && x;
 
   isOptimizeMode ? plugins.push(new ProcessAfterBuild()) : false;
   isProductionMode ?  plugins.push(new webpack.SourceMapDevToolPlugin({ filename: '[file].map[query]', exclude: ['vendor.js'] })) : false;
