@@ -4,15 +4,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1345454-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-1345454-3');
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WCFG9CD');</script>
+    <!-- End Google Tag Manager -->
 
     <!-- Template rendered: {% now "jS F Y H:i:s" %} -->
     <meta charset="utf-8">
@@ -63,119 +61,117 @@
             webkitRequestAnimationFrame || msRequestAnimationFrame;
         if (raf) raf(cb);
         else window.addEventListener('load', cb);
-
-        var captureOutboundLink = function(url) {
-            ga('send', 'event', 'outbound', 'click', url, {
-                'transport': 'beacon',
-                'hitCallback': function() {document.location = url;}
-            });
-        }
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<div>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a class="navbar-brand" href="{% url 'index' %}"><div class="icon-postgres-alt-0 filter-white mr-1"></div> pgAdmin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCFG9CD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+            <a class="navbar-brand" href="{% url 'index' %}"><div class="icon-postgres-alt-0 filter-white mr-1"></div> pgAdmin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
-                <!-- Home menu -->
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
-                    <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                        <a class="dropdown-item" href="{% url 'index' %}">Introduction</a>
-                        <a class="dropdown-item" href="{% url 'try_pgadmin' %}">Online Demo</a>
-                        <a class="dropdown-item" href="{% url 'faq' %}">FAQ</a>
-                        <a class="dropdown-item" href="{% url 'features' %}">Features</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'contributing' %}">Contributing</a>
-                        <a class="dropdown-item" href="{% url 'licence' %}">Licence</a>
-                        <a class="dropdown-item" href="{% url 'privacy_policy' %}">Privacy Policy</a>
-                    </div>
-                </li>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Home menu -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                            <a class="dropdown-item" href="{% url 'index' %}">Introduction</a>
+                            <a class="dropdown-item" href="{% url 'try_pgadmin' %}">Online Demo</a>
+                            <a class="dropdown-item" href="{% url 'faq' %}">FAQ</a>
+                            <a class="dropdown-item" href="{% url 'features' %}">Features</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'contributing' %}">Contributing</a>
+                            <a class="dropdown-item" href="{% url 'licence' %}">Licence</a>
+                            <a class="dropdown-item" href="{% url 'privacy_policy' %}">Privacy Policy</a>
+                        </div>
+                    </li>
 
-                <!-- Development menu -->
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Development <span class="caret"></span></a>
-                    <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                        <a class="dropdown-item" href="{% url 'development_index' %}">Introduction</a>
-                        <a class="dropdown-item" href="{% url 'development_resources' %}">Resources</a>
-                        <a class="dropdown-item" href="{% url 'styleguide_index' %}">Style Guide</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'development_team' %}">Team</a>
-                    </div>
-                </li>
+                    <!-- Development menu -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Development <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                            <a class="dropdown-item" href="{% url 'development_index' %}">Introduction</a>
+                            <a class="dropdown-item" href="{% url 'development_resources' %}">Resources</a>
+                            <a class="dropdown-item" href="{% url 'styleguide_index' %}">Style Guide</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'development_team' %}">Team</a>
+                        </div>
+                    </li>
 
-                <!-- Documentation menu -->
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
-                    <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                        <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
-                        <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
-                        {% regroup docs by version.package.name as doc_list %}
-                        {% for doc in doc_list %}
-                        <a class="dropdown-header">{{ doc.grouper }}:</a>
-                        {% for v in doc.list %}
-                        <a class="dropdown-item"
-                           href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{ v.version.list_string }}</a>
-                        {% endfor %}
-                        {% endfor %}
-                    </div>
-                </li>
+                    <!-- Documentation menu -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                            <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
+                            <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
+                            {% regroup docs by version.package.name as doc_list %}
+                            {% for doc in doc_list %}
+                            <a class="dropdown-header">{{ doc.grouper }}:</a>
+                            {% for v in doc.list %}
+                            <a class="dropdown-item"
+                               href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{ v.version.list_string }}</a>
+                            {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </li>
 
-                <!-- Download menu -->
-                <li class="nav-item"><a class="nav-link" href="{% url 'download_index' %}">Download</a></li>
+                    <!-- Download menu -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'download_index' %}">Download</a></li>
 
-                <!-- Support menu -->
-                <li class="dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
-                    <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                        <a class="dropdown-item" href="{% url 'support_index' %}">Introduction</a>
-                        <a class="dropdown-item" href="{% url 'support_list' %}">Mailing List</a>
-                        <a class="dropdown-item" href="{% url 'support_issues' %}">Known Issues</a>
-                    </div>
-                </li>
+                    <!-- Support menu -->
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
+                            <a class="dropdown-item" href="{% url 'support_index' %}">Introduction</a>
+                            <a class="dropdown-item" href="{% url 'support_list' %}">Mailing List</a>
+                            <a class="dropdown-item" href="{% url 'support_issues' %}">Known Issues</a>
+                        </div>
+                    </li>
 
-            </ul>
+                </ul>
 
-            <form class="form-inline my-2 my-lg-0" id="search_button">
-                <button type="button" class="btn btn-default btn-outline-primary" aria-label="Right Align">
-                    <span class="fa fa-search fa-lg pga-toolbar-search" aria-hidden="true"></span>
-                </button>
-            </form>
-            </ul>
-        </div>
-    </nav>
-</div>
+                <form class="form-inline my-2 my-lg-0" id="search_button">
+                    <button type="button" class="btn btn-default btn-outline-primary" aria-label="Right Align">
+                        <span class="fa fa-search fa-lg pga-toolbar-search" aria-hidden="true"></span>
+                    </button>
+                </form>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
-{% block body %}{% endblock %}
+    {% block body %}{% endblock %}
 
-{% block scripts %}{% endblock %}
+    {% block scripts %}{% endblock %}
 
-<script src="{% static 'COMPILED/webp.js' %}?{{gitrev}}"></script>
-<script src="{% static 'COMPILED/main.js' %}?{{gitrev}}"></script>
+    <script src="{% static 'COMPILED/webp.js' %}?{{gitrev}}"></script>
+    <script src="{% static 'COMPILED/main.js' %}?{{gitrev}}"></script>
 
-<script>
-      $('#search_button').click(function(){
+    <script>
+          $('#search_button').click(function(){
 
-        var $form = '<form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">\
+            var $form = '<form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">\
 <input name="q" class="form-control mr-sm-2" type="text" placeholder="{% block search_prompt %}Search latest docs{% endblock %}" size="20" aria-label="Search">\
 <button class="btn btn-primary my-2 my-sm-0" type="submit"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>\
 {% block search_fields %}{% endblock %}</form>';
 
-        $('#search_button').replaceWith($form);
-      });
-</script>
+            $('#search_button').replaceWith($form);
+          });
+    </script>
 
 {% block footer %}{% endblock %}
 
