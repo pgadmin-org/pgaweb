@@ -52,14 +52,24 @@
     <link rel="stylesheet" href="/static/COMPILED/assets/css/main.css?{{gitrev}}" />
 
     <script>
-	    var cb = function() {
-	    var l = document.createElement('link'); l.rel = 'stylesheet';
-	    l.href = '/static/COMPILED/assets/css/main_uncritical.css?{{gitrev}}';
-	    var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h); };
-	    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-		      webkitRequestAnimationFrame || msRequestAnimationFrame;
-	    if (raf) raf(cb);
-	    else window.addEventListener('load', cb);
+        var cb = function () {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            l.href = '/static/COMPILED/assets/css/main_uncritical.css?{{gitrev}}';
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cb);
+        else window.addEventListener('load', cb);
+
+        var captureOutboundLink = function(obj) {
+            ga('send', 'event', 'outbound', 'click', obj.getAttribute("href"), {
+                'transport': 'beacon',
+                'hitCallback': function() {document.location = obj.getAttribute("href");}
+            });
+        }
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
