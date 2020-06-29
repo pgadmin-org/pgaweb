@@ -24,7 +24,7 @@
 <p>
   <ul>
     {% for download in downloads.all %}{% if download.notes_url != "" %}
-    <li><a href="{{ download.notes_url }}">Release notes</a> ({{ download.version }})</li>
+    <li><a href="{{ download.notes_url }}" onclick="captureOutboundLink('{{ download.notes_url }}'); return false;">Release notes</a> ({{ download.version }})</li>
     {% endif %}{% endfor %}
   </ul>
 </p>
