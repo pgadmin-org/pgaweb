@@ -13,9 +13,15 @@
         <div class="col-lg-12">
             <div class="well pga-docheader">
                 <p class="pga-docheaderinfo">This page in other versions:
+                    {% if show_latest %}
                     <a href="{% url 'page' page.version.package.slug 'latest' page.file %}">Latest</a> ({% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>{% if forloop.first %}){% endif %}
                     {% if not forloop.last %} | {% endif %}
                     {% endfor %}
+                    {% else %}
+                    {% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>
+                    {% if not forloop.last %} | {% endif %}
+                    {% endfor %}
+                    {% endif %}
                 </p>
                 {% if page.version.pdf_doc or page.version.epub_doc or page.version.tarball_doc %}
                 <p class="pga-docheaderinfo">This document in other formats:

@@ -42,27 +42,35 @@ def page(request, package, version, file='index.html'):
     """
     # Find the latest version of the docs if requested
     canonical = False
+    latest = Version.objects.filter(active=True,
+                                     released__isnull=False,
+                                     package__slug=package,
+                                     page__isnull=False).first().slug
+
     if version and version == 'latest':
         canonical = True
-        version = Version.objects.filter(active=True,
-                                         released__isnull=False,
-                                         package__slug=package,
-                                         page__isnull=False).first().slug
+        version = latest;
 
+    # Get all pages, so we can build the "other versions" links
     pages = Page.objects.filter(file=file,
                                 version__package__slug=package,
                                 version__active=True,
                                 version__package__active=True)
 
+    # Grab the required version of the page for rendering, and check to see
+    # if we should show the "latest version" link.
+    show_latest = False
     page = None
-    for page in pages:
-        if page.version.slug == version:
-            break
+    for p in pages:
+        if p.version.slug == latest:
+            show_latest = True
+        if p.version.slug == version:
+            page = p
 
     if page is None:
         raise Http404("The requested page could not be found.")
 
-    data = {'page': page, 'pages': pages}
+    data = {'page': page, 'pages': pages, 'show_latest': show_latest}
 
     response = render(request, 'docs/page.html', data)
 
