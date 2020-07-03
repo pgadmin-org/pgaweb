@@ -11,4 +11,10 @@ from django.contrib import admin
 
 from .models import Version
 
-admin.site.register(Version)
+
+class VersionAdmin(admin.ModelAdmin):
+    list_display = ('package', 'version_str', 'version_int', 'download_url', 'active')
+    list_filter = ('active', 'version_str')
+
+
+admin.site.register(Version, VersionAdmin)

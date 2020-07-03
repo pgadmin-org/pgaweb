@@ -11,5 +11,15 @@ from django.contrib import admin
 
 from .models import Category, Faq
 
-admin.site.register(Category)
-admin.site.register(Faq)
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order')
+
+
+class FaqAdmin(admin.ModelAdmin):
+    list_display = ('id', 'category', 'question', 'order', 'active')
+    list_filter = ('active', 'category')
+
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Faq, FaqAdmin)
