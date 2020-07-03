@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'docs',
     'faq',
     'news',
+    'pgaweb',
     'search',
     'versions',
 )
