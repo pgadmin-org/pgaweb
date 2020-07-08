@@ -45,11 +45,14 @@ def page(request, package, version, file='index.html'):
     latest = Version.objects.filter(active=True,
                                      released__isnull=False,
                                      package__slug=package,
-                                     page__isnull=False).first().slug
+                                     page__isnull=False).first()
+
+    if latest is None:
+        raise Http404("The requested page could not be found.")
 
     if version and version == 'latest':
         canonical = True
-        version = latest;
+        version = latest.slug
 
     # Get all pages, so we can build the "other versions" links
     pages = Page.objects.filter(file=file,
@@ -62,7 +65,7 @@ def page(request, package, version, file='index.html'):
     show_latest = False
     page = None
     for p in pages:
-        if p.version.slug == latest:
+        if p.version.slug == latest.slug:
             show_latest = True
         if p.version.slug == version:
             page = p
