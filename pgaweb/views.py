@@ -8,7 +8,7 @@
 ##########################################################################
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from news.models import News
 from versions.models import Version
@@ -65,6 +65,10 @@ def development_team(request):
 
 
 # Handle the Styleguide pages
+def styleguide_redirect(request):
+    return redirect('styleguide_index', page='typography')
+
+
 def styleguide_index(request, page='typography', section=''):
 
     if page == 'themes' and not section:
