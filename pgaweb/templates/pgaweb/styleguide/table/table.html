@@ -1,0 +1,21 @@
+<div class="color-palette">
+    <h1 class="styleguide-title" id="colorpalette">Table</h1>
+    <p>
+        {% include "pgaweb/styleguide/theme_nav_bar.html" %}
+        <!--Add page specific content as per theme selection-->
+    <div class="tab-content" id="themeTabContent">
+        <div class="tab-pane fade show active theme-content theme-content-default"
+             id="sdTheme" role="tabpanel" aria-labelledby="sd-tab">
+            {% include "pgaweb/styleguide/table/sd_table.html" %}
+        </div>
+        <div class="tab-pane fade theme-content  theme-content-default"
+             id="drkTheme" role="tabpanel" aria-labelledby="dek-tab">
+            {% include "pgaweb/styleguide/table/dark_table.html" %}
+        </div>
+        <div class="tab-pane fade theme-content  theme-content-default"
+             id="hcTheme" role="tabpanel" aria-labelledby="hc-tab">
+            {% include "pgaweb/styleguide/table/hc_table.html" %}
+        </div>
+    </div>
+    </p>
+</div>

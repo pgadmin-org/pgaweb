@@ -7,6 +7,10 @@
 @import "styleguide/pgadmin.resources.scss";
 @import "styleguide/_pgadmin.style.scss";
 @import "styleguide/alert";
+@import "styleguide/sd_theme";
+@import "styleguide/dark_theme";
+@import "styleguide/hc_theme";
+@import "styleguide/iconography";
 
 .chip-gray {
   background-color: $color-gray;

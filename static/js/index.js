@@ -9,11 +9,9 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '../../pgaweb/static/css/pgaweb.scss';
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faWindows, faApple, faDocker, faUbuntu, faPython, faRedhat } from '@fortawesome/free-brands-svg-icons';
-import { faFileArchive } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faLaptop, faDownload, faInfo, faBook, faQuestionCircle, faDesktop, faBug, faSearch, faWindows, faApple, faDocker, faFileArchive, faUbuntu, faPython, faRedhat);
+library.add(fas);
 dom.watch();
 
 //Do not delete

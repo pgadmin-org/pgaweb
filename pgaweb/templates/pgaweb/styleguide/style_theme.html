@@ -1,0 +1,27 @@
+<div class="style-theme">
+    {% if section == 'color' %}
+        {% include "pgaweb/styleguide/color_palette/color_palette.html" %}
+    {% elif section == 'input' %}
+        {% include "pgaweb/styleguide/input/input.html" %}
+    {% elif section == 'dropdowns' %}
+        {% include "pgaweb/styleguide/dropdown/dropdown.html" %}
+    {% elif section == 'buttons' %}
+        {% include "pgaweb/styleguide/button/button.html" %}
+    {% elif section == 'checkbox' %}
+        {% include "pgaweb/styleguide/checkbox/checkbox.html" %}
+    {% elif section == 'radio_buttons' %}
+        {% include "pgaweb/styleguide/radiobuttons/radiobuttons.html" %}
+    {% elif section == 'toggle_buttons' %}
+        {% include "pgaweb/styleguide/togglebutton/togglebutton.html" %}
+    {% elif section == 'alerts' %}
+        {% include "pgaweb/styleguide/alert/alert.html" %}
+    {% elif section == 'table' %}
+        {% include "pgaweb/styleguide/table/table.html" %}
+    {% elif section == 'accordion' %}
+        {% include "pgaweb/styleguide/accordion/accordion.html" %}
+    {% elif section == 'menus' %}
+        {% include "pgaweb/styleguide/menu/menu.html" %}
+    {% elif section == 'tab_sets' %}
+        {% include "pgaweb/styleguide/tab_set/tab_set.html" %}
+    {% endif %}
+</div>

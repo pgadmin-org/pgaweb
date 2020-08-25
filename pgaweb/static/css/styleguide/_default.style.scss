@@ -45,6 +45,14 @@
   }
 }
 
+.bg-info {
+    background-color: $color-primary;
+
+    &-light {
+        background-color: $color-primary-light;
+    }
+}
+
 
 .bg-gray {
   background-color:  $color-gray;
@@ -99,6 +107,14 @@
   }
 }
 
+.border-info {
+    border-color: $color-primary;
+
+    &-light {
+    border-color: $color-primary-light;
+  }
+}
+
 .border-gray {
   border: 2px solid $color-gray;
 
@@ -138,6 +154,10 @@
 
 .text-success {
   color: $color-success;
+}
+
+.text-info {
+    color: $color-primary !important;
 }
 
 .text-bold {

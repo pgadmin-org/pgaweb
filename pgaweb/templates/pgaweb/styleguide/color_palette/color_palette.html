@@ -1,0 +1,32 @@
+<div class="color-palette">
+    <h1 class="styleguide-title" id="colorpalette">Color Palette</h1>
+    <p>
+        pgAdmin uses standard sets of colors for consistency and style. We are also
+        committed to complying with AA standard contrast ratios (AAA for the high contrast theme).
+        To do this, choose primary, secondary, and tertiary colors that
+        support usability by ensuring sufficient color contrast between elements
+        so that people with low vision can see and use the interface.
+    </p>
+    <p>
+        pgAdmin uses the Bootstrap framework for responsive layout and has
+        customised it using CSS based on specific needs.
+    </p>
+    <p>
+        {% include "pgaweb/styleguide/theme_nav_bar.html" %}
+        <!--Add page specific content as per theme selection-->
+    <div class="tab-content" id="themeTabContent">
+        <div class="tab-pane fade show active theme-content" id="sdTheme"
+             role="tabpanel" aria-labelledby="sd-tab">
+            {% include "pgaweb/styleguide/color_palette/sd_color_palette.html" %}
+        </div>
+        <div class="tab-pane fade theme-content" id="drkTheme" role="tabpanel"
+             aria-labelledby="dek-tab">
+            {% include "pgaweb/styleguide/color_palette/dark_color_palette.html" %}
+        </div>
+        <div class="tab-pane fade theme-content" id="hcTheme" role="tabpanel"
+             aria-labelledby="hc-tab">
+            {% include "pgaweb/styleguide/color_palette/hc_color_palette.html" %}
+        </div>
+    </div>
+    </p>
+</div>

@@ -1,0 +1,658 @@
+// Color code classes
+// Primary colors
+.d-primary {
+    background-color: #234D6E;
+}
+
+.d-primary-dark {
+    background-color: #15354F;
+}
+
+.d-primary-light {
+    background-color: #536270;
+}
+
+// Secondary colors
+.d-success {
+    background-color: #1A522B;
+}
+
+.d-success-light {
+    background-color: #5A7863;
+}
+// warning is pre existing class in css so instead of using warning using warning-clr
+.d-warning-clr {
+    background-color: #EEA236;
+}
+
+.d-warning-light {
+    background-color: #B18D5A;
+}
+
+.d-danger {
+    background-color: #DA6758;
+}
+
+.d-danger-light {
+    background-color: #914649;
+}
+
+
+// Severity status colors
+.d-explain-sev-2 {
+    background-color: #DED17E;
+}
+
+.d-explain-sev-3 {
+    background-color: #C2812B;
+}
+
+.d-explain-sev-4 {
+    background-color: #880000;
+}
+
+// schema diff colors
+.d-diff-row {
+    background-color: #807A48;
+}
+
+.d-source-row {
+    background-color: #402025;
+}
+
+.d-target-row {
+    background-color: #6B5438;
+}
+
+// Query editor colors
+.d-number {
+    background-color: #7FCC5C;
+}
+
+.d-string {
+    background-color: #E4E487;
+}
+
+.d-activeline {
+    background-color: #50B0F0;
+}
+
+.d-keyword{
+    background-color: #DB7C74;
+}
+
+.d-editor-fg {
+    background-color: #7DC9F1;
+}
+
+.d-editor-operator {
+    background-color: #D6AAAA;
+}
+
+.d-foldmarker {
+    background-color: #0000FF;
+}
+
+// Ternary colors
+.d-fg {
+    background-color: #D4D4D4;
+}
+
+.d-gray-dark {
+    background-color: #212121;
+}
+
+.d-gray {
+    background-color: #2E2E2E;
+}
+
+.d-border-color {
+    background-color: #4A4A4A;
+}
+
+.d-gray-light {
+    background-color: #303030;
+}
+
+.d-gra-lighter {
+    background-color: #424242;
+}
+
+.d-base-color {
+    background-color: #616161;
+}
+
+.d-text-muted {
+    background-color: #6B6B6B;
+}
+
+
+// Input style
+.d-container-header {
+    height: 72px;
+    background-color: #212121;
+    padding-top:1.3em;
+}
+
+.d-input-label {
+    color: #d4d4d4;
+}
+
+.d-default-input {
+    stroke: #6b6b6b;
+    fill: #212121;
+}
+
+.d-active-input {
+    stroke: #5c8fc2;
+    fill: #212121;
+}
+
+.d-disabled-input {
+    stroke: #6b6b6b;
+    fill: #212121;
+}
+
+.d-error-input {
+    stroke: #914649;
+    fill: #212121;
+}
+
+.d-input-svg-text-style {
+    font-size:14px;
+    fill: #d4d4d4;
+}
+
+.d-input-svg-text-disabled {
+    fill: #999999;
+}
+
+.d-input-svg-text-error {
+    color: #da6758 !important;
+    position: absolute;
+    margin-left: 1.5em;
+    margin-top: .5em;
+}
+
+.d-input-label {
+    margin-left: 2.5em;
+}
+
+.d-input-label-error {
+    margin-left: 2.5em;
+    color: #da6758;
+}
+
+// dropdown style
+.d-container-header-expand {
+    width: auto;
+    height: auto;
+    border-bottom: solid 1px #bac1cd;
+    padding-top:1.3em;
+    background-color: #212121;
+    padding-bottom: 1em;
+}
+
+//Button style
+.d-btn-style {
+    padding-left: 2em;
+    height: 94px;
+    background-color: #181818;
+}
+
+.d-btn-label {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.35px;
+    color: #d4d4d4;
+    width: 162px;
+}
+
+.d-btn-block {
+    border-right: solid 1px #bac1cd;
+    width: 163.25px;
+}
+
+.d-btn-code-block {
+    max-width: 326.5px;
+    min-width: 326.5px;
+    height: 94px;
+}
+
+.d-btn {
+    color: #ffffff;
+}
+
+
+
+// Primary
+.d-btn:hover {
+    color: #ffffff;
+}
+
+.d-btn-primary {
+    background-color: #234d6e;
+    color: #FFFFFF;
+}
+
+.d-icon-color {
+    color: #FFFFFF;
+}
+
+.d-icon-color:hover {
+    color: #FFFFFF;
+}
+
+.d-btn-primary-hover {
+    background-color: #285274;
+    color: #FFFFFF;
+}
+
+.d-btn-primary-pressed {
+    background-color: #254b6a;
+    color: #FFFFFF;
+}
+
+.d-btn-primary-disabled {
+    background-color: #234d6e;
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+// Secondary
+.d-secondary-btn {
+    color: #212529;
+}
+
+.d-secondary-btn:hover {
+    color: #FFFFFF;
+}
+
+.d-btn-secondary {
+    background-color: #6b6b6b;
+    border: solid 1px #2e2e2e;
+    color: #ffffff;
+}
+
+.d-icon-secondary-color {
+    color: #ffffff;
+}
+
+.d-icon-secondary-color-hover {
+    color: #212529;
+}
+
+.d-icon-secondary-color:hover {
+    color: #ffffff;
+}
+
+.d-btn-secondary-hover {
+    background-color: #303030;
+    border: solid 1px #151515;
+    color: #FFFFFF;
+}
+
+.d-btn-secondary-pressed {
+    background-color: #e6e6e6;
+    border: solid 1px #95a0b2;
+    color: #212529;
+}
+
+.d-btn-secondary-pressed:hover {
+    color: #212529;
+}
+
+.d-btn-secondary-disabled {
+    background-color: #6b6b6b;
+    border: solid 2px #2e2e2e;
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+// icon btn
+.d-btn-icon {
+    width: 27px;
+    height: 25px;
+    border: 1px solid #2e2e2e;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #6b6b6b;
+}
+
+.d-btn-icon-style{
+    color: #ffffff;
+    width: 14px;
+    height: 14px;
+    vertical-align: baseline;
+    padding-top: 1px;
+    filter: invert(1);
+}
+
+.d-btn-icon-hover {
+    width: 27px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: center;
+    border: solid 1px #151515;
+    background-color: #303030;
+    padding-top: 1px;
+}
+
+
+.d-btn-icon-pressed {
+    width: 27px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: center;
+    border: solid 1px #95a0b2;
+    background-color: #e6e6e6;
+    padding-top: 1px;
+
+    img {
+        filter: invert(0);
+    }
+}
+
+.d-btn-icon-disabled {
+    width: 27px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: center;
+    border: solid 1px #2e2e2e;
+    background-color: #6b6b6b;
+    opacity: 0.5;
+    padding-top: 1px;
+}
+
+// Checkbox
+
+.d-checkbox-block {
+    border-right: solid 1px #bac1cd;
+    padding-left: 1em;
+    width: 163.25px;
+}
+
+.d-checkbox-cont {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #6b6b6b;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+    background-color: #6b6b6b;
+
+    .custom-control-label::after {
+        background-color: #212121;
+        color: #ffffff;
+        border: solid 1px #212121;
+    }
+}
+
+.d-checkbox-default {
+    width: 12px;
+    height: 12px;
+    border: solid 1px #6b6b6b;
+}
+
+.d-checkbox-hover-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #151515;
+    background-color: #303030;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+
+    .custom-control-label::after {
+        background-color: #212121;
+        border: none;
+    }
+}
+
+.d-checkbox-pressed-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #0e0e0e;
+    background-color: #525252;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+
+    .custom-control-label::after {
+        background-color: #212121;
+        border: none;
+    }
+}
+
+.d-checkbox-selected-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    background-color: #6b6b6b;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+
+    .custom-control-label::after {
+        background-color: #2e4d6b;
+        border: none;
+    }
+}
+
+.d-checkbox-disabled-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    background-color: #6b6b6b;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+    opacity: 0.5;
+
+    .custom-control-label::after {
+        background-color: #212121;
+        border: none;
+    }
+}
+
+.d-chk-style {
+    color: #FFFFFF;
+}
+
+// Radio button
+.radio-container-body {
+    width: 653px;
+    height: 348px;
+}
+
+.d-btn-radio-primary {
+    color: #fff;
+    background-color: #234d6e;
+    border-color: #234d6e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.d-btn-radio-secondary {
+    color: #fff;
+    background-color: #6b6b6b;
+    border-color: #2e2e2e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.d-btn-radio-secondary:hover {
+    color: #fff !important;
+}
+
+.d-radio-check {
+    color: #fff;
+}
+
+.d-btn-radio-primary-hover {
+    color: #fff;
+    border-color: #1a3951;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #1a3951;
+}
+
+.d-btn-radiomodern:hover {
+    color: #fff;
+}
+
+
+// alert
+.d-alert-text-body {
+    color: #d4d4d4;
+}
+.d-bg-success {
+  background-color: #212121;
+
+  &-light {
+    background-color: #212121;
+  }
+}
+
+.d-text-success {
+  color: #26852B;
+}
+
+.d-border-success {
+   border-color: #26852B !important;
+}
+//
+.d-bg-danger {
+  background-color: #212121;
+
+  &-light {
+    background-color: #212121;
+  }
+}
+
+.d-text-danger {
+  color: #EE7A55;
+}
+
+.d-border-danger {
+   border-color: #EE7A55 !important;
+}
+//
+.d-bg-info {
+  background-color: #212121;
+
+  &-light {
+    background-color: #212121;
+  }
+}
+
+.d-text-info {
+  color: #50B0F0;
+}
+
+.d-border-info {
+   border-color: #50B0F0 !important;
+}
+
+// Table
+.d-table-hover-tr-style {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-spacing: 0px;
+    background-color: #536270;
+    color: #ffffff;
+}
+
+.d-table-hover-td-style {
+    border: 1px solid #4a4a4a !important;
+    border-bottom: 2px solid #234d6e !important;
+    border-top: 3px solid #234d6e !important;
+}
+
+.d-table-container-header {
+    height: auto;
+    border-bottom: solid 1px #bac1cd;
+    padding-top: 1.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    display: inline-flex;
+    background-color: #212121;
+    width: 100%;
+}
+
+
+.d-table-hover-label {
+    color: #fff;
+    padding-top:8em;
+}
+
+.d-table-hover {
+    color: #d4d4d4 !important;
+}
+
+.d-table-cont-style {
+    pointer-events:none;
+    margin-left: 1em;
+    width: 34em;
+    background-color: #424242;
+    border-color: #2d3a48 !important;
+}
+
+.d-table-border{
+    border: 2px solid #4a4a4a !important;
+}
+
+.d-table-header-style {
+    color: #FFF;
+}
+
+
+// Accordion
+.d-accordion-style {
+    width: 590px;
+    height: auto;
+    padding-left: 2em;
+}
+
+.d-acc-container-header-expand {
+    height: auto;
+    padding-bottom: 1em;
+    padding-top:1.3em;
+    border-bottom: solid 1px #bac1cd;
+    padding-top:1.3em;
+    background-color: #212121;
+    padding-right: 2em;
+}
+
+// iconography
+.d-iconography-component-container {
+    width: auto;
+    border: solid 1px #bac1cd;
+    margin-bottom: 3em;
+    background-color: #212121;
+}
+
+.d-icon-label {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: 0.25px;
+    color: #FFF;
+}
+
+.dark-thm {
+    filter: invert(1);
+}
+
+
+

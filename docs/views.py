@@ -43,9 +43,9 @@ def page(request, package, version, file='index.html'):
     # Find the latest version of the docs if requested
     canonical = False
     latest = Version.objects.filter(active=True,
-                                     released__isnull=False,
-                                     package__slug=package,
-                                     page__isnull=False).first()
+                                    released__isnull=False,
+                                    package__slug=package,
+                                    page__isnull=False).first()
 
     if latest is None:
         raise Http404("The requested page could not be found.")

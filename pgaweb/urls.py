@@ -7,11 +7,10 @@
 #
 ##########################################################################
 
-from django.conf.urls import handler400, handler403, handler404, handler500, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from pgaweb import views as pgaweb_views
 from faq import views as faq_views
-from search import views as search_views
 from versions import views as versions_views
 
 from . import settings
@@ -37,9 +36,8 @@ urlpatterns = [
     url(r'^development/resources/$', pgaweb_views.development_resources,
         name='development_resources'),
     url(r'^development/team/$', pgaweb_views.development_team, name='development_team'),
-
-    url(r'^styleguide/$', pgaweb_views.styleguide_index, name='styleguide_index'),
-
+    url(r'^styleguide/(?P<page>[a-zA-Z]+)(?:/(?P<section>[a-zA-Z_]+))?/$', pgaweb_views.styleguide_index,
+        name='styleguide_index'),
     url(r'^support/$', pgaweb_views.support_index, name='support_index'),
     url(r'^support/issues/$', pgaweb_views.support_issues, name='support_issues'),
     url(r'^support/list/$', pgaweb_views.support_list, name='support_list'),

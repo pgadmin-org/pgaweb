@@ -1,0 +1,168 @@
+{% load static %}
+<p class="color-header">Primary Buttons</p>
+<div class="btn-container">
+    <table>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Default
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_default.png" %}"
+                     alt="Default Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">&lt;div</span> <span
+                        class="code-attribute">class=</span>"toggle-group"<span
+                        class="code-tag">&gt;
+                  &lt;label</span> <span class="code-attribute">class=</span>"btn
+                    btn-success btn
+                    -xs toggle-on"<span
+                        class="code-attribute">aria-hidden=</span>"true"<span
+                        class="code-tag">
+                  &gt;True&lt;/label&gt;
+                  &lt;span</span> <span class="code-attribute">class=</span>"toggle-handle
+                    btn
+                    btn-light btn-xs"<span class="code-attribute">
+                  aria-hidden=</span>"true"<span class="code-tag">&lt;/span&gt;
+                &lt;/div&gt;
+                </span>
+                </div>
+            </td>
+        </tr>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Hover
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_hover.png" %}"
+                     alt="Hover Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">Handled by Bootstrap class</span>
+                    <span class="code-attribute">.btn-secondary:hover</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Pressed
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_pressed.png" %}"
+                     alt="Hover Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">Handled by Bootstrap class</span>
+                    <span class="code-attribute">.btn-secondary:not(:disabled)
+                :not(.disabled):active</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Disabled
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_disabled.png" %}"
+                     alt="Hover Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">Handled by bootstrap attribute</span>
+                    <span class="code-attribute">disabled</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<p class="color-header">Toggle off</p>
+<div class="btn-container">
+    <table>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Default
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_off_default.png" %}"
+                     alt="Default Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">&lt;div</span> <span
+                        class="code-attribute">class=</span>"toggle-group"<span
+                        class="code-tag">&gt;
+                  &lt;label</span> <span class="code-attribute">class=</span>"btn
+                    btn-success btn
+                    -xs toggle-on"<span
+                        class="code-attribute">aria-hidden=</span>"true"<span
+                        class="code-tag">
+                  &gt;True&lt;/label&gt;
+                  &lt;span</span> <span class="code-attribute">class=</span>"toggle-handle
+                    btn
+                    btn-light btn-xs"<span class="code-attribute">
+                  aria-hidden=</span>"true"<span class="code-tag">&lt;/span&gt;
+                &lt;/div&gt;
+                </span>
+                </div>
+            </td>
+        </tr>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Hover
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_off_hover.png" %}"
+                     alt="Hover Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">Handled by Bootstrap class</span>
+                    <span class="code-attribute">.btn-secondary:hover</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Pressed
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_off_pressed.png" %}"
+                     alt="Hover Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">Handled by Bootstrap class</span>
+                    <span class="code-attribute">.btn-secondary:not(:disabled)
+                :not(.disabled):active</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="sd-btn-row">
+            <td class="d-btn-style d-btn-label">
+                Disabled
+            </td>
+            <td class="d-btn-style d-checkbox-block">
+                <img class="toggle_default"
+                     src="{% static "img/style_guide/toggle_dark_off_disabled.png" %}"
+                     alt="Hover Toggle."/>
+            </td>
+            <td class="d-btn-code-block">
+                <div class="code">
+                    <span class="code-tag">Handled by bootstrap attribute</span>
+                    <span class="code-attribute">disabled</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

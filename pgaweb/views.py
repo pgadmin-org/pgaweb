@@ -64,9 +64,16 @@ def development_team(request):
     return render(request, 'pgaweb/development/team.html', {})
 
 
-# Handle the Styleguide page
-def styleguide_index(request):
-    return render(request, 'pgaweb/styleguide/index.html', {})
+# Handle the Styleguide pages
+def styleguide_index(request, page='typography', section=''):
+
+    if page == 'themes' and not section:
+        section = 'color'
+
+    if page == 'iconography' and not section:
+        section = 'fontawesome'
+
+    return render(request, 'pgaweb/styleguide/index.html', {'page': page, 'section': section})
 
 # Handle the Support level pages
 def support_index(request):

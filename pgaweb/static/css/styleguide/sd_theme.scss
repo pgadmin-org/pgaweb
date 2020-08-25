@@ -1,0 +1,576 @@
+.nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 3px solid #295c85!important;
+    color: #295c85 !important;
+}
+
+.nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #6d7789;
+    padding-left: 0em;
+    font-weight: 500;
+}
+
+// Color code classes
+// Primary colors
+.primary {
+    background-color: #326690;
+}
+
+.primary-dark {
+    background-color: #295c85;
+}
+
+.primary-light {
+    background-color: #d6effc;
+}
+
+// Secondary colors
+.success {
+    background-color: #43a047;
+}
+
+.success-light {
+    background-color: #ddf1de;
+}
+// warning is pre existing class in css so instead of using warning using warning-clr
+.warning-clr {
+    background-color: #EEA236;
+}
+
+.warning-light {
+    background-color: #FCE5C5;
+}
+
+.danger {
+    background-color: #e53935;
+}
+
+.danger-light {
+    background-color: #F39999;
+}
+
+.danger-lighter {
+    background-color: #faecec;
+}
+
+// Severity status colors
+.explain-sev-2 {
+    background-color: #FFEE88;
+}
+
+.explain-sev-3 {
+    background-color: #EE8800;
+}
+
+.explain-sev-4 {
+    background-color: #880000;
+}
+
+// schema diff colors
+.diff-row {
+    background-color: #FFF9C4;
+}
+
+.source-row {
+    background-color: #FFEBEE;
+}
+
+.target-row {
+    background-color: #FBE3BF;
+}
+
+// Query editor colors
+.number {
+    background-color: #996644;
+}
+
+.string {
+    background-color: #AA1111;
+}
+
+.variabe {
+    background-color: #0055AA;
+}
+
+.builtin {
+    background-color: #3300AA;
+}
+
+.comment {
+    background-color: #AA5500;
+}
+
+.bracket {
+    background-color: #999977;
+}
+
+.activeline {
+    background-color: #50B0F0;
+}
+
+.keyword{
+    background-color: #990088;
+}
+
+.foldmarker {
+    background-color: #0000FF;
+}
+
+// Ternary colors
+.fg {
+    background-color: #222222;
+}
+
+.ternary {
+    background-color: #5B6D7C;
+}
+
+.gray-dark {
+    background-color: #848EA0;
+}
+
+.gray {
+    background-color: #848EA0;
+}
+
+.border-color {
+    background-color: #DDE0E6;
+}
+
+.gray-light {
+    background-color: #EBEEF3;
+}
+
+.gra-lighter {
+    background-color: #F3F5F9;
+}
+
+
+// Input style
+.container-header {
+    height: 72px;
+    border-bottom: solid 1px #bac1cd;
+    padding-top:1.3em;
+}
+
+.sd-container-header {
+    background-color: #FFFFFF;
+}
+
+.sd-default-input {
+    stroke: #dde0e6;
+    fill: #FFF;
+}
+
+.sd-active-input {
+    stroke: #73a6ce;
+    fill: #FFF;
+}
+
+.sd-disabled-input {
+    stroke: #dde0e6;
+    fill: #f3f5f9;
+}
+
+.sd-error-input {
+    stroke: #f39999;
+    fill: #FFF;
+}
+
+.input-svg-text-style {
+    font-size:14px;
+    fill: #222222;
+}
+
+.input-svg-text-disabled {
+    fill: #848ea0;
+}
+
+.input-svg-text-error {
+    color: #e53935 !important;
+    position: absolute;
+    margin-left: 1.5em;
+    margin-top: .5em;
+}
+
+// dropdown style
+.container-header-expand {
+    width: auto;
+    height: auto;
+    border-bottom: solid 1px #bac1cd;
+    padding-top:1.3em;
+    padding-bottom: 1em;
+}
+
+//Button style
+.sd-btn-row {
+    border: solid 1px #bac1cd;
+}
+.sd-btn-style {
+    padding-left: 2em;
+    height: 94px;
+    background-color: #ffffff;
+}
+
+.sd-btn-label {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.35px;
+    color: #222222;
+    width: 162px;
+}
+
+.sd-btn-block {
+    border-right: solid 1px #bac1cd;
+    width: 163.25px;
+}
+
+.sd-btn-code-block {
+    max-width: 326.5px;
+    min-width: 326.5px;
+    height: 94px;
+}
+
+.sd-btn {
+    color: #ffffff;
+}
+
+
+
+// Primary
+.sd-btn:hover {
+    color: #ffffff;
+}
+
+.sd-btn-primary {
+    background-color: #326690;
+    color: #FFFFFF;
+}
+
+.sd-icon-color {
+    color: #FFFFFF;
+}
+
+.sd-icon-color:hover {
+    color: #FFFFFF;
+}
+
+.sd-btn-primary-hover {
+    background-color: #285274;
+    color: #FFFFFF;
+}
+
+.sd-btn-primary-pressed {
+    background-color: #254b6a;
+    color: #FFFFFF;
+}
+
+.sd-btn-primary-disabled {
+    background-color: #326690;
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+// Secondary
+.sd-secondary-btn {
+    color: #212529;
+}
+
+.sd-secondary-btn:hover {
+    color: #212529;
+}
+
+.sd-btn-secondary {
+    background-color: #FFFFFF;
+    border: solid 1px #bac1cd;
+    color: #212529;
+}
+
+.sd-icon-secondary-color {
+    color: #212529;
+}
+
+.sd-icon-secondary-color:hover {
+    color: #212529;
+}
+
+.sd-btn-secondary-hover {
+    background-color: #ebeef3;
+    border: solid 1px #9ca6b8;
+    color: #212529;
+}
+
+.sd-btn-secondary-pressed {
+    background-color: #e6e6e6;
+    border: solid 1px #95a0b2;
+    color: #212529;
+}
+
+.sd-btn-secondary-disabled {
+    background-color: #FFFFFF;
+    border: solid 2px #bac1cd;
+    color: #212529;
+    opacity: 0.5;
+}
+
+// icon btn
+.sd-btn-icon {
+    width: 27px;
+    height: 25px;
+    border: 1px solid #bac1cd;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.sd-btn-icon-style{
+    color: #212529;
+    width: 14px;
+    height: 14px;
+    vertical-align: baseline;
+    padding-top: 1px;
+}
+
+.sd-btn-icon-hover {
+    width: 27px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: center;
+    border: solid 1px #9ca6b8;
+    background-color: #ebeef3;
+    padding-top: 1px;
+}
+
+.sd-btn-icon-pressed {
+    width: 27px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: center;
+    border: solid 1px #95a0b2;
+    background-color: #e6e6e6;
+    padding-top: 1px;
+}
+
+.sd-btn-icon-disabled {
+    width: 27px;
+    height: 25px;
+    border-radius: 3px;
+    text-align: center;
+    border: solid 1px #bac1cd;
+    background-color: #ffffff;
+    opacity: 0.5;
+    padding-top: 1px;
+}
+
+
+// Checkbox
+.sd-checkbox-block {
+    border-right: solid 1px #bac1cd;
+    padding-left: 1em;
+    width: 163.25px;
+}
+
+.sd-checkbox-cont {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #bac1cd;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+}
+
+.sd-checkbox-default {
+    width: 12px;
+    height: 12px;
+    border: solid 1px #dde0e6;
+}
+
+.sd-checkbox-hover-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #bac1cd;
+    background-color: #ebeef3;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+
+    .custom-control-label::after {
+        background-color: #ebeef3;
+    }
+}
+
+.sd-checkbox-pressed-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #95a0b2;
+    background-color: #e6e6e6;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+
+    .custom-control-label::after {
+        background-color: #e6e6e6;
+    }
+}
+
+.sd-checkbox-selected-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #bac1cd;
+    background-color: #FFFFFF;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+
+    .custom-control-label::after {
+        background-color: #326690;
+    }
+}
+
+.sd-checkbox-disabled-bg {
+    width: 115px;
+    height: 34px;
+    border-radius: 3px;
+    border: solid 1px #bac1cd;
+    background-color: #FFFFFF;
+    padding-top: 0.25em;
+    padding-left: 0.6em;
+    font-size: 15px;
+    opacity: 0.5;
+
+
+    .custom-control-label::after {
+        background-color: #326690;
+    }
+}
+
+.custom-control-label::after {
+    border: solid 1px #dde0e6;
+    border-radius: .25rem;
+}
+
+// Radio button
+.radio-container-body {
+    width: 653px;
+    height: 348px;
+}
+
+.btn-radio-primary {
+    color: #fff;
+    background-color: #326690;
+    border-color: #326690;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-radio-secondary {
+    color: #222222;
+    background-color: #fff;
+    border-color: #bac1cd;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-radio-secondary:hover {
+    color: #222222 !important;
+}
+
+.radio-check {
+    color: #fff;
+}
+
+.btn-radio-primary-hover {
+    color: #fff;
+    border-color: #326690;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #285274;
+}
+
+.btn-radiomodern:hover {
+    color: #fff;
+}
+
+// Table
+.table-container-header {
+    height: auto;
+    border-bottom: solid 1px #bac1cd;
+    padding-top: 1.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    display: inline-flex;
+    width: 100%;
+}
+
+.table-hover-tr-style {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-spacing: 0px;
+    background-color: #d6effc;
+    color: #222222;
+}
+
+.table-hover-td-style {
+    border-bottom: 2px solid #326690 !important;
+    border-top: 2px solid #326690 !important;
+}
+
+.table-cont-style {
+    pointer-events:none;
+    margin-left: 1em;
+    width: 34em;
+}
+
+.table-hover-label {
+    padding-top:8em;
+}
+
+// Accordion
+.accordion-style {
+    width: 590px;
+    height: auto;
+    padding-left: 2em;
+}
+
+.acc-container-header-expand {
+    height: auto;
+    padding-bottom: 1em;
+    border-bottom: solid 1px #bac1cd;
+    padding-top:1.3em;
+    padding-right: 2em;
+}
+
+// iconography
+.iconography-component-container {
+    width: auto;
+    border: solid 1px #bac1cd;
+    margin-bottom: 3em;
+    background-color: #f3f5f9;
+}
+
+.icon-label {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: 0.25px;
+    color: #222222;
+}
+
+
+
+

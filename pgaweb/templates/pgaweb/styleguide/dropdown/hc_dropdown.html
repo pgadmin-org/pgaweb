@@ -1,0 +1,88 @@
+<p class="color-header">Default</p>
+<div class="component-container">
+    <div class="hc-container-header">
+        <label class="hc-input-label">Label</label>
+        {% load static %}
+        <img class="dd_default"
+             src="{% static "img/style_guide/dd_hc_default.png" %}"
+             alt="Default Dropdown."/>
+    </div>
+    <div class="container-body dd-container-body">
+        <div class="code">
+            <span class="code-attribute">color:</span> <span class="code-value">#99999;</span><br/>
+            <span class="code-attribute">background:</span> <span
+                class="code-value">#FFFFFF;</span><br/>
+            <span class="code-attribute">border:</span> <span
+                class="code-value">1px solid #DDE0E6;</span><br/>
+            <span class="code-attribute">border-radius:</span> <span
+                class="code-value">4px;</span>
+        </div>
+    </div>
+</div>
+
+<p class="color-header">Filled</p>
+<div class="component-container">
+    <div class="hc-container-header">
+        <label class="hc-input-label">Label</label>
+        {% load static %}
+        <img class="dd_default"
+             src="{% static "img/style_guide/dd_hc_filled.png" %}"
+             alt="Filled Dropdown."/>
+    </div>
+    <div class="container-body dd-container-filled">
+        <div class="code">
+            <span class="code-value">Handled by bootstrap class</span> <span
+                class="code-attribute">.select2-container--focus</span>
+        </div>
+    </div>
+</div>
+
+<p class="color-header">Expanded</p>
+<div class="component-container">
+    <div class="hc-container-header-expand">
+        <div class="display-inline">
+            <label class="hc-input-label">Label</label>
+        </div>
+        <div class="display-inline">
+            {% load static %}
+            <img class="dd_expand"
+                 src="{% static "img/style_guide/dd_hc_expand.png" %}"
+                 alt="Filled Dropdown."/>
+        </div>
+    </div>
+    <div class="container-body dd-container-body">
+        <div class="code">
+            <span class="code-value">.select2-container--default .select2-results__option[aria-selected=true] {</span>
+            <br/>&emsp;<span class="code-attribute">background-color:</span>
+            <span class="code-value">#d6effc;</span>
+            <br/>&emsp;<span class="code-attribute">color:</span> <span
+                class="code-value">#222;<br/>
+            }</span>
+        </div>
+    </div>
+</div>
+
+<p class="color-header">Filled Dropdown_Expanded</p>
+<div class="component-container">
+    <div class="hc-container-header-expand">
+        <div class="display-inline">
+            <label class="hc-input-label">Label</label>
+        </div>
+        <div class="display-inline">
+            {% load static %}
+            <img class="dd_expand"
+                 src="{% static "img/style_guide/dd_hc_filled_expand.png" %}"
+                 alt="Filled Expanded Dropdown."/>
+        </div>
+    </div>
+    <div class="container-body dd-container-body">
+        <div class="code">
+            <span class="code-value">.select2-container--default .select2-results__option--highlighted {</span>
+            <br/>&emsp;<span class="code-attribute">background-color:</span>
+            <span class="code-value">#ebeef3 !important;</span>
+            <br/>&emsp;<span class="code-attribute">color:</span> <span
+                class="code-value">#222!important;<br/>
+            }</span>
+        </div>
+    </div>
+</div>

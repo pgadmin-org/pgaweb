@@ -1,0 +1,720 @@
+.pg-icon {
+    background-repeat: no-repeat;
+    background-size: 24px !important;
+    align-content: center;
+    vertical-align: middle;
+    height: 2.3em;
+    width: 2.3em;
+    display: inline-block;
+
+}
+
+.cast {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/cast.svg) !important;
+}
+
+.coll-cast {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-cast.svg) !important;
+}
+
+.catalog_object_column {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/catalog_object_column.svg) !important;
+}
+
+.coll-column {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-column.svg) !important;
+}
+
+.catalog_object {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/catalog_object.svg) !important;
+}
+
+.coll-catalog_object {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-catalog_object.svg) !important;
+}
+
+.catalog {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/catalog.svg) !important;
+}
+
+.coll-catalog {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-catalog.svg) !important;
+}
+
+.domain_constraints {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/domain_constraints.svg) !important;
+}
+
+.coll-domain_constraints  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-domain_constraints.svg) !important;
+}
+
+.primary_key  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/primary_key.svg) !important;
+}
+
+.compound_trigger  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/compound_trigger.svg) !important;
+}
+
+.coll-compound_trigger  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-compound_trigger.svg) !important;
+}
+
+.coll-database  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-database.svg) !important;
+}
+
+.database  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/database.svg) !important;
+}
+
+.edbfunc  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/edbfunc.svg) !important;
+}
+
+.coll-edbfunc  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-edbfunc.svg) !important;
+}
+
+.fts_template  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/fts_template.svg) !important;
+}
+
+.coll-fts_template  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-fts_template.svg) !important;
+}
+
+.trigger  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/trigger.svg) !important;
+}
+
+.coll-trigger  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-trigger.svg) !important;
+}
+
+.coll-sequence  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-sequence.svg) !important;
+}
+
+.event_trigger  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/event_trigger.svg) !important;
+}
+
+.coll-event_trigger  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-event_trigger.svg) !important;
+}
+
+.trigger_function  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/trigger_function.svg) !important;
+}
+
+.coll-trigger_function  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-trigger_function.svg) !important;
+}
+
+.procedure  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/procedure.svg) !important;
+}
+
+.coll-function  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-function.svg) !important;
+}
+
+.edbproc  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/edbproc.svg) !important;
+}
+
+.coll-edbproc  {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-edbproc.svg) !important;
+}
+
+.domain {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/domain.svg) !important;
+}
+
+.coll-domain {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-domain.svg) !important;
+}
+
+.collation {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/collation.svg) !important;
+}
+
+.language {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/language.svg) !important;
+}
+
+.coll-language {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-language.svg) !important;
+}
+
+.mview {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/mview.svg) !important;
+}
+
+.coll-mview {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-mview.svg) !important;
+}
+
+.function {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/function.svg) !important;
+}
+
+.coll-procedure {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-procedure.svg) !important;
+}
+
+.schema {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/schema.svg) !important;
+}
+
+.coll-schema {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-schema.svg) !important;
+}
+
+.synonym {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/synonym.svg) !important;
+}
+
+.coll-synonym {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-synonym.svg) !important;
+}
+
+.coll-fts_parser {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-fts_parser.svg) !important;
+}
+
+.type {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/type.svg) !important;
+}
+
+.coll-type {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-type.svg) !important;
+}
+
+.view {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/view.svg) !important;
+}
+
+.coll-view {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-view.svg) !important;
+}
+
+.resource_group {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/resource_group.svg) !important;
+}
+
+.coll-resource_group {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-resource_group.svg) !important;
+}
+
+.tablespace {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/tablespace.svg) !important;
+}
+
+.coll-tablespace {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-tablespace.svg) !important;
+}
+
+.rule-1 {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/rule-1.svg) !important;
+}
+
+.coll-rule {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-rule.svg) !important;
+}
+
+.exclusion_constraint {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/exclusion_constraint.svg) !important;
+}
+
+.package {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/package.svg) !important;
+}
+
+.coll-package {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-package.svg) !important;
+}
+
+.index {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/index.svg) !important;
+}
+
+.coll-index {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-index.svg) !important;
+}
+
+.role {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/role.svg) !important;
+}
+
+.coll-role {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-role.svg) !important;
+}
+
+.group {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/group.svg) !important;
+}
+
+.partition {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/partition.svg) !important;
+}
+
+.coll-partition {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-partition.svg) !important;
+}
+
+.coll-foreign_data_wrapper-1 {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-foreign_data_wrapper-1.svg) !important;
+}
+
+.foreign_data_wrapper-1 {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/foreign_data_wrapper-1.svg) !important;
+}
+
+.pga_job {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pga_job.svg) !important;
+}
+
+.coll-pga_job {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-pga_job.svg) !important;
+}
+
+.pga_jobstep {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pga_jobstep.svg) !important;
+}
+
+.coll-pga_jobstep {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-pga_jobstep.svg) !important;
+}
+
+.user_mapping {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/user_mapping.svg) !important;
+}
+
+.coll-user_mapping {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-user_mapping.svg) !important;
+}
+
+.pga_schedule {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pga_schedule.svg) !important;
+}
+
+.coll-pga_schedule {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-pga_schedule.svg) !important;
+}
+
+.server_group {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/server_group.svg) !important;
+}
+
+.server {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/server.svg) !important;
+}
+
+.coll-foreign_server {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-foreign_server.svg) !important;
+}
+
+.trigger-bad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/trigger-bad.svg) !important;
+}
+
+.triggerbad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/triggerbad.svg) !important;
+}
+
+.pga_schedule-disabled {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pga_schedule-disabled.svg) !important;
+}
+
+.pga_job-disabled {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pga_job-disabled.svg) !important;
+}
+
+.pga_jobstep-disabled {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pga_jobstep-disabled.svg) !important;
+}
+
+.serverbad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/serverbad.svg) !important;
+}
+
+.domain_constraints-bad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/domain_constraints-bad.svg) !important;
+}
+
+.compound_trigger-bad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/compound_trigger-bad.svg) !important;
+}
+
+.databasebad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/databasebad.svg) !important;
+}
+
+.check-constraint-bad {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/check-constraint-bad.svg) !important;
+}
+
+.check-constraint {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/check-constraint.svg) !important;
+}
+
+.sub_partition_table {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/sub_partition_table.svg) !important;
+}
+
+.table-inherited {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/table-inherited.svg) !important;
+}
+
+.table-inherits {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/table-inherits.svg) !important;
+}
+
+.table-multi-inherit {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/table-multi-inherit.svg) !important;
+}
+
+.partition_table {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/partition_table.svg) !important;
+}
+
+.unique_constraint {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/unique_constraint.svg) !important;
+}
+
+.table-repl {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/table-repl.svg) !important;
+}
+
+.coll-foreign_table {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-foreign_table.svg) !important;
+}
+
+.coll-fts_dictionary {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-fts_dictionary.svg) !important;
+}
+
+.ppas {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/ppas.svg) !important;
+}
+
+.pg {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/pg.svg) !important;
+}
+
+.coll-edbvar {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-edbvar.svg) !important;
+}
+
+.edbvar {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/edbvar.svg) !important;
+}
+
+.extension {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/extension.svg) !important;
+}
+
+.coll-extension {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-extension.svg) !important;
+}
+
+.coll-fts_configuration {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-fts_configuration.svg) !important;
+}
+
+.fts_configuration-1 {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/fts_configuration-1.svg) !important;
+}
+
+.fts_dictionary {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/fts_dictionary.svg) !important;
+}
+
+.ex_unknown {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/ex_unknown.svg) !important;
+}
+
+.fts_parser {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/fts_parser.svg) !important;
+}
+
+.coll-constraints {
+    background-image: url(/static/img/style_guide/iconography_assets/tree_view_icons/coll-constraints.svg) !important;
+}
+
+
+
+.pg-icon-query {
+    background-repeat: no-repeat;
+    background-size: 64px !important;
+    align-content: center;
+    vertical-align: middle;
+    height: 5em;
+    width: 5em;
+    display: inline-block;
+}
+
+.ex_aggregate {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_aggregate.svg) !important;
+}
+
+.ex_append {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_append.svg) !important;
+}
+
+.ex_bmp_and {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_bmp_and.svg) !important;
+}
+
+.ex_bmp_heap {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_bmp_heap.svg) !important;
+}
+
+.ex_bmp_index {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_bmp_index.svg) !important;
+}
+
+.ex_bmp_or {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_bmp_or.svg) !important;
+}
+
+.ex_cte_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_cte_scan.svg) !important;
+}
+
+.ex_delete {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_delete.svg) !important;
+}
+
+.ex_foreign_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_foreign_scan.svg) !important;
+}
+
+.ex_gather_merge {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_gather_merge.svg) !important;
+}
+
+.ex_gather_motion {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_gather_motion.svg) !important;
+}
+
+.ex_group {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_group.svg) !important;
+}
+
+.ex_hash_setop_intersect_all {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_setop_intersect_all.svg) !important;
+}
+
+.ex_hash_setop_intersect {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_setop_intersect.svg) !important;
+}
+
+.ex_hash_setop_unknown {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_setop_unknown.svg) !important;
+}
+
+.ex_hash {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash.svg) !important;
+}
+
+.ex_index_only_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_index_only_scan.svg) !important;
+}
+
+.ex_index_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_index_scan.svg) !important;
+}
+
+.ex_materialize {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_materialize.svg) !important;
+}
+
+.ex_merge_anti_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_merge_anti_join.svg) !important;
+}
+
+.ex_merge_append {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_merge_append.svg) !important;
+}
+
+.ex_merge_semi_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_merge_semi_join.svg) !important;
+}
+
+.ex_merge {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_merge.svg) !important;
+}
+
+.ex_named_tuplestore_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_named_tuplestore_scan.svg) !important;
+}
+
+.ex_recursive_union {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_recursive_union.svg) !important;
+}
+
+.ex_redistribute_motion {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_redistribute_motion.svg) !important;
+}
+
+.ex_result {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_result.svg) !important;
+}
+
+.ex_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_scan.svg) !important;
+}
+
+.ex_seek {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_seek.svg) !important;
+}
+
+.ex_setop {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_setop.svg) !important;
+}
+
+.ex_values_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_values_scan.svg) !important;
+}
+
+.ex_lock_rows {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_lock_rows.svg) !important;
+}
+
+.ex_projectset {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_projectset.svg) !important;
+}
+
+.ex_update {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_update.svg) !important;
+}
+
+.ex_tid_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_tid_scan.svg) !important;
+}
+
+.ex_window_aggregate {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_window_aggregate.svg) !important;
+}
+
+.ex_hash_setop_except_all {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_setop_except_all.svg) !important;
+}
+
+.ex_limit {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_limit.svg) !important;
+}
+
+.ex_table_func_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_table_func_scan.svg) !important;
+}
+
+.ex_hash_semi_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_semi_join.svg) !important;
+}
+
+.ex_subplan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_subplan.svg) !important;
+}
+
+.ex_nested_loop_semi_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_nested_loop_semi_join.svg) !important;
+}
+
+.ex_unique {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_unique.svg) !important;
+}
+
+.ex_hash_setop_except {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_setop_except.svg) !important;
+}
+
+.ex_broadcast_motion {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_broadcast_motion.svg) !important;
+}
+
+.ex_hash_anti_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_hash_anti_join.svg) !important;
+}
+
+.ex_insert {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_insert.svg) !important;
+}
+
+.ex_nested_loop_anti_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_nested_loop_anti_join.svg) !important;
+}
+
+.ex_worktable_scan {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_worktable_scan.svg) !important;
+}
+
+.ex_sort {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_sort.svg) !important;
+}
+
+.ex_join {
+    background-image: url(/static/img/style_guide/iconography_assets/query_explain_icons/ex_join.svg) !important;
+}
+
+
+// Custom Solid icons
+.pg-icon-custom {
+    background-repeat: no-repeat;
+    background-size: 24px !important;
+    align-content: center;
+    vertical-align: middle;
+    height: 1.7em;
+    width: 2.3em;
+    display: inline-block;
+}
+
+.commit {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/commit.svg) !important;
+}
+
+.compare {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/compare.svg) !important;
+}
+
+.connect {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/connect.svg) !important;
+}
+
+.disconnect {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/disconnect.svg) !important;
+}
+
+.drop_cascade {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/drop_cascade.svg) !important;
+}
+
+.query_tool {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/query_tool.svg) !important;
+}
+
+.rollback {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/rollback.svg) !important;
+}
+
+.row_filter {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/row_filter.svg) !important;
+}
+
+.save_data_changes {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/save_data_changes.svg) !important;
+}
+
+.script {
+   background-image: url(/static/img/style_guide/iconography_assets/custom_solid_icons/script.svg) !important;
+}
+
+// Font-Awesome icons.
+.pg-fa-icon {
+    width: 20.6px !important;
+    height: 20.6px;
+}
