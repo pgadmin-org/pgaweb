@@ -1,21 +1,25 @@
+{% extends 'pgaweb/styleguide/style_theme.html' %}
+{% block title %}Styleguide: Button{% endblock %}
+{% block styleguide_content %}
 <div class="color-palette">
-    <h1 class="styleguide-title" id="colorpalette">Alerts</h1>
+    <h1 class="styleguide-title" id="colorpalette">Styleguide: Button</h1>
     <p>
         {% include "pgaweb/styleguide/theme_nav_bar.html" %}
         <!--Add page specific content as per theme selection-->
     <div class="tab-content" id="themeTabContent">
         <div class="tab-pane fade show active theme-content theme-content-default"
              id="sdTheme" role="tabpanel" aria-labelledby="sd-tab">
-            {% include "pgaweb/styleguide/alert/sd_alert.html" %}
+            {% include "pgaweb/styleguide/buttons/sd_button.html" %}
         </div>
         <div class="tab-pane fade theme-content  theme-content-default"
              id="drkTheme" role="tabpanel" aria-labelledby="dek-tab">
-            {% include "pgaweb/styleguide/alert/dark_alert.html" %}
+            {% include "pgaweb/styleguide/buttons/dark_button.html" %}
         </div>
         <div class="tab-pane fade theme-content  theme-content-default"
              id="hcTheme" role="tabpanel" aria-labelledby="hc-tab">
-            {% include "pgaweb/styleguide/alert/hc_alert.html" %}
+            {% include "pgaweb/styleguide/buttons/hc_button.html" %}
         </div>
     </div>
     </p>
 </div>
+{% endblock %}

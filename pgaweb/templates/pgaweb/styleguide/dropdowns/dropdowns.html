@@ -1,21 +1,25 @@
+{% extends 'pgaweb/styleguide/style_theme.html' %}
+{% block title %}Styleguide: Dropdown{% endblock %}
+{% block styleguide_content %}
 <div class="color-palette">
-    <h1 class="styleguide-title" id="colorpalette">Dropdowns</h1>
+    <h1 class="styleguide-title" id="colorpalette">Styleguide: Dropdown</h1>
     <p>
         {% include "pgaweb/styleguide/theme_nav_bar.html" %}
         <!--Add page specific content as per theme selection-->
     <div class="tab-content" id="themeTabContent">
         <div class="tab-pane fade show active theme-content theme-content-default"
              id="sdTheme" role="tabpanel" aria-labelledby="sd-tab">
-            {% include "pgaweb/styleguide/dropdown/sd_dropdown.html" %}
+            {% include "pgaweb/styleguide/dropdowns/sd_dropdown.html" %}
         </div>
         <div class="tab-pane fade theme-content  theme-content-default"
              id="drkTheme" role="tabpanel" aria-labelledby="dek-tab">
-            {% include "pgaweb/styleguide/dropdown/dark_dropdown.html" %}
+            {% include "pgaweb/styleguide/dropdowns/dark_dropdown.html" %}
         </div>
         <div class="tab-pane fade theme-content  theme-content-default"
              id="hcTheme" role="tabpanel" aria-labelledby="hc-tab">
-            {% include "pgaweb/styleguide/dropdown/hc_dropdown.html" %}
+            {% include "pgaweb/styleguide/dropdowns/hc_dropdown.html" %}
         </div>
     </div>
     </p>
 </div>
+{% endblock %}

@@ -72,12 +72,17 @@ def styleguide_redirect(request):
 def styleguide_index(request, page='typography', section=''):
 
     if page == 'themes' and not section:
-        section = 'color'
+        section = 'color_palettes'
 
-    if page == 'iconography' and not section:
-        section = 'fontawesome'
+    if page == 'iconography':
+        section = 'fontawesome' if not section else section
+        url = 'pgaweb/styleguide/{0}/{0}.html'.format(page)
+    else:
+        url = 'pgaweb/styleguide/{0}/{1}.html'.format(
+            section, section) if section else 'pgaweb/styleguide/{0}.html'.format(page)
 
-    return render(request, 'pgaweb/styleguide/index.html', {'page': page, 'section': section})
+    return render(request, url, {'page': page, 'section': section})
+
 
 # Handle the Support level pages
 def support_index(request):

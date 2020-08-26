@@ -1,4 +1,19 @@
-<h1 class="styleguide-title" id="typography">Iconography</h1>
+{% extends 'pgaweb/styleguide/style_theme.html' %}
+{% block title %}
+    {% if section == 'fontawesome' %}Styleguide: Font Awesome
+    {% elif section == 'custom_icons' %}Styleguide: Custom Icons
+    {% elif section == 'tree_view_icons' %}Styleguide: Tree View
+    {% elif section == 'query_plans' %}Styleguide: Query Plans
+    {% endif %}
+{% endblock %}
+{% block styleguide_content %}
+<h1 class="styleguide-title" id="typography">
+    {% if section == 'fontawesome' %}Styleguide: Font Awesome
+    {% elif section == 'custom_icons' %}Styleguide: Custom Icons
+    {% elif section == 'tree_view_icons' %}Styleguide: Tree View
+    {% elif section == 'query_plans' %}Styleguide: Query Plans
+    {% endif %}
+</h1>
 <p>
     Icons are visual representations of commands, files or common actions. They
     should be meaningful, simple and legible. pgAdmin uses custom as well as
@@ -43,3 +58,4 @@
     </div>
     </p>
 </div>
+{% endblock %}

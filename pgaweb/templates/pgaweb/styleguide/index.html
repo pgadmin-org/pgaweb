@@ -1,8 +1,6 @@
 {% extends "pgaweb/page.html" %}
 {% load static %}
 
-{% block title %}Style Guide{% endblock %}
-
 {% block content %}
     <div class="style-action">
         {% if page == "typography" %}
@@ -16,12 +14,7 @@
     <div class="style-guide">
         <link rel="stylesheet"
               href="{% static 'COMPILED/assets/css/styleguide.css' %}?{{ gitrev }}"/>
-        {% if page == 'typography' %}
-            {% include "pgaweb/styleguide/style_typography.html" %}
-        {% elif page == 'themes' %}
-            {% include "pgaweb/styleguide/style_theme.html" %}
-        {% elif page == 'iconography' %}
-            {% include "pgaweb/styleguide/iconography/iconography.html" %}
-        {% endif %}
+        {% block page_content %}
+        {% endblock %}
     </div>
 {% endblock %}
