@@ -7,8 +7,9 @@
 #
 ##########################################################################
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
+from django.template.exceptions import TemplateDoesNotExist
 
 from news.models import News
 from versions.models import Version
@@ -70,18 +71,49 @@ def styleguide_redirect(request):
 
 
 def styleguide_index(request, page='typography', section=''):
-
-    if page == 'themes' and not section:
-        section = 'color_palettes'
-
+    # Iconography section
     if page == 'iconography':
         section = 'fontawesome' if not section else section
-        url = 'pgaweb/styleguide/{0}/{0}.html'.format(page)
-    else:
-        url = 'pgaweb/styleguide/{0}/{1}.html'.format(
-            section, section) if section else 'pgaweb/styleguide/{0}.html'.format(page)
 
-    return render(request, url, {'page': page, 'section': section})
+        # Check for a valid section
+        if section not in ['fontawesome',
+                           'custom_icons',
+                           'tree_view_icons',
+                           'query_plans']:
+            raise Http404("The requested page could not be found.")
+
+        template = 'pgaweb/styleguide/{0}/{0}.html'.format(page)
+
+    # Themes section
+    elif page == 'themes':
+        section = 'color_palettes' if not section else section
+
+        if section not in ['accordions',
+                           'alerts',
+                           'buttons',
+                           'checkboxes',
+                           'color_palettes',
+                           'dropdowns',
+                           'input_fields',
+                           'menus',
+                           'radio_buttons',
+                           'tab_sets',
+                           'tables',
+                           'toggle_buttons']:
+            raise Http404("The requested page could not be found.")
+
+        template = 'pgaweb/styleguide/{0}/{1}.html'.format(section, section)
+
+    # Other pages
+    else:
+        template = 'pgaweb/styleguide/{0}.html'.format(page)
+
+    try:
+        response = render(request, template, {'page': page, 'section': section})
+    except TemplateDoesNotExist as e:
+        raise Http404("The requested page could not be found.")
+
+    return response
 
 
 # Handle the Support level pages
