@@ -10,29 +10,35 @@
     we do aim to fix bugs and help out wherever possible. Obviously we cannot
     guarantee to fix every problem or help every user though we always try to.</p>
 
+<h2>Self Help</h2>
+
 <p>If you have a problem that you need help with, please make sure you check the
     <a href="{% url 'docs' %}">pgAdmin documentation</a> for a solution first.
     If you cannot find the answer you need there, then please try searching on
-    Google. Make sure you include any relevant error messages in your query. If
-    you still cannot find the answer you need, then please post a message to the
-    <a href="{% url 'support_list' %}">pgadmin-support</a> mailing list.</p>
+    Google. Make sure you include any relevant error messages in your query.
 
-<p>If you believe you have found a bug in pgAdmin 4, please log it on the
-    <a href="https://redmine.postgresql.org/projects/pgadmin4/issues/new">tracker
-        <i class="fas fa-sign-in-alt"></i></a> (PostgreSQL Community login
-    required). General questions and discussion should remain on the mailing
-    list and will be deleted if logged in the bug tracker.</p>
+<h2>Community Help</h2>
 
-<p><b>Note:</b> pgAdmin III is no longer being developed, and no further bugs
-    will be fixed. Please do not log pgAdmin III issues on the pgAdmin 4 bug
-    tracker.</p>
+<p>If you are unable to find the answer you need in the documentation or when
+    using Google, then please post a message to the
+    <a href="{% url 'support_list' %}">Support Mailing List</a>.</p>
+
+<h2>Issues and Bugs</h2>
+
+<p>If you believe you have found a bug in pgAdmin 4, please log the relevant
+    information on the <a href="{% url 'support_issues' %}">issue tracker</a>.
+
+<h2>Help Us To Help You</h2>
+
+<p>General questions and discussion should remain on the mailing list and will
+    be deleted if logged in the bug tracker.</p>
 
 <p>Please <b>do not</b> send an email directly to one of the programmers; they
     might miss it, or even be the wrong person at all. Using the mailing list
     helps ensure that your request won't get lost and will be answered in a
     timely fashion. Dave Page's <a href="http://pgsnake.blogspot.co.uk/2005/04/support-rant-dave-goes-off-on-one.html">blog</a>
     includes a frank posting describing why this is a bad idea, whilst Eric
-    Raymond's paper <a href="http://www.catb.org/~esr/faqs/smart-questions.html">
-        'How to ask questions the smart way'</a> describes the best way to get
-    the help you need.</p>
+    Raymond's paper '<a href="http://www.catb.org/~esr/faqs/smart-questions.html">
+    'How to ask questions the smart way</a>' describes the best way to get the
+    help you need.</p>
 {% endblock %}

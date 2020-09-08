@@ -1,14 +1,46 @@
 {% extends "pgaweb/page.html" %}
 
-{% block title %}Known Issues{% endblock %}
+{% block title %}Issues{% endblock %}
 
 {% block content %}
-<h1>Known Issues</h1>
+<h1>Issues</h1>
 
-<p>Bugs and other issues in pgAdmin are usually fixed within a very short time once they have been reported to us.
-    There are some issues that may be out of our control, or may take significant effort to resolve - possibly more
+<p>Bugs and other issues in pgAdmin are usually fixed within a very short time
+    once they have been reported to us. There are some issues that may be out of
+    our control, or may take significant effort to resolve - possibly more
     effort than the issue warrants, in which case they may not be resolved.</p>
 
-<p>You can view the <a href="https://redmine.postgresql.org/projects/pgadmin4/issues">issue list</a> on the pgAdmin 4
-    <a href="https://redmine.postgresql.org/projects/pgadmin4">Redmine project</a>.</p>
+<h2>Check for Existing Issues</h2>
+
+<p>If you believe you have found a bug or issue, please check the
+    <a href="https://redmine.postgresql.org/projects/pgadmin4/issues">issue list</a>
+    </a> <i>(PostgreSQL Community login required)</i> on the pgAdmin 4
+    <a href="https://redmine.postgresql.org/projects/pgadmin4">Redmine project</a>
+    before logging a new issue. If you find an issue that matches the one you're
+    seeing, please feel free to add any useful additional information you are
+    able to provide.</p>
+
+<h2>Log a New Issue</h2>
+
+<p>If you believe you have found a new bug or issue in pgAdmin 4, please log it on the
+    <a href="https://redmine.postgresql.org/projects/pgadmin4/issues/new"> issue
+    tracker</a> <i>(PostgreSQL Community login required)</i>. Try to include as much
+    of the following information as possible:</p>
+
+<ul>
+  <li>The version of pgAdmin you are running, and where you obtained it from.</li>
+  <li>Whether you're running in server or desktop mode</li>
+  <li>Steps required to reproduce the problem. Please include a simple schema
+      with optional data if required. This may be sent privately <b>upon request
+      from a developer</b> if you are concerned about posting sample code or
+      data to a public mailing list.</li>
+  <li>The operating system and version details - e.g. Windows 10, or macOS 10.11.5</li>
+  <li>Any logfile output you may have. See the FAQ for information on how to
+      <a href="{% url 'faq' %}#8">enable logging</a>.</li>
+</ul>
+
+<h2>Questions and Discussion</h2>
+
+<p>General questions and discussion should remain on the mailing list and will be
+    deleted if logged in the bug tracker.</p>
 {% endblock %}

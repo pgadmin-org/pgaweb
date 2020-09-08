@@ -5,32 +5,20 @@
 {% block content %}
 <h1>Support Mailing List</h1>
 
-<p>The pgadmin-support mailing list is intended for end user support and bug reports.<p>
+<p>The pgadmin-support mailing list is intended for end user support. If you
+    believe you have found a bug please log it on the <a href="{% url 'support_issues' %}">
+    issue tracker</a>, but you are welcome to confirm it on the mailing list
+    first if you are unsure.<p>
 
 <h2>List Subscriptions</h2>
 
-<p>To manage your subscription to the mailing list, including subscribing and unsubscribing, visit the <a
-        href="https://lists.postgresql.org/manage/">PGLister Management</a> web interface.</p>
+<p>To manage your subscription to the mailing list, including subscribing and
+    unsubscribing, visit the <a href="https://lists.postgresql.org/manage/">PGLister
+        Management</a> web interface.</p>
 
-<p>To unsubscribe quickly you can also send an email to: <a href="mailto:pgadmin-support-unsubscribe@lists.postgresql.org">
+<p>To unsubscribe quickly you can also send an email to:
+    <a href="mailto:pgadmin-support-unsubscribe@lists.postgresql.org">
     pgadmin-support-unsubscribe@lists.postgresql.org</a>.</p>
-
-<h2>Bug Reports</h2>
-
-<p>If you are posting a bug report, please include the following information where possible:</p>
-<ul>
-  <li>The version of pgAdmin you are running. If it is a development snapshot, please include the build date from the
-      <i>Help -&gt; About</i> screen, and GIT repository version if known.</li>
-  <li>The configure options used (if compiled from source)</li>
-  <li>The operating system and version details - e.g. Windows 10, or macOS 10.11.5</li>
-  <li>Whether you're running in server or desktop mode</li>
-  <li>The Qt version and configure options used (if compiled from source)</li>
-  <li>The Python version and configure options used (if running in server mode)</li>
-  <li>The output from <code>pip freeze</code> (if running in server mode)</li>
-  <li>Steps required to reproduce the problem. Please include a simple schema with optional data if required. This may
-      be sent privately <b>upon request from a developer</b> if you are concerned about posting sample code or data to
-      a public mailing list.</li>
-</ul>
 
 <h2>List Archives</h2>
 
@@ -39,7 +27,8 @@
 
 <h2>Private Messages</h2>
 
-<p>Please <b>do not</b> send an email directly to one of the developers; they might miss it, or even be the wrong
-    person at all. Using the mailing list helps ensure that your request isn't lost and will be answered in a timely
+<p>Please <b>do not</b> send an email directly to one of the developers; they
+    might miss it, or might not be the correct person at all. Using the mailing list
+    helps ensure that your request isn't lost and will be answered in a timely
     fashion.</p>
 {% endblock %}
