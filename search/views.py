@@ -11,8 +11,8 @@
 from django.db import connection
 from django.http import JsonResponse
 from django.shortcuts import render
-from docs.models import Page
 from download.models import Version
+from .models import Search
 
 
 def search(request):
@@ -47,6 +47,11 @@ def search(request):
             pg = 1
 
     if q != '':
+        # Log the search terms for analytics
+        log = Search(terms=q)
+        log.save()
+
+        # Now do the actual search
         sql = """SELECT
   ts_rank(search, plainto_tsquery(%s)) AS rank,
   ts_headline(body,
