@@ -1,0 +1,13 @@
+{% extends "pgaweb/page.html" %}
+{% load staticfiles %}
+
+{% block title %}News Archive{% endblock %}
+
+{% block content %}
+    <h1>News Archive</h1>
+
+    {% for article in news.all %}
+    <h2>{{ article.display_date }} - {{ article.title }}</h2>
+    <p>{{ article.content|safe }}</p>
+    {% endfor %}
+{% endblock %}

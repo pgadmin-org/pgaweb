@@ -11,6 +11,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from pgaweb import views as pgaweb_views
 from faq import views as faq_views
+from news import views as news_views
 from versions import views as versions_views
 
 from . import settings
@@ -48,6 +49,8 @@ urlpatterns = [
     url(r'^download/', include('download.urls')),
 
     url(r'^faq/$', faq_views.index, name='faq'),
+
+    url(r'^news/$', news_views.index, name='news'),
 
     url(r'^search/', include('search.urls')),
 

@@ -17,7 +17,7 @@ from versions.models import Version
 
 # Handle the root level pages
 def index(request):
-    news = News.objects.filter(display=True)
+    news = News.objects.filter(display=True, disable=False)
     version = Version.objects.get(package='pgadmin4', active=True)
     return render(request, 'pgaweb/index.html',
                   {'news': news, 'version': version})

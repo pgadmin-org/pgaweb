@@ -22,7 +22,11 @@ def clear_the_cache(**kwargs):
 
 
 class News(models.Model):
-    display = models.BooleanField(null=False, blank=False, default=False)
+    display = models.BooleanField(null=False, blank=False, default=False,
+                                  help_text='Display the article on the home '
+                                            'page.')
+    disable = models.BooleanField(null=False, blank=False, default=False,
+                                  help_text='Hide the article from all pages.')
     date = models.DateField(null=False, blank=False, default=date.today)
     title = models.CharField(max_length=200, null=False, blank=False)
     content = models.TextField(null=False, blank=False)
