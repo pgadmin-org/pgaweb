@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'pgaweb',
     'search',
     'versions',
+    'videos',
 )
 
 MIDDLEWARE = (
