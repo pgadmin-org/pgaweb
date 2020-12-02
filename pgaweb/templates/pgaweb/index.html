@@ -40,20 +40,63 @@
                 {% include "pgaweb/action.html" %}
             </div>
 
-            <!-- News -->
             <div class="col-sm-8">
-                <h1>News</h1>
-                {% for article in news.all %}
-                <h2>{{ article.display_date }} - {{ article.title }}</h2>
-                <p>{{ article.content|safe }}</p>
-                {% endfor %}
-                {% if version.version_str != "" %}
-                <div class="well pga-version">
-                    <p>The current version of pgAdmin 4 is
-                        <a href="{%  url 'download_index' %}">{{ version.version_str }}</a>
-                    </p>
+                <div class="container-fluid">
+
+                    <!-- Videos -->
+                    {% if videos.count %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>Latest Videos</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for video in videos.all %}
+                            <div class="col-xs-12 col-md-6 col-xl-4">
+                                <div class='video-container'>
+                                    <iframe src='https://www.youtube.com/embed/{{ video.youtube_id }}' frameborder='0' allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="font-italic text-right"><a href="{% url 'videos' %}">All videos</a></p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- News -->
+                    {% if news.count %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>News</h1>
+                            {% for article in news.all %}
+                            <h2>{{ article.display_date }} - {{ article.title }}</h2>
+                            <p>{{ article.content|safe }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="font-italic text-right"><a href="{% url 'news' %}">All news</a></p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <! Version info -->
+                    {% if version.version_str != "" %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="well pga-version">
+                                <p>The current version of pgAdmin 4 is
+                                    <a href="{%  url 'download_index' %}">{{ version.version_str }}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
 
             <!-- Ad -->

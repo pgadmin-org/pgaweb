@@ -13,6 +13,7 @@ from pgaweb import views as pgaweb_views
 from faq import views as faq_views
 from news import views as news_views
 from versions import views as versions_views
+from videos import views as videos_views
 
 from . import settings
 
@@ -55,6 +56,8 @@ urlpatterns = [
     url(r'^search/', include('search.urls')),
 
     url(r'^versions.json$', versions_views.index, name='versions.json'),
+
+    url(r'^videos/$', videos_views.index, name='videos'),
 
     url(r'^admin/', admin.site.urls),
 ]

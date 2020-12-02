@@ -6,10 +6,11 @@
 # This software is released under the PostgreSQL Licence
 #
 ##########################################################################
+
 from django.utils.functional import SimpleLazyObject
 
 from docs.models import Page
-
+from pgaweb import settings
 
 def get_docs(request):
     pages = Page.objects.filter(version__active=True,
@@ -47,4 +48,5 @@ def PGAWebContextProcessor(request):
     gitrev = SimpleLazyObject(_get_gitrev)
     return {
         'gitrev': gitrev,
+        'apps': settings.INSTALLED_APPS
     }

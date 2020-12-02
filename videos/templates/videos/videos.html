@@ -1,0 +1,16 @@
+{% extends "pgaweb/page.html" %}
+{% load staticfiles %}
+
+{% block title %}Videos{% endblock %}
+
+{% block content %}
+    <h1>Videos</h1>
+
+    {% for video in videos.all %}
+    <h2>{{ video.display_date }} - {{ video.title }} ({{ video.publisher }})</h2>
+    <p>{{ video.description }}</p>
+    <div class="video-container video-container-bottom-margin">
+        <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    {% endfor %}
+{% endblock %}

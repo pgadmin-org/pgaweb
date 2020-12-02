@@ -119,6 +119,9 @@
                         <div class="dropdown-menu" aria-labelledby="category-dropdown">
                             <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
                             <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
+                            {%  if 'videos' in apps %}
+                                <a class="dropdown-item" href="{% url 'videos' %}">Videos</a>
+                            {%  endif %}
                             {% regroup docs by version.package.name as doc_list %}
                             {% for doc in doc_list %}
                             <a class="dropdown-header">{{ doc.grouper }}:</a>

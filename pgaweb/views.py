@@ -13,14 +13,16 @@ from django.template.exceptions import TemplateDoesNotExist
 
 from news.models import News
 from versions.models import Version
+from videos.models import Video
 
 
 # Handle the root level pages
 def index(request):
     news = News.objects.filter(display=True, disable=False)
     version = Version.objects.get(package='pgadmin4', active=True)
+    videos = Video.objects.filter(disable=False, display=True)[:3]
     return render(request, 'pgaweb/index.html',
-                  {'news': news, 'version': version})
+                  {'news': news, 'version': version, 'videos': videos})
 
 
 def ads_txt(request):
