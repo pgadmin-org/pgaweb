@@ -41,7 +41,7 @@ class Video(models.Model):
         return self.date.strftime("%Y-%m-%d")
 
     class Meta:
-        ordering = ('-date',)
+        ordering = ('-date', '-id')
 
     def __str__(self):
         return '%s - %s' % (self.display_date, self.title)
