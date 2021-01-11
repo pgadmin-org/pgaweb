@@ -49,7 +49,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config ./webpack.dev.js --env.env=dev",
-    "build": "webpack --config ./webpack.prod.js --env.NODE_ENV=production --mode=production --optimize=true",
+    "build": "webpack --config ./webpack.prod.js --env.NODE_ENV=production --mode=production --optimize=true && cd static/COMPILED && gzip -f -k -9 *.js && cd ../..",
     "build:watch": "webpack --config ./webpack.prod.js --watch --env.NODE_ENV=production --mode=production",
     "lint": "yarn eslint --no-eslintrc -c .eslintrc.js --ext .js .",
     "pep8": "pycodestyle --config=./.pycodestyle ./news && pycodestyle --config=./.pycodestyle ./docs && pycodestyle --config=./.pycodestyle ./pgaweb && pycodestyle --config=./.pycodestyle ./faq && pycodestyle --config=./.pycodestyle ./download",
