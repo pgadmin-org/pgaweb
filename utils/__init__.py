@@ -23,7 +23,7 @@ def varnish_ban(url='/'):
     except socket.error:
         pass
     else:
-        request = "BAN {} HTTP/1.1\r\nHost: {}\r\n\r\n".\
+        request = "PURGE {} HTTP/1.1\r\nHost: {}\r\n\r\n".\
             format(urllib.parse.quote(url), settings.VARNISH_HOST)
 
         sock.sendall(request.encode())
