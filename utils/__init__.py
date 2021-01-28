@@ -7,7 +7,6 @@
 #
 ##########################################################################
 
-import urllib
 import socket
 
 import pgaweb.settings as settings
@@ -24,7 +23,7 @@ def varnish_ban(url='/'):
         pass
     else:
         request = "PURGE {} HTTP/1.1\r\nHost: {}\r\n\r\n".\
-            format(urllib.parse.quote(url), settings.VARNISH_HOST)
+            format(url, settings.VARNISH_HOST)
 
         sock.sendall(request.encode())
 
