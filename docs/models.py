@@ -7,7 +7,6 @@
 #
 ##########################################################################
 
-from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -15,11 +14,17 @@ from django.urls import reverse
 from download.models import Version
 import tsvector_field
 
+from utils import varnish_ban
+
 
 @receiver(post_save)
 def clear_the_cache(**kwargs):
-    if kwargs['sender']._meta.label != 'admin.LogEntry':
-        cache.clear()
+    if kwargs['sender']._meta.label == 'docs.Page':
+        # The individual page
+        varnish_ban('^' + reverse('page',
+                                  args=[kwargs['instance'].version.package.slug,
+                                        kwargs['instance'].version.slug,
+                                        kwargs['instance'].file]))
 
 
 class Page(models.Model):

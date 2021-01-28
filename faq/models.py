@@ -7,16 +7,20 @@
 #
 ##########################################################################
 
-from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
+
+from utils import varnish_ban
 
 
 @receiver(post_save)
 def clear_the_cache(**kwargs):
-    if kwargs['sender']._meta.label != 'admin.LogEntry':
-        cache.clear()
+    if kwargs['sender']._meta.label == 'faq.Category' or \
+            kwargs['sender']._meta.label == 'faq.Faq':
+        # The FAQ
+        varnish_ban('^' + reverse('faq') + '$')
 
 
 class Category(models.Model):

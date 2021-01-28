@@ -10,17 +10,25 @@
 import datetime
 import re
 
-from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.urls import reverse
+
+from utils import varnish_ban
 
 
 @receiver(post_save)
 def clear_the_cache(**kwargs):
-    if kwargs['sender']._meta.label != 'admin.LogEntry':
-        cache.clear()
+    if kwargs['sender']._meta.label == 'download.Version' or \
+            kwargs['sender']._meta.label == 'download.Package':
+        # Changes to the Package or Version may affect the site menu & docs
+        varnish_ban('^' + reverse('index'))
+    elif kwargs['sender']._meta.label == 'download.Distribution' or \
+            kwargs['sender']._meta.label == 'download.Download':
+        # Everything under /download
+        varnish_ban('^' + reverse('download_index'))
 
 
 def version_slugify(value):

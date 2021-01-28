@@ -131,20 +131,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'pgaweb', 'static'))
 
-# Django caching
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'TIMEOUT': 3600,
-        'OPTIONS': {
-            'MAX_ENTRIES': 5000
-        }
-    }
-}
-
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 3600
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
+# Set the IP of the Varnish cache HTTP port, if there is one.
+# If set, PURGE requests will be sent in response to model updates.
+VARNISH_HOST = None
 
 # Load local settings overrides
 try:
