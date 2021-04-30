@@ -133,6 +133,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'pg
 # If set, PURGE requests will be sent in response to model updates.
 VARNISH_HOST = None
 
+# Specify the path to a pgAdmin source tree (usually a GIT checkout).
+# Used for translation status analysis
+PGADMIN_TREE_PATH = '/var/www/pgadmin4'
+
 # Load local settings overrides
 try:
     from .settings_local import *

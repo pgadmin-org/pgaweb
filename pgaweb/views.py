@@ -11,6 +11,13 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.template.exceptions import TemplateDoesNotExist
 
+import glob
+import os
+import ast
+from babel.messages.pofile import read_po
+
+from pgaweb import settings
+
 from news.models import News
 from versions.models import Version
 from videos.models import Video
@@ -65,6 +72,68 @@ def development_resources(request):
 
 def development_team(request):
     return render(request, 'pgaweb/development/team.html', {})
+
+
+def development_translations(request):
+    base_path = os.path.join(settings.PGADMIN_TREE_PATH, 'web', 'pgadmin')
+
+    # Get the list of languages from pgAdmin
+    languages = '{\n'
+    with open(os.path.join(settings.PGADMIN_TREE_PATH, 'web', 'config.py'), 'r') as f:
+        lines = f.readlines()
+        started = False
+        for line in lines:
+            if started:
+                if line[:1] == '}':
+                    break
+                else:
+                    languages = languages + line.replace('\'', '"')
+            else:
+                if line[:13] == 'LANGUAGES = {':
+                    started = True
+    languages = ast.literal_eval(languages + '}')
+
+    with open(os.path.join(base_path, 'messages.pot'), 'r') as t:
+        catalog = read_po(t)
+        total_messages = len(catalog)
+
+    context = {'total_messages': total_messages}
+    catalogs = []
+
+    for po in glob.iglob(os.path.join(base_path,
+                                      'translations/*/LC_MESSAGES/messages.po')):
+
+        catalog = {}
+
+        with open(po, 'r') as p:
+            c = read_po(p)
+
+            fuzzy = sum(x.fuzzy is True for x in c)
+            untranslated = sum(x.string == '' for x in c)
+
+            catalog['file'] = po[len(base_path) + 14:]
+            catalog['language'] = languages[po[len(base_path) + 14:][:2]]
+            catalog['revised'] = c.revision_date.strftime("%Y-%m-%d")
+            catalog['translator'] = ' '.join([i for i in c.last_translator.split() if '@' not in i])
+            catalog['total_messages'] = len(c)
+            catalog['total_messages_pct'] = 100 / total_messages * catalog['total_messages']
+            catalog['translated_messages'] = catalog['total_messages'] - untranslated
+            catalog['translated_messages_pct'] = 100 / catalog['total_messages'] * catalog['translated_messages']
+            catalog['status_icon'] = '<i class="fa fa-question-circle text-warning" aria-hidden="true">'
+            if catalog['translated_messages_pct'] >= 95:
+                catalog['status_icon'] = '<i class="fa fa-check-circle text-success" aria-hidden="true">'
+            elif catalog['translated_messages_pct'] < 75:
+                catalog['status_icon'] = '<i class="fa fa-exclamation-circle text-danger" aria-hidden="true">'
+            catalog['fuzzy_messages'] = fuzzy
+            catalog['fuzzy_messages_pct'] = 100 / catalog['total_messages'] * catalog['fuzzy_messages']
+            catalog['untranslated_messages'] = untranslated
+            catalog['untranslated_messages_pct'] = 100 / catalog['total_messages'] * catalog['untranslated_messages']
+
+        catalogs.append(catalog)
+
+    context['catalogs'] = sorted(catalogs, key=lambda k: k['language'])
+
+    return render(request, 'pgaweb/development/translations.html', context)
 
 
 # Handle the Styleguide pages

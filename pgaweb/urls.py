@@ -38,6 +38,8 @@ urlpatterns = [
     url(r'^development/resources/$', pgaweb_views.development_resources,
         name='development_resources'),
     url(r'^development/team/$', pgaweb_views.development_team, name='development_team'),
+    url(r'^development/translations/$', pgaweb_views.development_translations,
+        name='development_translations'),
     url(r'^styleguide/$', pgaweb_views.styleguide_redirect, name='styleguide_redirect'),
     url(r'^styleguide/(?P<page>[a-zA-Z]+)(?:/(?P<section>[a-zA-Z_]+))?/$', pgaweb_views.styleguide_index,
         name='styleguide_index'),

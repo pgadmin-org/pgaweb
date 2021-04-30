@@ -1,0 +1,80 @@
+{% extends "pgaweb/page.html" %}
+
+{% block title %}Translations{% endblock %}
+
+{% block content %}
+<h1>Translations</h1>
+
+<p>pgAdmin 4 has been translated into a number of different languages. The table
+    below lists the languages for which we have message catalogs and their
+    current status (from the head of the source tree in Git). Data is updated
+    hourly, and is subject to caching.</p>
+
+<p>If you would like to add support for a new language, or update one that
+    appears to be unmaintained, please send an email to
+    <a href="mailto:pgadmin-hackers@postgresql.org">pgadmin-hackers@postgresql.org</a>.
+    </p>
+
+<p>The template message catalog currently contains <strong>{{ total_messages }}</strong>
+    messages.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+      <th colspan="8" class="text-center">Messages</th>
+      <th colspan="1"></th>
+    </tr>
+    <tr>
+      <th scope="col">Language</th>
+      <th scope="col">Revised</th>
+      <th scope="col">Translator</th>
+      <th scope="col" class="text-center" colspan="2">Total</th>
+      <th scope="col" class="text-center" colspan="2">Translated</th>
+      <th scope="col" class="text-center" colspan="2">Fuzzy</th>
+      <th scope="col" class="text-center" colspan="2">Untranslated</th>
+      <th scope="col" class="text-center" colspan="2">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if catalogs|length %}
+    {% for catalog in catalogs %}
+    <tr>
+      <th scope="row"><a href="https://git.postgresql.org/gitweb/?p=pgadmin4.git;a=blob_plain;f=web/pgadmin/translations/{{ catalog.file }}">{{ catalog.language }}</a></th>
+      <td>{{ catalog.revised }}</td>
+      <td>{{ catalog.translator }}</td>
+      <td class="text-right">{{ catalog.total_messages }}</td>
+      <td class="text-right">{{ catalog.total_messages_pct|floatformat:"1" }}%</td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages }}</span></td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages_pct|floatformat:"1" }}%</span></td>
+      <td class="text-right">{{ catalog.fuzzy_messages }}</td>
+      <td class="text-right">{{ catalog.fuzzy_messages_pct|floatformat:"1" }}%</td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages }}</span></td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages_pct|floatformat:"1" }}%</span></td>
+      <td class="text-center">{{ catalog.status_icon|safe }}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+      <td colspan="8" class="text-center"><strong>No catalogs were found.</strong></td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
+
+<p>The percentages shown are calculated as:</p>
+<ul>
+  <li><strong>Total:</strong> The percentage of messages in the catalog, when compared to the template.</li>
+  <li><strong>Translated:</strong> The percentage of messages in the catalog that have a translation (regardless of whether they're fuzzy).</li>
+  <li><strong>Fuzzy:</strong> The percentage of messages in the catalog that are fuzzy.</li>
+  <li><strong>Untranslated:</strong> The percentage of messages in the catalog that do not have a translation.</li>
+</ul>
+
+<p>The status is calculated as:</p>
+<ul class="fa-ul">
+  <li><span class="fa-li"><i class="fa fa-check-circle text-success" aria-hidden="true"></i></span> The percentage of messages translated is greater than or equal to 95%.</li>
+  <li><span class="fa-li"><i class="fa fa-question-circle text-warning" aria-hidden="true"></i></span> The percentage of messages translated is greater than or equal to 75% and less than 95%.</li>
+  <li><span class="fa-li"><i class="fa fa-exclamation-circle text-danger" aria-hidden="true"></i></span> The percentage of messages translated is less than 75%.</li>
+</ul>
+
+{% endblock %}
