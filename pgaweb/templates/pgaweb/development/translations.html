@@ -15,8 +15,9 @@
     <a href="mailto:pgadmin-hackers@postgresql.org">pgadmin-hackers@postgresql.org</a>.
     </p>
 
-<p>The template message catalog currently contains <strong>{{ total_messages }}</strong>
-    messages.</p>
+    <p>The <a href="https://github.com/postgres/pgadmin4/blob/master/web/pgadmin/messages.pot">
+    template message catalog</a> currently contains <strong>{{ total_messages }}
+    </strong>messages.</p>
 
 <table class="table table-bordered table-striped">
   <thead>
@@ -40,7 +41,7 @@
     {% if catalogs|length %}
     {% for catalog in catalogs %}
     <tr>
-      <th scope="row"><a href="https://git.postgresql.org/gitweb/?p=pgadmin4.git;a=blob_plain;f=web/pgadmin/translations/{{ catalog.file }}">{{ catalog.language }}</a></th>
+      <th scope="row"><a href="https://github.com/postgres/pgadmin4/blob/master/web/pgadmin/translations/{{ catalog.file }}">{{ catalog.language }}</a></th>
       <td>{{ catalog.revised }}</td>
       <td>{{ catalog.translator }}</td>
       <td class="text-right">{{ catalog.total_messages }}</td>
