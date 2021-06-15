@@ -6,6 +6,8 @@
 {% block content %}
     <h1>Videos</h1>
 
+    <p>Want to see your pgAdmin video here? Email <a href="mailto:webmaster@pgadmin.org">webmaster@pgadmin.org</a>.</p>
+
     {%  if videos.count %}
     {% for video in videos.all %}
     <h2>{{ video.display_date }} - {{ video.title }} ({{ video.publisher }})</h2>
