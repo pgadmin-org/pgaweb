@@ -20,6 +20,7 @@ from pgaweb import settings
 
 from news.models import News
 from versions.models import Version
+from blogs.models import Blog
 from videos.models import Video
 
 
@@ -27,9 +28,11 @@ from videos.models import Video
 def index(request):
     news = News.objects.filter(display=True, disable=False)
     version = Version.objects.get(package='pgadmin4', active=True)
+    blogs = Blog.objects.filter(disable=False, display=True)[:3]
     videos = Video.objects.filter(disable=False, display=True)[:3]
     return render(request, 'pgaweb/index.html',
-                  {'news': news, 'version': version, 'videos': videos})
+                  {'news': news, 'version': version,
+                   'blogs': blogs, 'videos': videos})
 
 
 def ads_txt(request):

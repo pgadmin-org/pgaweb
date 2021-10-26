@@ -10,6 +10,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from pgaweb import views as pgaweb_views
+from blogs import views as blogs_views
 from faq import views as faq_views
 from news import views as news_views
 from versions import views as versions_views
@@ -45,6 +46,8 @@ urlpatterns = [
     url(r'^support/$', pgaweb_views.support_index, name='support_index'),
     url(r'^support/issues/$', pgaweb_views.support_issues, name='support_issues'),
     url(r'^support/list/$', pgaweb_views.support_list, name='support_list'),
+
+    url(r'^blogs/$', blogs_views.index, name='blogs'),
 
     url(r'^docs/', include('docs.urls')),
 

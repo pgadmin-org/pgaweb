@@ -120,6 +120,9 @@
                         <div class="dropdown-menu" aria-labelledby="category-dropdown">
                             <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
                             <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
+                            {%  if 'blogs' in apps %}
+                                <a class="dropdown-item" href="{% url 'blogs' %}">Blog Posts</a>
+                            {%  endif %}
                             {%  if 'videos' in apps %}
                                 <a class="dropdown-item" href="{% url 'videos' %}">Videos</a>
                             {%  endif %}

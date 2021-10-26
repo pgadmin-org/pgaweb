@@ -69,6 +69,30 @@
                     </div>
                     {% endif %}
 
+                    <!-- Blogs -->
+                    {% if blogs.count %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>Latest Blog Posts</h1>
+                            {% for blog in blogs.all %}
+                            <h2>{{ blog.title }}</h2>
+                            <p><i>Author: {{  blog.author }}, date: {{  blog.date }}</i></p>
+                            <p>{{ blog.summary }}</p>
+                            <p><a href="{{ blog.url }}">Read more</a> <small><i class="fa fa-external-link-alt"></i></small></p>
+                            {% endfor %}
+
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <p class="font-italic">Want to see your pgAdmin blog post here? Email <a href="mailto:webmaster@pgadmin.org">webmaster@pgadmin.org</a>.</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="font-italic text-right"><a href="{% url 'blogs' %}">All blog posts</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
                     <!-- News -->
                     {% if news.count %}
                     <div class="row">
@@ -78,13 +102,15 @@
                             <h2>{{ article.display_date }} - {{ article.title }}</h2>
                             <p>{{ article.content|safe }}</p>
                             {% endfor %}
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="font-italic text-right"><a href="{% url 'news' %}">All news</a></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <p class="font-italic text-right"><a href="{% url 'news' %}">All news</a></p>
-                        </div>
-                    </div>
+
                     {% endif %}
 
                     <! Version info -->
