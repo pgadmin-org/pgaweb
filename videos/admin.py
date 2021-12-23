@@ -13,8 +13,8 @@ from .models import Video
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'display', 'disable')
-    list_filter = ('display', 'disable', 'date')
+    list_display = ('title', 'publisher', 'date', 'display', 'disable')
+    list_filter = ('display', 'disable', 'publisher', 'date')
     actions = ['display_on_home', 'hide_from_home', 'enable', 'disable']
 
     def display_on_home(self, request, queryset):
