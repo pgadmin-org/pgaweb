@@ -13,8 +13,8 @@ from .models import Blog
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'display', 'disable')
-    list_filter = ('display', 'disable', 'date')
+    list_display = ('title', 'author', 'date', 'display', 'disable')
+    list_filter = ('display', 'disable', 'author', 'date')
     actions = ['display_on_home', 'hide_from_home', 'enable', 'disable']
 
     def display_on_home(self, request, queryset):
