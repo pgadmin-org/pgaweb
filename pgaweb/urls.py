@@ -11,10 +11,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from pgaweb import views as pgaweb_views
 from blogs import views as blogs_views
+from blogs import feeds as blog_feed
 from faq import views as faq_views
 from news import views as news_views
+from news import feeds as news_feed
 from versions import views as versions_views
 from videos import views as videos_views
+from videos import feeds as video_feed
 
 from . import settings
 
@@ -48,6 +51,7 @@ urlpatterns = [
     url(r'^support/list/$', pgaweb_views.support_list, name='support_list'),
 
     url(r'^blogs/$', blogs_views.index, name='blogs'),
+    url(r'^blog.rss$', blog_feed.LatestEntriesFeed(), name='blog_feed'),
 
     url(r'^docs/', include('docs.urls')),
 
@@ -56,12 +60,14 @@ urlpatterns = [
     url(r'^faq/$', faq_views.index, name='faq'),
 
     url(r'^news/$', news_views.index, name='news'),
+    url(r'^news.rss$', news_feed.LatestEntriesFeed(), name='news_feed'),
 
     url(r'^search/', include('search.urls')),
 
     url(r'^versions.json$', versions_views.index, name='versions.json'),
 
     url(r'^videos/$', videos_views.index, name='videos'),
+    url(r'^videos.rss$', video_feed.LatestEntriesFeed(), name='video_feed'),
 
     url(r'^admin/', admin.site.urls),
 ]

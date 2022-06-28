@@ -47,7 +47,7 @@
                     {% if videos.count %}
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1>Latest Videos</h1>
+                            <h1>Latest Videos <a href="{% url 'video_feed' %}"><i class="fa fa-rss-square text-warning" aria-hidden="true"></i></a></h1>
                         </div>
                     </div>
                     <div class="row">
@@ -73,7 +73,7 @@
                     {% if blogs.count %}
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1>Latest Blog Posts</h1>
+                            <h1>Latest Blog Posts <a href="{% url 'blog_feed' %}"><i class="fa fa-rss-square text-warning" aria-hidden="true"></i></a></h1>
                             {% for blog in blogs.all %}
                             <h2>{{ blog.title }}</h2>
                             <p><i>Author: {{  blog.author }}, date: {{  blog.date }}</i></p>
@@ -97,7 +97,7 @@
                     {% if news.count %}
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1>News</h1>
+                            <h1>News <a href="{% url 'news_feed' %}"><i class="fa fa-rss-square text-warning" aria-hidden="true"></i></a></h1>
                             {% for article in news.all %}
                             <h2>{{ article.display_date }} - {{ article.title }}</h2>
                             <p>{{ article.content|safe }}</p>

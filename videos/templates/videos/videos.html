@@ -4,13 +4,13 @@
 {% block title %}Videos{% endblock %}
 
 {% block content %}
-    <h1>Videos</h1>
+    <h1>Videos <a href="{% url 'news_feed' %}"><i class="fa fa-rss-square text-warning" aria-hidden="true"></i></a></h1>
 
     <p>Want to see your pgAdmin video here? Email <a href="mailto:webmaster@pgadmin.org">webmaster@pgadmin.org</a>.</p>
 
     {%  if videos.count %}
     {% for video in videos.all %}
-    <h2>{{ video.display_date }} - {{ video.title }} ({{ video.publisher }})</h2>
+        <h2><a id="{{ video.id }}">{{ video.display_date }} - {{ video.title }} ({{ video.publisher }})</a></h2>
     <p>{{ video.description|safe }}</p>
     <div class="video-container video-container-bottom-margin">
         <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}" title="Video: {{ video.title }}" frameborder="0" allowfullscreen></iframe>
