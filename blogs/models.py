@@ -20,9 +20,10 @@ from utils import varnish_ban
 @receiver(post_save)
 def clear_the_cache(**kwargs):
     if kwargs['sender']._meta.label == 'blogs.Blog':
-        # The homepage and everything under /blogs
+        # The homepage, everything under /blogs, and the blog feed
         varnish_ban('^' + reverse('index') + '$')
         varnish_ban('^' + reverse('blogs') + '$')
+        varnish_ban('^' + reverse('blog_feed') + '$')
 
 
 class Blog(models.Model):

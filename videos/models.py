@@ -20,9 +20,10 @@ from utils import varnish_ban
 @receiver(post_save)
 def clear_the_cache(**kwargs):
     if kwargs['sender']._meta.label == 'videos.Video':
-        # The homepage and everything under /videos
+        # The homepage, everything under /videos, and the video feed
         varnish_ban('^' + reverse('index') + '$')
         varnish_ban('^' + reverse('videos') + '$')
+        varnish_ban('^' + reverse('video_feed') + '$')
 
 
 class Video(models.Model):

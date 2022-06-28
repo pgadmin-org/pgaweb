@@ -20,9 +20,10 @@ from utils import varnish_ban
 @receiver(post_save)
 def clear_the_cache(**kwargs):
     if kwargs['sender']._meta.label == 'news.News':
-        # The index page and news archive
+        # The index page and news archive/feed
         varnish_ban('^' + reverse('index') + '$')
         varnish_ban('^' + reverse('news') + '$')
+        varnish_ban('^' + reverse('news_feed') + '$')
 
 
 class News(models.Model):
