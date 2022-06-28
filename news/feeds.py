@@ -1,3 +1,5 @@
+import datetime as dt
+
 from django.contrib.syndication.views import Feed
 from django.urls import reverse_lazy
 from news.models import News
@@ -20,3 +22,9 @@ class LatestEntriesFeed(Feed):
 
     def item_link(self, item):
         return reverse_lazy('news') + '#' + str(item.id)
+
+    def item_pubdate(self, item):
+        return dt.datetime(item.date.year,
+                           item.date.month,
+                           item.date.day,
+                           tzinfo=dt.timezone.utc)

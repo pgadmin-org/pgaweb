@@ -1,3 +1,5 @@
+import datetime as dt
+
 from django.contrib.syndication.views import Feed
 from django.urls import reverse_lazy
 from videos.models import Video
@@ -23,3 +25,9 @@ class LatestEntriesFeed(Feed):
 
     def item_author_name(self, item):
         return item.publisher
+
+    def item_pubdate(self, item):
+        return dt.datetime(item.date.year,
+                           item.date.month,
+                           item.date.day,
+                           tzinfo=dt.timezone.utc)
