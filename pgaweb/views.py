@@ -111,8 +111,11 @@ def development_translations(request):
             untranslated = sum(x.string == '' for x in c)
 
             catalog['file'] = po[len(base_path) + 14:]
-            catalog['language'] = languages[po[len(base_path) + 14:][:2]]
-            catalog['revised'] = c.revision_date.strftime("%Y-%m-%d")
+            catalog['language'] = languages[po[len(base_path) + 14:].split('/')[0]]
+            try:
+                catalog['revised'] = c.revision_date.strftime("%Y-%m-%d")
+            except:
+                catalog['revised'] = 'Unknown'
             catalog['translator'] = ' '.join([i for i in c.last_translator.split() if '@' not in i])
             catalog['total_messages'] = len(c)
             catalog['total_messages_pct'] = 100 / total_messages * catalog['total_messages']
