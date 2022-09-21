@@ -2,7 +2,7 @@
   "name": "pgadmin-www",
   "version": "1.0.0",
   "description": "pgAdmin Website",
-  "repository": "git://git.postgresql.org/git/pgadmin-www.git",
+  "repository": "https://github.com/pgadmin-org/pgaweb.git",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "fotorama": "^4.6.4",
