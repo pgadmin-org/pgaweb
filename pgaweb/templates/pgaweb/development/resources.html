@@ -3,56 +3,70 @@
 {% block title %}Development Resources{% endblock %}
 
 {% block content %}
-<h1>Development Resources</h1>
+    <h1>Development Resources</h1>
 
-<h2 id="git">GIT access</h2>
+    <h2 id="git">GIT access</h2>
 
-<p>pgAdmin is available subject to the terms of the <a href="{% url 'licence' %}">licence</a>. pgAdmin is developed using a
-    number of GIT repositories to hold the source code. Access to the repository is available through a
-    <a href="https://github.com/pgadmin-org/pgadmin4.git">web interface</a> or using your favourite GIT
-    client.</p>
+    <p>pgAdmin is available subject to the terms of the
+        <a href="{% url 'licence' %}">licence</a>. Access to the
+        repository is available through at
+        <a href="https://github.com/pgadmin-org/pgadmin4">GitHub</a>.
+        An outline of a typical workflow for making and submitting a change to
+        pgAdmin can be found in the
+        <a href="/docs/pgadmin4/development/submitting_pull_requests.html">documentation</a>.
+    </p>
+    <p>Instructions for building pgAdmin from source, and notes on other
+        useful development information can be found in the
+        <a href="https://github.com/pgadmin-org/pgadmin4/blob/master/README.md">README.md
+        file</a> in the source tree. Additional information can also be found in the
+        <a href="/docs/pgadmin4/development/contributions.html">documentation</a>.
+    </p>
 
-<p>To checkout the source from the command line and get started, you might use commands such as shown below on a Linux
-    or Unix system. For further details, please see the <a href="{% url 'download_index' %}pgadmin-4-source-code/">source code</a> build
-    instructions.</p>
+    <h2 id="list">Mailing List</h2>
 
-<pre>
-git clone https://github.com/pgadmin-org/pgadmin4.git
-cd pgadmin4
-more README
-</pre>
+    <p>The pgadmin-hackers mailing list is intended for developers who wish to
+        contribute to pgAdmin project. You are more than welcome to subscribe,
+        but please remember to use
+        <a href="{% url 'support_list' %}">pgadmin-support</a> list for end
+        user support issues.</p>
 
-<h2 id="list">Mailing List</h2>
+    <p>To manage your subscription to the mailing list, including subscribing
+        and unsubscribing, visit the
+        <a href="https://lists.postgresql.org/manage/">PGLister Management</a>
+        web interface.</p>
 
-<p>The pgadmin-hackers mailing list is intended for developers who wish to contribute to pgAdmin project. You are more
-    than welcome to subscribe, but please remember to use <a href="{% url 'support_list' %}">pgadmin-support</a> list for end
-    user support issues.</p>
+    <p>To unsubscribe quickly you can also send an email to:
+        <a href="mailto:pgadmin-hackers-unsubscribe@lists.postgresql.org">pgadmin-hackers-unsubscribe@lists.postgresql.org</a>.
+    </p>
 
-<p>To manage your subscription to the mailing list, including subscribing and unsubscribing, visit the <a
-        href="https://lists.postgresql.org/manage/">PGLister Management</a> web interface.</p>
+    <p>Messages sent to the list are publicly and permanently archived at the
+        <a href="http://archives.postgresql.org/pgadmin-hackers/">PostgreSQL
+        Archives</a>.</p>
 
-<p>To unsubscribe quickly you can also send an email to: <a href="mailto:pgadmin-hackers-unsubscribe@lists.postgresql.org">
-    pgadmin-hackers-unsubscribe@lists.postgresql.org</a>.</p>
+    <h2 id="todo">TODO List</h2>
 
-<p>Messages sent to the list are publicly and permanently archived at the
-    <a href="http://archives.postgresql.org/pgadmin-hackers/">PostgreSQL Archives</a>.</p>
+    <p>The TODO list is a list of features that are planned or have been
+        requested for inclusion in a future version of pgAdmin. As pgAdmin is a
+        volunteer project, there is no guarantee that any feature will be
+        implemented in any particular release, but where we expect or aim to
+        do so, the feature will be tagged with a target version.</p>
 
-<h2 id="todo">TODO List</h2>
+    <p>You can view the
+        <a href="https://github.com/orgs/pgadmin-org/projects/3">TODO list</a>
+        on the pgAdmin 4
+        <a href="https://github.com/pgadmin-org/pgadmin4">GitHub project</a>.
+    </p>
 
-<p>The TODO list is a list of features that are planned or have been requested for inclusion in a future version of
-    pgAdmin. As pgAdmin is a volunteer project, there is no guarantee that any feature will be implemented in any
-    particular release, but where we expect or aim to do so, the feature will be tagged with a target version.</p>
+    <h2 id="changelog">Change Log</h2>
 
-<p>You can view the <a href="https://github.com/orgs/pgadmin-org/projects/3">TODO list</a> on the
-    pgAdmin 4 <a href="https://github.com/pgadmin-org/pgadmin4">GitHub project</a>.</p>
+    <p>The change log is a record of the notable changes made to pgAdmin by the
+        various developers, published in the release notes section of the
+        documentation. It is a manually maintained list, and as such may not
+        include details of every minor change that has ever been made. If you
+        need that level of detail, please check the commit messages in the GIT
+        repository.</p>
 
-<h2 id="changelog">Change Log</h2>
-
-<p>The change log is a record of the notable changes made to pgAdmin by the various developers, published in the
-    release notes section of the documentation. It is a manually maintained list, and as such may not include
-    details of every minor change that has ever been made. If you need that level of detail, please check the
-    commit messages in the GIT repository.</p>
-
-<p>You can view the <a href="https://www.pgadmin.org/docs/pgadmin4/development/release_notes.html">change log</a>
-    on the website.</p>
+    <p>You can view the
+        <a href="https://www.pgadmin.org/docs/pgadmin4/development/release_notes.html">change
+        log</a> on the website.</p>
 {% endblock %}
