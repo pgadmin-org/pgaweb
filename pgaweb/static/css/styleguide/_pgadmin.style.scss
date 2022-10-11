@@ -759,14 +759,6 @@ form[name="change_password_form"] .help-block {
   white-space: normal;
 }
 
-/* Disable text selection where not wanted */
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 /* Security label's label column font size */
 .override_label_class_font_size {
   font-size: inherit !important;
