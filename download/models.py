@@ -128,7 +128,7 @@ class Version(models.Model):
 
 class Download(models.Model):
     distribution = models.ForeignKey('Distribution', on_delete=models.PROTECT)
-    version = models.ForeignKey('Version', on_delete=models.PROTECT)
+    version = models.ForeignKey('Version', on_delete=models.CASCADE)
     active = models.BooleanField(null=False, blank=False)
     download_url = models.CharField(null=False, blank=False, max_length=250)
     notes_url = models.CharField(null=False, blank=True, max_length=250)
