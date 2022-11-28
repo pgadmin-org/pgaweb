@@ -44,7 +44,7 @@ def version_slugify(value):
 
 class Package(models.Model):
     order = models.IntegerField(null=False, default=0)
-    name = models.CharField(null=False, blank=False, max_length=50)
+    name = models.CharField(null=False, blank=False, max_length=50, unique=True)
     active = models.BooleanField(null=False, blank=False)
     description = models.TextField(null=False, blank=True)
     slug = models.SlugField(null=False, blank=True, max_length=100, unique=True,
@@ -78,6 +78,7 @@ class Distribution(models.Model):
 
     class Meta:
         ordering = ('order', 'package', 'name')
+        unique_together = ['package', 'name']
 
     def __str__(self):
         return "%s (%s)" % (self.package, self.name)
@@ -104,6 +105,7 @@ class Version(models.Model):
 
     class Meta:
         ordering = ('package__order', 'pre_release', '-released', 'name')
+        unique_together = ['package', 'name']
 
     def list_string(self):
         if self.name[0].isdigit():
@@ -133,6 +135,7 @@ class Download(models.Model):
 
     class Meta:
         ordering = ('version', 'distribution')
+        unique_together = ['distribution', 'version']
 
     def __str__(self):
         return "%s (%s)" % (self.version, self.distribution.name)
