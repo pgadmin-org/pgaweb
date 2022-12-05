@@ -18,13 +18,13 @@
 </div>
 {% endif %}
 
-{% if distribution.notes != "" %}<h2>Notes</h2>{% endif %}
+{% if distribution.notes != "" %}<h2>Info</h2>{% endif %}
 {{ distribution.notes | safe }}
 
 <p>
   <ul>
     {% for download in downloads.all %}{% if download.notes_url != "" %}
-    <li><a href="{{ download.notes_url }}">Release notes</a> ({{ download.version }})</li>
+    <li><a href="{{ download.notes_url }}">Release info</a> ({{ download.version }})</li>
     {% endif %}{% endfor %}
   </ul>
 </p>
