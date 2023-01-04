@@ -11,7 +11,7 @@ from __future__ import unicode_literals
 
 from django.http import Http404
 from django.shortcuts import render
-from download.models import Version, Package
+from download.models import Version
 from docs.models import Page
 
 
@@ -71,7 +71,30 @@ def page(request, package, version, file='index.html'):
             page = p
 
     if page is None:
-        raise Http404("The requested page could not be found.")
+        if pages.count() == 0:
+            raise Http404("The requested page could not be found.")
+
+        # Return a custom 404 page, with suggested additional pages
+        # First, get the max lengths of the version and title
+        version_max = 7  # Length of "version"
+        title_max = 5  # Length of "title"
+        for p in pages:
+            if len(p.version.name) > version_max:
+                version_max = len(p.version.name)
+            if len(p.title) > title_max:
+                title_max = len(p.title)
+
+        data = {'path': request.path,
+                'pages': pages,
+                'version_l_pad': version_max + 2,
+                'version_t_pad': version_max - 6,
+                'version_v_pad': version_max + 1,
+                'title_l_pad': title_max - 4,
+                'title_t_pad': title_max / 2 - 5}
+        response = render(request, 'docs/404.html', data)
+        response.status_code = 404
+
+        return response
 
     data = {'page': page, 'pages': pages, 'show_latest': show_latest}
 

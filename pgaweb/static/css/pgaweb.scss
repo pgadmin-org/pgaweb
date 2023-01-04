@@ -406,8 +406,18 @@ a {
 
 /* Terminal-like code display */
 .pga-terminal {
+    padding: 5px;
     background-color: #000000;
     color: #47d147;
+}
+
+.pga-terminal a {
+    color: #2b6da3;
+}
+
+.pga-terminal a:hover, a:active {
+    color: #50b0f0;
+    text-decoration: none;
 }
 
 /* Admonition boxes */
