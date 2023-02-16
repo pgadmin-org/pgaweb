@@ -9,7 +9,7 @@
   overflow: hidden;
   top: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 9900;
   pointer-events: none;
   font-size: 13px;
   text-decoration: none;
@@ -160,7 +160,7 @@
 .navbar-collapse {
     background-color: #343a40;
     padding: 5px;
-    z-index: 9999;
+    z-index: 9900;
 }
 
 /* Bootstrap colours */

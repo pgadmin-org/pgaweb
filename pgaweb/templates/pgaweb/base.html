@@ -3,8 +3,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
+    <script src="{% static 'COMPILED/cookieconsent.js' %}?{{gitrev}}"></script>
     <script>
+        window.CookieConsent.init({
+          theme: {
+            barColor: '#326690',
+            barTextColor: '#FFFFFF',
+            barMainButtonColor: '#FFFFFF',
+            barMainButtonTextColor: '#326690',
+            modalMainButtonColor: '#326690',
+            modalMainButtonTextColor: '#FFFFFF',
+          },
+          language: {
+            current: 'en'
+          },
+          categories: {
+            necessary: {
+              needed: true,
+              wanted: true,
+              checked: true,
+              language: {
+                locale: {
+                  en: {
+                    name: 'Strictly Necessary Cookies',
+                    description: 'These cookies are required to ensure the proper operation of the pgAdmin website.',
+                  },
+                }
+              }
+            },
+            analytics: {
+              needed: false,
+              wanted: false,
+              checked: false,
+              language: {
+                locale: {
+                  en: {
+                    name: 'Analytics Cookies',
+                    description: 'These cookies are used to help us understand user behaviour on the pgAdmin website so we can improve the design and user experience.',
+                  },
+                }
+              }
+            },
+            targeting: {
+              needed: false,
+              wanted: false,
+              checked: false,
+              language: {
+                locale: {
+                  en: {
+                    name: 'Targeting Cookies',
+                    description: 'These cookies are used to help display ads that are relevant and useful for the individual user.',
+                  },
+                }
+              }
+            }
+          },
+          services: {
+            tagmanager: {
+              category: 'analytics',
+              type: 'script-tag',
+              search: 'tagmanager',
+              language: {
+                locale: {
+                  en: {
+                    name: 'Google Tag Manager'
+                  }
+                }
+              }
+            },
+            analytics: {
+              category: 'analytics',
+              type: 'script-tag',
+              search: 'analytics',
+              language: {
+                locale: {
+                  en: {
+                    name: 'Google Analytics'
+                  }
+                }
+              }
+            },
+            targeting: {
+              category: 'targeting',
+              type: 'script-tag',
+              search: 'targeting',
+              language: {
+                locale: {
+                  en: {
+                    name: 'Google AdSense'
+                  }
+                }
+              }
+            },
+          }
+        });
+      </script>
+
+    <!-- Google Tag Manager -->
+    <script type="text/plain" data-consent="tagmanager">
+    console.log('Initialising analytics with user consent.');
     var DNT = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack || window.msDoNotTrack;
     if ((DNT != "1") && (DNT != "yes")) {
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
