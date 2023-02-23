@@ -24,14 +24,14 @@ def _get_gitrev():
     # Return the current git revision, that is used for
     # cache-busting URLs.
     try:
-        with open('.git/refs/heads/master') as f:
+        with open('.git/refs/heads/main') as f:
             return f.readline()[:8]
     except IOError:
         # A "git gc" will remove the ref and replace it with a packed-refs.
         try:
             with open('.git/packed-refs') as f:
                 for l in f.readlines():
-                    if l.endswith("refs/heads/master\n"):
+                    if l.endswith("refs/heads/main\n"):
                         return l[:8]
                 # Not found in packed-refs. Meh, just make one up.
                 return 'ffffffff'
