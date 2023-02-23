@@ -87,7 +87,6 @@ module.exports = (env, argv) => {
       'fotoramajs': './node_modules/fotorama/fotorama.js',
       'fotorama': './node_modules/fotorama/fotorama.css',
       'banner': './static/js/banner.js',
-      'cookieconsent': './static/js/cookieconsent.js',
       'styleguide': './pgaweb/static/css/styleguide.scss',
     },
     output: {
