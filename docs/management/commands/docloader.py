@@ -22,7 +22,7 @@ class Command(BaseCommand):
     help = 'Load HTML docs from a directory into the database.'
 
     def add_arguments(self, parser):
-        parser.add_argument('package', help="the name of the Package to link "
+        parser.add_argument('package', help="the slug of the Package to link "
                                             "the document to.")
 
         parser.add_argument('version', help="the version number of the "
@@ -141,7 +141,7 @@ class Command(BaseCommand):
         set_autocommit(False)
 
         # Check the Package exists
-        package = Package.objects.filter(name=options['package']).first()
+        package = Package.objects.filter(slug=options['package']).first()
 
         if package is None:
             raise CommandError("The Package object could not be found.")
