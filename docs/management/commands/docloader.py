@@ -41,7 +41,7 @@ class Command(BaseCommand):
         Load document pages from the given directory into the Document
 
         :param directory: The directory to load pages from
-        :param directory: The path to static files
+        :param static: The path to static files
         :param version: The Version object to load Pages into
         :return: The number of Pages loaded
         """
