@@ -53,13 +53,13 @@
       <td>{{ catalog.revised }}</td>
       <td>{{ catalog.translator }}</td>
       <td class="text-right">{{ catalog.total_messages }}</td>
-      <td class="text-right">{{ catalog.total_messages_pct|floatformat:"1" }}%</td>
+      <td class="text-right">{{ catalog.total_messages_pct|floatformat:"2" }}%</td>
       <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages }}</span></td>
-      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages_pct|floatformat:"1" }}%</span></td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages_pct|floatformat:"2" }}%</span></td>
       <td class="text-right">{{ catalog.fuzzy_messages }}</td>
-      <td class="text-right">{{ catalog.fuzzy_messages_pct|floatformat:"1" }}%</td>
+      <td class="text-right">{{ catalog.fuzzy_messages_pct|floatformat:"2" }}%</td>
       <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages }}</span></td>
-      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages_pct|floatformat:"1" }}%</span></td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages_pct|floatformat:"2" }}%</span></td>
       <td class="text-center">{{ catalog.status_icon|safe }}</td>
     </tr>
     {% endfor %}
