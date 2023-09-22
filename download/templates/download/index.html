@@ -14,6 +14,11 @@
     download links. In addition, you can download source tarballs and pgAgent for your servers to enable additional
     functionality.</p>
 
+<p>Only recent downloads are kept on the main download site, along with the last release of each major version.
+    Older downloads can be found in the <a href="https://pgadmin-archive.postgresql.org/">Download Archive</a>.
+    Note that whilst the packages from the APT and YUM repositories are also archived here, the repository metadata
+    is not maintained so it is not possible to configure the archives as working repositories.</p>
+
 {% for package in packages.all %}
 <h2>{{ package.name }}</h2>
 
