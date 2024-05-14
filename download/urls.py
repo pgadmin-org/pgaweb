@@ -7,10 +7,10 @@
 #
 ##########################################################################
 
-from django.conf.urls import url
+from django.urls import re_path
 from download import views as download_views
 
 urlpatterns = [
-    url(r'^$', download_views.index, name='download_index'),
-    url(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
+    re_path(r'^$', download_views.index, name='download_index'),
+    re_path(r'^(?P<slug>[\w-]+)/$', download_views.download_list, name='download_list'),
 ]

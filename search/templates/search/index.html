@@ -16,7 +16,7 @@
       <select class="custom-select mr-sm-2" id="v" name="v">
         <option value="">Latest package versions</option>
         {% for doc in docs %}
-        <option {% ifequal request.GET.v|slugify doc.version.id|slugify %}selected {% endifequal %}value="{{ doc.version.id }}">{{ doc.version.package.name }} {{ doc.version.name }}</option>
+        <option {% if request.GET.v|slugify == doc.version.id|slugify %}selected {% endif %}value="{{ doc.version.id }}">{{ doc.version.package.name }} {{ doc.version.name }}</option>
         {% endfor %}
       </select>
     </div>

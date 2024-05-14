@@ -7,11 +7,11 @@
 #
 ##########################################################################
 
-from django.conf.urls import url
+from django.urls import re_path
 from docs import views as docs_views
 
 urlpatterns = [
-    url(r'^$', docs_views.docs, name='docs'),
-    url(r'^([^/]+)/([^/]+)/$', docs_views.page, name='page'),
-    url(r'^([^/]+)/([^/]+)/(.+)$', docs_views.page, name='page'),
+    re_path(r'^$', docs_views.docs, name='docs'),
+    re_path(r'^([^/]+)/([^/]+)/$', docs_views.page, name='page'),
+    re_path(r'^([^/]+)/([^/]+)/(.+)$', docs_views.page, name='page'),
 ]

@@ -1,6 +1,6 @@
 from django.core import checks
 from django.db.models import CharField, TextField
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.itercompat import is_iterable
 from django.contrib.postgres.search import SearchVectorField as OriginalSearchVectorField
 
@@ -39,7 +39,7 @@ class WeightedColumn:
 
     def deconstruct(self):
         path = "tsvector_field.{}".format(self.__class__.__name__)
-        return path, [force_text(self.name), force_text(self.weight)], {}
+        return path, [force_str(self.name), force_str(self.weight)], {}
 
 
 class SearchVectorField(OriginalSearchVectorField):
@@ -58,9 +58,9 @@ class SearchVectorField(OriginalSearchVectorField):
         if self.columns is not None:
             kwargs['columns'] = self.columns
         if self.language is not None:
-            kwargs['language'] = force_text(self.language)
+            kwargs['language'] = force_str(self.language)
         if self.language_column is not None:
-            kwargs['language_column'] = force_text(self.language_column)
+            kwargs['language_column'] = force_str(self.language_column)
         if self.force_update is not False:
             kwargs['force_update'] = self.force_update
         del kwargs['null']
