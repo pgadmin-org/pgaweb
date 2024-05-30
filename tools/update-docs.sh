@@ -16,6 +16,5 @@ PYTHONWARNINGS= make -f Makefile.sphinx PYTHON=/var/www/pgadocs/venv/bin/python 
 
 # Run the docloader
 cd /var/www/pgaweb
-source /usr/share/python3/pginfra-virtualenv-django32-py3/bin/activate
+source /usr/share/python3/pginfra-virtualenv-django42-py3/bin/activate
 ./manage.py docloader pgadmin4 Development pgadmin4-dev/docs/en_US/_build/html
-

@@ -20,7 +20,7 @@ tar -zxvf ${TARBALL}
 
 # Load 'em
 cd /var/www/pgaweb
-source /usr/share/python3/pginfra-virtualenv-django32-py3/bin/activate
+source /usr/share/python3/pginfra-virtualenv-django42-py3/bin/activate
 ./manage.py docloader pgadmin4 ${1} pgadmin4-${1}-docs
 
 # Clear the cache
