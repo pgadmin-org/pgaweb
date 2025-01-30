@@ -8,7 +8,7 @@ git reset --hard
 git pull
 
 # Update the venv
-source /var/www/pgadocs/venv/bin/activate && pip3 install -r requirements.txt sphinx sphinxcontrib-youtube
+source /var/www/pgadocs/venv/bin/activate && pip3 install -r requirements.txt --upgrade sphinx sphinxcontrib-youtube
 
 # Build the docs
 cd docs/en_US
