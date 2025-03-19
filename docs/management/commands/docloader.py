@@ -83,6 +83,9 @@ class Command(BaseCommand):
             for div in soup.findAll('div'):
                 if div.has_attr('id') and div['id'] == 'searchbox':
                     div.extract()
+            for search in soup.findAll('search'):
+                if search.has_attr('id') and search['id'] == 'searchbox':
+                    search.extract()
 
             # If there's no title, use the filename (without the .html)
             if soup.find('title') is not None:
