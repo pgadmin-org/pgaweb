@@ -13,7 +13,7 @@ from .models import Version
 
 
 class VersionAdmin(admin.ModelAdmin):
-    list_display = ('package', 'version_str', 'version_int', 'download_url', 'active')
+    list_display = ('package', 'version_str', 'version_int', 'download_url', 'active', 'auto_update_url')
     list_filter = ('active', 'version_str')
 
 

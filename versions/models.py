@@ -22,6 +22,11 @@ def clear_the_cache(**kwargs):
         varnish_ban(reverse('index') + '$')
         varnish_ban(reverse('versions.json'))
 
+def default_auto_update_url():
+    return {
+        "macos": "",
+        "windows": ""
+    }
 
 class Version(models.Model):
     active = models.BooleanField(null=False, blank=False)
@@ -29,6 +34,7 @@ class Version(models.Model):
     version_str = models.CharField(null=False, blank=False, max_length=20, verbose_name="Version (String)")
     version_int = models.IntegerField(null=False, blank=False, verbose_name="Version (Integer)")
     download_url = models.CharField(null=False, blank=False, max_length=150, verbose_name="Download URL")
+    auto_update_url = models.JSONField(default=default_auto_update_url, blank=False)
 
     class Meta:
         ordering = ('version_int',)
