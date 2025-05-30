@@ -20,7 +20,9 @@ def index(request):
     for version in versions:
         data = {'version': version['version_str'],
                 'version_int': version['version_int'],
-                'download_url': version['download_url']}
+                'download_url': version['download_url'],
+                'auto_update_url':version['auto_update_url'],
+            }
         json[version['package']] = data
 
     return JsonResponse(json, json_dumps_params={'indent': 1})
