@@ -13,7 +13,7 @@
         <h2><a id="{{ video.id }}">{{ video.display_date }} - {{ video.title }} ({{ video.publisher }})</a></h2>
     <p>{{ video.description|safe }}</p>
     <div class="video-container video-container-bottom-margin">
-        <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}" title="Video: {{ video.title }}" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/{{ video.youtube_id }}" title="Video: {{ video.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     {% endfor %}
     {% else %}
