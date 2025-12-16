@@ -1154,6 +1154,10 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
         .ad-sidebar {
             margin-left: 0;
             margin-right: auto;
+
+            @media (max-width: 991.98px) {
+                margin: 0 auto; /* Center on mobile */
+            }
         }
     }
 
@@ -1168,6 +1172,10 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
         .ad-sidebar {
             margin-left: auto;
             margin-right: 0;
+
+            @media (max-width: 991.98px) {
+                margin: 0 auto; /* Center on mobile */
+            }
         }
     }
 }
