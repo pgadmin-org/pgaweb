@@ -105,15 +105,16 @@
             ins.setAttribute('data-ad-client', 'ca-pub-7509009547019933');
 
             if (isMobile) {
-                // Horizontal responsive ad for mobile
+                // Horizontal responsive ad for mobile/tablet
                 ins.style.display = 'block';
                 ins.setAttribute('data-ad-slot', '1132526293');
-                ins.setAttribute('data-ad-format', 'auto');
+                ins.setAttribute('data-ad-format', 'horizontal');
                 ins.setAttribute('data-full-width-responsive', 'true');
                 // Update placeholder size for horizontal ad
                 placeholder.style.width = '100%';
                 placeholder.style.height = 'auto';
-                placeholder.style.minHeight = '100px';
+                placeholder.style.minHeight = '90px';
+                placeholder.style.maxHeight = '150px';
             } else {
                 // Skyscraper ad for desktop
                 ins.style.display = 'inline-block';
