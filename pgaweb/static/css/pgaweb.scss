@@ -1196,8 +1196,11 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
     /* Mobile: responsive horizontal ad */
     @media (max-width: 991.98px) {
         width: 100%;
-        min-height: 100px;
-        max-height: 300px;
+        min-height: 90px;
+        max-height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
