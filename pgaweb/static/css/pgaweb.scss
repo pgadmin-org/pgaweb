@@ -1146,7 +1146,6 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
     .ad-col-left {
         order: 1;
         overflow: hidden; /* Clip overflow toward content */
-        border: 2px solid red; /* DEBUG */
 
         @media (max-width: 991.98px) {
             order: 1; /* Top on mobile */
@@ -1155,14 +1154,12 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
         .ad-sidebar {
             margin-left: 0;
             margin-right: auto;
-            border: 2px solid blue; /* DEBUG */
         }
     }
 
     .ad-col-right {
         order: 3;
         overflow: hidden; /* Clip overflow toward content */
-        border: 2px solid red; /* DEBUG */
 
         @media (max-width: 991.98px) {
             order: 3; /* Bottom on mobile */
@@ -1171,7 +1168,6 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
         .ad-sidebar {
             margin-left: auto;
             margin-right: 0;
-            border: 2px solid blue; /* DEBUG */
         }
     }
 }
