@@ -1,4 +1,4 @@
-import 'popper.js';
+import '@popperjs/core';
 import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;

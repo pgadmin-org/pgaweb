@@ -4,7 +4,7 @@
 {% block title %}News Archive{% endblock %}
 
 {% block content %}
-    <h1>News Archive <a href="{% url 'news_feed' %}"><i class="fa fa-rss-square text-warning" aria-hidden="true"></i></a></h1>
+    <h1>News Archive <a href="{% url 'news_feed' %}"><i class="fas fa-rss-square text-warning" aria-hidden="true"></i></a></h1>
 
     {% for article in news.all %}
     <h2><a id="{{ article.id }}">{{ article.display_date }} - {{ article.title }}<a/></h2>

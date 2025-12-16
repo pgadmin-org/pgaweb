@@ -2,12 +2,13 @@
 {% load static %}
 
 {% block scripts %}
-<!--<link  href="{% static 'node_modules/fotorama/fotorama.css' %}" rel="stylesheet">-->
-<!--<script src="{% static 'node_modules/fotorama/fotorama.js' %}"></script>-->
-
-<link  href="{% static 'COMPILED/assets/css/fotorama.css' %}?{{gitrev}}" rel="stylesheet">
-<script src="{% static 'COMPILED/fotoramajs.js' %}?{{gitrev}}"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css">
+<style>
+    /* Hide gallery until CSS loads to prevent FOUC */
+    .screenshot-gallery { opacity: 0; transition: opacity 0.3s ease; }
+    .screenshot-gallery.loaded { opacity: 1; }
+    .screenshot-gallery img { max-width: 100%; height: auto; }
+</style>
 {% endblock %}
 
 {% block title %}Screenshots{% endblock %}
@@ -16,30 +17,119 @@
 
 <h1>Screenshots</h1>
 
-<div class="fotorama"
-     data-allowfullscreen="true"
-     data-width="100%" data-nav="thumbs"
-     data-navposition="top"
-     data-hash="true"
-     data-keyboard="true"
-     data-arrows="true"
-     data-click="true"
-     data-swipe="true"
-     data-loop="true">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-light.png' %}" alt="Welcome screen, standard theme" data-caption="Welcome screen, standard theme">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-dark.png' %}" alt="Welcome screen, dark theme" data-caption="Welcome screen, dark theme">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-dashboard.png' %}" alt="Server dashboard" data-caption="Server dashboard">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-activity.png' %}" alt="Activity monitoring" data-caption="Activity monitoring">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-properties.png' %}" alt="Object properties" data-caption="Object properties">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-docking.png' %}" alt="Dockable UI" data-caption="Dockable UI">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-viewdata.png' %}" alt="Query tool & data editor" data-caption="Query tool & data editor">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-geometry.png' %}" alt="Geometry support" data-caption="Geometry support">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-history.png' %}" alt="Query tool history" data-caption="Query tool history">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-explain.png' %}" alt="Graphical EXPLAIN" data-caption="Graphical EXPLAIN">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-debugger.png' %}" alt="Procedural language debugger" data-caption="Procedural language debugger">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-grantwizard.png' %}" alt="Grant wizard" data-caption="Grant wizard">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-backup.png' %}" alt="Backup" data-caption="Backup">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-preferences.png' %}" alt="Preferences" data-caption="Preferences">
-  <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-search.png' %}" alt="Object search" data-caption="Object search">
+<p class="text-muted mb-4">Click any screenshot to view it in fullscreen. Use arrow keys or swipe to navigate.</p>
+
+<div class="screenshot-gallery" id="gallery">
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-light.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-light.png' %}" alt="Welcome screen, standard theme" loading="lazy">
+        <div class="screenshot-caption">Welcome screen, standard theme</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-dark.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-dark.png' %}" alt="Welcome screen, dark theme" loading="lazy">
+        <div class="screenshot-caption">Welcome screen, dark theme</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-dashboard.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-dashboard.png' %}" alt="Server dashboard" loading="lazy">
+        <div class="screenshot-caption">Server dashboard</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-activity.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-activity.png' %}" alt="Activity monitoring" loading="lazy">
+        <div class="screenshot-caption">Activity monitoring</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-properties.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-properties.png' %}" alt="Object properties" loading="lazy">
+        <div class="screenshot-caption">Object properties</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-docking.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-docking.png' %}" alt="Dockable UI" loading="lazy">
+        <div class="screenshot-caption">Dockable UI</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-viewdata.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-viewdata.png' %}" alt="Query tool & data editor" loading="lazy">
+        <div class="screenshot-caption">Query tool & data editor</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-geometry.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-geometry.png' %}" alt="Geometry support" loading="lazy">
+        <div class="screenshot-caption">Geometry support</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-history.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-history.png' %}" alt="Query tool history" loading="lazy">
+        <div class="screenshot-caption">Query tool history</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-explain.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-explain.png' %}" alt="Graphical EXPLAIN" loading="lazy">
+        <div class="screenshot-caption">Graphical EXPLAIN</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-debugger.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-debugger.png' %}" alt="Procedural language debugger" loading="lazy">
+        <div class="screenshot-caption">Procedural language debugger</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-grantwizard.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-grantwizard.png' %}" alt="Grant wizard" loading="lazy">
+        <div class="screenshot-caption">Grant wizard</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-backup.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-backup.png' %}" alt="Backup" loading="lazy">
+        <div class="screenshot-caption">Backup</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-preferences.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-preferences.png' %}" alt="Preferences" loading="lazy">
+        <div class="screenshot-caption">Preferences</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-search.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-search.png' %}" alt="Object search" loading="lazy">
+        <div class="screenshot-caption">Object search</div>
+    </a>
 </div>
+
+{% endblock %}
+
+{% block footer %}
+<script type="module">
+import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+import PhotoSwipe from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js';
+
+const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery',
+    children: 'a',
+    pswpModule: PhotoSwipe,
+
+    // Show zoom button
+    zoom: true,
+
+    // Close on background click
+    bgClickAction: 'close',
+
+    // Keyboard navigation
+    arrowKeys: true,
+    escKey: true,
+
+    // Image settings
+    imageClickAction: 'zoom-or-close',
+    tapAction: 'zoom-or-close',
+
+    // Padding around image
+    paddingFn: () => ({ top: 30, bottom: 30, left: 30, right: 30 }),
+});
+
+lightbox.init();
+
+// Show gallery once ready
+document.getElementById('gallery').classList.add('loaded');
+</script>
 {% endblock %}

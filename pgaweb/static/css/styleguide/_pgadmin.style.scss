@@ -946,13 +946,21 @@ table.table-empty-rows{
   }
 }
 
+.styleguide-layout {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
 .style-action {
-    display: inline-block;
+    flex: 0 0 auto;
+    width: 200px;
+    min-width: 200px;
 }
 
 .style-guide {
-    display: inline-block;
-    position: absolute;
+    flex: 1 1 auto;
+    min-width: 0;
     padding-left: 2em;
 }
 

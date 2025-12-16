@@ -26,7 +26,9 @@ const newStyleRule = {
     {
       loader: 'postcss-loader',
       options: {
-        plugins: () => [autoprefixer()],
+        postcssOptions: {
+          plugins: [autoprefixer()],
+        },
       },
     },
     {
@@ -35,7 +37,7 @@ const newStyleRule = {
     {
       loader: 'sass-loader',
       options: {
-        sourceMap: false,
+        sourceMap: true,
       },
     },
   ],
@@ -50,18 +52,18 @@ var plugins = [
     $: ['jquery', 'jQuery'],
     jQuery: 'jquery',
   }),
-  new CopyPlugin([
-    {
-      from: './static/img/*.*',
-      to: 'assets/img',
-      flatten: true,
-    },
-    {
-      from: './static/img/screenshots',
-      to: 'assets/img/screenshots',
-      flatten: false,
-    },
-  ]),
+  new CopyPlugin({
+    patterns: [
+      {
+        from: './static/img/*.*',
+        to: 'assets/img/[name][ext]',
+      },
+      {
+        from: './static/img/screenshots',
+        to: 'assets/img/screenshots',
+      },
+    ],
+  }),
   new ImageminPlugin(
     {
       pngquant: ({ quality: '50' }),
@@ -82,7 +84,7 @@ module.exports = (env, argv) => {
     context: __dirname,
     mode: env.NODE_ENV,
     entry: {
-      'webp': ['@babel/polyfill', './static/js/webp.js'],
+      'webp': './static/js/webp.js',
       'main': './static/js/index.js',
       'fotoramajs': './node_modules/fotorama/fotorama.js',
       'fotorama': './node_modules/fotorama/fotorama.css',
@@ -104,15 +106,7 @@ module.exports = (env, argv) => {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
-              plugins: [
-                [
-                  '@babel/plugin-transform-async-to-generator',
-                  {
-                    module: 'bluebird',
-                    method: 'coroutine',
-                  },
-                ],
-              ],
+              plugins: ['@babel/plugin-transform-runtime'],
             },
           },
         },

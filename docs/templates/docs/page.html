@@ -7,52 +7,53 @@
 {% block title %}{{ page.title|safe }}{% endblock %}
 
 {% block content %}
-<div class="container-fluid pga-docwrapper">
-    <div class="row">
-        <!-- Navigation bar -->
-        <div class="col-lg-12">
-            <div class="well pga-docheader">
-                <p class="pga-docheaderinfo">This page in other versions:
-                    {% if show_latest %}
-                    <a href="{% url 'page' page.version.package.slug 'latest' page.file %}">Latest</a> ({% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>{% if forloop.first %}){% endif %}
-                    {% if not forloop.last %} | {% endif %}
-                    {% endfor %}
-                    {% else %}
-                    {% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>
-                    {% if not forloop.last %} | {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                </p>
-                {% if page.version.pdf_doc or page.version.epub_doc or page.version.tarball_doc %}
-                <p class="pga-docheaderinfo">This document in other formats:
-                    {% if page.version.pdf_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.pdf">PDF</a>{% endif %}
-                    {% if page.version.pdf_doc %}{% if page.version.epub_doc or page.version.tarball_doc %}|{% endif %}{% endif %}
-                    {% if page.version.epub_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.epub">ePub</a>{% endif %}
-                    {% if page.version.epub_doc %}{% if page.version.tarball_doc %}|{% endif %}{% endif %}
-                    {% if page.version.tarball_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}-docs.tar.gz">Tarball</a>{% endif %}
-                </p>
+<!-- Navigation bar -->
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="well pga-docheader">
+            <p class="pga-docheaderinfo">This page in other versions:
+                {% if show_latest %}
+                <a href="{% url 'page' page.version.package.slug 'latest' page.file %}">Latest</a> ({% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>{% if forloop.first %}){% endif %}
+                {% if not forloop.last %} | {% endif %}
+                {% endfor %}
+                {% else %}
+                {% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>
+                {% if not forloop.last %} | {% endif %}
+                {% endfor %}
                 {% endif %}
-                {{ page.header|safe }}
-            </div>
-            {% if page.version.pre_release %}
-            <p class="warning">
-                <b>Warning:</b> This documentation is for a pre-release version of {{ page.version.package.name }}
+            </p>
+            {% if page.version.pdf_doc or page.version.epub_doc or page.version.tarball_doc %}
+            <p class="pga-docheaderinfo">This document in other formats:
+                {% if page.version.pdf_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.pdf">PDF</a>{% endif %}
+                {% if page.version.pdf_doc %}{% if page.version.epub_doc or page.version.tarball_doc %}|{% endif %}{% endif %}
+                {% if page.version.epub_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.epub">ePub</a>{% endif %}
+                {% if page.version.epub_doc %}{% if page.version.tarball_doc %}|{% endif %}{% endif %}
+                {% if page.version.tarball_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}-docs.tar.gz">Tarball</a>{% endif %}
             </p>
             {% endif %}
+            {{ page.header|safe }}
         </div>
+        {% if page.version.pre_release %}
+        <p class="warning">
+            <b>Warning:</b> This documentation is for a pre-release version of {{ page.version.package.name }}
+        </p>
+        {% endif %}
     </div>
 </div>
-<div class="container-fluid pga-docwrapper">
-    <div class="row">
-        <!-- Contents bar -->
-        <div class="col-lg-3">
-            <div class="well pga-doccontents"><h2>Contents</h2>{{ page.contents|safe }}</div>
-        </div>
 
-        <!-- Body -->
-        <div class="col-lg-9">
-            <div class="pga-docbody">{{ page.body|safe }}</div>
+<!-- Doc content: Contents sidebar | Body -->
+<div class="row">
+    <!-- Contents bar -->
+    <div class="col-md-3">
+        <div class="well pga-doccontents sticky-top sticky-offset">
+            <h2>Contents</h2>
+            {{ page.contents|safe }}
         </div>
     </div>
- </div>
+
+    <!-- Body -->
+    <div class="col-md-9">
+        <div class="pga-docbody">{{ page.body|safe }}</div>
+    </div>
+</div>
 {% endblock %}

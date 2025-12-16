@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
-const critical = require('critical');
+// Critical is loaded lazily to avoid ESM top-level await issues
+let critical = null;
 const PATH = require('path');
 const _FILES_ = [
   'base.html',
@@ -12,8 +13,11 @@ const removeFilePart = dirname => PATH.basename(dirname);
 var optimize_html_path = PATH.resolve('./static/', 'optimize/');
 var index_critical_file = PATH.join(optimize_html_path, 'index_critical.html');
 
-const getLogger = require('webpack-log');
-const log = getLogger({ name: 'webpack-batman' });
+// Simple logger replacement for webpack-log
+const log = {
+  info: (msg) => console.log('[ProcessAfterBuild]', msg),
+  error: (msg) => console.error('[ProcessAfterBuild]', msg)
+};
 
 class ProcessAfterBuild {
   constructor(options) {
@@ -56,9 +60,15 @@ class ProcessAfterBuild {
       });
       log.info('Critical html snippet generated successfully..');
     }),
-      compiler.hooks.done.tap('ProcessAfterBuild', stats => { //logic for creating critical css based on combination of base and index html
+      compiler.hooks.done.tapPromise('ProcessAfterBuild', async stats => { //logic for creating critical css based on combination of base and index html
         const { path } = stats.compilation.options.output;
         var cssPath = PATH.join(path, 'assets/css/');
+
+        // Lazy load critical to avoid ESM top-level await issues
+        if (!critical) {
+          critical = await import('critical');
+          critical = critical.default || critical;
+        }
 
         critical.generate({
           base: '/',
@@ -69,8 +79,6 @@ class ProcessAfterBuild {
           },
           width: 1300,
           height: 900,
-          //Minify critical-path CSS when inlining
-          minify: true,
           // Extract inlined styles from referenced stylesheets
           extract: true,
         });

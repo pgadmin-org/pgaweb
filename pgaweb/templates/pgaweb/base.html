@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Early theme detection to prevent flash of wrong theme -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <!-- InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
     <script type="text/javascript" async=true>
     (function() {
@@ -356,21 +363,12 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <style type="text/css">
-        .filter-white {
-            filter: brightness(0) invert(1);
-        }
-        .icon-postgres-alt-0 {
-            background: url("/static/COMPILED/assets/img/postgres-alt.svg");
-            display: inline-block;
-            vertical-align: middle;
-            font-size: inherit;
-            color: #fff;
-            height: 1.5em;
-            width: 1.5em;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+    <!-- Critical CSS for preventing flash of unstyled content -->
+    <style>
+        /* Prevent FOUC in dark mode */
+        html[data-theme="dark"], html[data-theme="dark"] body {
+            background-color: #1a1a1a;
+            color: #e4e4e7;
         }
     </style>
 
@@ -394,116 +392,310 @@
 </head>
 <body>
     <div id="cconsent-curtain"></div>
-    <a class="github-fork-ribbon right-bottom fixed" href="https://github.com/pgadmin-org/pgadmin4" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
-    <div>
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-            <a class="navbar-brand" href="{% url 'index' %}"><div class="icon-postgres-alt-0 filter-white mr-1"></div> pgAdmin</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <!-- Navbar -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'index' %}">
+                    <img src="{% static 'COMPILED/assets/img/postgres-alt.svg' %}"
+                         alt="" width="28" height="28" class="filter-white me-2">pgAdmin
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav mr-auto">
-                    <!-- Home menu -->
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                            <a class="dropdown-item" href="{% url 'index' %}">Introduction</a>
-                            <a class="dropdown-item" href="{% url 'faq' %}">FAQ</a>
-                            <a class="dropdown-item" href="{% url 'features' %}">Features</a>
-                            <a class="dropdown-item" href="{% url 'news' %}">News Archive</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'contributing' %}">Contributing</a>
-                            <a class="dropdown-item" href="{% url 'licence' %}">Licence</a>
-                            <a class="dropdown-item" href="{% url 'privacy_policy' %}">Privacy Policy</a>
-                        </div>
-                    </li>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav me-auto">
+                        <!-- Home menu -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">Home</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'index' %}">Introduction</a>
+                                <a class="dropdown-item" href="{% url 'faq' %}">FAQ</a>
+                                <a class="dropdown-item" href="{% url 'features' %}">Features</a>
+                                <a class="dropdown-item" href="{% url 'news' %}">News Archive</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'contributing' %}">Contributing</a>
+                                <a class="dropdown-item" href="{% url 'licence' %}">Licence</a>
+                                <a class="dropdown-item" href="{% url 'privacy_policy' %}">Privacy Policy</a>
+                            </div>
+                        </li>
 
-                    <!-- Development menu -->
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Development <span class="caret"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                            <a class="dropdown-item" href="{% url 'development_index' %}">Introduction</a>
-                            <a class="dropdown-item" href="{% url 'development_resources' %}">Resources</a>
-                            <a class="dropdown-item" href="{% url 'styleguide_index' page='typography' %}">Style Guide</a>
-                            <a class="dropdown-item" href="{% url 'development_translations' %}">Translations</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'development_team' %}">Team</a>
-                        </div>
-                    </li>
+                        <!-- Development menu -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">Development</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'development_index' %}">Introduction</a>
+                                <a class="dropdown-item" href="{% url 'development_resources' %}">Resources</a>
+                                <a class="dropdown-item" href="{% url 'styleguide_index' page='typography' %}">Style Guide</a>
+                                <a class="dropdown-item" href="{% url 'development_translations' %}">Translations</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'development_team' %}">Team</a>
+                            </div>
+                        </li>
 
-                    <!-- Documentation menu -->
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                            <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
-                            <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
-                            {%  if 'blogs' in apps %}
-                                <a class="dropdown-item" href="{% url 'blogs' %}">Blog Posts</a>
-                            {%  endif %}
-                            {%  if 'videos' in apps %}
-                                <a class="dropdown-item" href="{% url 'videos' %}">Videos</a>
-                            {%  endif %}
-                            {% regroup docs by version.package.name as doc_list %}
-                            {% for doc in doc_list %}
-                            <a class="dropdown-header">{{ doc.grouper }}:</a>
-                            {% for v in doc.list %}
-                            <a class="dropdown-item"
-                               href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{ v.version.list_string }}</a>
-                            {% endfor %}
-                            {% endfor %}
-                        </div>
-                    </li>
+                        <!-- Documentation menu -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">Documentation</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'docs' %}">Introduction</a>
+                                <a class="dropdown-item" href="{% url 'screenshots' %}">Screenshots</a>
+                                {%  if 'blogs' in apps %}
+                                    <a class="dropdown-item" href="{% url 'blogs' %}">Blog Posts</a>
+                                {%  endif %}
+                                {%  if 'videos' in apps %}
+                                    <a class="dropdown-item" href="{% url 'videos' %}">Videos</a>
+                                {%  endif %}
+                                {% regroup docs by version.package.name as doc_list %}
+                                {% for doc in doc_list %}
+                                <span class="dropdown-header">{{ doc.grouper }}:</span>
+                                {% for v in doc.list %}
+                                <a class="dropdown-item"
+                                   href="{% url 'page' v.version.package.slug v.version.slug 'index.html' %}">{{ v.version.list_string }}</a>
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </li>
 
-                    <!-- Download menu -->
-                    <li class="nav-item"><a class="nav-link" href="{% url 'download_index' %}">Download</a></li>
+                        <!-- Support menu -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">Support</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'support_index' %}">Introduction</a>
+                                <a class="dropdown-item" href="{% url 'support_list' %}">Mailing List</a>
+                                <a class="dropdown-item" href="{% url 'support_issues' %}">Issues</a>
+                            </div>
+                        </li>
+                    </ul>
 
-                    <!-- Support menu -->
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="category-dropdown">
-                            <a class="dropdown-item" href="{% url 'support_index' %}">Introduction</a>
-                            <a class="dropdown-item" href="{% url 'support_list' %}">Mailing List</a>
-                            <a class="dropdown-item" href="{% url 'support_issues' %}">Issues</a>
-                        </div>
-                    </li>
+                    <!-- Right side: Search, Theme Toggle, Download -->
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- Search -->
+                        <form class="d-flex" id="search_form" action="{% url 'search' %}" method="get">
+                            <div class="input-group input-group-sm">
+                                <input name="q" class="form-control" type="search"
+                                       placeholder="{% block search_prompt %}Search docs{% endblock %}"
+                                       aria-label="Search">
+                                <button class="btn btn-outline-light" type="submit">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            {% block search_fields %}{% endblock %}
+                        </form>
 
-                </ul>
+                        <!-- Dark mode toggle -->
+                        <button class="btn btn-outline-light btn-sm" id="theme-toggle"
+                                type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                            <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+                        </button>
 
-                <form class="form-inline my-2 my-lg-0" id="search_button">
-                    <button type="button" class="btn btn-default btn-outline-primary" aria-label="Right Align">
-                        <span class="fa fa-search fa-lg pga-toolbar-search" aria-hidden="true"></span>
-                    </button>
-                </form>
-                </ul>
+                        <!-- GitHub link -->
+                        <a href="https://github.com/pgadmin-org/pgadmin4" class="btn btn-outline-light btn-sm"
+                           target="_blank" rel="noopener" aria-label="GitHub" title="View on GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+
+                        <!-- Download CTA -->
+                        <a href="{% url 'download_index' %}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-download me-1" aria-hidden="true"></i> Download
+                        </a>
+                    </div>
+                </div>
             </div>
         </nav>
-    </div>
+    </header>
 
     {% block body %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-light py-5 mt-3">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Brand Column -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{% static 'COMPILED/assets/img/postgres-alt.svg' %}"
+                             alt="pgAdmin" width="48" height="48" class="filter-white me-2">
+                        <h5 class="mb-0 text-white">pgAdmin</h5>
+                    </div>
+                    <p class="text-secondary small">
+                        The most popular and feature-rich Open Source administration and development
+                        platform for PostgreSQL, the most advanced Open Source database in the world.
+                    </p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="https://github.com/pgadmin-org/pgadmin4" class="text-secondary"
+                           target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github fa-lg"></i>
+                        </a>
+                        <a href="{% url 'news_feed' %}" class="text-secondary" aria-label="RSS Feed">
+                            <i class="fas fa-rss fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="text-white mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{% url 'download_index' %}" class="text-secondary text-decoration-none">Download</a></li>
+                        <li class="mb-2"><a href="{% url 'faq' %}" class="text-secondary text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="{% url 'page' 'pgadmin4' 'latest' 'index.html' %}" class="text-secondary text-decoration-none">Documentation</a></li>
+                        <li class="mb-2"><a href="{% url 'support_index' %}" class="text-secondary text-decoration-none">Support</a></li>
+                        <li class="mb-2"><a href="{% url 'screenshots' %}" class="text-secondary text-decoration-none">Screenshots</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="text-white mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        {%  if 'videos' in apps %}
+                        <li class="mb-2"><a href="{% url 'videos' %}" class="text-secondary text-decoration-none">Videos</a></li>
+                        {%  endif %}
+                        {%  if 'blogs' in apps %}
+                        <li class="mb-2"><a href="{% url 'blogs' %}" class="text-secondary text-decoration-none">Blog Posts</a></li>
+                        {%  endif %}
+                        <li class="mb-2"><a href="{% url 'news' %}" class="text-secondary text-decoration-none">News Archive</a></li>
+                        <li class="mb-2"><a href="{% url 'features' %}" class="text-secondary text-decoration-none">Features</a></li>
+                    </ul>
+                </div>
+
+                <!-- Development -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="text-white mb-3">Development</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{% url 'contributing' %}" class="text-secondary text-decoration-none">Contributing</a></li>
+                        <li class="mb-2"><a href="{% url 'development_resources' %}" class="text-secondary text-decoration-none">Resources</a></li>
+                        <li class="mb-2"><a href="{% url 'development_team' %}" class="text-secondary text-decoration-none">Team</a></li>
+                        <li class="mb-2"><a href="{% url 'development_translations' %}" class="text-secondary text-decoration-none">Translations</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="text-white mb-3">Legal</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{% url 'licence' %}" class="text-secondary text-decoration-none">Licence</a></li>
+                        <li class="mb-2"><a href="{% url 'privacy_policy' %}" class="text-secondary text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" onclick="__tcfapi('displayConsentUi', 2, function(){}); return false;" class="text-secondary text-decoration-none">Cookie Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <hr class="my-4 border-secondary">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="small text-secondary mb-0">
+                        &copy; {% now "Y" %} pgAdmin Development Team
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="small text-secondary mb-0">
+                        Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the
+                        <a href="https://www.postgres.ca" class="text-secondary">PostgreSQL Community Association of Canada</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     {% block scripts %}{% endblock %}
 
     <script src="{% static 'COMPILED/webp.js' %}?{{gitrev}}"></script>
     <script src="{% static 'COMPILED/main.js' %}?{{gitrev}}"></script>
 
+    <!-- Dark mode toggle script -->
     <script>
-          $('#search_button').click(function(){
+        (function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
 
-            var $form = '<form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">\
-<input name="q" class="form-control mr-sm-2" type="text" placeholder="{% block search_prompt %}Search latest docs{% endblock %}" size="20" aria-label="Search">\
-<button class="btn btn-primary my-2 my-sm-0" type="submit"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>\
-{% block search_fields %}{% endblock %}</form>';
+            // Check for saved theme preference or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
 
-            $('#search_button').replaceWith($form);
-          });
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
+
+            function updateIcon(theme) {
+                // FontAwesome SVG+JS replaces <i> with <svg>, so we need to replace the element
+                const iconContainer = document.getElementById('theme-toggle');
+                const currentIcon = iconContainer.querySelector('i, svg');
+
+                if (currentIcon) {
+                    // Create a new <i> element with the correct icon class
+                    const newIcon = document.createElement('i');
+                    newIcon.id = 'theme-icon';
+                    newIcon.setAttribute('aria-hidden', 'true');
+
+                    if (theme === 'dark') {
+                        newIcon.className = 'fas fa-sun';
+                    } else {
+                        newIcon.className = 'fas fa-moon';
+                    }
+
+                    // Replace the old icon with the new one
+                    currentIcon.replaceWith(newIcon);
+                }
+            }
+        })();
+    </script>
+
+    <!-- Scroll animations -->
+    <script>
+        (function() {
+            // Navbar shadow on scroll
+            var navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }, { passive: true });
+            }
+
+            // Intersection Observer for scroll animations
+            if ('IntersectionObserver' in window) {
+                var animateElements = document.querySelectorAll('.scroll-animate, .scroll-animate-stagger');
+
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            // Once animated, stop observing
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                animateElements.forEach(function(el) {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback: just show everything
+                document.querySelectorAll('.scroll-animate, .scroll-animate-stagger').forEach(function(el) {
+                    el.classList.add('is-visible');
+                });
+            }
+        })();
     </script>
 
 {% block footer %}{% endblock %}

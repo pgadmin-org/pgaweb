@@ -1,125 +1,193 @@
 /* Main body */
 @import './styleguide/_default.variables.scss';
 
-/* Fork me on GitHub - https://github.com/simonwhitaker/github-fork-ribbon-css */
-.github-fork-ribbon {
-  width: 12.1em;
-  height: 12.1em;
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  z-index: 9900;
-  pointer-events: none;
-  font-size: 13px;
-  text-decoration: none;
-  text-indent: -999999px;
+/* ==========================================================================
+   CSS Custom Properties (for dark mode support)
+   ========================================================================== */
+:root {
+  /* Light mode (default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f3f5f9;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5b6d7c;
+  --text-muted: #848ea0;
+  --border-color: #e2e8f0;
+  --border-color-dark: #bac1cd;
+
+  /* Brand colors */
+  --color-primary: #326690;
+  --color-primary-dark: #295c85;
+  --color-primary-light: #d6effc;
+  --color-primary-rgb: 50, 102, 144;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-primary: 0 4px 14px 0 rgba(50, 102, 144, 0.3);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.2s ease-in-out;
+  --transition-slow: 0.3s ease-in-out;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Light mode specific */
+  --bg-darker: #1a1a1a;  /* Same as dark mode (for always-dark navbar/footer) */
+  --card-border: var(--border-color);  /* Cards use standard border in light mode */
 }
 
-.github-fork-ribbon.fixed {
-  position: fixed;
+/* Dark mode - using html[data-theme] for higher specificity than :root */
+html[data-theme="dark"] {
+  /* Custom theme variables - using neutral grays instead of blue tints */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2d2d2d;
+  --bg-darker: #111111;  /* For navbar/footer */
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-color: #2a2a2a;
+  --border-color-dark: #4a4a4a;
+  --card-border: #3d3d3d;  /* Visible border for cards */
+
+  --color-primary: #4a9eda;
+  --color-primary-dark: #326690;
+  --color-primary-light: #2a4a6a;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+
+  /* Bootstrap variable overrides - critical for Bootstrap components */
+  --bs-body-bg: #1a1a1a;
+  --bs-body-color: #e4e4e7;
+  --bs-body-bg-rgb: 26, 26, 26;
+  --bs-body-color-rgb: 228, 228, 231;
+  --bs-secondary-bg: #242424;
+  --bs-tertiary-bg: #242424;
+  --bs-link-color: #4a9eda;
+  --bs-link-color-rgb: 74, 158, 218;
+  --bs-link-hover-color: #6bb3ed;
+  --bs-heading-color: #e4e4e7;
+  --bs-border-color: #2a2a2a;
+  --bs-border-color-translucent: rgba(58, 58, 58, 0.5);
 }
 
-.github-fork-ribbon:hover, .github-fork-ribbon:active {
-  background-color: rgba(0, 0, 0, 0.0);
+/* Ensure dark mode applies to html and body immediately */
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background-color: #1a1a1a !important;
+  color: #e4e4e7 !important;
 }
 
-.github-fork-ribbon:before, .github-fork-ribbon:after {
-  /* The right and left classes determine the side we attach our banner to */
-  position: absolute;
-  display: block;
-  width: 15.38em;
-  height: 1.54em;
+/* ==========================================================================
+   Modern Design Tokens (SCSS variables for use in mixins/calculations)
+   ========================================================================== */
 
-  top: 3.23em;
-  right: -3.23em;
+/* Gradients */
+$gradient-hero: linear-gradient(135deg, #326690 0%, #1a3d5c 100%);
+$gradient-hero-dark: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+$gradient-cta: linear-gradient(135deg, #326690 0%, #4a7ba8 100%);
 
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+/* Shadows for SCSS usage (CSS custom properties used elsewhere) */
+$shadow-md: var(--shadow-md);
+$shadow-lg: var(--shadow-lg);
+$shadow-xl: var(--shadow-xl);
 
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+/* Border radius for SCSS usage */
+$radius-lg: var(--radius-lg);
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-base), color var(--transition-base);
+  overflow-x: hidden; /* Prevent horizontal scroll from 100vw elements */
 }
 
-.github-fork-ribbon:before {
-  content: "";
-
-  /* Add a bit of padding to give some substance outside the "stitching" */
-  padding: .38em 0;
-
-  /* Set the base colour */
-  background-color: $color-primary;
-
-  /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-
-  /* Add a drop shadow */
-  -webkit-box-shadow: 0 .15em .23em 0 rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 .15em .23em 0 rgba(0, 0, 0, 0.5);
-  box-shadow: 0 .15em .23em 0 rgba(0, 0, 0, 0.5);
-
-  pointer-events: auto;
+/* Utility to invert SVG/icon colors to white (for use on dark backgrounds) */
+.filter-white {
+  filter: brightness(0) invert(1);
 }
 
-.github-fork-ribbon:after {
-  /* Set the text from the data-ribbon attribute */
-  content: attr(data-ribbon);
+/* ==========================================================================
+   Scroll Animations
+   ========================================================================== */
 
-  /* Set the text properties */
-  color: #fff;
-  font: 700 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.54em;
-  text-decoration: none;
-  text-shadow: 0 -.08em rgba(0, 0, 0, 0.5);
-  text-align: center;
-  text-indent: 0;
-
-  /* Set the layout properties */
-  padding: .15em 0;
-  margin: .15em 0;
-
-  /* Add "stitching" effect */
-  border-width: .08em 0;
-  border-style: dotted;
-  border-color: #fff;
-  border-color: rgba(255, 255, 255, 0.7);
+/* Fade-in and slide-up animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.github-fork-ribbon.left-top, .github-fork-ribbon.left-bottom {
-  right: auto;
-  left: 0;
+/* Elements that will animate on scroll */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.github-fork-ribbon.left-bottom, .github-fork-ribbon.right-bottom {
-  top: auto;
-  bottom: 0;
+/* Staggered animation delays for cards */
+.scroll-animate-stagger {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger delays for child elements */
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 0.1}s;
+    }
+  }
 }
 
-.github-fork-ribbon.left-top:before, .github-fork-ribbon.left-top:after, .github-fork-ribbon.left-bottom:before, .github-fork-ribbon.left-bottom:after {
-  right: auto;
-  left: -3.23em;
+/* Navbar scroll effect */
+.navbar {
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+
+  &.scrolled {
+    box-shadow: $shadow-md;
+  }
 }
 
-.github-fork-ribbon.left-bottom:before, .github-fork-ribbon.left-bottom:after, .github-fork-ribbon.right-bottom:before, .github-fork-ribbon.right-bottom:after {
-  top: auto;
-  bottom: 3.23em;
-}
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-stagger {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 
-.github-fork-ribbon.left-top:before, .github-fork-ribbon.left-top:after, .github-fork-ribbon.right-bottom:before, .github-fork-ribbon.right-bottom:after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  .navbar {
+    transition: none;
+  }
 }
 
 /* Navbar and menus */
@@ -139,18 +207,24 @@
 
 .navbar {
     height: 50px;
+    position: relative; /* For absolute positioned mobile menu */
 }
 
 .navbar-brand {
-    height: 50px;
-    line-height: 50px;
-    padding-top: 0px;
-}
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: #e4e4e7 !important;
+    display: flex;
+    align-items: center;
+    line-height: 1;
 
-.navbar-brand > i {
-    vertical-align: middle;
-    font-size: 30px;
-    color: white;
+    img {
+        vertical-align: middle;
+    }
+
+    &:hover {
+        color: #fff !important;
+    }
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -158,9 +232,53 @@
 }
 
 .navbar-collapse {
-    background-color: #343a40;
     padding: 5px;
     z-index: 9900;
+
+    /* Mobile menu styling - solid background, positioned absolutely to prevent jumping */
+    @media (max-width: 991.98px) {
+        position: absolute;
+        top: 100%; /* Position below the navbar */
+        left: 0;
+        right: 0;
+        background-color: #212529; /* Match navbar dark background */
+        border-radius: 0 0 0.5rem 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+
+        .navbar-nav {
+            .nav-link {
+                color: #a1a1aa !important;
+                padding: 0.75rem 1rem;
+
+                &:hover {
+                    color: #e4e4e7 !important;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-radius: 0.25rem;
+                }
+            }
+
+            .dropdown-menu {
+                background-color: #2d3238;
+                border: none;
+
+                .dropdown-item {
+                    color: #a1a1aa;
+
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.1);
+                        color: #e4e4e7;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Desktop - transparent background */
+    @media (min-width: 992px) {
+        position: static;
+        background-color: transparent;
+    }
 }
 
 /* Bootstrap colours */
@@ -168,98 +286,31 @@
     background-color: $color-gray-lighter;
 }
 
-/* Home page header image with expansion */
-.header {
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	color: white;
+html[data-theme="dark"] .well,
+html[data-theme="dark"] pre {
+    background-color: #242424 !important;
 }
 
-.header h1, .header h2 {
-    color: white;
-    background-color: transparent;
-    text-align: center;
+html[data-theme="dark"] .note {
+    background-color: #2a2a2a !important;
+    border-left-color: #5a5a5a !important;
+    color: #e4e4e7 !important;
 }
 
-@media (max-width: 767px) {
-	h1, h2, h3, h4 { text-align: center; }
+html[data-theme="dark"] .warning {
+    background-color: #3d3520 !important;
+    border-left-color: #b8a033 !important;
+    color: #e4e4e7 !important;
 }
 
-@media (min-width: 0px) {
-    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-s.webp") top center; background-size: cover; }
-	.no-webp .header { background: #005363 url("/static/COMPILED/assets/img/header-s.jpg") top center; background-size: cover; }
-	.header h1 { font-size: 55px; }
-	.header h2 { font-size: 30px; }
-	.header p { font-size: 15px; }
-
-    .navbar { padding: 0rem 1rem; }
-
-	#pga-illustration { margin-bottom: -130px; }
-	.expand img { margin-bottom: 120px !important; margin-top: -100px !important; }
-}
-@media (min-width: 482px) {
-    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-m.webp") top center; background-size: cover; }
-    .no-webp .header { background: #005363 url("/static/COMPILED/assets/img/header-m.jpg") top center; background-size: cover; }
-	.header h1 { font-size: 55px; }
-	.header h2 { font-size: 30px; }
-	.header p { font-size: 15px; }
-
-	#pga-illustration { margin-bottom: -200px; }
-	.expand img { margin-bottom: 200px !important; margin-top: -220px !important; }
-}
-@media (min-width: 768px) {
-    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-m.webp") top center; background-size: cover; }
-    .no-web .header { background: #005363 url("/static/COMPILED/assets/img/header-m.jpg") top center; background-size: cover; }
-	.header h1 { font-size: 55px; }
-	.header h2 { font-size: 20px; }
-	.header p { font-size: 15px; }
-	.header .lead { font-size: 22px; }
-
-	#pga-illustration { margin-bottom: -290px;}
-	.expand img { margin-bottom: 280px !important; margin-top: -260px !important; }
-}
-
-@media (min-width: 992px) {
-    .webp .header { background: #005363 url("/static/COMPILED/assets/img/header-l.webp") top center; background-size: cover; }
-    .no-webp .header { background: #005363 url("/static/COMPILED/assets/img/header-l.jpg") top center; background-size: cover; }
-	.header h1 { font-size: 55px; margin-top: 50px; }
-	.header h2 { font-size: 20px; margin-bottom: 40px;}
-	.header p { font-size: 15px; }
-
-	#pga-illustration { margin-bottom: -400px; }
-	.expand img { margin-bottom: 400px !important; margin-top: -300px !important; }
-}
-
-#pga-illustration {
-    z-index: 1;
-    text-align: center;
-    width: 100%;
-}
-
-#pga-illustration img {
-	max-width:100%;
-	-webkit-transition: all 0.8s;
-	-o-transition: all 0.8s;
-	-moz-transition: all 0.8s;
-	transition: all 0.8s;
-}
-
-.expand img {
-    margin-bottom: 400px;
-    margin-top: -300px;
-}
-
+/* Main content area */
 .pga-content {
-	position: relative;
-	z-index: 999;
-	padding-top: 15px;
-	margin-bottom: 40px;
-	background: #fff;
+    position: relative;
+    z-index: 999;
+    padding-top: 15px;
+    margin-bottom: 0;
+    background: var(--bg-primary);
 }
-
-/* END: Home page header image with expansion */
 
 /* Side-bar borders */
 .pga-sidebar-left {
@@ -584,13 +635,74 @@ a {
     margin: 5px;
 }
 
+/* Doc content layout - ensure Contents + Body display side-by-side */
+.pga-content .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pga-content .col-md-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+.pga-content .col-md-9 {
+    flex: 0 0 auto;
+    width: 75%;
+}
+
+@media (max-width: 767.98px) {
+    .pga-content .col-md-3,
+    .pga-content .col-md-9 {
+        width: 100%;
+    }
+}
+
+/* Page template layout - ensure Content + Ad sidebar display side-by-side */
+.pga-content > .container-xxl > .row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.pga-content .col-lg-10 {
+    flex: 0 0 auto;
+
+    @media (min-width: 992px) {
+        width: 83.333333%;
+    }
+
+    @media (max-width: 991.98px) {
+        width: 100%;
+    }
+}
+
+.pga-content .col-lg-2 {
+    flex: 0 0 auto;
+
+    @media (min-width: 992px) {
+        width: 16.666667%;
+    }
+
+    @media (max-width: 991.98px) {
+        display: none;
+    }
+}
+
 .form-advanced-search {
     margin-top: 15px;
     margin-bottom: 5px
 }
 
-.svg-inline--fa {
+/* FontAwesome icon color - only apply to main content area, not navbar/footer */
+.pga-content .svg-inline--fa,
+.pga-docbody .svg-inline--fa {
   color: #000;
+}
+
+/* In dark mode, invert the icon colors in content areas */
+html[data-theme="dark"] .pga-content .svg-inline--fa,
+html[data-theme="dark"] .pga-docbody .svg-inline--fa {
+  color: var(--text-primary);
 }
 
 .pga-toolbar-search {
@@ -621,6 +733,87 @@ a {
 
 .video-container-bottom-margin {
     margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   Screenshot Gallery (PhotoSwipe)
+   ========================================================================== */
+.screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.screenshot-item {
+    cursor: zoom-in;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--bg-secondary);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.screenshot-caption {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    background: var(--bg-primary);
+}
+
+/* ==========================================================================
+   Utility Classes for Inline Style Removal
+   ========================================================================== */
+
+/* Sticky sidebar offset - accounts for fixed navbar height */
+.sticky-offset {
+    top: 70px;
+}
+
+/* Font Awesome list utilities (for SVG+JS which doesn't include these) */
+.fa-ul {
+    list-style-type: none;
+    margin-left: 2.5em;
+    padding-left: 0;
+}
+
+.fa-ul > li {
+    position: relative;
+}
+
+.fa-li {
+    position: absolute;
+    left: -2em;
+    width: 2em;
+    text-align: center;
+    line-height: inherit;
+}
+
+/* Font Awesome list icon vertical alignment */
+.pga-list-icon-align {
+    top: 0.5em;
+}
+
+/* Search version select minimum width */
+.search-version-select {
+    min-width: 200px;
+}
+
+/* Download icon padding */
+.download-icon-padding {
+    padding-top: 1.1em;
 }
 
 /* Pygments styles */
@@ -693,3 +886,990 @@ a {
 .highlight .vi { color: #bb60d5 } /* Name.Variable.Instance */
 .highlight .vm { color: #bb60d5 } /* Name.Variable.Magic */
 .highlight .il { color: #208050 } /* Literal.Number.Integer.Long */
+
+/* ==========================================================================
+   Modern Homepage Styles
+   ========================================================================== */
+
+/* Hero Section */
+.hero-section {
+    background: $gradient-hero;
+    position: relative;
+    overflow: hidden;
+    min-height: auto;
+    padding: 3rem 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("/static/COMPILED/assets/img/header-l.webp");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+    }
+
+    /* Ensure the row displays as flex for side-by-side layout */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-lg-6 {
+        flex: 0 0 auto;
+
+        @media (min-width: 992px) {
+            width: 50%;
+        }
+
+        @media (max-width: 991.98px) {
+            width: 100%;
+        }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-visual {
+        position: relative;
+        z-index: 1;
+
+        @media (min-width: 992px) {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    .hero-screenshot-wrapper {
+        perspective: 1000px;
+    }
+
+    .hero-screenshot {
+        border-radius: $radius-lg;
+        box-shadow: $shadow-xl;
+        transform: rotateY(-5deg);
+        transition: transform 0.3s ease;
+        max-height: 280px;
+        width: auto;
+
+        &:hover {
+            transform: rotateY(0deg);
+        }
+    }
+
+    h1 {
+        background: none;
+        padding: 0;
+        border-radius: 0;
+        text-align: left;
+        font-size: 2.5rem;
+
+        @media (max-width: 767px) {
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+
+    /* Download Now button - always white with blue text */
+    .btn-light {
+        background-color: #fff !important;
+        border-color: #fff !important;
+        color: $color-primary !important;
+
+        &:hover, &:focus {
+            background-color: #f8f9fa !important;
+            border-color: #f8f9fa !important;
+            color: $color-primary-dark !important;
+        }
+
+        i {
+            color: inherit !important;
+        }
+    }
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.text-white-50 {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Feature Section */
+.features-section {
+    background-color: var(--bg-secondary);
+    position: relative;
+
+    /* Full-width background that extends to viewport edges */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
+        background-color: inherit;
+        z-index: 0;
+    }
+
+    /* Ensure content is above the pseudo-element */
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Ensure grid layout works */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-md-4 {
+        flex: 0 0 auto;
+
+        @media (min-width: 768px) {
+            width: 33.333333%;
+        }
+
+        @media (max-width: 767.98px) {
+            width: 100%;
+        }
+    }
+
+    h2 {
+        background: none;
+        padding: 0;
+        color: var(--text-primary);
+        text-align: center;
+    }
+
+    .feature-card {
+        transition: transform var(--transition-base), box-shadow var(--transition-base);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: $shadow-lg;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--bg-primary) 100%);
+            border-radius: 50%;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            background: none;
+            padding: 0;
+            text-align: center;
+        }
+    }
+}
+
+/* ==========================================================================
+   Dual Ad Layout - Ads on both sides of content
+   ========================================================================== */
+
+.dual-ad-layout {
+    /* Override Bootstrap row styles */
+    display: flex !important;
+    flex-wrap: wrap !important;
+
+    /* Desktop: left ad - content - right ad in a row */
+    @media (min-width: 992px) {
+        flex-wrap: nowrap !important;
+        align-items: flex-start;
+    }
+
+    /* Ensure nested rows inside content use normal Bootstrap behavior */
+    .row:not(.dual-ad-layout) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* Main content column */
+    .homepage-main-col,
+    .page-main-col {
+        flex: 1 1 auto !important;
+        min-width: 0;
+        order: 2;
+        max-width: none;
+
+        @media (max-width: 991.98px) {
+            order: 2;
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
+    /* Ad columns - 160px for standard wide skyscraper ads (160x600) */
+    .ad-col {
+        flex: 0 0 auto !important;
+
+        @media (min-width: 992px) {
+            flex: 0 0 160px !important;
+            width: 160px !important;
+            max-width: 160px !important;
+        }
+
+        @media (max-width: 991.98px) {
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+    }
+
+    .ad-col-left {
+        order: 1;
+
+        @media (max-width: 991.98px) {
+            order: 1; /* Top on mobile */
+        }
+    }
+
+    .ad-col-right {
+        order: 3;
+
+        @media (max-width: 991.98px) {
+            order: 3; /* Bottom on mobile */
+        }
+    }
+}
+
+/* Ad Sidebar styling */
+.ad-sidebar {
+    margin: 0 auto;
+
+    /* Desktop: tall narrow ads (160x600 skyscraper) */
+    @media (min-width: 992px) {
+        max-width: 160px;
+        width: 160px;
+        min-height: 600px;
+    }
+
+    /* Mobile: wide short ads (320x100 or 320x50 mobile banner) */
+    @media (max-width: 991.98px) {
+        max-width: 100%;
+        width: 100%;
+        min-height: 100px;
+        max-height: 150px;
+        position: static !important;
+    }
+}
+
+/* Section Headers */
+.section-header {
+    h2 {
+        background: none;
+        padding: 0;
+        color: var(--text-primary);
+        font-size: 1.75rem;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+/* Search Box */
+.search-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+
+    .form-control,
+    .form-select {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+
+        &:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 0.2rem rgba(50, 102, 144, 0.25);
+        }
+    }
+
+    .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    }
+
+    .btn-primary {
+        background-color: #4a9eda !important;
+        border-color: #4a9eda !important;
+        color: #fff !important;
+
+        &:hover, &:focus {
+            background-color: #326690 !important;
+            border-color: #326690 !important;
+        }
+    }
+}
+
+html[data-theme="dark"] .search-box {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color-dark);
+
+    .form-control,
+    .form-select {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color-dark);
+        color: var(--text-primary);
+
+        &::placeholder {
+            color: #888;
+        }
+    }
+
+    .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23999' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    }
+}
+
+/* Search result highlights in dark mode */
+html[data-theme="dark"] {
+    mark {
+        background-color: #ca8a04;
+        color: #fff;
+        padding: 0.1em 0.2em;
+        border-radius: 2px;
+    }
+
+    /* Search results use <b> tags for highlighting */
+    ol li b {
+        color: #fbbf24;
+        font-weight: bold;
+    }
+}
+
+/* Video Cards */
+.video-card {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: $shadow-md;
+    }
+
+    .video-container {
+        margin-bottom: 0;
+        border-radius: $radius-lg $radius-lg 0 0;
+    }
+
+    .video-title {
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}
+
+/* Blog Cards */
+.blog-card {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: $shadow-md;
+    }
+
+    .blog-title {
+        color: var(--color-primary);
+    }
+
+    .blog-link {
+        color: var(--color-primary);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* News List */
+.news-list {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+
+    .news-item {
+        .news-date {
+            white-space: nowrap;
+            font-size: 0.75rem;
+        }
+
+        .news-title {
+            color: var(--text-primary);
+        }
+
+        .news-body {
+            p {
+                margin-bottom: 0.5rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+/* Version Banner */
+.version-banner {
+    .bg-primary {
+        background: $gradient-cta !important;
+    }
+}
+
+/* Ad Sidebar */
+.ad-sidebar {
+    max-width: 300px;
+    margin-left: auto;
+}
+
+/* ==========================================================================
+   Dark Mode - Comprehensive Styles
+   ========================================================================== */
+html[data-theme="dark"] {
+    /* Hero section */
+    .hero-section {
+        background: $gradient-hero-dark;
+
+        /* Ensure all containers inside hero are transparent */
+        .container,
+        .container-fluid,
+        .row,
+        .col,
+        [class*="col-"],
+        .hero-content,
+        .hero-visual,
+        .hero-screenshot-wrapper {
+            background-color: transparent !important;
+        }
+    }
+
+    /* Features section - use tertiary for contrast with cards */
+    .features-section {
+        background-color: var(--bg-primary) !important;
+
+        &::before {
+            background-color: var(--bg-primary) !important;
+        }
+    }
+
+    /* Cards - lighter background with visible border for contrast */
+    .feature-card,
+    .feature-card.bg-white,
+    .video-card,
+    .video-card.bg-white,
+    .blog-card,
+    .blog-card.bg-white,
+    .news-list,
+    .news-list.bg-white {
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--card-border) !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    /* Bootstrap utility overrides */
+    .bg-light {
+        background-color: var(--bg-secondary) !important;
+    }
+
+    .bg-white {
+        background-color: var(--bg-secondary) !important;
+    }
+
+    .text-muted {
+        color: var(--text-secondary) !important;
+    }
+
+    .text-dark {
+        color: var(--text-primary) !important;
+    }
+
+    .shadow-sm {
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    /* Navbar - slightly darker in dark mode */
+    .navbar.bg-dark {
+        background-color: var(--bg-darker) !important;
+    }
+
+    /* Footer - slightly darker in dark mode */
+    .site-footer.bg-dark {
+        background-color: var(--bg-darker) !important;
+    }
+
+    /* Cards and panels */
+    .card {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+    }
+
+    .card-header {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+    }
+
+    .card-footer {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+    }
+
+    /* Tables */
+    .table {
+        color: var(--text-primary);
+        background-color: transparent !important;
+        --bs-table-bg: transparent;
+
+        th, td {
+            border-color: var(--border-color);
+        }
+
+        thead th {
+            background-color: var(--bg-secondary);
+            border-color: var(--border-color);
+        }
+
+        tbody tr:hover {
+            background-color: var(--bg-secondary);
+        }
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: var(--bg-secondary);
+    }
+
+    /* Download page */
+    .well {
+        background-color: var(--bg-secondary) !important;
+    }
+
+    .pga-content .pga-quicklinks i,
+    .pga-content .pga-quicklinks svg,
+    .pga-content .pga-quicklinks .svg-inline--fa,
+    .pga-content .well .pga-quicklinks .svg-inline--fa,
+    .pga-downloads .pga-quicklinks .svg-inline--fa {
+        color: #e4e4e7 !important;
+    }
+
+    .pga-downloads {
+        background-color: var(--bg-secondary) !important;
+    }
+
+    /* Forms */
+    .form-control {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+
+        &:focus {
+            background-color: var(--bg-primary);
+            border-color: var(--color-primary);
+            color: var(--text-primary);
+        }
+
+        &::placeholder {
+            color: var(--text-muted);
+        }
+    }
+
+    .input-group-text {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+    }
+
+    /* Dropdown menus */
+    .dropdown-menu {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+    }
+
+    .dropdown-item {
+        color: var(--text-primary);
+
+        &:hover, &:focus {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+    }
+
+    .dropdown-divider {
+        border-color: var(--border-color);
+    }
+
+    .dropdown-header {
+        color: var(--text-secondary);
+    }
+
+    /* Links (exclude buttons and nav items) */
+    a:not(.btn):not(.nav-link):not(.navbar-brand):not(.dropdown-item) {
+        color: var(--color-primary);
+
+        &:hover {
+            color: var(--color-primary-dark);
+        }
+    }
+
+    /* Headings - but preserve white text on h1 with blue background */
+    h2, h3, h4, h5, h6 {
+        color: var(--text-primary);
+    }
+
+    /* h1 default style has blue background with white text - preserve white text */
+    /* Only change h1 color if it doesn't have the default blue background styling */
+    .hero-section h1,
+    h1.text-white,
+    h1.display-4 {
+        color: #fff !important;
+    }
+
+    /* For h1 with explicit background override, use light text */
+    h1:not(.display-4) {
+        /* Keep default white text for regular h1 (which has blue bg) */
+        color: #fff;
+    }
+
+    /* Headings with background (page titles) */
+    h1.display-4, h2.display-5 {
+        background: none;
+    }
+
+    /* Borders */
+    .border {
+        border-color: var(--border-color) !important;
+    }
+
+    .border-top, .border-bottom, .border-start, .border-end {
+        border-color: var(--border-color) !important;
+    }
+
+    /* Alerts */
+    .alert-info {
+        background-color: rgba(74, 158, 218, 0.2);
+        border-color: rgba(74, 158, 218, 0.3);
+        color: #93c5fd;
+    }
+
+    .alert-warning {
+        background-color: rgba(251, 191, 36, 0.2);
+        border-color: rgba(251, 191, 36, 0.3);
+        color: #fcd34d;
+    }
+
+    .alert-danger {
+        background-color: rgba(239, 68, 68, 0.2);
+        border-color: rgba(239, 68, 68, 0.3);
+        color: #fca5a5;
+    }
+
+    .alert-success {
+        background-color: rgba(34, 197, 94, 0.2);
+        border-color: rgba(34, 197, 94, 0.3);
+        color: #86efac;
+    }
+
+    /* Code blocks */
+    pre, code {
+        background-color: var(--bg-secondary);
+        color: #e4e4e7;
+    }
+
+    .highlight {
+        background-color: var(--bg-secondary);
+    }
+
+    /* Badges */
+    .badge.bg-secondary {
+        background-color: var(--bg-tertiary) !important;
+        color: var(--text-primary);
+    }
+
+    .badge.bg-light {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+
+    .badge.bg-primary {
+        background-color: #4a9eda !important;
+        color: #fff !important;
+    }
+
+    /* Global outline-primary buttons in dark mode */
+    .btn-outline-primary {
+        color: #4a9eda !important;
+        border-color: #4a9eda !important;
+
+        &:hover, &:focus {
+            background-color: #326690 !important;
+            border-color: #326690 !important;
+            color: #fff !important;
+        }
+    }
+
+    /* Breadcrumbs */
+    .breadcrumb {
+        background-color: var(--bg-secondary);
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: var(--text-muted);
+    }
+
+    .breadcrumb-item.active {
+        color: var(--text-secondary);
+    }
+
+    /* Pagination */
+    .page-link {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+        color: var(--color-primary);
+
+        &:hover {
+            background-color: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--color-primary);
+        }
+    }
+
+    .page-item.active .page-link {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+    }
+
+    .page-item.disabled .page-link {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+        color: var(--text-muted);
+    }
+
+    /* List groups */
+    .list-group-item {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+    }
+
+    /* Modal */
+    .modal-content {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+    }
+
+    .modal-header, .modal-footer {
+        border-color: var(--border-color);
+    }
+
+    /* Accordion */
+    .accordion-item {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+    }
+
+    .accordion-button {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+
+        &:not(.collapsed) {
+            background-color: var(--bg-secondary);
+            color: var(--color-primary);
+        }
+
+        &::after {
+            filter: invert(1);
+        }
+    }
+
+    /* Horizontal rules */
+    hr {
+        border-color: var(--border-color);
+        opacity: 1;
+    }
+
+    /* Screenshot gallery dark mode */
+    .screenshot-item {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+        &:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+    }
+}
+
+/* ==========================================================================
+   Navbar & Footer Styles (always dark, regardless of theme)
+   ========================================================================== */
+
+/* Navbar buttons - always need light text since navbar is always dark */
+.navbar.bg-dark {
+    .btn-outline-light {
+        color: #a1a1aa !important;
+        border-color: rgba(161, 161, 170, 0.5);
+
+        i, svg {
+            color: inherit !important;
+        }
+
+        &:hover, &:focus {
+            background-color: rgba(228, 228, 231, 0.15);
+            color: #e4e4e7 !important;
+            border-color: rgba(228, 228, 231, 0.75);
+        }
+    }
+
+    .btn-primary {
+        background-color: #4a9eda !important;
+        border-color: #4a9eda !important;
+        color: #fff !important;
+
+        &:hover, &:focus {
+            background-color: #326690 !important;
+            border-color: #326690 !important;
+        }
+
+        i, svg {
+            color: inherit !important;
+        }
+    }
+
+    /* Search input in navbar */
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #e4e4e7;
+
+        &::placeholder {
+            color: #a1a1aa;
+        }
+
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #e4e4e7;
+        }
+    }
+}
+
+/* Footer styles - always dark regardless of theme */
+.site-footer {
+    /* All links in footer should be light-colored */
+    a {
+        transition: color var(--transition-fast);
+    }
+
+    /* Footer links need to be visible on dark background */
+    a.text-secondary {
+        color: #a1a1aa !important;
+
+        &:hover {
+            color: #e4e4e7 !important;
+        }
+    }
+
+    /* Social icon links - FontAwesome icons must inherit color */
+    .d-flex a.text-secondary {
+        color: #a1a1aa !important;
+
+        i, svg, .fa, .fab, .fas, .far {
+            color: inherit !important;
+        }
+
+        &:hover {
+            color: #e4e4e7 !important;
+        }
+    }
+
+    /* All FontAwesome icons in footer should be light */
+    i.fa, i.fab, i.fas, i.far,
+    svg.svg-inline--fa {
+        color: #a1a1aa !important;
+    }
+
+    a:hover i.fa, a:hover i.fab, a:hover i.fas, a:hover i.far,
+    a:hover svg.svg-inline--fa {
+        color: #e4e4e7 !important;
+    }
+
+    h6 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+}
+
+/* ==========================================================================
+   Main Content Area - must use CSS variables
+   ========================================================================== */
+.pga-content {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.content-wrapper {
+    color: var(--text-primary);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text-primary);
+    }
+
+    p, li, td, th {
+        color: var(--text-primary);
+    }
+}
+
+/* ==========================================================================
+   Scroll Animations
+   ========================================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+
+    &.is-visible {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+}
+
+/* Stagger animation for children */
+.stagger-children.is-visible > * {
+    @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.1}s;
+        }
+    }
+}

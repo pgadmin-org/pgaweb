@@ -144,3 +144,541 @@
   background: $color-primary-light;
   border: $border-width solid $color-primary;
 }
+
+/* ==========================================================================
+   Dark Mode Overrides for Styleguide
+   ========================================================================== */
+html[data-theme="dark"] {
+  /* Typography section */
+  .typography-font-sect {
+    background-color: #2d2d2d;
+
+    .typg-style-section,
+    .typg-font-normal,
+    .typg-font-normal-sample,
+    .typg-font-bold,
+    .typg-font-bold-sample {
+      color: #e4e4e7;
+    }
+  }
+
+  /* Font family description */
+  .font-family-desc {
+    color: #e4e4e7;
+
+    .font-family-color {
+      color: #ff6b5b;
+    }
+  }
+
+  /* Font size section */
+  .font-size-sect {
+    .font-size-16-style,
+    .font-size-14-style,
+    .font-size-13-style {
+      color: #e4e4e7;
+    }
+  }
+
+  /* Code blocks in styleguide */
+  .page-container .styleguide .codeBlock pre {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #e4e4e7;
+  }
+
+  /* Theme content colors */
+  .theme-content {
+    .color-name,
+    .color-code,
+    .color-header {
+      color: #e4e4e7;
+    }
+  }
+
+  /* Iconography section */
+  .icongrp-header,
+  .icongrp-points {
+    color: #e4e4e7;
+  }
+
+  /* Style guide general text */
+  .style-guide {
+    color: #e4e4e7;
+  }
+
+  /* Theme tabs - match page background, add padding */
+  .nav-tabs {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    border-bottom: 1px solid #444 !important;
+    padding-left: 1rem;
+
+    .nav-link {
+      color: #a1a1aa !important;
+      border: none !important;
+      border-bottom: 2px solid transparent !important;
+      padding-bottom: 0.5rem;
+
+      &:hover {
+        color: #e4e4e7 !important;
+        border-bottom-color: #666 !important;
+      }
+    }
+
+    .nav-link.active {
+      background-color: transparent !important;
+      border: none !important;
+      border-bottom: 2px solid #e4e4e7 !important;
+      color: #e4e4e7 !important;
+    }
+  }
+
+  /* Font size section - keep well background, remove pre backgrounds */
+  .font-size-sect {
+    .typography-font-sect,
+    .font-size-style {
+      background-color: #2d2d2d !important;
+    }
+
+    pre {
+      background-color: transparent !important;
+      border: none !important;
+      color: #e4e4e7;
+      margin: 0;
+    }
+  }
+
+  /* ==========================================================================
+     Styleguide Demo Isolation
+     The .styleguide-demos container with data-theme="light" isolates the
+     pgAdmin app theme demos from website dark mode styling.
+     ========================================================================== */
+
+  /* Styleguide title in dark mode */
+  .styleguide-title {
+    color: #e4e4e7;
+  }
+
+  /* Color palette section headers */
+  .color-palette > h1 {
+    color: #e4e4e7;
+  }
+
+  /* Color palette description text */
+  .color-palette > p {
+    color: #e4e4e7;
+  }
+}
+
+/* ==========================================================================
+   Universal Code Sample Styling for ALL Styleguide Tabs
+   Ensures consistent light grey background regardless of website theme
+   ========================================================================== */
+.styleguide-demos[data-theme="light"] {
+  /* All code containers get light grey background */
+  .alrt-container-body,
+  .container-body,
+  .container-body-active,
+  .container-body-disabled,
+  .container-body-error,
+  .dd-container-body,
+  .dd-container-filled,
+  .sd-btn-code-block,
+  .d-btn-code-block,
+  .hc-btn-code-block,
+  .radio-btn-code,
+  .tbl-container-body,
+  .iconography-component-container .iconography-header {
+    background-color: #f5f5f5 !important;
+    border-radius: 4px;
+  }
+
+  /* Code text styling - applies everywhere */
+  .code {
+    color: #333 !important;
+  }
+
+  .code-tag {
+    color: #22863a !important;
+  }
+
+  .code-attribute {
+    color: #6f42c1 !important;
+  }
+
+  .code-value {
+    color: #0366d6 !important;
+  }
+}
+
+/* ==========================================================================
+   Table Styling - Explicit overrides for all website/theme combinations
+   ========================================================================== */
+
+/* Standard Theme table - always light backgrounds */
+.styleguide-demos #sdTheme .table-container-header {
+  background-color: transparent !important;
+}
+
+.styleguide-demos #sdTheme .table-cont-style {
+  background-color: #ffffff !important;
+}
+
+.styleguide-demos #sdTheme .table-cont-style td,
+.styleguide-demos #sdTheme .table-cont-style th,
+.styleguide-demos #sdTheme .table-cont-style .display-text,
+.styleguide-demos #sdTheme .table-cont-style button {
+  color: #222222 !important;
+  background-color: transparent !important;
+}
+
+.styleguide-demos #sdTheme .table-hover-tr-style {
+  background-color: #d6effc !important;
+}
+
+.styleguide-demos #sdTheme .table-hover-tr-style td {
+  background-color: #d6effc !important;
+}
+
+/* Dark Theme table - always dark backgrounds */
+.styleguide-demos #drkTheme .d-table-container-header {
+  background-color: #212121 !important;
+}
+
+.styleguide-demos #drkTheme .d-table-cont-style {
+  background-color: #424242 !important;
+}
+
+.styleguide-demos #drkTheme .d-table-cont-style table,
+.styleguide-demos #drkTheme .d-table-cont-style tr,
+.styleguide-demos #drkTheme .d-table-cont-style td,
+.styleguide-demos #drkTheme .d-table-cont-style th {
+  background-color: #424242 !important;
+  color: #ffffff !important;
+}
+
+.styleguide-demos #drkTheme .d-table-cont-style .display-text,
+.styleguide-demos #drkTheme .d-table-header-style {
+  color: #ffffff !important;
+}
+
+.styleguide-demos #drkTheme .d-table-hover-tr-style {
+  background-color: #536270 !important;
+}
+
+.styleguide-demos #drkTheme .d-table-hover-tr-style td {
+  background-color: #536270 !important;
+}
+
+.styleguide-demos #drkTheme .d-table-hover-label {
+  color: #ffffff !important;
+}
+
+/* High Contrast Theme table - always very dark backgrounds */
+.styleguide-demos #hcTheme .hc-table-container-header {
+  background-color: #010b15 !important;
+}
+
+.styleguide-demos #hcTheme .hc-table-cont-style {
+  background-color: #010b15 !important;
+}
+
+.styleguide-demos #hcTheme .hc-table-cont-style table,
+.styleguide-demos #hcTheme .hc-table-cont-style tr,
+.styleguide-demos #hcTheme .hc-table-cont-style td,
+.styleguide-demos #hcTheme .hc-table-cont-style th {
+  background-color: #010b15 !important;
+  color: #ffffff !important;
+}
+
+.styleguide-demos #hcTheme .hc-table-cont-style .display-text,
+.styleguide-demos #hcTheme .hc-table-header-style {
+  color: #ffffff !important;
+}
+
+.styleguide-demos #hcTheme .hc-table-hover-tr-style {
+  background-color: #ffffff !important;
+}
+
+.styleguide-demos #hcTheme .hc-table-hover-tr-style td,
+.styleguide-demos #hcTheme .hc-table-hover-tr-style .display-text {
+  background-color: #ffffff !important;
+  color: #010b15 !important;
+}
+
+.styleguide-demos #hcTheme .hc-table-hover-label {
+  color: #ffffff !important;
+}
+
+
+/* Demo area isolation - force light mode inside styleguide demos */
+/* Standard Theme (#sdTheme) - light backgrounds */
+.styleguide-demos[data-theme="light"] #sdTheme {
+  /* Reset to light mode colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5b6d7c;
+  --border-color: #dde0e6;
+  --bs-body-color: #212529;
+
+  color: #222222;
+  background-color: transparent;
+
+  /* Give demo containers white backgrounds */
+  .component-container,
+  .btn-container,
+  .radio-container-body {
+    background-color: #ffffff !important;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Override any dark backgrounds in code block cells */
+  .sd-btn-code-block,
+  .radio-btn-code,
+  .tbl-container-body {
+    background-color: #f5f5f5 !important;
+  }
+
+  /* Reset Bootstrap text utilities for alerts and other demos */
+  .text-body {
+    color: #212529 !important;
+  }
+
+  .text-success {
+    color: #198754 !important;
+  }
+
+  .text-danger {
+    color: #dc3545 !important;
+  }
+
+  .text-info {
+    color: #0dcaf0 !important;
+  }
+
+  .text-warning {
+    color: #ffc107 !important;
+  }
+
+  /* Ensure alert backgrounds are correct */
+  .bg-success-light {
+    background-color: #d1e7dd !important;
+  }
+
+  .bg-danger-light {
+    background-color: #f8d7da !important;
+  }
+
+  .bg-info-light {
+    background-color: #cff4fc !important;
+  }
+
+  /* Alert container styling */
+  .alert-style-cont {
+    color: #212529;
+  }
+
+  .pg-bg-status-text {
+    color: #212529 !important;
+  }
+}
+
+/* High Contrast Theme (#hcTheme) - preserve HC dark backgrounds */
+.styleguide-demos[data-theme="light"] #hcTheme {
+  /* Reset to light mode colors for text */
+  --bs-body-color: #212529;
+
+  color: #222222;
+  background-color: transparent;
+
+  /* HC containers - white background for outer container */
+  .component-container,
+  .btn-container,
+  .radio-container-body {
+    background-color: #ffffff !important;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Override any dark backgrounds in code block cells */
+  .hc-btn-code-block,
+  .radio-btn-code,
+  .tbl-container-body {
+    background-color: #f5f5f5 !important;
+  }
+
+  /* Reset Bootstrap text utilities */
+  .text-body {
+    color: #212529 !important;
+  }
+
+  .text-success {
+    color: #198754 !important;
+  }
+
+  .text-danger {
+    color: #dc3545 !important;
+  }
+
+  .text-info {
+    color: #0dcaf0 !important;
+  }
+
+  .text-warning {
+    color: #ffc107 !important;
+  }
+
+  /* Ensure alert backgrounds are correct */
+  .bg-success-light {
+    background-color: #d1e7dd !important;
+  }
+
+  .bg-danger-light {
+    background-color: #f8d7da !important;
+  }
+
+  .bg-info-light {
+    background-color: #cff4fc !important;
+  }
+
+  /* Alert container styling */
+  .alert-style-cont {
+    color: #212529;
+  }
+
+  .pg-bg-status-text {
+    color: #212529 !important;
+  }
+}
+
+/* Dark Theme tab (#drkTheme) - show pgAdmin dark theme demo */
+.styleguide-demos[data-theme="light"] #drkTheme {
+  /* Dark theme demo containers - white background like other tabs */
+  .component-container,
+  .btn-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Override dark button style backgrounds for code cells */
+  .d-btn-code-block,
+  .radio-btn-code,
+  .tbl-container-body {
+    background-color: #f5f5f5 !important;
+  }
+
+  /* Keep demo cells dark but ensure labels are visible */
+  .d-btn-style.d-btn-label {
+    color: #d4d4d4;
+  }
+
+  /* Dark theme container header - dark background */
+  .d-container-header {
+    background-color: #212121;
+    border-radius: 4px;
+  }
+
+  /* Dark theme alert text */
+  .d-alert-text-body {
+    color: #d4d4d4 !important;
+  }
+
+  /* Dark theme success colors */
+  .d-bg-success-light {
+    background-color: #212121 !important;
+  }
+
+  .d-text-success {
+    color: #26852B !important;
+  }
+
+  .d-border-success {
+    border-color: #26852B !important;
+  }
+
+  /* Dark theme danger/error colors */
+  .d-bg-danger-light {
+    background-color: #212121 !important;
+  }
+
+  .d-text-danger {
+    color: #EE7A55 !important;
+  }
+
+  .d-border-danger {
+    border-color: #EE7A55 !important;
+  }
+
+  /* Dark theme info colors */
+  .d-bg-info-light {
+    background-color: #212121 !important;
+  }
+
+  .d-text-info {
+    color: #50B0F0 !important;
+  }
+
+  .d-border-info {
+    border-color: #50B0F0 !important;
+  }
+
+  /* Iconography - dark theme container with dark background */
+  .d-iconography-component-container {
+    background-color: #212121 !important;
+    border-color: #444 !important;
+  }
+
+  /* Reset FA icon color to black first (override website dark mode) */
+  .d-iconography-component-container .svg-inline--fa {
+    color: #000 !important;
+  }
+
+  /* Ensure dark theme icons are inverted (light on dark) */
+  .dark-thm {
+    filter: invert(1) !important;
+  }
+
+  /* Also invert the SVG icons inside dark-thm spans */
+  .dark-thm.svg-inline--fa,
+  .dark-thm svg,
+  span.dark-thm + svg.svg-inline--fa {
+    filter: invert(1) !important;
+  }
+
+  /* For FA6: the SVG is a sibling, not child - target it specifically */
+  .iconography-fa-icon .svg-inline--fa {
+    filter: invert(1) !important;
+  }
+
+  /* Dark theme icon labels */
+  .d-icon-label {
+    color: #fff !important;
+  }
+
+  /* Iconography code sample container */
+  .iconography-component-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Table Component Container Overrides
+   IMPORTANT: These rules MUST appear AFTER all other .component-container rules
+   to ensure table demos display with their proper backgrounds (dark/HC themes)
+   ========================================================================== */
+.styleguide-demos[data-theme="light"] #sdTheme .component-container.table-demo-container,
+.styleguide-demos[data-theme="light"] #drkTheme .component-container.table-demo-container,
+.styleguide-demos[data-theme="light"] #hcTheme .component-container.table-demo-container {
+  background-color: transparent !important;
+  padding: 0 !important;
+}

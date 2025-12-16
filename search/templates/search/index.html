@@ -6,22 +6,20 @@
 {% block content %}
 <h1>Search pgAdmin Docs</h1>
 
-<div class="search alert alert-secondary" role="alert">
-  <form class="form-inline form-advanced-search justify-content-center" action="{% url 'search' %}" method="get">
-    <label class="sr-only" for="q">Search terms</label>
-    <input type="text" value="{{ request.GET.q }}" class="form-control mb-2 mr-sm-3" id="q" name="q" placeholder="Search terms">
+<div class="search-box p-4 mb-4 rounded-3">
+  <form class="d-flex flex-wrap flex-md-nowrap gap-2 align-items-center" action="{% url 'search' %}" method="get">
+    <label class="visually-hidden" for="q">Search terms</label>
+    <input type="text" value="{{ request.GET.q }}" class="form-control" id="q" name="q" placeholder="Search terms">
 
-    <label class="sr-only" for="v">Version</label>
-    <div id="version_select" class="input-group mb-2 mr-sm-2">
-      <select class="custom-select mr-sm-2" id="v" name="v">
-        <option value="">Latest package versions</option>
-        {% for doc in docs %}
-        <option {% if request.GET.v|slugify == doc.version.id|slugify %}selected {% endif %}value="{{ doc.version.id }}">{{ doc.version.package.name }} {{ doc.version.name }}</option>
-        {% endfor %}
-      </select>
-    </div>
+    <label class="visually-hidden" for="v">Version</label>
+    <select class="form-select search-version-select" id="v" name="v">
+      <option value="">Latest package versions</option>
+      {% for doc in docs %}
+      <option {% if request.GET.v|slugify == doc.version.id|slugify %}selected {% endif %}value="{{ doc.version.id }}">{{ doc.version.package.name }} {{ doc.version.name }}</option>
+      {% endfor %}
+    </select>
 
-    <button type="submit" class="btn btn-outline-primary mb-2"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-search" aria-hidden="true"></i></button>
   </form>
 </div>
 

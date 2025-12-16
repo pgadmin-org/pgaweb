@@ -1,26 +1,28 @@
 {% extends "pgaweb/base.html" %}
 
 {% block body %}
-<main class="pga-content">
+<main class="pga-content py-4">
+    <div class="container-xxl">
+        <div class="row dual-ad-layout">
+            <!-- Left Ad Sidebar -->
+            <div class="col-lg-2 ad-col ad-col-left">
+                <div class="ad-sidebar sticky-top sticky-offset">
+                    {% include "pgaweb/ad.html" %}
+                </div>
+            </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Action panel -->
-        <div class="col-sm-2 pga-sidebar pga-sidebar-left">
-            {% include "pgaweb/action.html" %}
-        </div>
+            <!-- Main Content -->
+            <div class="col-lg-8 page-main-col">
+                {% block content %}{% endblock %}
+            </div>
 
-        <!-- Content -->
-        <div class="col-sm-8">
-            {% block content %}{% endblock %}
-        </div>
-
-        <!-- Ad -->
-        <div class="col-sm-2 pga-sidebar pga-sidebar-right">
-            {% include "pgaweb/ad.html" %}
+            <!-- Right Ad Sidebar -->
+            <div class="col-lg-2 ad-col ad-col-right">
+                <div class="ad-sidebar sticky-top sticky-offset">
+                    {% include "pgaweb/ad.html" %}
+                </div>
+            </div>
         </div>
     </div>
- </div>
-
 </main>
 {% endblock %}

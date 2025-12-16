@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<div class="styleguide-layout">
     <div class="style-action">
         {% if page == "typography" %}
             {% include "pgaweb/styleguide/style_action.html" %}
@@ -17,4 +18,5 @@
         {% block page_content %}
         {% endblock %}
     </div>
+</div>
 {% endblock %}
