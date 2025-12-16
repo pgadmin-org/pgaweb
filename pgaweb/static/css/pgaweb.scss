@@ -1880,3 +1880,15 @@ html[data-theme="dark"] {
         }
     }
 }
+
+/* ==========================================================================
+   Cookie Consent (Osano) Button Styles
+   ========================================================================== */
+.cc-btn.cc-allow {
+    color: #ffffff !important;
+}
+
+.cc-btn.cc-deny {
+    color: #ffffff !important;
+    background-color: #6c757d !important;
+}
