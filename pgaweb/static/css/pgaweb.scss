@@ -1185,6 +1185,22 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
     }
 }
 
+/* Ad placeholder - consent-based ad loading */
+.ad-placeholder {
+    /* Desktop: skyscraper dimensions */
+    @media (min-width: 992px) {
+        width: 160px;
+        height: 600px;
+    }
+
+    /* Mobile: responsive horizontal ad */
+    @media (max-width: 991.98px) {
+        width: 100%;
+        min-height: 100px;
+        max-height: 300px;
+    }
+}
+
 /* Section Headers */
 .section-header {
     h2 {

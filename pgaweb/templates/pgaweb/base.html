@@ -86,6 +86,9 @@
         if (window.pgawebAdsLoaded) return;
         window.pgawebAdsLoaded = true;
 
+        // Determine if we're on mobile (below Bootstrap lg breakpoint)
+        var isMobile = window.innerWidth < 992;
+
         // Find all ad placeholders and load them
         var adPlaceholders = document.querySelectorAll('.ad-placeholder');
         adPlaceholders.forEach(function(placeholder) {
@@ -96,14 +99,29 @@
             adScript.crossOrigin = 'anonymous';
             placeholder.appendChild(adScript);
 
-            // Create the ad unit
+            // Create the ad unit - different format for mobile vs desktop
             var ins = document.createElement('ins');
             ins.className = 'adsbygoogle';
-            ins.style.display = 'inline-block';
-            ins.style.width = '160px';
-            ins.style.height = '600px';
             ins.setAttribute('data-ad-client', 'ca-pub-7509009547019933');
-            ins.setAttribute('data-ad-slot', '4114194323');
+
+            if (isMobile) {
+                // Horizontal responsive ad for mobile
+                ins.style.display = 'block';
+                ins.setAttribute('data-ad-slot', '1132526293');
+                ins.setAttribute('data-ad-format', 'auto');
+                ins.setAttribute('data-full-width-responsive', 'true');
+                // Update placeholder size for horizontal ad
+                placeholder.style.width = '100%';
+                placeholder.style.height = 'auto';
+                placeholder.style.minHeight = '100px';
+            } else {
+                // Skyscraper ad for desktop
+                ins.style.display = 'inline-block';
+                ins.style.width = '160px';
+                ins.style.height = '600px';
+                ins.setAttribute('data-ad-slot', '4114194323');
+            }
+
             placeholder.appendChild(ins);
 
             // Push the ad
