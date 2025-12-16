@@ -1159,15 +1159,6 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
 
 /* Ad Sidebar styling */
 .ad-sidebar {
-    margin: 0 auto;
-
-    /* Desktop: tall narrow ads (160x600 skyscraper) */
-    @media (min-width: 992px) {
-        max-width: 160px;
-        width: 160px;
-        min-height: 600px;
-    }
-
     /* Mobile: wide short ads (320x100 or 320x50 mobile banner) */
     @media (max-width: 991.98px) {
         max-width: 100%;
@@ -1175,6 +1166,28 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
         min-height: 100px;
         max-height: 150px;
         position: static !important;
+        margin: 0 auto;
+    }
+}
+
+/* Ad column containers - align ads to outer edges */
+.ad-col-left {
+    display: flex;
+    justify-content: flex-start; /* Push ads to left edge */
+
+    .ad-sidebar {
+        margin-left: 0;
+        margin-right: auto;
+    }
+}
+
+.ad-col-right {
+    display: flex;
+    justify-content: flex-end; /* Push ads to right edge */
+
+    .ad-sidebar {
+        margin-left: auto;
+        margin-right: 0;
     }
 }
 
