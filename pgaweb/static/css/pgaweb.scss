@@ -71,6 +71,12 @@ html[data-theme="dark"] {
   --bs-body-color: #e4e4e7;
   --bs-body-bg-rgb: 26, 26, 26;
   --bs-body-color-rgb: 228, 228, 231;
+  /* Bootstrap 5.3 tables default their text colour to var(--bs-emphasis-color),
+     which is #000 unless dark mode is active. As we drive dark mode via our own
+     data-theme attribute (not data-bs-theme), we must override it here or table
+     text renders black-on-dark and becomes unreadable. */
+  --bs-emphasis-color: #e4e4e7;
+  --bs-emphasis-color-rgb: 228, 228, 231;
   --bs-secondary-bg: #242424;
   --bs-tertiary-bg: #242424;
   --bs-link-color: #4a9eda;
