@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'news',
     'pgaweb',
     'search',
+    'security',
     'versions',
     'videos',
 )

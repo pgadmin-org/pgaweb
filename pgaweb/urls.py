@@ -15,6 +15,7 @@ from blogs import feeds as blog_feed
 from faq import views as faq_views
 from news import views as news_views
 from news import feeds as news_feed
+from security import views as security_views
 from versions import views as versions_views
 from videos import views as videos_views
 from videos import feeds as video_feed
@@ -63,6 +64,8 @@ urlpatterns = [
     re_path(r'^news.rss$', news_feed.LatestEntriesFeed(), name='news_feed'),
 
     re_path(r'^search/', include('search.urls')),
+
+    re_path(r'^security/$', security_views.index, name='security'),
 
     re_path(r'^versions.json$', versions_views.index, name='versions.json'),
 

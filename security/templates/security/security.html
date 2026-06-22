@@ -1,0 +1,98 @@
+{% extends "pgaweb/page.html" %}
+{% load static %}
+
+{% block title %}Security{% endblock %}
+
+{% block content %}
+    <h1>Security Advisories</h1>
+
+    <h2>Reporting a Security Issue</h2>
+
+    <p>
+        If you believe you have found a security issue in the design or code of
+        pgAdmin, pgAgent, or the pgAdmin website, please report it privately by
+        email to <b>security (at) pgadmin (dot) org</b>. Please don't use the
+        public issue tracker or the mailing lists for security reports. Note
+        that this address should only be used for reporting suspected
+        vulnerabilities, and not for general security questions.
+    </p>
+
+    <h2>Known Advisories</h2>
+
+    <p>
+        The advisories listed below affect pgAdmin 4, with the data sourced from
+        the <a href="https://osv.dev/">Open Source Vulnerabilities (OSV)</a>
+        database. We strongly recommend running the latest release, which
+        includes fixes for all of the issues listed.
+    </p>
+
+    {% if last_updated %}
+    <p class="text-muted"><small>Last updated {{ last_updated|date:"j M Y, H:i" }} UTC.</small></p>
+    {% endif %}
+
+    {% for advisory in advisories %}
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>
+                {% if advisory.osv_url %}
+                <a href="{{ advisory.osv_url }}"><strong>{{ advisory.cve_id }}</strong></a>
+                {% else %}
+                <strong>{{ advisory.cve_id }}</strong>
+                {% endif %}
+            </span>
+            <span>
+                {% if advisory.severity == 'Critical' %}
+                <span class="badge bg-danger">{{ advisory.severity }}</span>
+                {% elif advisory.severity == 'High' %}
+                <span class="badge bg-warning text-dark">{{ advisory.severity }}</span>
+                {% elif advisory.severity == 'Medium' or advisory.severity == 'Moderate' %}
+                <span class="badge bg-info text-dark">{{ advisory.severity }}</span>
+                {% elif advisory.severity == 'Low' %}
+                <span class="badge bg-secondary">{{ advisory.severity }}</span>
+                {% endif %}
+                {% if advisory.base_score %}
+                <span class="badge bg-light text-dark">CVSS {{ advisory.base_score }}</span>
+                {% endif %}
+            </span>
+        </div>
+        <div class="card-body">
+            {% if advisory.summary %}
+            <h5 class="card-title">{{ advisory.summary }}</h5>
+            {% endif %}
+
+            {% if advisory.fixed_versions %}
+            <p class="card-text">
+                <strong>Fixed in:</strong>
+                {% for version in advisory.fixed_versions %}{{ version }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            </p>
+            {% endif %}
+
+            {% if advisory.notes %}
+            <div class="alert alert-info" role="alert">
+                {{ advisory.notes|linebreaks }}
+            </div>
+            {% endif %}
+
+            {% if advisory.details %}
+            <p class="card-text">{{ advisory.details|linebreaks }}</p>
+            {% endif %}
+
+            {% if advisory.references %}
+            <p class="card-text mb-0"><strong>References:</strong></p>
+            <ul class="mb-0">
+                {% for url in advisory.references %}
+                <li><a href="{{ url }}">{{ url }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% if advisory.published %}
+        <div class="card-footer text-muted">
+            <small>Published {{ advisory.published|date:"j M Y" }}</small>
+        </div>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p>There are currently no known security advisories to display.</p>
+    {% endfor %}
+{% endblock %}
