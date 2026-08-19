@@ -1,0 +1,33 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Brand wordmark
+   -------------------------------------------------------------------
+   The mark comes from the application's own menu bar, where it is drawn on a
+   dark bar: a white badge holding a blue "pg", followed by the word in white.
+   On a light page that inverts, so the badge takes the brand blue and the word
+   takes the ink colour; in dark mode it matches the application exactly.
+   =================================================================== */
+
+.pga-wordmark {
+    display: block;
+    line-height: 0;
+}
+
+.pga-wordmark svg {
+    display: block;
+    width: auto;
+    height: var(--wordmark-height, 24px);
+}
+
+.pga-mark-badge { fill: var(--blue-500); }
+.pga-mark-pg    { fill: #ffffff; }
+.pga-mark-word  { fill: var(--grey-900); }
+
+[data-bs-theme="dark"] .pga-mark-badge { fill: #ffffff; }
+[data-bs-theme="dark"] .pga-mark-pg    { fill: #326893; }
+[data-bs-theme="dark"] .pga-mark-word  { fill: #f2f4f6; }
+
+/* The footer sets its own colours, so the mark follows the footer, not the page. */
+.pga-footer .pga-wordmark svg { height: var(--wordmark-height-footer, 30px); }

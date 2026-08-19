@@ -1,0 +1,196 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Tokens: light
+   =================================================================== */
+
+:root {
+    --blue-50:  #edf3f8;
+    --blue-100: #d5e5f0;
+    --blue-200: #a9c8de;
+    --blue-300: #78a7c8;
+    --blue-400: #4681ab;
+    --blue-500: #326690;
+    --blue-600: #295477;
+    --blue-700: #20425e;
+    --blue-800: #183146;
+    --blue-900: #112330;
+
+    /* A terminal green, used only for mono labels and prompts. */
+    --term-500: #157f4a;
+    /* Muted text inside the near-black code surfaces, which the page-level
+       muted grey is too dark to serve. */
+    --term-muted: #7d8894;
+    --term-400: #2ea36a;
+
+    --grey-900: #0f1418;
+    --grey-800: #1a2128;
+    --grey-700: #2d3740;
+    --grey-600: #47535e;
+    --grey-500: #63707c;
+    --grey-400: #8b98a4;
+    --grey-300: #b9c3cc;
+    --grey-200: #d8dee4;
+    --grey-100: #eaeef2;
+    --grey-50:  #f4f6f8;
+
+    --amber-600: #a35c07;
+    --red-600:   #b4231a;
+
+    --bg: #ffffff;
+    --bg-alt: var(--grey-50);
+    --surface: var(--grey-50);
+    --surface-alt: var(--grey-100);
+    --fg: var(--grey-900);
+    --fg-soft: var(--grey-600);
+    --fg-muted: var(--grey-500);
+    --line: var(--grey-200);
+    --line-strong: var(--grey-300);
+    --accent: var(--blue-600);
+    --accent-soft: var(--blue-50);
+    --accent-contrast: #ffffff;
+    /* Controls need a 3:1 boundary of their own under WCAG 1.4.11, which the
+       decorative hairline cannot meet without spoiling every rule on the page. */
+    --control-border: #7d8894;
+
+    --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: var(--font-body);
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --radius: 3px;
+    --radius-lg: 4px;
+    --measure: 74ch;
+
+    /* -------------------------------------------------- documentation */
+    --doc-fg: var(--fg);
+    --doc-fg-soft: var(--fg-soft);
+    --doc-muted: var(--fg-muted);
+    --doc-heading: var(--grey-900);
+    --doc-heading-family: var(--font-display);
+    --doc-heading-weight: 600;
+    --doc-accent: var(--accent);
+    --doc-border: var(--line);
+    --doc-border-strong: var(--line-strong);
+    --doc-surface: var(--grey-50);
+    --doc-surface-strong: var(--grey-100);
+    --doc-radius: var(--radius);
+    --doc-mono: var(--font-mono);
+
+    --doc-code-inline-fg: var(--blue-700);
+    --doc-code-inline-bg: var(--grey-100);
+    --doc-code-bg: var(--grey-900);
+    --doc-code-fg: #dbe3ea;
+    --doc-code-border: var(--grey-800);
+
+    --doc-note-bg: var(--blue-50);
+    --doc-note-border: var(--blue-100);
+    --doc-success: var(--term-500);
+    --doc-success-bg: #ebf6f0;
+    --doc-success-border: #c6e3d4;
+    --doc-warning: var(--amber-600);
+    --doc-warning-bg: #fbf3e6;
+    --doc-warning-border: #eedcbb;
+    --doc-danger: var(--red-600);
+    --doc-danger-bg: #fbeeed;
+    --doc-danger-border: #efcecb;
+
+    /*
+     * Code blocks are dark in both schemes here, so the Pygments palette does
+     * not need a light variant: it is the same scheme either way, which is one
+     * fewer set of colours to keep in step.
+     */
+    --pyg-hll: rgba(255, 255, 255, .08);
+    --pyg-comment: #8b98a4;
+    --pyg-preproc: #ff8b7e;
+    --pyg-keyword: #ff8b7e;
+    --pyg-type: #ffb27a;
+    --pyg-operator: #8ac7ff;
+    --pyg-string: #9fdcaa;
+    --pyg-string-esc: #9fdcaa;
+    --pyg-number: #8ac7ff;
+    --pyg-attr: #8ac7ff;
+    --pyg-builtin: #ffb27a;
+    --pyg-name: #d5b3ff;
+    --pyg-const: #8ac7ff;
+    --pyg-decorator: #d5b3ff;
+    --pyg-entity: #ffb27a;
+    --pyg-error: #ff9c93;
+    --pyg-label: #ffb27a;
+    --pyg-tag: #86e29a;
+    --pyg-var: #e4eaf0;
+    --pyg-deleted: #ff9c93;
+    --pyg-inserted: #86e29a;
+    --pyg-output: #c3ccd6;
+    --pyg-prompt: #6fc78b;
+    --pyg-accent: #ff8b7e;
+
+    --ad-fg: var(--grey-600);
+    --ad-bg: transparent;
+    --ad-border: var(--line);
+    --ad-radius: var(--radius);
+}
+
+/* ===================================================================
+   Tokens: dark
+   =================================================================== */
+
+[data-bs-theme="dark"] {
+    --bg: #0d1117;
+    --bg-alt: #11161d;
+    --surface: #141a22;
+    --surface-alt: #1a212a;
+    --fg: #e3e8ee;
+    --fg-soft: #b0bac5;
+    --fg-muted: #86919e;
+    --line: #232c36;
+    --line-strong: #333e4a;
+    --accent: #79b8e8;
+    --accent-soft: rgba(121, 184, 232, .12);
+    --accent-contrast: #0a0f15;
+    --control-border: #5a6675;
+
+    --doc-fg: var(--fg);
+    --doc-fg-soft: var(--fg-soft);
+    --doc-muted: var(--fg-muted);
+    --doc-heading: #f0f4f8;
+    --doc-accent: var(--accent);
+    --doc-border: var(--line);
+    --doc-border-strong: var(--line-strong);
+    --doc-surface: #131920;
+    --doc-surface-strong: #19212a;
+
+    --doc-code-inline-fg: #a9d3f0;
+    --doc-code-inline-bg: rgba(121, 184, 232, .13);
+    --doc-code-bg: #05090e;
+    --doc-code-fg: #dbe3ea;
+    --doc-code-border: #1c242d;
+
+    --doc-note-bg: rgba(121, 184, 232, .1);
+    --doc-note-border: rgba(121, 184, 232, .24);
+    --doc-success: var(--term-400);
+    --doc-success-bg: rgba(46, 163, 106, .12);
+    --doc-success-border: rgba(46, 163, 106, .26);
+    --doc-warning: #dda94b;
+    --doc-warning-bg: rgba(221, 169, 75, .12);
+    --doc-warning-border: rgba(221, 169, 75, .26);
+    --doc-danger: #ef8078;
+    --doc-danger-bg: rgba(239, 128, 120, .12);
+    --doc-danger-border: rgba(239, 128, 120, .26);
+
+    --ad-fg: #939ead;
+    --ad-border: var(--line);
+}
+
+:root,
+[data-bs-theme="dark"] {
+    --bs-primary: var(--accent);
+    --bs-body-bg: var(--bg);
+    --bs-body-color: var(--fg);
+    --bs-body-font-family: var(--font-body);
+    --bs-border-color: var(--line);
+    --bs-link-color: var(--accent);
+    --bs-link-hover-color: var(--accent);
+    --bs-emphasis-color: var(--fg);
+    --bs-secondary-color: var(--fg-muted);
+}

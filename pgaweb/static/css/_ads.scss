@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Advert rails
+
+   The mockups drew these with a placeholder harness; this is the real thing,
+   styling the .ad-placeholder that pgaweb/ad.html renders and loadAds() fills.
+
+   Read the rules in .claude/mockups/HANDOFF.md before changing any of this. In
+   short: the rail must not clip its overflow and its grid track must not
+   shrink-wrap, or the sticky advert silently stops sticking. Both faults were
+   live on the site until 0f379e2, and each one alone is enough to break it, so
+   fixing only one looks like it has changed nothing.
+   ========================================================================== */
+
+.ad-rail {
+    /* No overflow, and no height constraint: both break position: sticky on the
+       .pga-rail-inner inside. */
+    min-width: 0;
+}
+
+.ad-placeholder {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    /*
+     * The rails are designed at 300px so that AdSense can fill a 300x600 half
+     * page, which is worth considerably more than the 160x600 the site runs
+     * today. That unit does not exist in the account yet, so for now the
+     * existing 160x600 sits centred in the wider rail and the surplus shows as
+     * whitespace. When the half page unit is created, this is the only place
+     * that needs to change, along with the sizes in loadAds().
+     */
+    width: 300px;
+    min-height: 600px;
+    margin-inline: auto;
+}
+
+.pga-rail-note {
+    /* Only worth saying next to a filled unit. */
+    &:empty { display: none; }
+}
+
+@media (max-width: 1399.98px) {
+    .ad-placeholder {
+        width: 160px;
+    }
+}
+
+/*
+ * Below the lg breakpoint the rails are removed altogether and an inline unit
+ * runs in the content flow instead. No vignettes and no interstitials: the
+ * brief was explicit, and they are the formats readers most resent.
+ */
+@media (max-width: 991.98px) {
+    .ad-placeholder {
+        width: 320px;
+        min-height: 100px;
+    }
+}
+
+/*
+ * An empty rail should not reserve 600px of nothing. Adverts are injected by
+ * loadAds(), so until that has run the placeholder is empty; once it has, it
+ * holds an <ins>.
+ */
+.ad-placeholder:empty {
+    min-height: 0;
+}

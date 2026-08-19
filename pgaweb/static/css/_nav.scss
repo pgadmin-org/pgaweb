@@ -1,0 +1,111 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Navigation
+   =================================================================== */
+
+.pga-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+}
+
+.pga-nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 1720px;
+    margin-inline: auto;
+    padding: .5rem 1.25rem;
+}
+
+.pga-brand {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.pga-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 auto 0 1.25rem;
+    padding: 0;
+    list-style: none;
+}
+
+.pga-nav-links > li { position: relative; }
+
+.pga-nav-links a {
+    display: block;
+    padding: .3rem .7rem;
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--fg-soft);
+    text-decoration: none;
+}
+
+.pga-nav-links a:hover { color: var(--accent); }
+
+.pga-nav-links a.current {
+    color: var(--fg);
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.pga-nav-tools { display: flex; align-items: center; gap: .4rem; }
+
+.pga-search {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    width: 220px;
+    padding: .28rem .6rem;
+    font-family: var(--font-mono);
+    color: var(--fg-muted);
+    background: var(--surface);
+    border: 1px solid var(--control-border);
+    border-radius: var(--radius);
+}
+
+.pga-search input {
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    color: var(--fg);
+    background: none;
+    border: 0;
+    outline: none;
+}
+
+.pga-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    font-size: .875rem;
+    color: var(--fg-soft);
+    text-decoration: none;
+    border: 1px solid var(--control-border);
+    border-radius: var(--radius);
+}
+
+.pga-icon-btn:hover { color: var(--accent); background: var(--surface); }
+
+.pga-nav .dropdown-menu {
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    background: var(--bg);
+    border-color: var(--line-strong);
+    border-radius: var(--radius);
+}

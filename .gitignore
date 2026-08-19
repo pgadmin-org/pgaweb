@@ -44,3 +44,6 @@ yarn-error.log*
 .claude/mockups/
 .claude/plans/
 .claude/specs/
+
+# Playwright MCP screenshots and snapshots
+.playwright-mcp/

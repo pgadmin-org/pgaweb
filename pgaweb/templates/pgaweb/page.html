@@ -1,28 +1,40 @@
 {% extends "pgaweb/base.html" %}
 
+{#
+    The standard three column shell: advert rail, content, advert rail.
+
+    A CSS grid rather than Bootstrap columns, so the rails are an exact pixel
+    width and the content takes the rest. The old shell used col-lg-2 either side
+    of col-lg-8 inside a container-xxl, which left the documentation in a column
+    far too narrow for the tables Sphinx emits.
+
+    Do not put overflow on .ad-rail, and do not constrain its height: either one
+    silently stops the advert sticking. See _ads.scss.
+#}
+
 {% block body %}
-<main class="pga-content py-4">
-    <div class="container-xxl">
-        <div class="row dual-ad-layout">
-            <!-- Left Ad Sidebar -->
-            <div class="col-lg-2 ad-col ad-col-left">
-                <div class="ad-sidebar sticky-top sticky-offset">
-                    {% include "pgaweb/ad.html" %}
-                </div>
-            </div>
+<main class="pga-shell{% block shell_class %}{% endblock %}">
 
-            <!-- Main Content -->
-            <div class="col-lg-8 page-main-col">
-                {% block content %}{% endblock %}
-            </div>
+    <aside class="ad-rail" aria-label="Advertisement">
+        <div class="pga-rail-inner">
+            {% include "pgaweb/ad.html" %}
+        </div>
+    </aside>
 
-            <!-- Right Ad Sidebar -->
-            <div class="col-lg-2 ad-col ad-col-right">
-                <div class="ad-sidebar sticky-top sticky-offset">
-                    {% include "pgaweb/ad.html" %}
-                </div>
-            </div>
+    <div class="pga-main">
+        {% block content %}{% endblock %}
+
+        {# Below the lg breakpoint the rails are removed and this takes over. #}
+        <div class="pga-inline-ad">
+            {% include "pgaweb/ad.html" %}
         </div>
     </div>
+
+    <aside class="ad-rail" aria-label="Advertisement">
+        <div class="pga-rail-inner">
+            {% include "pgaweb/ad.html" %}
+        </div>
+    </aside>
+
 </main>
 {% endblock %}

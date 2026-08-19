@@ -1,0 +1,212 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Hero: compact, with an install snippet rather than a big picture
+   =================================================================== */
+
+.pga-hero {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+}
+
+.pga-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    /* The right column is tall (install panel plus screenshot), so the copy runs
+       top to bottom of it rather than floating in the middle. */
+    align-items: stretch;
+    gap: 3rem;
+    max-width: 1720px;
+    margin-inline: auto;
+    padding: 3.25rem 1.25rem;
+}
+
+.pga-hero-inner > div:first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+/* The install panel sits under the buttons, so the copy column carries the
+   whole "get it and run it" story and the screenshot gets a column to itself. */
+.pga-hero .pga-terminal { margin-bottom: 1.25rem; }
+
+/* The chips sit at the foot of the column, level with the screenshot. */
+.pga-hero .pga-platforms { margin-top: auto; }
+
+.pga-hero h1 {
+    margin: 0 0 .75rem;
+    font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -.03em;
+}
+
+.pga-hero .pga-lead { margin-bottom: 1.5rem; font-size: 1.125rem; }
+
+.pga-hero-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.5rem; }
+
+.pga-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    color: var(--fg-muted);
+}
+
+.pga-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .2rem .5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+/* A terminal block: the same commands the documentation actually gives. */
+.pga-terminal {
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    line-height: 1.7;
+    color: #dbe3ea;
+    background: var(--grey-900);
+    border: 1px solid var(--grey-800);
+    border-radius: var(--radius-lg);
+}
+
+[data-bs-theme="dark"] .pga-terminal { background: #05090e; border-color: #1c242d; }
+
+/*
+ * The install methods are tabs across the head of the terminal, so the hero
+ * answers "how do I get it on my machine" without a trip to the download page.
+ * Windows and macOS have no command to give, so those panels carry the
+ * installer download instead.
+ */
+.pga-terminal-head {
+    display: flex;
+    align-items: stretch;
+    background: rgba(255, 255, 255, .04);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.pga-terminal-copy {
+    flex: 0 0 auto;
+    padding: .5rem .8rem;
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    color: var(--grey-400);
+    background: none;
+    border: 0;
+    border-left: 1px solid rgba(255, 255, 255, .1);
+    cursor: pointer;
+}
+
+.pga-terminal-copy:hover { color: #dbe3ea; }
+
+/* Nothing to copy when the panel is an installer download. */
+.pga-terminal[data-mode="download"] .pga-terminal-copy { visibility: hidden; }
+
+.pga-terminal-tabs {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.pga-terminal-tabs::-webkit-scrollbar { display: none; }
+
+.pga-terminal-tabs button {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .5rem .85rem;
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    white-space: nowrap;
+    color: var(--grey-400);
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.pga-terminal-tabs button:hover { color: #dbe3ea; }
+
+.pga-terminal-tabs button.active {
+    color: #dbe3ea;
+    background: rgba(255, 255, 255, .05);
+    border-bottom-color: #6fc78b;
+}
+
+.pga-terminal pre {
+    margin: 0;
+    padding: .9rem 1rem;
+    overflow-x: auto;
+}
+
+.pga-terminal .p { color: #6fc78b; }
+.pga-terminal .c { color: var(--term-muted); }
+.pga-terminal .s { color: #9fdcaa; }
+
+/* A fixed height so switching install method does not shift the page. */
+.pga-install-panel { height: 15.5rem; overflow: auto; }
+.pga-install-panel[hidden] { display: none; }
+
+.pga-install-get {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .9rem;
+    padding: 1.5rem;
+}
+
+.pga-install-get p {
+    margin: 0;
+    max-width: 46ch;
+    font-family: var(--font-body);
+    font-size: .875rem;
+    color: var(--grey-400);
+}
+
+.pga-install-get .pga-btn {
+    color: #0f1418;
+    background: #dbe3ea;
+    border-color: #dbe3ea;
+}
+
+.pga-install-get .pga-btn:hover { background: #fff; border-color: #fff; color: #0f1418; }
+
+.pga-install-get .pga-meta { color: var(--term-muted); }
+
+/* The product shot has the right-hand column to itself, centred against the
+   copy rather than pinned to the top of it. */
+.pga-hero-inner > div:last-child {
+    display: flex;
+    align-items: center;
+}
+
+/*
+ * Interim: static/img/screenshot.png is 976x550 and the laptop in it is already
+ * clipped at the bottom edge of the file, which was easy to miss at the old
+ * size and obvious at this one. Cropping the last few per cent off the bottom
+ * puts the cut outside the frame, so the device runs out of shot rather than
+ * looking chopped. A new asset replaces this, at which point the aspect-ratio
+ * and object-fit come out again.
+ */
+.pga-hero-shot {
+    display: block;
+    width: 100%;
+    aspect-ratio: 976 / 500;
+    object-fit: cover;
+    object-position: top center;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+}
+
+@media (max-width: 991.98px) {
+    .pga-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 2.25rem 1rem; }
+}

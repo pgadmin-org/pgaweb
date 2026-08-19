@@ -1,0 +1,120 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Sections and cards
+   =================================================================== */
+
+.pga-section { margin-bottom: 3rem; }
+
+.pga-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding-bottom: .6rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.pga-section-head h2 { margin: 0; font-size: 1.35rem; }
+
+.pga-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+}
+
+.pga-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.pga-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.1rem 1.15rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.pga-card h3 { margin: .7rem 0 .4rem; font-size: 1rem; }
+.pga-card p { margin: 0; font-size: .875rem; color: var(--fg-soft); }
+.pga-card-icon { font-size: 1rem; color: var(--accent); }
+
+.pga-card-link {
+    margin-top: auto;
+    padding-top: .8rem;
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    text-decoration: none;
+}
+
+.pga-media-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem 1.15rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.pga-media-card h3 { margin: .35rem 0; font-size: .975rem; line-height: 1.35; }
+
+.pga-meta {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    color: var(--fg-muted);
+}
+
+/* Mono is for labels and dates; running text stays in the body face. */
+p.pga-meta { font-family: var(--font-body); font-size: .8125rem; }
+
+.pga-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    margin: -1rem -1.15rem .75rem;
+    color: var(--fg-muted);
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--line);
+}
+
+.pga-thumb i { font-size: 1.5rem; }
+
+/* News as a dense, mono-dated table-like list. */
+.pga-news-item {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: .8rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.pga-news-item:last-child { border-bottom: 1px solid var(--line); }
+.pga-news-item h3 { margin: 0 0 .2rem; font-size: .975rem; }
+.pga-news-item p { margin: 0; font-size: .875rem; color: var(--fg-soft); }
+
+@media (max-width: 575.98px) {
+    .pga-news-item { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+}
+
+.pga-version-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--term-500);
+    border-radius: var(--radius);
+}
+
+.pga-version-strip strong { display: block; font-size: 1.05rem; font-weight: 600; }

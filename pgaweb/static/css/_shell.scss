@@ -1,0 +1,43 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Page shell
+   =================================================================== */
+
+.pga-shell {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr) 300px;
+    gap: 2rem;
+    max-width: 1720px;
+    margin-inline: auto;
+    padding: 2rem 1.25rem 3.5rem;
+}
+
+.pga-shell-docs { grid-template-columns: 300px minmax(0, 1fr) 300px; }
+
+.pga-rail-inner { position: sticky; top: 4rem; }
+
+.pga-rail-note {
+    margin-top: .5rem;
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    text-align: center;
+    color: var(--fg-muted);
+}
+
+.pga-inline-ad { display: none; margin: 1.75rem 0; }
+
+@media (max-width: 1399.98px) {
+    .pga-shell { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 1.5rem; }
+    .pga-shell-docs { grid-template-columns: 240px minmax(0, 1fr) 160px; gap: 1.5rem; }
+    /* The contents need the whole column at this width, so the second unit goes. */
+    .pga-doc-side .ad-rail { display: none; }
+}
+
+@media (max-width: 991.98px) {
+    .pga-shell,
+    .pga-shell-docs { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 1.5rem 1rem 2.5rem; }
+    .ad-rail { display: none; }
+    .pga-inline-ad { display: block; }
+}

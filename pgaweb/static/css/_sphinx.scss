@@ -1,0 +1,544 @@
+/* Ported verbatim from .claude/mockups/shared/sphinx.css. Every rule hangs
+   off a class Sphinx itself emits, because the docloader stores the markup
+   and page.html renders it with |safe, so we cannot add a class to any of
+   it. Driven entirely by the --doc-* and --pyg-* tokens in _tokens.scss. */
+
+/*
+ * Documentation styling for Sphinx "classic" theme output.
+ *
+ * The docloader stores the contents of div.body, div.sphinxsidebarwrapper and
+ * div[role=navigation] in the database, and the page template drops them in
+ * with |safe. We therefore cannot add a single class to this markup, so every
+ * rule below has to hang off the classes Sphinx itself emits, scoped under
+ * .pga-docbody or .pga-doccontents.
+ *
+ * Everything is expressed against custom properties. Each design direction
+ * supplies the tokens; this file is shared verbatim, and dark mode falls out
+ * of the tokens rather than needing a parallel set of overrides. That is the
+ * main structural change from the current stylesheet, where the Pygments
+ * palette is hard-coded light-only and so survives into dark mode unchanged.
+ */
+
+/* ===================================================================
+   Contents sidebar
+   =================================================================== */
+
+.pga-doccontents {
+    font-size: .9375rem;
+}
+
+.pga-doccontents h1,
+.pga-doccontents h2 {
+    margin: 0 0 .75rem;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--doc-muted);
+}
+
+/*
+ * Sphinx emits the same "Table of Contents" heading twice: once for the local
+ * contents of this page, wrapped in a div, and once for the global toctree.
+ * We cannot touch the markup, so the visible text is suppressed and replaced
+ * per position, whilst the anchor itself stays clickable.
+ */
+.pga-doccontents h1 > a {
+    font-size: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.pga-doccontents > div > h1 > a::before { content: 'On this page'; font-size: .75rem; }
+.pga-doccontents > h1 > a::before { content: 'All documentation'; font-size: .75rem; }
+
+.pga-doccontents > h1 { margin-top: 1.75rem; }
+
+.pga-doccontents ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    border-left: 1px solid var(--doc-border);
+}
+
+.pga-doccontents ul ul {
+    border-left: 0;
+    padding-left: .85rem;
+}
+
+.pga-doccontents li {
+    margin: 0;
+}
+
+.pga-doccontents a {
+    display: block;
+    padding: .3rem 0 .3rem .85rem;
+    margin-left: -1px;
+    color: var(--doc-fg-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+}
+
+.pga-doccontents a:hover {
+    color: var(--doc-accent);
+    border-left-color: var(--doc-border-strong);
+}
+
+.pga-doccontents .current > a,
+.pga-doccontents a.current {
+    font-weight: 600;
+    color: var(--doc-accent);
+    border-left-color: var(--doc-accent);
+}
+
+/* ===================================================================
+   Version / format header strip
+   =================================================================== */
+
+.pga-docheader {
+    padding: .75rem 1rem;
+    font-size: .875rem;
+    color: var(--doc-fg-soft);
+    background: var(--doc-surface);
+    border: 1px solid var(--doc-border);
+    border-radius: var(--doc-radius);
+}
+
+.pga-docheader p {
+    margin: 0;
+}
+
+.pga-docheader p + p {
+    margin-top: .35rem;
+}
+
+.pga-docheader a {
+    color: var(--doc-accent);
+}
+
+.pga-doccurrent {
+    font-weight: 700;
+    color: var(--doc-fg) !important;
+    text-decoration: none;
+}
+
+/* Sphinx emits its own relbar inside the header fragment; it duplicates our
+   breadcrumb, so it is hidden rather than restyled. */
+.pga-docheader .related {
+    display: none;
+}
+
+/* ===================================================================
+   Body: typography
+   =================================================================== */
+
+.pga-docbody {
+    color: var(--doc-fg);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.pga-docbody h1,
+.pga-docbody h2,
+.pga-docbody h3,
+.pga-docbody h4,
+.pga-docbody h5 {
+    font-family: var(--doc-heading-family, inherit);
+    font-weight: var(--doc-heading-weight, 600);
+    line-height: 1.25;
+    color: var(--doc-heading);
+    scroll-margin-top: 5rem;
+}
+
+.pga-docbody h1 {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.85rem, 1.4rem + 1.6vw, 2.4rem);
+    letter-spacing: -.02em;
+}
+
+.pga-docbody h2 {
+    margin: 2.75rem 0 1rem;
+    padding-bottom: .4rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--doc-border);
+}
+
+.pga-docbody h3 { margin: 2rem 0 .75rem; font-size: 1.2rem; }
+.pga-docbody h4 { margin: 1.6rem 0 .6rem; font-size: 1.05rem; }
+
+.pga-docbody p {
+    margin: 0 0 1.1rem;
+}
+
+.pga-docbody a {
+    color: var(--doc-accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--doc-accent) 35%, transparent);
+    text-underline-offset: .15em;
+}
+
+.pga-docbody a:hover {
+    text-decoration-color: currentColor;
+}
+
+.pga-docbody ul,
+.pga-docbody ol {
+    margin: 0 0 1.1rem;
+    padding-left: 1.5rem;
+}
+
+.pga-docbody li > p {
+    margin-bottom: .4rem;
+}
+
+.pga-docbody blockquote {
+    margin: 0 0 1.1rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--doc-border-strong);
+    color: var(--doc-fg-soft);
+}
+
+/* Anchor links: hidden until the heading is hovered, as Sphinx intends. */
+.pga-docbody a.headerlink {
+    margin-left: .4rem;
+    font-weight: 400;
+    color: var(--doc-muted);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity .15s ease;
+}
+
+.pga-docbody :hover > a.headerlink,
+.pga-docbody a.headerlink:focus {
+    opacity: 1;
+}
+
+/* ===================================================================
+   Body: inline and block code
+   =================================================================== */
+
+.pga-docbody code.docutils,
+.pga-docbody code.literal,
+.pga-docbody tt.literal {
+    padding: .15em .4em;
+    font-family: var(--doc-mono);
+    font-size: .875em;
+    color: var(--doc-code-inline-fg);
+    background: var(--doc-code-inline-bg);
+    border: 1px solid var(--doc-border);
+    border-radius: 4px;
+}
+
+.pga-docbody a code.docutils,
+.pga-docbody a code.literal {
+    color: inherit;
+}
+
+.pga-docbody div.highlight {
+    margin: 0 0 1.25rem;
+    background: var(--doc-code-bg);
+    border: 1px solid var(--doc-code-border);
+    border-radius: var(--doc-radius);
+    overflow: hidden;
+}
+
+.pga-docbody div.highlight pre {
+    margin: 0;
+    padding: 1rem 1.15rem;
+    font-family: var(--doc-mono);
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--doc-code-fg);
+    background: none;
+    border: 0;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+/* Sphinx wraps highlight blocks in a language-tagged div; use it as a label. */
+.pga-docbody div[class^="highlight-"],
+.pga-docbody div[class*=" highlight-"] {
+    position: relative;
+}
+
+/* ===================================================================
+   Body: Pygments palette
+   -------------------------------------------------------------------
+   The upstream "friendly" scheme, re-expressed as tokens so that the dark
+   variant is a token swap rather than a duplicated block. Comments name the
+   Pygments token so this stays maintainable against future Sphinx output.
+   =================================================================== */
+
+.pga-docbody .highlight .hll { background-color: var(--pyg-hll); display: block; }
+
+.pga-docbody .highlight .c,                              /* Comment */
+.pga-docbody .highlight .ch,                             /* Comment.Hashbang */
+.pga-docbody .highlight .cm,                             /* Comment.Multiline */
+.pga-docbody .highlight .cpf,                            /* Comment.PreprocFile */
+.pga-docbody .highlight .c1,                             /* Comment.Single */
+.pga-docbody .highlight .cs { color: var(--pyg-comment); font-style: italic; }
+.pga-docbody .highlight .cp { color: var(--pyg-preproc); }
+
+.pga-docbody .highlight .k,                              /* Keyword */
+.pga-docbody .highlight .kc,
+.pga-docbody .highlight .kd,
+.pga-docbody .highlight .kn,
+.pga-docbody .highlight .kr { color: var(--pyg-keyword); font-weight: 600; }
+.pga-docbody .highlight .kp { color: var(--pyg-keyword); }
+.pga-docbody .highlight .kt { color: var(--pyg-type); }
+
+.pga-docbody .highlight .o  { color: var(--pyg-operator); }
+.pga-docbody .highlight .ow { color: var(--pyg-keyword); font-weight: 600; }
+
+.pga-docbody .highlight .s,                              /* Literal.String */
+.pga-docbody .highlight .sa, .pga-docbody .highlight .sb,
+.pga-docbody .highlight .sc, .pga-docbody .highlight .dl,
+.pga-docbody .highlight .sd, .pga-docbody .highlight .s2,
+.pga-docbody .highlight .sh, .pga-docbody .highlight .s1,
+.pga-docbody .highlight .sx, .pga-docbody .highlight .ss { color: var(--pyg-string); }
+.pga-docbody .highlight .se,                             /* String.Escape */
+.pga-docbody .highlight .si,                             /* String.Interpol */
+.pga-docbody .highlight .sr { color: var(--pyg-string-esc); font-weight: 600; }
+
+.pga-docbody .highlight .m,                              /* Literal.Number */
+.pga-docbody .highlight .mb, .pga-docbody .highlight .mf,
+.pga-docbody .highlight .mh, .pga-docbody .highlight .mi,
+.pga-docbody .highlight .mo, .pga-docbody .highlight .il { color: var(--pyg-number); }
+
+.pga-docbody .highlight .na { color: var(--pyg-attr); }  /* Name.Attribute */
+.pga-docbody .highlight .nb { color: var(--pyg-builtin); }
+.pga-docbody .highlight .nc,                             /* Name.Class */
+.pga-docbody .highlight .nf,                             /* Name.Function */
+.pga-docbody .highlight .nn { color: var(--pyg-name); font-weight: 600; }
+.pga-docbody .highlight .no { color: var(--pyg-const); }
+.pga-docbody .highlight .nd { color: var(--pyg-decorator); font-weight: 600; }
+.pga-docbody .highlight .ni { color: var(--pyg-entity); }
+.pga-docbody .highlight .ne { color: var(--pyg-error); font-weight: 600; }
+.pga-docbody .highlight .nl { color: var(--pyg-label); font-weight: 600; }
+.pga-docbody .highlight .nt { color: var(--pyg-tag); font-weight: 600; }
+.pga-docbody .highlight .nv,                             /* Name.Variable */
+.pga-docbody .highlight .vc, .pga-docbody .highlight .vg,
+.pga-docbody .highlight .vi, .pga-docbody .highlight .vm { color: var(--pyg-var); }
+
+.pga-docbody .highlight .err { color: var(--pyg-error); border: 1px solid var(--pyg-error); }
+.pga-docbody .highlight .w   { color: transparent; }
+
+.pga-docbody .highlight .gd { color: var(--pyg-deleted); }
+.pga-docbody .highlight .gi { color: var(--pyg-inserted); }
+.pga-docbody .highlight .gr { color: var(--pyg-error); }
+.pga-docbody .highlight .go { color: var(--pyg-output); }
+.pga-docbody .highlight .gp { color: var(--pyg-prompt); font-weight: 600; }
+.pga-docbody .highlight .ge { font-style: italic; }
+.pga-docbody .highlight .gs { font-weight: 700; }
+.pga-docbody .highlight .gh,
+.pga-docbody .highlight .gu { color: var(--pyg-name); font-weight: 700; }
+.pga-docbody .highlight .gt { color: var(--pyg-accent); }
+
+/* ===================================================================
+   Body: admonitions
+   =================================================================== */
+
+.pga-docbody div.admonition,
+.pga-docbody div.warning,
+.pga-docbody div.note,
+.pga-docbody div.tip,
+.pga-docbody div.important,
+.pga-docbody div.seealso {
+    margin: 0 0 1.35rem;
+    padding: .9rem 1.1rem;
+    background: var(--adm-bg);
+    border: 1px solid var(--adm-border);
+    border-left: 3px solid var(--adm-accent);
+    border-radius: var(--doc-radius);
+}
+
+.pga-docbody .admonition-title {
+    margin: 0 0 .4rem;
+    font-size: .8125rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--adm-accent);
+}
+
+.pga-docbody div.admonition > :last-child,
+.pga-docbody div.warning > :last-child,
+.pga-docbody div.note > :last-child {
+    margin-bottom: 0;
+}
+
+.pga-docbody div.note,
+.pga-docbody div.seealso {
+    --adm-accent: var(--doc-accent);
+    --adm-bg: var(--doc-note-bg);
+    --adm-border: var(--doc-note-border);
+}
+
+.pga-docbody div.tip,
+.pga-docbody div.important {
+    --adm-accent: var(--doc-success);
+    --adm-bg: var(--doc-success-bg);
+    --adm-border: var(--doc-success-border);
+}
+
+.pga-docbody div.warning,
+.pga-docbody div.caution,
+.pga-docbody div.attention {
+    --adm-accent: var(--doc-warning);
+    --adm-bg: var(--doc-warning-bg);
+    --adm-border: var(--doc-warning-border);
+}
+
+.pga-docbody div.danger,
+.pga-docbody div.error {
+    --adm-accent: var(--doc-danger);
+    --adm-bg: var(--doc-danger-bg);
+    --adm-border: var(--doc-danger-border);
+}
+
+/* ===================================================================
+   Body: tables
+   =================================================================== */
+
+.pga-docbody table.docutils,
+.pga-docbody table {
+    width: 100%;
+    margin: 0 0 1.35rem;
+    font-size: .9375rem;
+    border-collapse: collapse;
+    border: 1px solid var(--doc-border);
+    border-radius: var(--doc-radius);
+    overflow: hidden;
+}
+
+.pga-docbody table th,
+.pga-docbody table td {
+    padding: .55rem .8rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--doc-border);
+}
+
+.pga-docbody table thead th {
+    font-weight: 600;
+    color: var(--doc-heading);
+    background: var(--doc-surface-strong);
+    border-bottom: 1px solid var(--doc-border-strong);
+}
+
+/* Sphinx marks alternate rows itself; use those rather than :nth-child so the
+   striping stays correct when a row spans multiple lines. */
+.pga-docbody table tr.row-even > td {
+    background: var(--doc-surface);
+}
+
+.pga-docbody table tr:last-child > td {
+    border-bottom: 0;
+}
+
+.pga-docbody table p {
+    margin: 0;
+}
+
+/* ===================================================================
+   Body: definition lists, figures and images
+   =================================================================== */
+
+.pga-docbody dl.field-list > dt,
+.pga-docbody dl.docutils > dt {
+    font-weight: 600;
+    color: var(--doc-heading);
+}
+
+.pga-docbody dl.field-list > dd,
+.pga-docbody dl.docutils > dd {
+    margin: 0 0 .75rem;
+}
+
+.pga-docbody img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--doc-border);
+    border-radius: var(--doc-radius);
+}
+
+.pga-docbody img.align-center {
+    display: block;
+    margin: 1.35rem auto;
+}
+
+.pga-docbody img.align-right {
+    float: right;
+    margin: .35rem 0 1rem 1.35rem;
+}
+
+.pga-docbody img.align-left {
+    float: left;
+    margin: .35rem 1.35rem 1rem 0;
+}
+
+.pga-docbody .clearer {
+    clear: both;
+}
+
+.pga-docbody .figure,
+.pga-docbody figure {
+    margin: 0 0 1.35rem;
+}
+
+.pga-docbody .caption,
+.pga-docbody figcaption {
+    margin-top: .5rem;
+    font-size: .875rem;
+    color: var(--doc-fg-soft);
+}
+
+/* ===================================================================
+   Body: in-page table of contents emitted by the toctree directive
+   =================================================================== */
+
+.pga-docbody .toctree-wrapper {
+    padding: 1rem 1.25rem;
+    margin: 0 0 1.35rem;
+    background: var(--doc-surface);
+    border: 1px solid var(--doc-border);
+    border-radius: var(--doc-radius);
+}
+
+.pga-docbody .toctree-wrapper > ul {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+/* A bare toctree with no caption reads as a stray list; give it a label. */
+.pga-docbody .toctree-wrapper.compound::before {
+    content: 'In this section';
+    display: block;
+    margin-bottom: .5rem;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--doc-muted);
+}
+
+/* Sphinx leaves empty anchor targets scattered through the body. */
+.pga-docbody .target {
+    display: block;
+    height: 0;
+    scroll-margin-top: 5rem;
+}
+
+@media (max-width: 767.98px) {
+    .pga-docbody img.align-right,
+    .pga-docbody img.align-left {
+        float: none;
+        display: block;
+        margin: 1.35rem auto;
+    }
+
+    .pga-docbody table {
+        display: block;
+        overflow-x: auto;
+    }
+}

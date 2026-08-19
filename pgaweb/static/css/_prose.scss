@@ -1,0 +1,105 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Community page
+   =================================================================== */
+
+.pga-page-head { max-width: var(--measure); margin-bottom: 2rem; }
+.pga-page-head h1 { margin: 0 0 .75rem; font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem); }
+
+.pga-with-aside {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 2.5rem;
+}
+
+@media (max-width: 991.98px) {
+    .pga-with-aside { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .pga-onthispage { display: none; }
+}
+
+.pga-onthispage {
+    position: sticky;
+    align-self: start;
+    top: 4rem;
+    font-family: var(--font-mono);
+    border-left: 1px solid var(--line);
+}
+
+.pga-onthispage h2 {
+    margin: 0 0 .5rem .85rem;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+.pga-onthispage a {
+    display: block;
+    padding: .25rem 0 .25rem .85rem;
+    margin-left: -1px;
+    font-size: .8125rem;
+    color: var(--fg-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+}
+
+.pga-onthispage a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+
+.pga-prose { max-width: var(--measure); }
+
+.pga-prose h2 {
+    margin: 2.25rem 0 .75rem;
+    padding-bottom: .35rem;
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 4.5rem;
+}
+
+.pga-prose h3 { margin: 1.5rem 0 .5rem; font-size: 1.05rem; }
+.pga-prose p, .pga-prose ul { margin-bottom: .9rem; color: var(--fg-soft); }
+.pga-prose code { font-family: var(--font-mono); font-size: .875em; color: var(--blue-700); }
+[data-bs-theme="dark"] .pga-prose code { color: #a9d3f0; }
+
+.pga-callout {
+    padding: .85rem 1rem;
+    margin: 1.25rem 0;
+    font-size: .875rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+}
+
+.pga-callout p:last-child { margin-bottom: 0; }
+
+.pga-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.pga-tabs button {
+    padding: .45rem .9rem;
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    color: var(--fg-muted);
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+
+.pga-tabs button.active {
+    color: var(--fg);
+    background: var(--bg);
+    border-color: var(--control-border);
+    border-bottom-color: var(--bg);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.pga-tabpanel[hidden] { display: none; }

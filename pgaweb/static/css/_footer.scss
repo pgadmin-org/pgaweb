@@ -1,0 +1,62 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+
+.pga-footer {
+    padding: 2.5rem 0 1.75rem;
+    background: var(--bg-alt);
+    border-top: 1px solid var(--line);
+}
+
+.pga-footer-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    max-width: 1720px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+}
+
+.pga-footer h2 {
+    margin: 0 0 .75rem;
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+.pga-footer ul { margin: 0; padding: 0; list-style: none; }
+.pga-footer li { margin-bottom: .35rem; }
+
+.pga-footer a { font-size: .8125rem; color: var(--fg-soft); text-decoration: none; }
+.pga-footer a:hover { color: var(--accent); }
+
+.pga-footer-blurb {
+    max-width: 36ch;
+    margin: .75rem 0 0;
+    font-size: .8125rem;
+    color: var(--fg-muted);
+}
+
+.pga-colophon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .75rem;
+    max-width: 1720px;
+    margin: 2rem auto 0;
+    padding: 1rem 1.25rem 0;
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    color: var(--fg-muted);
+    border-top: 1px solid var(--line);
+}
+
+@media (max-width: 767.98px) {
+    .pga-footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

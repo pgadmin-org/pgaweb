@@ -1,0 +1,78 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Base
+   =================================================================== */
+
+body {
+    font-family: var(--font-body);
+    font-size: .9375rem;
+    line-height: 1.6;
+    color: var(--fg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -.012em;
+    color: var(--fg);
+}
+
+a { color: var(--accent); text-underline-offset: .15em; }
+
+hr { border-color: var(--line); opacity: 1; }
+
+/* Eyebrows are mono labels with a terminal prompt, not small caps. */
+.pga-eyebrow {
+    display: block;
+    margin-bottom: .5rem;
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    color: var(--term-500);
+}
+
+.pga-eyebrow::before { content: '$ '; }
+
+[data-bs-theme="dark"] .pga-eyebrow { color: var(--term-400); }
+
+.pga-lead {
+    max-width: var(--measure);
+    font-size: 1.0625rem;
+    color: var(--fg-soft);
+}
+
+.pga-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .4rem .85rem;
+    font-family: var(--font-body);
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--fg);
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--control-border);
+    border-radius: var(--radius);
+}
+
+.pga-btn:hover { color: var(--fg); background: var(--surface-alt); border-color: var(--fg-muted); }
+
+.pga-btn-primary {
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.pga-btn-primary:hover { color: var(--accent-contrast); background: var(--blue-700); border-color: var(--blue-700); }
+
+[data-bs-theme="dark"] .pga-btn-primary:hover { background: var(--blue-200); border-color: var(--blue-200); }
+
+.pga-btn-sm { padding: .25rem .6rem; font-size: .8125rem; }

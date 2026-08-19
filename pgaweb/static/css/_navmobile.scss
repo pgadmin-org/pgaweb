@@ -1,0 +1,39 @@
+/* Ported from .claude/mockups/c-technical/theme.css, the direction C
+   mockup. Keep the two in step whilst the mockups are still the reference. */
+
+/* ===================================================================
+   Mobile navigation
+   =================================================================== */
+
+.pga-nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: var(--fg-soft);
+    background: none;
+    border: 1px solid var(--control-border);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+    .pga-nav-inner { flex-wrap: wrap; gap: .5rem; }
+    .pga-brand { order: 1; margin-right: auto; }
+    .pga-nav-tools { order: 2; }
+    .pga-nav-toggle { display: inline-flex; }
+    .pga-nav-links {
+        order: 3;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin: 0;
+        padding-bottom: .5rem;
+    }
+    .pga-nav-inner.open .pga-nav-links { display: flex; }
+    .pga-nav-links a { padding: .6rem .25rem; border-radius: 0; border-bottom: 1px solid var(--line); }
+    .pga-search { display: none; }
+    .pga-nav-inner.open .pga-search { order: 4; display: flex; width: 100%; }
+}
