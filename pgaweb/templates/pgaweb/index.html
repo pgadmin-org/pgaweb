@@ -1,246 +1,277 @@
-{% extends "pgaweb/base.html" %}
+{% extends "pgaweb/page.html" %}
 {% load static %}
 
 {% block title %}pgAdmin - PostgreSQL Tools{% endblock %}
 
-{% block body %}
+{% block prelude %}
+<section class="pga-hero">
+    <div class="pga-hero-inner">
+        <div>
+            <span class="pga-eyebrow">pgadmin 4 &middot; v{{ version.version_str }}</span>
+            <h1>The PostgreSQL management tool</h1>
+            <p class="pga-lead">Administration, development and monitoring for PostgreSQL.
+                Desktop or server mode, on Windows, macOS, Linux and in containers. Open
+                source, and maintained by the people who use it.</p>
 
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center py-4">
-            <div class="col-lg-6 hero-content">
-                <h1 class="display-5 fw-bold text-white mb-2">pgAdmin</h1>
-                <p class="lead text-white-50 mb-1">The Most Popular PostgreSQL Admin Tool</p>
-                <p class="text-white-75 mb-3">
-                    Feature-rich, open-source administration and development platform for PostgreSQL,
-                    the most advanced open source database in the world.
-                </p>
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                    <a href="{% url 'download_index' %}" class="btn btn-light">
-                        <i class="fas fa-download me-2"></i> Download Now
-                    </a>
-                    <a href="{% url 'page' 'pgadmin4' 'latest' 'index.html' %}" class="btn btn-outline-light">
-                        View Documentation
-                    </a>
+            <div class="pga-hero-actions">
+                <a class="pga-btn pga-btn-primary" href="{% url 'download_index' %}">
+                    <i class="fas fa-download" aria-hidden="true"></i> Download {{ version.version_str }}</a>
+                <a class="pga-btn" href="{% url 'page' 'pgadmin4' 'latest' 'index.html' %}">Documentation</a>
+                <a class="pga-btn" href="https://github.com/pgadmin-org/pgadmin4"
+                   target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> Source</a>
+            </div>
+
+            {% comment %}
+                The install panel. Every command here is the one published on the
+                matching download page; do not paraphrase them. The repository
+                version in the RPM URLs will move, so that is the first thing to
+                check when this page is next revised.
+            {% endcomment %}
+            <div class="pga-terminal" data-mode="commands">
+                <div class="pga-terminal-head">
+                    <div class="pga-terminal-tabs" role="tablist" aria-label="Installation method">
+                        <button role="tab" class="active" data-install="container" aria-selected="true"><i class="fab fa-docker" aria-hidden="true"></i> Container</button>
+                        <button role="tab" data-install="pip" aria-selected="false"><i class="fab fa-python" aria-hidden="true"></i> pip</button>
+                        <button role="tab" data-install="rpm" aria-selected="false"><i class="fab fa-redhat" aria-hidden="true"></i> RPM</button>
+                        <button role="tab" data-install="deb" aria-selected="false"><i class="fab fa-ubuntu" aria-hidden="true"></i> DEB</button>
+                        <button role="tab" data-install="windows" aria-selected="false"><i class="fab fa-windows" aria-hidden="true"></i> Windows</button>
+                        <button role="tab" data-install="macos" aria-selected="false"><i class="fab fa-apple" aria-hidden="true"></i> macOS</button>
+                    </div>
+                    <button class="pga-terminal-copy" type="button" data-copy>
+                        <i class="far fa-copy" aria-hidden="true"></i> copy</button>
                 </div>
-                <div class="hero-platforms d-flex align-items-center gap-3 text-white-50">
-                    <span class="small">Available for:</span>
-                    <span title="Windows"><i class="fab fa-windows"></i></span>
-                    <span title="macOS"><i class="fab fa-apple"></i></span>
-                    <span title="Linux"><i class="fab fa-linux"></i></span>
-                    <span title="Web"><i class="fas fa-globe"></i></span>
+
+<pre class="pga-install-panel" data-install-panel="container"><span class="c"># Pull and run the container image</span>
+<span class="p">$</span> docker pull dpage/pgadmin4
+<span class="p">$</span> docker run -p <span class="s">80:80</span> \
+    -e <span class="s">'PGADMIN_DEFAULT_EMAIL=user@domain.com'</span> \
+    -e <span class="s">'PGADMIN_DEFAULT_PASSWORD=SuperSecret'</span> \
+    -d dpage/pgadmin4
+</pre>
+
+<pre class="pga-install-panel" data-install-panel="pip" hidden><span class="c"># Create the data and log directories</span>
+<span class="p">$</span> sudo mkdir /var/lib/pgadmin
+<span class="p">$</span> sudo mkdir /var/log/pgadmin
+<span class="p">$</span> sudo chown $USER /var/lib/pgadmin
+<span class="p">$</span> sudo chown $USER /var/log/pgadmin
+
+<span class="c"># Install and run in a virtual environment</span>
+<span class="p">$</span> python3 -m venv pgadmin4
+<span class="p">$</span> source pgadmin4/bin/activate
+<span class="p">(pgadmin4) $</span> pip install pgadmin4
+<span class="p">(pgadmin4) $</span> pgadmin4
+</pre>
+
+<pre class="pga-install-panel" data-install-panel="rpm" hidden><span class="c"># Set up the repository (Fedora)</span>
+<span class="p">$</span> sudo rpm -i <span class="s">https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-fedora-repo-2-1.noarch.rpm</span>
+
+<span class="c"># ...or AlmaLinux, Rocky, RHEL and CentOS</span>
+<span class="p">$</span> sudo rpm -i <span class="s">https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-2-1.noarch.rpm</span>
+
+<span class="p">$</span> sudo yum install pgadmin4          <span class="c"># desktop and web</span>
+<span class="p">$</span> sudo yum install pgadmin4-desktop  <span class="c"># desktop only</span>
+<span class="p">$</span> sudo yum install pgadmin4-web      <span class="c"># web only</span>
+</pre>
+
+<pre class="pga-install-panel" data-install-panel="deb" hidden><span class="c"># Install the signing key and the repository</span>
+<span class="p">$</span> curl -fsS <span class="s">https://www.pgadmin.org/static/packages_pgadmin_org.pub</span> | sudo gpg --dearmor -o /etc/apt/keyrings/packages-pgadmin-org.gpg
+<span class="p">$</span> sudo sh -c <span class="s">'echo "deb [signed-by=/etc/apt/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" &gt; /etc/apt/sources.list.d/pgadmin4.list &amp;&amp; apt update'</span>
+
+<span class="p">$</span> sudo apt install pgadmin4          <span class="c"># desktop and web</span>
+<span class="p">$</span> sudo apt install pgadmin4-desktop  <span class="c"># desktop only</span>
+<span class="p">$</span> sudo apt install pgadmin4-web      <span class="c"># web only</span>
+</pre>
+
+                <div class="pga-install-panel pga-install-get" data-install-panel="windows" hidden>
+                    <p>A signed installer for Windows, covering both desktop and server mode.
+                        Requires a 64-bit version of Windows.</p>
+                    <a class="pga-btn" href="{% url 'download_list' 'pgadmin-4-windows' %}">
+                        <i class="fas fa-download" aria-hidden="true"></i> Windows installers</a>
+                    <span class="pga-meta">Every release, with checksums, on the download page</span>
+                </div>
+
+                <div class="pga-install-panel pga-install-get" data-install-panel="macos" hidden>
+                    <p>A signed and notarised disk image for macOS, built as a universal
+                        binary for Apple silicon and Intel.</p>
+                    <a class="pga-btn" href="{% url 'download_list' 'pgadmin-4-macos' %}">
+                        <i class="fas fa-download" aria-hidden="true"></i> macOS disk images</a>
+                    <span class="pga-meta">Every release on the download page</span>
                 </div>
             </div>
-            <div class="col-lg-6 hero-visual mt-4 mt-lg-0">
-                <div class="hero-screenshot-wrapper">
-                    <picture title="Screenshot of pgAdmin">
-                        <source type="image/webp" srcset="{% static 'COMPILED/assets/img/screenshot.webp' %}">
-                        <source type="image/png" srcset="{% static 'COMPILED/assets/img/screenshot.png' %}">
-                        <img src="{% static 'COMPILED/assets/img/screenshot.png' %}" alt="Screenshot of pgAdmin"
-                             class="img-fluid hero-screenshot">
-                    </picture>
-                </div>
+
+            <div class="pga-platforms">
+                <span class="pga-chip"><i class="fas fa-scale-balanced" aria-hidden="true"></i> PostgreSQL licence</span>
+                <span class="pga-chip"><i class="fas fa-rotate" aria-hidden="true"></i> Released roughly every six weeks</span>
+                <span class="pga-chip"><i class="fas fa-language" aria-hidden="true"></i> Translated by the community</span>
             </div>
+        </div>
+
+        <div>
+            <picture>
+                <source type="image/webp" srcset="{% static 'COMPILED/assets/img/screenshot.webp' %}">
+                <img class="pga-hero-shot" src="{% static 'COMPILED/assets/img/screenshot.png' %}"
+                     alt="pgAdmin 4 running in a browser" width="976" height="550">
+            </picture>
         </div>
     </div>
 </section>
+{% endblock %}
 
-<!-- Main Content with Dual Ad Sidebars - starts at Features section -->
-<div class="container-xxl homepage-content-with-ad">
-    <div class="row dual-ad-layout">
-        <!-- Left Ad Sidebar -->
-        <div class="col-lg-2 ad-col ad-col-left">
-            <div class="ad-sidebar sticky-top sticky-offset pt-4">
-                {% include "pgaweb/ad.html" %}
-            </div>
+{% block content %}
+
+<section class="pga-section">
+    <div class="pga-section-head">
+        <div>
+            <span class="pga-eyebrow">why pgadmin</span>
+            <h2>Everything PostgreSQL, in one place</h2>
         </div>
-
-        <!-- Main Content -->
-        <div class="col-lg-8 homepage-main-col">
-            <!-- Feature Highlights Section -->
-            <section class="features-section py-3 bg-light">
-                <div class="container">
-                    <h2 class="text-center mb-3 scroll-animate">Why Choose pgAdmin?</h2>
-                    <div class="row g-3">
-                        <div class="col-md-4 scroll-animate-stagger">
-                            <div class="feature-card text-center p-4 h-100 bg-white rounded-3 shadow-sm">
-                                <div class="feature-icon mb-3">
-                                    <i class="fas fa-laptop-code fa-3x text-primary"></i>
-                                </div>
-                                <h3 class="h5">Cross-Platform</h3>
-                                <p class="text-muted mb-0">
-                                    Run on Windows, macOS, Linux, or deploy as a web application accessible from any browser.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 scroll-animate-stagger">
-                            <div class="feature-card text-center p-4 h-100 bg-white rounded-3 shadow-sm">
-                                <div class="feature-icon mb-3">
-                                    <i class="fas fa-database fa-3x text-primary"></i>
-                                </div>
-                                <h3 class="h5">Full Database Management</h3>
-                                <p class="text-muted mb-0">
-                                    Create, manage, and query all PostgreSQL objects with an intuitive graphical interface.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 scroll-animate-stagger">
-                            <div class="feature-card text-center p-4 h-100 bg-white rounded-3 shadow-sm">
-                                <div class="feature-icon mb-3">
-                                    <i class="fas fa-code fa-3x text-primary"></i>
-                                </div>
-                                <h3 class="h5">Powerful Query Tool</h3>
-                                <p class="text-muted mb-0">
-                                    Syntax highlighting, auto-complete, and graphical EXPLAIN for optimizing your queries.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-4 scroll-animate">
-                        <a href="{% url 'features' %}" class="btn btn-outline-primary">
-                            See All Features <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <div class="container py-3">
-
-                <!-- Videos Section -->
-                {% if videos.count %}
-                <section class="videos-section mb-5">
-                    <div class="section-header d-flex justify-content-between align-items-center mb-4 scroll-animate">
-                        <h2 class="mb-0">
-                            Latest Videos
-                            <a href="{% url 'video_feed' %}" class="ms-2" title="RSS Feed">
-                                <i class="fas fa-rss-square text-warning"></i>
-                            </a>
-                        </h2>
-                        <a href="{% url 'videos' %}" class="btn btn-sm btn-outline-primary">
-                            View All <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                    <div class="row g-4">
-                        {% for video in videos.all %}
-                        <div class="col-md-6 col-lg-4 scroll-animate-stagger">
-                            <div class="video-card bg-white rounded-3 shadow-sm overflow-hidden h-100">
-                                <div class="video-container">
-                                    <iframe src="https://www.youtube-nocookie.com/embed/{{ video.youtube_id }}"
-                                            title="Video: {{ video.title }}" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            referrerpolicy="strict-origin-when-cross-origin"
-                                            loading="lazy" allowfullscreen></iframe>
-                                </div>
-                                <div class="video-info p-3">
-                                    <h6 class="video-title mb-0">{{ video.title }}</h6>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <p class="text-muted small mt-3">
-                        <em>Want to see your pgAdmin video here? Email <a href="mailto:webmaster@pgadmin.org">webmaster@pgadmin.org</a>.</em>
-                    </p>
-                </section>
-                {% endif %}
-
-                <!-- Blog Posts Section -->
-                {% if blogs.count %}
-                <section class="blogs-section mb-5">
-                    <div class="section-header d-flex justify-content-between align-items-center mb-4 scroll-animate">
-                        <h2 class="mb-0">
-                            Latest Blog Posts
-                            <a href="{% url 'blog_feed' %}" class="ms-2" title="RSS Feed">
-                                <i class="fas fa-rss-square text-warning"></i>
-                            </a>
-                        </h2>
-                        <a href="{% url 'blogs' %}" class="btn btn-sm btn-outline-primary">
-                            View All <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                    <div class="row g-4">
-                        {% for blog in blogs.all %}
-                        <div class="col-md-6 col-lg-4 scroll-animate-stagger">
-                            <article class="blog-card bg-white rounded-3 shadow-sm p-4 h-100 d-flex flex-column">
-                                <div class="blog-meta text-muted small mb-2">
-                                    <span class="blog-author">{{ blog.author }}</span>
-                                    <span class="mx-2">|</span>
-                                    <span class="blog-date">{{ blog.date }}</span>
-                                </div>
-                                <h5 class="blog-title text-primary mb-2">{{ blog.title }}</h5>
-                                <p class="blog-summary text-muted flex-grow-1">{{ blog.summary|safe|truncatewords:30 }}</p>
-                                <a href="{{ blog.url }}" class="blog-link mt-auto" target="_blank" rel="noopener">
-                                    Read More <i class="fas fa-external-link-alt ms-1 small"></i>
-                                </a>
-                            </article>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <p class="text-muted small mt-3">
-                        <em>Want to see your pgAdmin blog post here? Email <a href="mailto:webmaster@pgadmin.org">webmaster@pgadmin.org</a>.</em>
-                    </p>
-                </section>
-                {% endif %}
-
-                <!-- News Section -->
-                {% if news.count %}
-                <section class="news-section mb-5">
-                    <div class="section-header d-flex justify-content-between align-items-center mb-4 scroll-animate">
-                        <h2 class="mb-0">
-                            Recent News
-                            <a href="{% url 'news_feed' %}" class="ms-2" title="RSS Feed">
-                                <i class="fas fa-rss-square text-warning"></i>
-                            </a>
-                        </h2>
-                        <a href="{% url 'news' %}" class="btn btn-sm btn-outline-primary">
-                            View All <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                    <div class="news-list bg-white rounded-3 shadow-sm scroll-animate">
-                        {% for article in news.all %}
-                        <article class="news-item p-4 {% if not forloop.last %}border-bottom{% endif %}">
-                            <div class="d-flex align-items-start">
-                                <span class="news-date badge bg-primary me-3">{{ article.display_date }}</span>
-                                <div class="news-content">
-                                    <h5 class="news-title mb-2">{{ article.title }}</h5>
-                                    <div class="news-body text-muted">{{ article.content|safe }}</div>
-                                </div>
-                            </div>
-                        </article>
-                        {% endfor %}
-                    </div>
-                </section>
-                {% endif %}
-
-                <!-- Version Banner -->
-                {% if version.version_str != "" %}
-                <section class="version-banner mb-5 scroll-animate">
-                    <div class="bg-primary text-white rounded-3 p-4 text-center">
-                        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
-                            <span class="fs-5">
-                                <i class="fas fa-info-circle me-2"></i>
-                                Current Version: <strong>pgAdmin 4 {{ version.version_str }}</strong>
-                            </span>
-                            <a href="{% url 'download_index' %}" class="btn btn-light">
-                                <i class="fas fa-download me-1"></i> Download Now
-                            </a>
-                        </div>
-                    </div>
-                </section>
-                {% endif %}
-
-            </div>
-        </div>
-
-        <!-- Right Ad Sidebar -->
-        <div class="col-lg-2 ad-col ad-col-right">
-            <div class="ad-sidebar sticky-top sticky-offset pt-4">
-                {% include "pgaweb/ad.html" %}
-            </div>
-        </div>
+        <a class="pga-btn pga-btn-sm" href="{% url 'features' %}">All features
+            <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
     </div>
+    <div class="pga-grid-3">
+        <article class="pga-card">
+            <i class="fas fa-laptop-code pga-card-icon" aria-hidden="true"></i>
+            <h3>Cross-platform</h3>
+            <p>Run it on Windows, macOS or Linux as a desktop application, or deploy it
+                as a web application reachable from any browser.</p>
+        </article>
+        <article class="pga-card">
+            <i class="fas fa-database pga-card-icon" aria-hidden="true"></i>
+            <h3>Complete object management</h3>
+            <p>Create, browse and maintain every PostgreSQL object through a graphical
+                interface that keeps the generated SQL in plain sight.</p>
+        </article>
+        <article class="pga-card">
+            <i class="fas fa-code pga-card-icon" aria-hidden="true"></i>
+            <h3>A serious query tool</h3>
+            <p>Syntax highlighting, auto-completion, query history and a graphical
+                EXPLAIN for working out where the time actually goes.</p>
+        </article>
+    </div>
+</section>
+
+{% if videos.count %}
+<section class="pga-section">
+    <div class="pga-section-head">
+        <div>
+            <span class="pga-eyebrow">watch</span>
+            <h2>Latest videos</h2>
+        </div>
+        <a class="pga-btn pga-btn-sm" href="{% url 'videos' %}">All videos
+            <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="pga-grid-3">
+        {% for video in videos.all %}
+        <article class="pga-media-card">
+            <div class="pga-thumb pga-thumb-video">
+                <iframe src="https://www.youtube-nocookie.com/embed/{{ video.youtube_id }}"
+                        title="Video: {{ video.title }}" frameborder="0" loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <span class="pga-meta">{{ video.date }}{% if video.publisher %} &middot; {{ video.publisher }}{% endif %}</span>
+            <h3>{{ video.title }}</h3>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% if blogs.count %}
+<section class="pga-section">
+    <div class="pga-section-head">
+        <div>
+            <span class="pga-eyebrow">read</span>
+            <h2>From the blogs</h2>
+        </div>
+        <a class="pga-btn pga-btn-sm" href="{% url 'blogs' %}">All posts
+            <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="pga-grid-3">
+        {% for blog in blogs.all %}
+        <article class="pga-media-card">
+            <span class="pga-meta">{{ blog.date }} &middot; {{ blog.author }}</span>
+            <h3>{{ blog.title }}</h3>
+            <p class="pga-card-text">{{ blog.summary|safe|striptags|truncatewords:28 }}</p>
+            <a class="pga-card-link" href="{{ blog.url }}" target="_blank" rel="noopener">
+                Read the post <i class="fas fa-external-link-alt fa-xs" aria-hidden="true"></i></a>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% if news.count %}
+<section class="pga-section">
+    <div class="pga-section-head">
+        <div>
+            <span class="pga-eyebrow">announcements</span>
+            <h2>Recent news</h2>
+        </div>
+        <a class="pga-btn pga-btn-sm" href="{% url 'news' %}">News archive
+            <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    {% for article in news.all %}
+    <article class="pga-news-item">
+        <span class="pga-meta">{{ article.date }}</span>
+        <div>
+            <h3>{{ article.title }}</h3>
+            <div class="pga-news-body">{{ article.content|safe }}</div>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endif %}
+
+{% if version.version_str %}
+<div class="pga-version-strip">
+    <div>
+        <span class="pga-eyebrow">current release</span>
+        <strong>pgAdmin 4 v{{ version.version_str }}</strong>
+    </div>
+    <a class="pga-btn pga-btn-primary" href="{% url 'download_index' %}">
+        <i class="fas fa-download" aria-hidden="true"></i> Download</a>
 </div>
+{% endif %}
 
 {% endblock %}
 
+{% block footer %}
+<script>
+/* Install method tabs. */
+document.querySelectorAll('.pga-terminal-tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var name = btn.getAttribute('data-install');
+        var box = btn.closest('.pga-terminal');
+        box.querySelectorAll('.pga-terminal-tabs button').forEach(function (b) {
+            b.classList.toggle('active', b === btn);
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+        var active = null;
+        box.querySelectorAll('.pga-install-panel').forEach(function (p) {
+            p.hidden = p.getAttribute('data-install-panel') !== name;
+            if (!p.hidden) { active = p; }
+        });
+        /* Nothing to copy when the panel is an installer download. */
+        box.setAttribute('data-mode', active && active.tagName === 'PRE' ? 'commands' : 'download');
+    });
+});
+
+/* Copy the commands from whichever panel is showing, without the prompt. */
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var pre = btn.closest('.pga-terminal')
+                     .querySelector('pre.pga-install-panel:not([hidden])');
+        if (!pre || !navigator.clipboard) { return; }
+        var text = pre.innerText.split('\n').map(function (line) {
+            return line.replace(/^(\(pgadmin4\) )?\$ /, '');
+        }).join('\n');
+        navigator.clipboard.writeText(text).then(function () {
+            var was = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> copied';
+            setTimeout(function () { btn.innerHTML = was; }, 1500);
+        });
+    });
+});
+</script>
+{% endblock %}

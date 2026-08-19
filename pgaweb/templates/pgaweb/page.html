@@ -1,6 +1,6 @@
 {% extends "pgaweb/base.html" %}
 
-{#
+{% comment %}
     The standard three column shell: advert rail, content, advert rail.
 
     A CSS grid rather than Bootstrap columns, so the rails are an exact pixel
@@ -10,9 +10,12 @@
 
     Do not put overflow on .ad-rail, and do not constrain its height: either one
     silently stops the advert sticking. See _ads.scss.
-#}
+{% endcomment %}
 
 {% block body %}
+{# Full width content above the shell, for the home page hero. #}
+{% block prelude %}{% endblock %}
+
 <main class="pga-shell{% block shell_class %}{% endblock %}">
 
     <aside class="ad-rail" aria-label="Advertisement">

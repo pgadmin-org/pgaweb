@@ -1,59 +1,97 @@
-{% extends "pgaweb/page.html" %}
+{% extends "pgaweb/base.html" %}
 {% load static %}
 
+{% comment %}
+    The documentation page has its own shell rather than using pgaweb/page.html.
+
+    The left column carries the Sphinx contents above an advert, the body takes
+    the middle at a full measure, and the second advert sits on the right. The
+    old layout put the contents in a col-md-3 inside the col-lg-8 content column,
+    which left the body around 726px on a 1700px screen: too narrow for the
+    tables Sphinx emits, one of which overflowed.
+
+    The whole left column sticks, with the contents scrolling inside it, so the
+    advert stays at the foot of the column rather than scrolling away. Do not put
+    overflow on the advert rail; see _ads.scss.
+
+    Nothing here can add a class to the Sphinx markup: docloader stores three
+    fragments and they are rendered with |safe. All of the styling hangs off what
+    Sphinx itself emits. See _sphinx.scss.
+{% endcomment %}
+
 {% block search_prompt %}Search this document{% endblock %}
+{% block search_placeholder %}Search this document{% endblock %}
 {% block search_fields %}<input type="hidden" name="v" value="{{ page.version.id }}">{% endblock %}
 
 {% block title %}{{ page.title|safe }}{% endblock %}
 
-{% block content %}
-<!-- Navigation bar -->
-<div class="row mb-3">
-    <div class="col-12">
-        <div class="well pga-docheader">
-            <p class="pga-docheaderinfo">This page in other versions:
-                {% if show_latest %}
-                <a href="{% url 'page' page.version.package.slug 'latest' page.file %}">Latest</a> ({% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>{% if forloop.first %}){% endif %}
-                {% if not forloop.last %} | {% endif %}
-                {% endfor %}
-                {% else %}
-                {% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>
-                {% if not forloop.last %} | {% endif %}
-                {% endfor %}
+{% block body %}
+<main class="pga-shell pga-shell-docs">
+
+    <div class="pga-doc-side">
+        <details class="pga-toc" open>
+            <summary>Contents</summary>
+            <div class="pga-doccontents">{{ page.contents|safe }}</div>
+        </details>
+        <aside class="ad-rail" aria-label="Advertisement">
+            {% include "pgaweb/ad.html" %}
+        </aside>
+    </div>
+
+    <div class="pga-main">
+        <div class="pga-docheader">
+            <nav class="pga-docheader-nav" aria-label="Breadcrumb">{{ page.header|safe }}</nav>
+            <div class="pga-docmeta">
+                <span>This page in other versions:
+                    {% if show_latest %}
+                    <a href="{% url 'page' page.version.package.slug 'latest' page.file %}">Latest</a>
+                    ({% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>{% if forloop.first %}){% endif %}{% if not forloop.last %} | {% endif %}{% endfor %}
+                    {% else %}
+                    {% for ver in pages %}<a {% if ver.version.slug == page.version.slug %}class="pga-doccurrent"{% endif %} href="{% url 'page' page.version.package.slug ver.version.slug page.file %}">{{ ver.version.name }}</a>{% if not forloop.last %} | {% endif %}{% endfor %}
+                    {% endif %}
+                </span>
+                {% if page.version.pdf_doc or page.version.epub_doc or page.version.tarball_doc %}
+                <span>This document in other formats:
+                    {% if page.version.pdf_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.pdf">PDF</a>{% endif %}
+                    {% if page.version.pdf_doc %}{% if page.version.epub_doc or page.version.tarball_doc %}|{% endif %}{% endif %}
+                    {% if page.version.epub_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.epub">ePub</a>{% endif %}
+                    {% if page.version.epub_doc %}{% if page.version.tarball_doc %}|{% endif %}{% endif %}
+                    {% if page.version.tarball_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}-docs.tar.gz">Tarball</a>{% endif %}
+                </span>
                 {% endif %}
-            </p>
-            {% if page.version.pdf_doc or page.version.epub_doc or page.version.tarball_doc %}
-            <p class="pga-docheaderinfo">This document in other formats:
-                {% if page.version.pdf_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.pdf">PDF</a>{% endif %}
-                {% if page.version.pdf_doc %}{% if page.version.epub_doc or page.version.tarball_doc %}|{% endif %}{% endif %}
-                {% if page.version.epub_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}.epub">ePub</a>{% endif %}
-                {% if page.version.epub_doc %}{% if page.version.tarball_doc %}|{% endif %}{% endif %}
-                {% if page.version.tarball_doc %}<a href="https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v{{ page.version.name }}/docs/pgadmin4-{{ page.version.name }}-docs.tar.gz">Tarball</a>{% endif %}
-            </p>
-            {% endif %}
-            {{ page.header|safe }}
+            </div>
         </div>
+
         {% if page.version.pre_release %}
-        <p class="warning">
-            <b>Warning:</b> This documentation is for a pre-release version of {{ page.version.package.name }}
-        </p>
-        {% endif %}
-    </div>
-</div>
-
-<!-- Doc content: Contents sidebar | Body -->
-<div class="row">
-    <!-- Contents bar -->
-    <div class="col-md-3">
-        <div class="well pga-doccontents sticky-top sticky-offset">
-            <h2>Contents</h2>
-            {{ page.contents|safe }}
+        <div class="pga-callout pga-callout-warning">
+            <p><strong>Warning:</strong> this documentation is for a pre-release version of
+                {{ page.version.package.name }}.</p>
         </div>
+        {% endif %}
+
+        <div class="pga-inline-ad">{% include "pgaweb/ad.html" %}</div>
+
+        <div class="pga-docbody">{{ page.body|safe }}</div>
+
+        <div class="pga-inline-ad">{% include "pgaweb/ad.html" %}</div>
     </div>
 
-    <!-- Body -->
-    <div class="col-md-9">
-        <div class="pga-docbody">{{ page.body|safe }}</div>
-    </div>
-</div>
+    <aside class="ad-rail" aria-label="Advertisement">
+        <div class="pga-rail-inner">
+            {% include "pgaweb/ad.html" %}
+        </div>
+    </aside>
+
+</main>
+{% endblock %}
+
+{% block footer %}
+<script>
+/* The contents are a sidebar above the lg breakpoint and a disclosure below it,
+   so start collapsed on a narrow screen rather than pushing the body down. */
+(function () {
+    var toc = document.querySelector('.pga-toc');
+    if (toc && window.matchMedia('(max-width: 991.98px)').matches) { toc.open = false; }
+})();
+</script>
 {% endblock %}

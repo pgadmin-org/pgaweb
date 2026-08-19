@@ -118,3 +118,26 @@ p.pga-meta { font-family: var(--font-body); font-size: .8125rem; }
 }
 
 .pga-version-strip strong { display: block; font-size: 1.05rem; font-weight: 600; }
+
+/* Video thumbnails hold a YouTube iframe rather than an icon. */
+.pga-thumb-video {
+    padding: 0;
+    background: #000;
+}
+
+.pga-thumb-video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Running text inside a card, as distinct from the mono .pga-meta labels. */
+.pga-card-text {
+    margin: 0 0 .5rem;
+    font-size: .875rem;
+    color: var(--fg-soft);
+}
+
+/* News bodies arrive as stored HTML. */
+.pga-news-body > :last-child { margin-bottom: 0; }

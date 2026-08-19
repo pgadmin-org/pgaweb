@@ -103,3 +103,10 @@
 }
 
 .pga-tabpanel[hidden] { display: none; }
+
+/* Warning variant of the callout, for pre-release documentation. */
+.pga-callout-warning {
+    background: var(--doc-warning-bg);
+    border-color: var(--doc-warning-border);
+    border-left-color: var(--doc-warning);
+}
