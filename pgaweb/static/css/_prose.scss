@@ -110,3 +110,13 @@
     border-color: var(--doc-warning-border);
     border-left-color: var(--doc-warning);
 }
+
+/* Feed link beside a page heading. */
+.pga-feed-link {
+    margin: .5rem 0 0;
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    color: var(--fg-muted);
+}
+
+.pga-feed-link a { margin-right: .35rem; }

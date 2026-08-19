@@ -4,9 +4,13 @@
 {% block title %}Security{% endblock %}
 
 {% block content %}
+<div class="pga-page-head">
+    <span class="pga-eyebrow">security</span>
     <h1>Security Advisories</h1>
+</div>
 
-    <h2>Reporting a Security Issue</h2>
+<div class="pga-prose">
+<h2>Reporting a Security Issue</h2>
 
     <p>
         If you believe you have found a security issue in the design or code of
@@ -95,4 +99,5 @@
     {% empty %}
     <p>There are currently no known security advisories to display.</p>
     {% endfor %}
+</div>
 {% endblock %}

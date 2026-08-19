@@ -4,9 +4,13 @@
 {% block title %}FAQ{% endblock %}
 
 {% block content %}
+<div class="pga-page-head">
+    <span class="pga-eyebrow">faq</span>
     <h1>FAQ</h1>
+</div>
 
-    {% regroup faqs by category as faq_list %}
+<div class="pga-prose">
+{% regroup faqs by category as faq_list %}
     {% for category in faq_list %}
     <h2>{{ category.grouper }}</h2>
     <ul>
@@ -25,4 +29,5 @@
     {% endfor %}
 
 {% endfor %}
+</div>
 {% endblock %}

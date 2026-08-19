@@ -4,8 +4,12 @@
 {% block title %}Search pgAdmin Docs{% endblock %}
 
 {% block content %}
-<h1>Search pgAdmin Docs</h1>
+<div class="pga-page-head">
+    <span class="pga-eyebrow">search</span>
+    <h1>Search pgAdmin Docs</h1>
+</div>
 
+<div class="pga-prose">
 <div class="search-box p-4 mb-4 rounded-3">
   <form class="d-flex flex-wrap flex-md-nowrap gap-2 align-items-center" action="{% url 'search' %}" method="get">
     <label class="visually-hidden" for="q">Search terms</label>
@@ -45,4 +49,5 @@
 <p>Please enter some search criteria and click the Search button.</p>
 {% endif %}
 {% endif %}
+</div>
 {% endblock %}

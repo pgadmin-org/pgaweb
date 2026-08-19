@@ -3,7 +3,12 @@
 {% block title %}Download{% endblock %}
 
 {% block content %}
-<h1>{{ distribution }}</h1>
+<div class="pga-page-head">
+    <span class="pga-eyebrow">download</span>
+    <h1>{{ distribution }}</h1>
+</div>
+
+<div class="pga-prose">
 <h2>Download</h2>
 <p><b>Maintainer:</b> {{ distribution.maintainer }}</p>
 {{ distribution.description | safe }}
@@ -45,4 +50,5 @@
     </table>
 </div>
 {% endif %}
+</div>
 {% endblock %}
