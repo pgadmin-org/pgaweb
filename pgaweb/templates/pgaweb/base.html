@@ -281,8 +281,7 @@
                 </div>
             </li>
             <li>
-                {# Becomes {% url 'community' %} once the merged page lands in phase 4. #}
-                <a href="{% url 'support_index' %}"
+                <a href="{% url 'community' %}"
                    {% if section == 'community' %}class="current"{% endif %}>Community</a>
             </li>
             <li>
@@ -338,7 +337,7 @@
             <h2>Product</h2>
             <ul>
                 <li><a href="{% url 'features' %}">Features</a></li>
-                <li><a href="{% url 'screenshots' %}">Screenshots</a></li>
+                <li><a href="{% url 'features' %}#screenshots">Screenshots</a></li>
                 <li><a href="{% url 'download_index' %}">Download</a></li>
                 <li><a href="{% url 'page' 'pgadmin4' 'latest' 'index.html' %}">Documentation</a></li>
             </ul>
@@ -346,9 +345,9 @@
         <div>
             <h2>Community</h2>
             <ul>
-                <li><a href="{% url 'support_index' %}">Getting help</a></li>
-                <li><a href="{% url 'support_list' %}">Mailing list</a></li>
-                <li><a href="{% url 'support_issues' %}">Issue tracker</a></li>
+                <li><a href="{% url 'community' %}">Getting help</a></li>
+                <li><a href="{% url 'community' %}#list">Mailing list</a></li>
+                <li><a href="{% url 'community' %}#issues">Issue tracker</a></li>
                 <li><a href="{% url 'security' %}">Security advisories</a></li>
                 <li><a href="{% url 'news' %}">News archive</a></li>
             </ul>
@@ -356,9 +355,9 @@
         <div>
             <h2>Development</h2>
             <ul>
-                <li><a href="{% url 'contributing' %}">Contributing</a></li>
-                <li><a href="{% url 'development_resources' %}">Resources</a></li>
-                <li><a href="{% url 'development_translations' %}">Translations</a></li>
+                <li><a href="{% url 'development_index' %}#contributing">Contributing</a></li>
+                <li><a href="{% url 'development_index' %}#resources">Resources</a></li>
+                <li><a href="{% url 'development_index' %}#translations">Translations</a></li>
                 <li><a href="{% url 'development_team' %}">Team</a></li>
                 <li><a href="{% url 'styleguide_index' page='typography' %}">Style guide</a></li>
             </ul>

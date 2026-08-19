@@ -1,0 +1,205 @@
+{% extends "pgaweb/page.html" %}
+
+{% comment %}
+    Community absorbs what used to be four separate pages: the support
+    introduction, the mailing list, the issue tracker, and the security reporting
+    section that was duplicated across two of them. News, blogs and videos are
+    surfaced here as a tabbed list, though each keeps its own page and feed.
+
+    The old URLs redirect to the anchors here; see pgaweb/urls.py.
+{% endcomment %}
+
+{% block title %}Community{% endblock %}
+
+{% block content %}
+<div class="pga-page-head">
+    <span class="pga-eyebrow">community</span>
+    <h1>Getting help, and helping out</h1>
+    <p class="pga-lead">pgAdmin is built by volunteers from around the world. There is
+        no paid support, but there is an active mailing list, a public issue tracker
+        and a development team that reads both.</p>
+</div>
+
+<div class="pga-with-aside">
+    <nav class="pga-onthispage" aria-label="On this page">
+        <h2>On this page</h2>
+        <a href="#help">Getting help</a>
+        <a href="#lifecycle">Release lifecycle</a>
+        <a href="#list">Mailing list</a>
+        <a href="#issues">Issue tracker</a>
+        <a href="#security">Security issues</a>
+        <a href="#etiquette">Helping us help you</a>
+        <a href="#media">News, blogs and videos</a>
+    </nav>
+
+    <div class="pga-prose">
+
+        <h2 id="help">Getting help</h2>
+        <p>If you have a problem, please check the
+            <a href="{% url 'docs' %}">documentation</a> first, and then search the
+            mailing list archives; between them they cover most of what people run
+            into. If neither answers the question, post to the support mailing list,
+            where other users and the development team will see it.</p>
+
+        <div class="pga-callout">
+            <p><strong>In a hurry?</strong> The <a href="#list">pgadmin-support</a>
+                mailing list is the fastest route to a human. Bugs belong on the
+                <a href="#issues">issue tracker</a>, and anything security related goes
+                to the private address in <a href="#security">security issues</a>.</p>
+        </div>
+
+        <h2 id="lifecycle">Release lifecycle</h2>
+        <p>pgAdmin follows a rolling release policy: only the latest release is
+            supported at any time. There are no back-branches and no long-term stable
+            versions, so fixes and new features land in the next release rather than
+            being backported.</p>
+        <p>The version number uses a major.minor format. A new release normally
+            increments the minor number, though a change large enough to alter how the
+            application feels to use may increment the major number instead. We aim to
+            release roughly every six weeks, with the timing shifting around major
+            holidays such as Christmas, New Year and Diwali, and we make out-of-cycle
+            releases when a security fix calls for one.</p>
+
+        <h2 id="list">Mailing list</h2>
+        <p>The <code>pgadmin-support@lists.postgresql.org</code> list is intended for
+            end user support. If you believe you have found a bug you are welcome to
+            confirm it on the list first, but the issue tracker is where it needs to
+            end up.</p>
+        <ul>
+            <li>Subscribe and unsubscribe through the
+                <a href="https://lists.postgresql.org/manage/">PGLister management</a>
+                interface.</li>
+            <li>To leave quickly, email
+                <a href="mailto:pgadmin-support-unsubscribe@lists.postgresql.org">pgadmin-support-unsubscribe@lists.postgresql.org</a>.</li>
+            <li>Everything sent to the list is archived publicly and permanently in the
+                <a href="https://www.postgresql.org/list/pgadmin-support/">PostgreSQL
+                archives</a>.</li>
+        </ul>
+
+        <h2 id="issues">Issue tracker</h2>
+        <p>Bugs and other issues are usually fixed within a very short time of being
+            reported. Some are outside our control, and some would take more effort to
+            resolve than the problem warrants, in which case they may stay open.</p>
+        <p>Before logging anything new, please check the
+            <a href="https://github.com/pgadmin-org/pgadmin4/issues">existing issue
+            list</a> on the <a href="https://github.com/pgadmin-org/pgadmin4">GitHub
+            project</a>; if you find one that matches, add whatever extra detail you
+            can rather than opening a duplicate. When you do
+            <a href="https://github.com/pgadmin-org/pgadmin4/issues/new">open an
+            issue</a>, try to include as much of the following as possible:</p>
+        <ul>
+            <li>The version of pgAdmin you are running, and where you obtained it.</li>
+            <li>Whether you are running in server or desktop mode.</li>
+            <li>The steps needed to reproduce the problem, with a simple schema and
+                sample data if that is what it takes. This may be sent privately
+                <strong>on request from a developer</strong> if you would rather not
+                post code or data to a public list.</li>
+            <li>The operating system and version.</li>
+            <li>Any log output. The <a href="{% url 'faq' %}#8">FAQ</a> explains how to
+                turn logging up.</li>
+        </ul>
+
+        <h2 id="security">Security issues</h2>
+        <p>To report a security issue in pgAdmin, pgAgent or this website, email
+            <strong>security (at) pgadmin (dot) org</strong>. That address is for
+            reporting problems you believe you have found in the design or the code,
+            not for asking security questions, which belong on the mailing list.</p>
+        <p>Advisories for past issues, with the affected versions and the releases that
+            fixed them, are published on the
+            <a href="{% url 'security' %}">security advisories</a> page.</p>
+
+        <h2 id="etiquette">Helping us help you</h2>
+        <p>General questions and discussion belong on the mailing list, and will be
+            deleted if they are logged on the bug tracker instead.</p>
+        <p>Please <strong>do not</strong> email a developer directly: they might miss
+            it, or might not be the right person at all, whereas the list makes sure
+            your question is seen and answered in a timely fashion. Eric Raymond's
+            <a href="http://www.catb.org/~esr/faqs/smart-questions.html">How to ask
+            questions the smart way</a> remains the best short guide to getting a
+            useful answer.</p>
+
+        <h2 id="media">News, blogs and videos</h2>
+
+        <div class="pga-tabs" role="tablist" aria-label="News, blogs and videos">
+            <button role="tab" class="active" data-tab="news" aria-selected="true">News</button>
+            <button role="tab" data-tab="blogs" aria-selected="false">Blog posts</button>
+            <button role="tab" data-tab="videos" aria-selected="false">Videos</button>
+        </div>
+
+        <div class="pga-tabpanel" data-panel="news">
+            {% for article in news %}
+            <article class="pga-news-item">
+                <span class="pga-meta">{{ article.date }}</span>
+                <div>
+                    <h3>{{ article.title }}</h3>
+                    <div class="pga-news-body">{{ article.content|safe }}</div>
+                </div>
+            </article>
+            {% empty %}
+            <p>No news at the moment.</p>
+            {% endfor %}
+            <p><a class="pga-btn pga-btn-sm" href="{% url 'news' %}">News archive
+                <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
+        </div>
+
+        <div class="pga-tabpanel" data-panel="blogs" hidden>
+            {% for blog in blogs %}
+            <article class="pga-news-item">
+                <span class="pga-meta">{{ blog.date }}</span>
+                <div>
+                    <h3><a href="{{ blog.url }}" target="_blank" rel="noopener">{{ blog.title }}</a></h3>
+                    <p class="pga-card-text">{{ blog.summary|safe|striptags|truncatewords:40 }}</p>
+                    <span class="pga-meta">{{ blog.author }}</span>
+                </div>
+            </article>
+            {% empty %}
+            <p>No blog posts at the moment.</p>
+            {% endfor %}
+            <p><a class="pga-btn pga-btn-sm" href="{% url 'blogs' %}">All posts
+                <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
+        </div>
+
+        <div class="pga-tabpanel" data-panel="videos" hidden>
+            <div class="pga-grid-2">
+                {% for video in videos %}
+                <article class="pga-media-card">
+                    <div class="pga-thumb pga-thumb-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/{{ video.youtube_id }}"
+                                title="Video: {{ video.title }}" frameborder="0" loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <span class="pga-meta">{{ video.date }}{% if video.publisher %} &middot; {{ video.publisher }}{% endif %}</span>
+                    <h3>{{ video.title }}</h3>
+                </article>
+                {% empty %}
+                <p>No videos at the moment.</p>
+                {% endfor %}
+            </div>
+            <p><a class="pga-btn pga-btn-sm" href="{% url 'videos' %}">All videos
+                <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
+        </div>
+
+        <p class="pga-meta">Want your pgAdmin video or blog post listed here? Email
+            webmaster (at) pgadmin (dot) org.</p>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script>
+document.querySelectorAll('.pga-tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var name = btn.getAttribute('data-tab');
+        btn.closest('.pga-tabs').querySelectorAll('button').forEach(function (b) {
+            b.classList.toggle('active', b === btn);
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+        document.querySelectorAll('.pga-tabpanel').forEach(function (p) {
+            p.hidden = p.getAttribute('data-panel') !== name;
+        });
+    });
+});
+</script>
+{% endblock %}

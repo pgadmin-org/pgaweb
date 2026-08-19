@@ -1,11 +1,22 @@
 {% extends "pgaweb/page.html" %}
 
+{% comment %}
+    Development absorbs what were three separate pages: resources, translations
+    and contributing. Team and the style guide keep their own pages. The old
+    URLs redirect to the anchors here; see pgaweb/urls.py.
+
+    The prose is carried over unchanged; only the structure around it is new,
+    and each former page's h2 headings are demoted to h3 so that the pages
+    themselves become the h2 sections.
+{% endcomment %}
+
 {% block title %}Development{% endblock %}
 
 {% block content %}
-    <h1>Development</h1>
-
-    <p>pgAdmin is a community project, relying on contributions from developers
+<div class="pga-page-head">
+    <span class="pga-eyebrow">development</span>
+    <h1>Building pgAdmin</h1>
+    <p class="pga-lead">pgAdmin is a community project, relying on contributions from developers
         around the world for bug fixes and new features. Anyone is welcome to
         join the project and contribute as much or as little as they like.
         pgAdmin is written in <a href="https://www.python.org/">Python</a> and
@@ -15,19 +26,198 @@
         development to hack the code. The more experienced pgAdmin developers
         will also be able to lend a guiding hand to new developers, so don't be
         afraid to get stuck in!</p>
+</div>
 
-    <p>The pages in this section of the website should provide you with all the
+<div class="pga-with-aside">
+    <nav class="pga-onthispage" aria-label="On this page">
+        <h2>On this page</h2>
+        <a href="#overview">Overview</a>
+        <a href="#contributing">Contributing</a>
+        <a href="#resources">Resources</a>
+        <a href="#translations">Translations</a>
+        <a href="#team">Team</a>
+    </nav>
+
+    <div class="pga-prose">
+
+        <h2 id="overview">Overview</h2>
+<p>The pages in this section of the website should provide you with all the
         information you need to get started as a new developer, including
-        <a href="{% url 'development_resources' %}#git">GIT access</a>, the
-        developers <a href="{% url 'development_resources' %}#list">mailing
+        <a href="{% url 'development_index' %}#resources#git">GIT access</a>, the
+        developers <a href="{% url 'development_index' %}#resources#list">mailing
         list</a>, the <a href="{% url 'development_team' %}">Development
         Team</a> structure, the
-        <a href="{% url 'development_resources' %}#todo">TODO list</a> and the
-        <a href="{% url 'development_resources' %}#changelog">change log</a>.
+        <a href="{% url 'development_index' %}#resources#todo">TODO list</a> and the
+        <a href="{% url 'development_index' %}#resources#changelog">change log</a>.
     </p>
 
     <p>If you are not a programmer, you can still get involved in the project if
         you wish - as a
         <a href="{% url 'docs' %}pgadmin4/dev/translations.html">translator</a>,
         or helping the developers with testing or documentation.</p>
+
+        <h2 id="contributing">Contributing</h2>
+<p>pgAdmin is a voluntary project created and managed by contributors from around the world. The project can only live
+    and develop with your help. Do not hesitate to get involved.</p>
+
+<p>If you would like to contribute new features and/or bug fixes, please visit the
+    <a href="{% url 'development_index' %}">development</a> page.</p>
+
+        <h2 id="resources">Resources</h2>
+<h2 id="git">GIT access</h2>
+
+    <p>pgAdmin is available subject to the terms of the
+        <a href="{% url 'licence' %}">licence</a>. Access to the
+        repository is available through at
+        <a href="https://github.com/pgadmin-org/pgadmin4">GitHub</a>.
+        An outline of a typical workflow for making and submitting a change to
+        pgAdmin can be found in the
+        <a href="/docs/pgadmin4/development/submitting_pull_requests.html">documentation</a>.
+    </p>
+    <p>Instructions for building pgAdmin from source, and notes on other
+        useful development information can be found in the
+        <a href="https://github.com/pgadmin-org/pgadmin4/blob/master/README.md">README.md
+        file</a> in the source tree. Additional information can also be found in the
+        <a href="/docs/pgadmin4/development/contributions.html">documentation</a>.
+    </p>
+
+    <h2 id="list">Mailing List</h2>
+
+    <p>The pgadmin-hackers mailing list is intended for developers who wish to
+        contribute to pgAdmin project. You are more than welcome to subscribe,
+        but please remember to use
+        <a href="{% url 'community' %}#list">pgadmin-support</a> list for end
+        user support issues.</p>
+
+    <p>To manage your subscription to the mailing list, including subscribing
+        and unsubscribing, visit the
+        <a href="https://lists.postgresql.org/manage/">PGLister Management</a>
+        web interface.</p>
+
+    <p>To unsubscribe quickly you can also send an email to:
+        <a href="mailto:pgadmin-hackers-unsubscribe@lists.postgresql.org">pgadmin-hackers-unsubscribe@lists.postgresql.org</a>.
+    </p>
+
+    <p>Messages sent to the list are publicly and permanently archived at the
+        <a href="http://archives.postgresql.org/pgadmin-hackers/">PostgreSQL
+        Archives</a>.</p>
+
+    <h2 id="todo">TODO List</h2>
+
+    <p>The TODO list is a list of features that are planned or have been
+        requested for inclusion in a future version of pgAdmin. As pgAdmin is a
+        volunteer project, there is no guarantee that any feature will be
+        implemented in any particular release, but where we expect or aim to
+        do so, the feature will be tagged with a target version.</p>
+
+    <p>You can view the
+        <a href="https://github.com/orgs/pgadmin-org/projects/3">TODO list</a>
+        on the pgAdmin 4
+        <a href="https://github.com/pgadmin-org/pgadmin4">GitHub project</a>.
+    </p>
+
+    <h2 id="changelog">Change Log</h2>
+
+    <p>The change log is a record of the notable changes made to pgAdmin by the
+        various developers, published in the release notes section of the
+        documentation. It is a manually maintained list, and as such may not
+        include details of every minor change that has ever been made. If you
+        need that level of detail, please check the commit messages in the GIT
+        repository.</p>
+
+    <p>You can view the
+        <a href="https://www.pgadmin.org/docs/pgadmin4/development/release_notes.html">change
+        log</a> on the website.</p>
+
+        <h2 id="translations">Translations</h2>
+<p>pgAdmin 4 has been translated into a number of different languages. The table
+    below lists the languages for which we have message catalogs and their
+    current status (from the head of the source tree in Git). Data is updated
+    hourly, and is subject to caching.</p>
+
+<p>If you would like to add support for a new language, or update one that
+    appears to be unmaintained, first, please send an email to
+    <a href="mailto:pgadmin-hackers@postgresql.org">pgadmin-hackers@postgresql.org</a>
+    in order to ensure your efforts are coordinated with the team and not
+    duplicated or otherwise wasted.
+    </p>
+
+<p>Once it's time to begin working on your translation, grab a copy of the
+    <a href="https://github.com/postgres/pgadmin4/blob/master/web/pgadmin/messages.pot">
+    template message catalog</a>, load it into a tool such as
+    <a href="https://poedit.net">POEDIT</a>, translate the contents, then save
+    the .po file and send it to the pgadmin-hackers mailing list.</p>
+
+    <p>The <a href="https://github.com/postgres/pgadmin4/blob/master/web/pgadmin/messages.pot">
+    template message catalog</a> currently contains <strong>{{ total_messages }}
+    </strong>messages.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+      <th colspan="8" class="text-center">Messages</th>
+      <th colspan="1"></th>
+    </tr>
+    <tr>
+      <th scope="col">Language</th>
+      <th scope="col">Revised</th>
+      <th scope="col">Translator</th>
+      <th scope="col" class="text-center" colspan="2">Total</th>
+      <th scope="col" class="text-center" colspan="2">Translated</th>
+      <th scope="col" class="text-center" colspan="2">Fuzzy</th>
+      <th scope="col" class="text-center" colspan="2">Untranslated</th>
+      <th scope="col" class="text-center" colspan="2">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if catalogs|length %}
+    {% for catalog in catalogs %}
+    <tr>
+      <th scope="row"><a href="https://github.com/postgres/pgadmin4/blob/master/web/pgadmin/translations/{{ catalog.file }}">{{ catalog.language }}</a></th>
+      <td>{{ catalog.revised }}</td>
+      <td>{{ catalog.translator }}</td>
+      <td class="text-right">{{ catalog.total_messages }}</td>
+      <td class="text-right">{{ catalog.total_messages_pct|floatformat:"2" }}%</td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages }}</span></td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.translated_messages_pct|floatformat:"2" }}%</span></td>
+      <td class="text-right">{{ catalog.fuzzy_messages }}</td>
+      <td class="text-right">{{ catalog.fuzzy_messages_pct|floatformat:"2" }}%</td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages }}</span></td>
+      <td class="text-right"><span class="{{ catalog.warning_class }}">{{ catalog.untranslated_messages_pct|floatformat:"2" }}%</span></td>
+      <td class="text-center">{{ catalog.status_icon|safe }}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+      <td colspan="8" class="text-center"><strong>No catalogs were found.</strong></td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
+
+<p>The percentages shown are calculated as:</p>
+<ul>
+  <li><strong>Total:</strong> The percentage of messages in the catalog, when compared to the template.</li>
+  <li><strong>Translated:</strong> The percentage of messages in the catalog that have a translation (regardless of whether they're fuzzy).</li>
+  <li><strong>Fuzzy:</strong> The percentage of messages in the catalog that are fuzzy.</li>
+  <li><strong>Untranslated:</strong> The percentage of messages in the catalog that do not have a translation.</li>
+</ul>
+
+<p>The status is calculated as:</p>
+<ul class="fa-ul">
+  <li><span class="fa-li"><i class="fas fa-check-circle text-success" aria-hidden="true"></i></span> The percentage of messages translated is greater than or equal to 95%.</li>
+  <li><span class="fa-li"><i class="fas fa-question-circle text-warning" aria-hidden="true"></i></span> The percentage of messages translated is greater than or equal to 75% and less than 95%.</li>
+  <li><span class="fa-li"><i class="fas fa-exclamation-circle text-danger" aria-hidden="true"></i></span> The percentage of messages translated is less than 75%.</li>
+</ul>
+
+        <h2 id="team">Team</h2>
+        <p>pgAdmin is maintained by a team of volunteers. The
+            <a href="{% url 'development_team' %}">team page</a> lists everyone
+            currently involved, and the
+            <a href="{% url 'styleguide_index' page='typography' %}">style guide</a>
+            documents the application's own design system.</p>
+
+    </div>
+</div>
 {% endblock %}

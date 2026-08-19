@@ -44,12 +44,8 @@ def ads_txt(request):
         content_type='text/plain')
 
 
-def contributing(request):
-    return render(request, 'pgaweb/contributing.html', {})
-
-
 def features(request):
-    return render(request, 'pgaweb/features.html', {})
+    return render(request, 'pgaweb/features.html', {'section': 'features'})
 
 
 def licence(request):
@@ -60,24 +56,20 @@ def privacy_policy(request):
     return render(request, 'pgaweb/privacy_policy.html', {})
 
 
-def screenshots(request):
-    return render(request, 'pgaweb/screenshots.html', {})
-
-
 # Handle the Development level pages
 def development_index(request):
-    return render(request, 'pgaweb/development/index.html', {})
-
-
-def development_resources(request):
-    return render(request, 'pgaweb/development/resources.html', {})
+    # Resources, translations and contributing were merged into this page, so it
+    # needs the translation catalogue analysis that the translations view did.
+    context = translation_status()
+    context['section'] = 'development'
+    return render(request, 'pgaweb/development/index.html', context)
 
 
 def development_team(request):
     return render(request, 'pgaweb/development/team.html', {})
 
 
-def development_translations(request):
+def translation_status():
     base_path = os.path.join(settings.PGADMIN_TREE_PATH, 'web', 'pgadmin')
 
     # Get the list of languages from pgAdmin
@@ -139,7 +131,7 @@ def development_translations(request):
 
     context['catalogs'] = sorted(catalogs, key=lambda k: k['language'])
 
-    return render(request, 'pgaweb/development/translations.html', context)
+    return context
 
 
 # Handle the Styleguide pages
@@ -193,17 +185,15 @@ def styleguide_index(request, page='typography', section=''):
     return response
 
 
-# Handle the Support level pages
-def support_index(request):
-    return render(request, 'pgaweb/support/index.html', {})
-
-
-def support_issues(request):
-    return render(request, 'pgaweb/support/issues.html', {})
-
-
-def support_list(request):
-    return render(request, 'pgaweb/support/list.html', {})
+# Community absorbs what were the three support pages, and surfaces the news,
+# blogs and videos as a tabbed list. The old URLs redirect to anchors here.
+def community(request):
+    news = News.objects.filter(display=True, disable=False)[:5]
+    blogs = Blog.objects.filter(disable=False, display=True)[:5]
+    videos = Video.objects.filter(disable=False, display=True)[:4]
+    return render(request, 'pgaweb/community.html',
+                  {'news': news, 'blogs': blogs, 'videos': videos,
+                   'section': 'community'})
 
 
 # Error handlers

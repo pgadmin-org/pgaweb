@@ -1,42 +1,72 @@
 {% extends "pgaweb/page.html" %}
+{% load static %}
+
+{% comment %}
+    Features absorbs the screenshots gallery, which used to be its own page.
+    /screenshots/ redirects to the anchor here; see pgaweb/urls.py.
+
+    The prose is carried over unchanged from the two originals. Only the
+    structure around it is new, plus an id on each heading so that the
+    on-this-page navigation can reach it.
+{% endcomment %}
 
 {% block title %}Features{% endblock %}
 
+{% block scripts %}
+<link rel="stylesheet" href="{% static 'COMPILED/photoswipe/photoswipe.css' %}?{{gitrev}}">
+{% endblock %}
+
 {% block content %}
-
-<h1>Features</h1>
-
-<p>pgAdmin has a huge array of features and by far the best way to see them all
+<div class="pga-page-head">
+    <span class="pga-eyebrow">features</span>
+    <h1>Everything PostgreSQL, in one place</h1>
+    <p class="pga-lead">pgAdmin has a huge array of features and by far the best way to see them all
     is to <a href="{% url 'download_index' %}">download</a> a copy and give it a
     try. Here's a brief list to give you an idea of its capabilities:</p>
+</div>
 
-<h2>Multiplatform</h2>
+<div class="pga-with-aside">
+    <nav class="pga-onthispage" aria-label="On this page">
+        <h2>On this page</h2>
+        <a href="#multiplatform">Multiplatform</a>
+        <a href="#designed-for-multiple-postgresql-versions-and-derivatives">Designed for multiple PostgreSQL versions and derivatives</a>
+        <a href="#extensive-documentation">Extensive documentation</a>
+        <a href="#multiple-deployment-models">Multiple deployment models</a>
+        <a href="#tools">Tools</a>
+        <a href="#routine-maintenance">Routine maintenance</a>
+        <a href="#create-view-and-edit-all-common-postgresql-objects">Create, view and edit all common PostgreSQL objects</a>
+        <a href="#multibyte-support">Multibyte support</a>
+        <a href="#screenshots">Screenshots</a>
+    </nav>
+
+    <div class="pga-prose">
+<h2 id="multiplatform">Multiplatform</h2>
 <ul>
   <li>Microsoft Windows &trade;</li>
   <li>Linux</li>
   <li>macOS</li>
 </ul>
 
-<h2>Designed for multiple PostgreSQL versions and derivatives</h2>
+<h2 id="designed-for-multiple-postgresql-versions-and-derivatives">Designed for multiple PostgreSQL versions and derivatives</h2>
 <p>pgAdmin supports the versions of
 <a href="https://www.postgresql.org/support/versioning/">PostgreSQL</a> and
 <a href="https://www.enterprisedb.com/product-compatibility">EDB Postgres
 Advanced Server</a> that are in support at the time of the release of any
 given version of pgAdmin.</p>
 
-<h2>Extensive documentation</h2>
+<h2 id="extensive-documentation">Extensive documentation</h2>
 <ul>
   <li>pgAdmin application documentation</li>
   <li>PostgreSQL documentation links</li>
 </ul>
 
-<h2>Multiple deployment models</h2>
+<h2 id="multiple-deployment-models">Multiple deployment models</h2>
 <ul>
   <li>Desktop mode, using a purpose built runtime</li>
   <li>Server mode, supporting multiple users over the web</li>
 </ul>
 
-<h2>Tools</h2>
+<h2 id="tools">Tools</h2>
 <ul>
   <li>Powerful query tool with colour syntax highlighting</li>
   <li>Fast datagrid for display/entry of data</li>
@@ -47,7 +77,7 @@ given version of pgAdmin.</p>
   <li>ERD Tool for designing and documenting schemas</li>
 </ul>
 
-<h2>Routine maintenance</h2>
+<h2 id="routine-maintenance">Routine maintenance</h2>
 <ul>
   <li>Auto-vacuum management</li>
   <li>Monitoring dashboard</li>
@@ -55,7 +85,7 @@ given version of pgAdmin.</p>
   <li>SQL/shell/batch job scheduling agent</li>
 </ul>
 
-<h2>Create, view and edit all common PostgreSQL objects</h2>
+<h2 id="create-view-and-edit-all-common-postgresql-objects">Create, view and edit all common PostgreSQL objects</h2>
 <p>Objects are displayed with their SQL definition, and a user friendly list of
     properties. Dependent, and dependency objects may also be browsed, and
     object statistics viewed where appropriate.</p>
@@ -117,7 +147,7 @@ given version of pgAdmin.</p>
   <li>pgAgent Steps</li>
 </ul>
 
-<h2>Multibyte support</h2>
+<h2 id="multibyte-support">Multibyte support</h2>
 <p>pgAdmin supports most PostgreSQL server-side encodings:</p>
 <ul>
   <li>SQL_ASCII</li>
@@ -134,4 +164,124 @@ given version of pgAdmin.</p>
   <li>TCVN</li>
   <li>WIN874</li>
 </ul>
+
+        <h2 id="screenshots">Screenshots</h2>
+        <p>Click any screenshot to view it full screen. Use the arrow keys or swipe
+            to move between them.</p>
+<div class="screenshot-gallery" id="gallery">
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-light.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-light.png' %}" alt="Welcome screen, standard theme" loading="lazy">
+        <div class="screenshot-caption">Welcome screen, standard theme</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-dark.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-welcome-dark.png' %}" alt="Welcome screen, dark theme" loading="lazy">
+        <div class="screenshot-caption">Welcome screen, dark theme</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-dashboard.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-dashboard.png' %}" alt="Server dashboard" loading="lazy">
+        <div class="screenshot-caption">Server dashboard</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-activity.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-activity.png' %}" alt="Activity monitoring" loading="lazy">
+        <div class="screenshot-caption">Activity monitoring</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-properties.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-properties.png' %}" alt="Object properties" loading="lazy">
+        <div class="screenshot-caption">Object properties</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-docking.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-docking.png' %}" alt="Dockable UI" loading="lazy">
+        <div class="screenshot-caption">Dockable UI</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-viewdata.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-viewdata.png' %}" alt="Query tool & data editor" loading="lazy">
+        <div class="screenshot-caption">Query tool & data editor</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-geometry.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-geometry.png' %}" alt="Geometry support" loading="lazy">
+        <div class="screenshot-caption">Geometry support</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-history.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-history.png' %}" alt="Query tool history" loading="lazy">
+        <div class="screenshot-caption">Query tool history</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-explain.png' %}"
+       data-pswp-width="2796" data-pswp-height="2198" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-explain.png' %}" alt="Graphical EXPLAIN" loading="lazy">
+        <div class="screenshot-caption">Graphical EXPLAIN</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-debugger.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-debugger.png' %}" alt="Procedural language debugger" loading="lazy">
+        <div class="screenshot-caption">Procedural language debugger</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-grantwizard.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-grantwizard.png' %}" alt="Grant wizard" loading="lazy">
+        <div class="screenshot-caption">Grant wizard</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-backup.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-backup.png' %}" alt="Backup" loading="lazy">
+        <div class="screenshot-caption">Backup</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-preferences.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-preferences.png' %}" alt="Preferences" loading="lazy">
+        <div class="screenshot-caption">Preferences</div>
+    </a>
+    <a href="{% static 'COMPILED/assets/img/screenshots/pgadmin4-search.png' %}"
+       data-pswp-width="2778" data-pswp-height="2194" class="screenshot-item" target="_blank">
+        <img src="{% static 'COMPILED/assets/img/screenshots/pgadmin4-search.png' %}" alt="Object search" loading="lazy">
+        <div class="screenshot-caption">Object search</div>
+    </a>
+</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="module">
+/* Served from our own static tree rather than a CDN: the CDN version was
+   unpinned, so an upstream change could break the gallery unannounced. */
+import PhotoSwipeLightbox from '{% static "COMPILED/photoswipe/photoswipe-lightbox.esm.min.js" %}';
+import PhotoSwipe from '{% static "COMPILED/photoswipe/photoswipe.esm.min.js" %}';
+
+const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery',
+    children: 'a',
+    pswpModule: PhotoSwipe,
+
+    // Show zoom button
+    zoom: true,
+
+    // Close on background click
+    bgClickAction: 'close',
+
+    // Keyboard navigation
+    arrowKeys: true,
+    escKey: true,
+
+    // Image settings
+    imageClickAction: 'zoom-or-close',
+    tapAction: 'zoom-or-close',
+
+    // Padding around image
+    paddingFn: () => ({ top: 30, bottom: 30, left: 30, right: 30 }),
+});
+
+lightbox.init();
+
+// Show gallery once ready
+document.getElementById('gallery').classList.add('loaded');
+</script>
 {% endblock %}
