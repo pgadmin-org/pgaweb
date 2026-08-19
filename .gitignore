@@ -38,3 +38,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# Claude Code working files
+.claude/worktrees/
+.claude/mockups/
+.claude/plans/
+.claude/specs/
