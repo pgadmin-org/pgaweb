@@ -242,8 +242,17 @@
             var l = document.createElement('link');
             l.rel = 'stylesheet';
             l.href = '/static/COMPILED/assets/css/main_uncritical.css?{{gitrev}}';
-            var h = document.getElementsByTagName('head')[0];
-            h.parentNode.insertBefore(l, h);
+            /*
+             * Appended to the head, so that it comes after main.css in document
+             * order and therefore wins ties in the cascade. This used to insert
+             * the link *before* the head element, which put the deferred
+             * stylesheet ahead of the critical one: any rule of equal
+             * specificity in it silently lost. That is how the dark theme
+             * tokens were being beaten by the light ones, since the critical
+             * step puts :root in main.css and [data-bs-theme="dark"] in the
+             * deferred file.
+             */
+            document.head.appendChild(l);
         };
         var raf = requestAnimationFrame || mozRequestAnimationFrame ||
             webkitRequestAnimationFrame || msRequestAnimationFrame;
