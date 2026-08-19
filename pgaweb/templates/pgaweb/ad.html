@@ -1,5 +1,16 @@
-<!-- Ad placeholder - ads load only after cookie consent -->
-<!-- Size is set dynamically by loadAds() based on viewport width -->
-<div class="ad-placeholder" aria-hidden="true">
-    <!-- AdSense will be injected here by loadAds() after consent -->
+{% comment %}
+Ad placeholder. Adverts are injected here by loadAds() in base.html, which reads
+the slot from the data attributes below: the desktop and mobile units are
+different sizes and therefore different AdSense units.
+
+Both rails currently share one desktop unit and one mobile unit, which means the
+two positions cannot be told apart in AdSense reporting. Create a second pair of
+units in AdSense and pass them in per rail, as:
+
+    include "pgaweb/ad.html" with slot_desktop="1234567890" slot_mobile="0987654321"
+{% endcomment %}
+<div class="ad-placeholder"
+     data-ad-slot-desktop="{{ slot_desktop|default:'4114194323' }}"
+     data-ad-slot-mobile="{{ slot_mobile|default:'1132526293' }}"
+     aria-hidden="true">
 </div>

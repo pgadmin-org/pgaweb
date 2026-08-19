@@ -15,6 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <script>
     window.addEventListener("load", function() {
+        // The consent library comes from a third party CDN and is a popular
+        // target for blocking extensions. If it is missing we must still serve
+        // adverts, non-personalised, rather than silently serving none.
+        if (!window.cookieconsent) {
+            loadAds(false);
+            return;
+        }
+
         // Detect theme for cookie consent colors
         var isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
         var palette = isDarkMode ? {
@@ -41,19 +49,27 @@
             },
             revokable: true,
             onInitialise: function(status) {
-                if (status === cookieconsent.status.allow) {
+                var allowed = status === cookieconsent.status.allow;
+                if (allowed) {
                     loadAnalytics();
-                    loadAds();
                 }
+                // Adverts load either way; only the personalisation depends on
+                // consent. Previously nothing loaded at all until a visitor
+                // pressed Accept, so everyone who ignored the banner saw two
+                // empty rails and earned nothing.
+                loadAds(allowed);
             },
             onStatusChange: function(status) {
                 if (status === cookieconsent.status.allow) {
                     loadAnalytics();
-                    loadAds();
+                    // Ads already on the page cannot be upgraded in place; the
+                    // next page view picks up personalisation.
+                    loadAds(true);
                 } else {
                     // Disable analytics if declined
                     window['ga-disable-G-MKBV3S878F'] = true;
                     window.pgawebCookiesAllowed = false;
+                    loadAds(false);
                 }
             }
         });
@@ -81,49 +97,75 @@
         gtag('config', 'G-MKBV3S878F');
     }
 
-    function loadAds() {
+    var PGAWEB_AD_CLIENT = 'ca-pub-7509009547019933';
+
+    /*
+     * Load the AdSense units.
+     *
+     * personalised: true once the visitor has accepted cookies, false when they
+     * have declined or have not yet chosen. Without consent we ask AdSense for
+     * non-personalised adverts, which earn less than personalised ones but a
+     * great deal more than the nothing we served before.
+     */
+    function loadAds(personalised) {
         // Only load ads once
         if (window.pgawebAdsLoaded) return;
+
+        var adPlaceholders = document.querySelectorAll('.ad-placeholder');
+        if (!adPlaceholders.length) return;
+
         window.pgawebAdsLoaded = true;
 
-        // Determine if we're on mobile (below Bootstrap lg breakpoint)
+        window.adsbygoogle = window.adsbygoogle || [];
+        if (!personalised) {
+            // Must be set before the first push().
+            window.adsbygoogle.requestNonPersonalizedAds = 1;
+        }
+
+        // The AdSense tag belongs on the page exactly once. It used to be
+        // appended inside the loop below, so a page with two rails loaded the
+        // whole library twice and re-initialised it over the filled slot.
+        var adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' +
+            PGAWEB_AD_CLIENT;
+        adScript.crossOrigin = 'anonymous';
+        document.head.appendChild(adScript);
+
+        // Determine if we're on mobile (below Bootstrap lg breakpoint). The unit
+        // is fixed once rendered, so this is decided at render time and not
+        // revisited.
         var isMobile = window.innerWidth < 992;
 
-        // Find all ad placeholders and load them
-        var adPlaceholders = document.querySelectorAll('.ad-placeholder');
         adPlaceholders.forEach(function(placeholder) {
-            // Create the AdSense script
-            var adScript = document.createElement('script');
-            adScript.async = true;
-            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7509009547019933';
-            adScript.crossOrigin = 'anonymous';
-            placeholder.appendChild(adScript);
+            // Each rail carries its own slot, so that they can be separate
+            // AdSense units and be told apart in reporting.
+            var slot = placeholder.getAttribute(
+                isMobile ? 'data-ad-slot-mobile' : 'data-ad-slot-desktop');
+            if (!slot) return;
 
-            // Create the ad unit - different format for mobile vs desktop
             var ins = document.createElement('ins');
             ins.className = 'adsbygoogle';
-            ins.setAttribute('data-ad-client', 'ca-pub-7509009547019933');
+            ins.setAttribute('data-ad-client', PGAWEB_AD_CLIENT);
+            ins.setAttribute('data-ad-slot', slot);
+            ins.style.display = 'inline-block';
 
             if (isMobile) {
                 // 320x50 mobile leaderboard banner
-                ins.style.display = 'inline-block';
                 ins.style.width = '320px';
                 ins.style.height = '50px';
-                ins.setAttribute('data-ad-slot', '1132526293');
                 placeholder.style.width = '320px';
                 placeholder.style.height = '50px';
             } else {
-                // Skyscraper ad for desktop
-                ins.style.display = 'inline-block';
+                // 160x600 wide skyscraper
                 ins.style.width = '160px';
                 ins.style.height = '600px';
-                ins.setAttribute('data-ad-slot', '4114194323');
             }
 
             placeholder.appendChild(ins);
 
             // Push the ad
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            window.adsbygoogle.push({});
         });
     }
     </script>

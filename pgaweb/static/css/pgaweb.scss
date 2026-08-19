@@ -1102,7 +1102,16 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
     /* Desktop: left ad - content - right ad in a row */
     @media (min-width: 992px) {
         flex-wrap: nowrap !important;
-        align-items: flex-start;
+
+        /*
+         * The advert columns must be as tall as the row, not as tall as their own
+         * contents, or the sticky advert inside them has no range to stick
+         * within and simply scrolls away with the page. This was previously
+         * align-items: flex-start, which sized each column to its 600px advert:
+         * on a 13,000px documentation page the rails left the viewport after
+         * about a screen and never came back.
+         */
+        align-items: stretch;
     }
 
     /* Ensure nested rows inside content use normal Bootstrap behavior */
@@ -1149,13 +1158,18 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
         }
     }
 
+    /*
+     * Neither rail may clip its overflow: overflow other than visible turns the
+     * column into its own scroll container, which breaks the sticky advert
+     * inside it even once the column is full height. The overflow it was
+     * guarding against is dealt with by matching .ad-sidebar's max-width to the
+     * column width instead.
+     */
     .ad-col-left {
         order: 1;
-        overflow: hidden; /* Clip overflow toward content */
 
         @media (max-width: 991.98px) {
             order: 1; /* Top on mobile */
-            overflow: visible;
         }
 
         .ad-sidebar {
@@ -1170,11 +1184,9 @@ html[data-theme="dark"] .pga-docbody .svg-inline--fa {
 
     .ad-col-right {
         order: 3;
-        overflow: hidden; /* Clip overflow toward content */
 
         @media (max-width: 991.98px) {
             order: 3; /* Bottom on mobile */
-            overflow: visible;
         }
 
         .ad-sidebar {
@@ -1383,7 +1395,10 @@ html[data-theme="dark"] {
 /* Ad Sidebar - desktop only */
 .ad-sidebar {
     @media (min-width: 992px) {
-        max-width: 300px;
+        /* The column is 160px wide, so a 300px max-width could only ever
+           overflow it. That overflow was previously clipped on the column, which
+           is what broke the sticky positioning. */
+        max-width: 160px;
         margin-left: auto;
     }
 }

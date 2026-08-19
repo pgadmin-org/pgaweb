@@ -31,7 +31,7 @@ handler500 = 'pgaweb.views.server_error'
 
 urlpatterns = [
     re_path(r'^$', pgaweb_views.index, name='index'),
-    re_path(r'^ads.txt$', pgaweb_views.ads_txt, name='ads_txt'),
+    re_path(r'^ads\.txt$', pgaweb_views.ads_txt, name='ads_txt'),
     re_path(r'^contributing/$', pgaweb_views.contributing, name='contributing'),
     re_path(r'^features/$', pgaweb_views.features, name='features'),
     re_path(r'^licence/$', pgaweb_views.licence, name='licence'),

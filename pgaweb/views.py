@@ -36,8 +36,12 @@ def index(request):
 
 
 def ads_txt(request):
+    # ads.txt must be served as plain text. Django defaults HttpResponse to
+    # text/html, and we send X-Content-Type-Options: nosniff, so a consumer
+    # cannot sniff its way back to the right type.
     return HttpResponse(
-        "google.com, pub-7509009547019933, DIRECT, f08c47fec0942fa0")
+        "google.com, pub-7509009547019933, DIRECT, f08c47fec0942fa0\n",
+        content_type='text/plain')
 
 
 def contributing(request):
