@@ -1,7 +1,4 @@
 import '@popperjs/core';
-import $ from 'jquery';
-window.jQuery = $;
-window.$ = $;
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -25,7 +22,6 @@ function importAll(r) {
   return r.keys().map(r);
 }
 
-importAll(require.context('fotorama/', false, /\.(png|jpe?g|svg)$/));
 importAll(require.context('@fortawesome/fontawesome-free/webfonts/', false, /\.(eot|svg|ttf|woff|woff2|)$/));
 
 

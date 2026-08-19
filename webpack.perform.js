@@ -51,9 +51,6 @@ const webpackConfig = smp.wrap({
   entry: {
     'webp': ['@babel/polyfill', './static/js/webp.js'],
     'main': './static/js/index.js',
-    'fotoramajs': './node_modules/fotorama/fotorama.js',
-    'fotorama': './node_modules/fotorama/fotorama.css',
-    'banner': './static/js/banner.js',
     'styleguide': './pgaweb/static/css/styleguide.scss',
   },
   output: {
@@ -123,8 +120,6 @@ const webpackConfig = smp.wrap({
       exclude: ['vendor.js'],
     }),
     new webpack.ProvidePlugin({
-      $: ['jquery', 'jQuery'],
-      jQuery: 'jquery',
     }),
     new CopyPlugin([
       {

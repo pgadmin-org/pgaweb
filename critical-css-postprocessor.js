@@ -129,6 +129,7 @@ class ProcessAfterBuild {
          * has anything to say.
          */
         try {
+          FS.mkdirSync(PATH.dirname(uncriticalCss), { recursive: true });
           FS.writeFileSync(uncriticalCss,
             '/* Critical css generation failed during the build, so main.css\n' +
             '   contains the complete stylesheet and there is nothing to defer. */\n');

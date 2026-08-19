@@ -9,6 +9,12 @@ var ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 var ProcessAfterBuild = require('./critical-css-postprocessor');
 
+// Resolved rather than assumed at ./node_modules, so the copy below works in a
+// worktree with a symlinked node_modules as well as in a plain checkout. The
+// package's exports map only exposes the unminified builds, so the directory is
+// resolved through the main entry and the minified filenames joined onto it.
+const photoswipeDist = path.dirname(require.resolve('photoswipe'));
+
 const sourceDir = __dirname + '/static/';
 const outputPath = __dirname + '/static/COMPILED/';
 
@@ -48,10 +54,6 @@ var plugins = [
     filename: 'assets/css/[name].css',
     ignoreOrder: false,
   }),
-  new webpack.ProvidePlugin({
-    $: ['jquery', 'jQuery'],
-    jQuery: 'jquery',
-  }),
   new CopyPlugin({
     patterns: [
       {
@@ -61,6 +63,22 @@ var plugins = [
       {
         from: './static/img/screenshots',
         to: 'assets/img/screenshots',
+      },
+      // PhotoSwipe is loaded as ES modules by the gallery, so it is copied
+      // rather than bundled. It used to come from a CDN, unpinned. Only the
+      // three files the gallery imports are taken: dist also ships UMD builds,
+      // type definitions and source maps.
+      {
+        from: path.join(photoswipeDist, 'photoswipe.esm.min.js'),
+        to: 'photoswipe/[name][ext]',
+      },
+      {
+        from: path.join(photoswipeDist, 'photoswipe-lightbox.esm.min.js'),
+        to: 'photoswipe/[name][ext]',
+      },
+      {
+        from: path.join(photoswipeDist, 'photoswipe.css'),
+        to: 'photoswipe/[name][ext]',
       },
     ],
   }),
@@ -86,9 +104,6 @@ module.exports = (env, argv) => {
     entry: {
       'webp': './static/js/webp.js',
       'main': './static/js/index.js',
-      'fotoramajs': './node_modules/fotorama/fotorama.js',
-      'fotorama': './node_modules/fotorama/fotorama.css',
-      'banner': './static/js/banner.js',
       'styleguide': './pgaweb/static/css/styleguide.scss',
     },
     output: {

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block scripts %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css">
+<link rel="stylesheet" href="{% static 'COMPILED/photoswipe/photoswipe.css' %}?{{gitrev}}">
 <style>
     /* Hide gallery until CSS loads to prevent FOUC */
     .screenshot-gallery { opacity: 0; transition: opacity 0.3s ease; }
@@ -101,8 +101,10 @@
 
 {% block footer %}
 <script type="module">
-import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
-import PhotoSwipe from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js';
+/* Served from our own static tree rather than a CDN: the CDN version was
+   unpinned, so an upstream change could break the gallery unannounced. */
+import PhotoSwipeLightbox from '{% static "COMPILED/photoswipe/photoswipe-lightbox.esm.min.js" %}';
+import PhotoSwipe from '{% static "COMPILED/photoswipe/photoswipe.esm.min.js" %}';
 
 const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery',

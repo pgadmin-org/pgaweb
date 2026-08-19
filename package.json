@@ -6,8 +6,6 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
-    "fotorama": "^4.6.4",
-    "jquery": "^3.7.1",
     "photoswipe": "^5.4.4"
   },
   "devDependencies": {
@@ -48,7 +46,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --config ./webpack.dev.js --env.env=dev",
+    "dev": "webpack --config ./webpack.perform.js --node-env development --mode=development",
     "build": "webpack --config ./webpack.prod.js --node-env production --mode=production && cd static/COMPILED && gzip -f -k -9 *.js && cd ../..",
     "build:watch": "webpack --config ./webpack.prod.js --watch --node-env production --mode=production",
     "lint": "yarn eslint --no-eslintrc -c .eslintrc.js --ext .js .",
