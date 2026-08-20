@@ -208,6 +208,17 @@
     height: auto;
 }
 
+/*
+ * Which of the two screenshots shows. These are duplicated in the inline
+ * critical block in base.html, because the critical css step puts :root in
+ * main.css and leaves [data-bs-theme="dark"] rules for the deferred stylesheet,
+ * and a dark visitor must not watch the light screenshot get replaced when that
+ * arrives. Keep the two in step.
+ */
+.pga-hero-shot-dark { display: none; }
+[data-bs-theme="dark"] .pga-hero-shot-light { display: none; }
+[data-bs-theme="dark"] .pga-hero-shot-dark { display: block; }
+
 @media (max-width: 991.98px) {
     .pga-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 2.25rem 1rem; }
 }

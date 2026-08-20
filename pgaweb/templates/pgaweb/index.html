@@ -107,10 +107,31 @@
         </div>
 
         <div>
-            <picture>
-                <source type="image/webp" srcset="{% static 'COMPILED/assets/img/screenshot.webp' %}">
-                <img class="pga-hero-shot" src="{% static 'COMPILED/assets/img/screenshot.png' %}"
-                     alt="pgAdmin 4 showing the properties of a table, over the server dashboard" width="1591" height="1068">
+            {% comment %}
+                The same screenshot in both colour schemes, chosen by CSS rather
+                than by a media query on the sources: the site theme is a stored
+                preference that defaults to light and deliberately ignores
+                prefers-color-scheme, so an OS-dark visitor reading the site in
+                light mode would otherwise be shown the dark screenshot.
+
+                The dark one is lazy and the light one is not, which is what
+                keeps the usual case to a single request: an image hidden with
+                display:none never intersects the viewport, so a lazy one is not
+                fetched until the theme reveals it, whereas an eager one is
+                fetched whether it is displayed or not. The two are the same
+                size, so whichever shows, the hero reserves the same space.
+            {% endcomment %}
+            <picture class="pga-hero-shot-light">
+                <source type="image/webp" srcset="{% static 'COMPILED/assets/img/screenshot-light.webp' %}?{{gitrev}}">
+                <img class="pga-hero-shot" src="{% static 'COMPILED/assets/img/screenshot-light.png' %}?{{gitrev}}"
+                     alt="pgAdmin 4 showing the properties of a table, over the server dashboard"
+                     width="1591" height="1068">
+            </picture>
+            <picture class="pga-hero-shot-dark">
+                <source type="image/webp" srcset="{% static 'COMPILED/assets/img/screenshot-dark.webp' %}?{{gitrev}}">
+                <img class="pga-hero-shot" src="{% static 'COMPILED/assets/img/screenshot-dark.png' %}?{{gitrev}}"
+                     alt="pgAdmin 4 showing the properties of a table, over the server dashboard"
+                     width="1591" height="1068" loading="lazy">
             </picture>
         </div>
     </div>

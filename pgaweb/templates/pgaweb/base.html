@@ -223,6 +223,12 @@
         .ad-placeholder { width: 300px; min-height: 600px; margin-inline: auto; }
         .ad-placeholder:empty { min-height: 0; }
         .pga-inline-ad { display: none; }
+        /* Which home page hero screenshot shows. Duplicated from _hero.scss so
+           that a dark visitor does not see the light one first; see the note
+           there. */
+        .pga-hero-shot-dark { display: none; }
+        [data-bs-theme="dark"] .pga-hero-shot-light { display: none; }
+        [data-bs-theme="dark"] .pga-hero-shot-dark { display: block; }
         @media (max-width: 1399.98px) {
             .pga-shell { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 1.5rem; }
             .ad-placeholder { width: 160px; }
