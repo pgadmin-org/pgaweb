@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Screenshot gallery
+
+   A grid of cropped tiles that open full size in PhotoSwipe, rather than a
+   carousel. A carousel shows one screenshot at a time and hides the rest behind
+   an interaction; a grid lets someone take in the whole set at a glance and open
+   only what interests them, which is what a screenshots page is for.
+
+   The tiles are cropped from the top left rather than letterboxed. A whole 4:3
+   application window scaled into a 480x300 tile is an unreadable smudge, whereas
+   the top left shows the menu, the browser tree and enough of the active panel
+   to tell one screenshot from another.
+
+   The <img> points at a thumbnail from tools/make-screenshot-thumbs.py; the
+   enclosing <a> points at the full size image, which is what PhotoSwipe opens.
+   ========================================================================== */
+
+.screenshot-gallery {
+    /* Keep in step with RATIO in tools/make-screenshot-thumbs.py. */
+    --gallery-tile-ratio: 16 / 10;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+}
+
+.screenshot-item {
+    display: block;
+    color: var(--fg-soft);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color .15s ease, transform .15s ease;
+}
+
+.screenshot-item:hover,
+.screenshot-item:focus-visible {
+    color: var(--fg);
+    border-color: var(--control-border);
+    transform: translateY(-2px);
+}
+
+.screenshot-item img {
+    display: block;
+    width: 100%;
+    /* The width and height attributes on the tag are there so the grid reserves
+       space before the image loads, but they also make both dimensions definite,
+       which stops aspect-ratio applying. One of the two has to be auto. */
+    height: auto;
+    aspect-ratio: var(--gallery-tile-ratio);
+    object-fit: cover;
+    /* The interesting corner, and it keeps the set visually consistent. */
+    object-position: top left;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+
+.screenshot-caption {
+    padding: .6rem .75rem;
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    line-height: 1.4;
+}
+
+/*
+ * The lightbox keeps PhotoSwipe's own black backdrop in both colour schemes,
+ * which is what you want behind a screenshot: nothing competing with it. The
+ * caption is ours, registered in the features template, because PhotoSwipe 5
+ * has no built-in one.
+ */
+.pswp__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: .75rem 1rem;
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    text-align: center;
+    /* Sits over an arbitrary screenshot rather than a themed surface, so the
+       pair is fixed rather than tokenised: 15.9:1, on an opaque panel. */
+    color: #e8ecf2;
+    background: #0a0e13;
+}
