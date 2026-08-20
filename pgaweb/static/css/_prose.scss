@@ -9,6 +9,14 @@
 .pga-page-head h1 { margin: 0 0 .75rem; font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem); }
 
 /*
+ * The head owns the measure for everything inside it, so the lead gives up its
+ * own cap. .pga-lead carries one for use in the hero, where it has no such
+ * container; keeping it here fought the head, and in the two column layout it
+ * held the lead 141px short of the width the head had just been widened to.
+ */
+.pga-page-head .pga-lead { max-width: none; }
+
+/*
  * Two columns, with the three children placed explicitly rather than left to
  * auto-flow. The page head spans both, so it reads as a header for the whole
  * page: its left edge lines up with the navigation and its right edge with the
