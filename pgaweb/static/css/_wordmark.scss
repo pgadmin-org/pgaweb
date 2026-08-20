@@ -7,7 +7,12 @@
    The mark comes from the application's own menu bar, where it is drawn on a
    dark bar: a white badge holding a blue "pg", followed by the word in white.
    On a light page that inverts, so the badge takes the brand blue and the word
-   takes the ink colour; in dark mode it matches the application exactly.
+   a dark grey; in dark mode it matches the application exactly.
+
+   The word is deliberately --grey-700 rather than the --grey-900 body ink: at
+   the weight and size a logotype is set, near-black reads as harsh next to the
+   blue badge. It is still 12.0:1 on the header, so nothing is at stake in the
+   contrast, and logotypes are exempt from 1.4.3 in any case.
    =================================================================== */
 
 .pga-wordmark {
@@ -23,7 +28,7 @@
 
 .pga-mark-badge { fill: var(--blue-500); }
 .pga-mark-pg    { fill: #ffffff; }
-.pga-mark-word  { fill: var(--grey-900); }
+.pga-mark-word  { fill: var(--grey-700); }
 
 [data-bs-theme="dark"] .pga-mark-badge { fill: #ffffff; }
 [data-bs-theme="dark"] .pga-mark-pg    { fill: #326893; }
