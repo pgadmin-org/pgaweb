@@ -8,14 +8,44 @@
 .pga-page-head { max-width: var(--measure); margin-bottom: 2rem; }
 .pga-page-head h1 { margin: 0 0 .75rem; font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem); }
 
+/*
+ * Two columns, and three explicit placements rather than auto-flow, so the page
+ * head sits in the same column as the prose it introduces. Left to itself the
+ * head was a full-width sibling above the grid, which put its heading 230px to
+ * the left of the body text it belongs to: the same measure, a different left
+ * edge, hanging out over the navigation for no reason.
+ */
 .pga-with-aside {
     display: grid;
     grid-template-columns: 190px minmax(0, 1fr);
-    gap: 2.5rem;
+    gap: 0 2.5rem;
+    align-items: start;
 }
 
+.pga-with-aside > .pga-page-head { grid-column: 2; grid-row: 1; }
+.pga-with-aside > .pga-onthispage { grid-column: 1; grid-row: 2; }
+.pga-with-aside > .pga-prose { grid-column: 2; grid-row: 2; }
+
+/*
+ * Margins do not collapse between grid items, so the head's bottom margin and
+ * the first heading's top margin would stack. Drop the heading's, which also
+ * brings the top of the prose level with the top of the navigation beside it.
+ */
+.pga-with-aside > .pga-prose > :first-child { margin-top: 0; }
+
 @media (max-width: 991.98px) {
-    .pga-with-aside { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .pga-with-aside {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    /* One column: let everything flow in source order again. */
+    .pga-with-aside > .pga-page-head,
+    .pga-with-aside > .pga-prose {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
     .pga-onthispage { display: none; }
 }
 
