@@ -190,21 +190,22 @@
 }
 
 /*
- * Interim: static/img/screenshot.png is 976x550 and the laptop in it is already
- * clipped at the bottom edge of the file, which was easy to miss at the old
- * size and obvious at this one. Cropping the last few per cent off the bottom
- * puts the cut outside the frame, so the device runs out of shot rather than
- * looking chopped. A new asset replaces this, at which point the aspect-ratio
- * and object-fit come out again.
+ * The screenshot brings its own framing: a window with rounded corners and a
+ * drop shadow, sitting on transparency. So there is no border and no radius
+ * here, since either would draw a rectangle across the corners of the window
+ * and around the shadow, and no object-fit either, because the asset is the
+ * shape we want and nothing needs cropping to fit.
+ *
+ * height: auto matters more than it looks. The tag carries width and height
+ * attributes so the hero reserves the right space before the image arrives, but
+ * those make both dimensions definite, and a definite height wins over any
+ * aspect-ratio. Without this the image is drawn at its attribute height and the
+ * previous rule quietly cropped the sides to fill the box.
  */
 .pga-hero-shot {
     display: block;
     width: 100%;
-    aspect-ratio: 976 / 500;
-    object-fit: cover;
-    object-position: top center;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-lg);
+    height: auto;
 }
 
 @media (max-width: 991.98px) {
