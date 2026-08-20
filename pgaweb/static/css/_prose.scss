@@ -9,20 +9,37 @@
 .pga-page-head h1 { margin: 0 0 .75rem; font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem); }
 
 /*
- * Two columns, and three explicit placements rather than auto-flow, so the page
- * head sits in the same column as the prose it introduces. Left to itself the
- * head was a full-width sibling above the grid, which put its heading 230px to
- * the left of the body text it belongs to: the same measure, a different left
- * edge, hanging out over the navigation for no reason.
+ * Two columns, with the three children placed explicitly rather than left to
+ * auto-flow. The page head spans both, so it reads as a header for the whole
+ * page: its left edge lines up with the navigation and its right edge with the
+ * content, and it sits above the pair of them.
+ *
+ * It also has to shed the measure cap it inherits, or it would stop 330px short
+ * of the content's right edge, which is what made it look misaligned when it was
+ * a plain sibling above the grid.
  */
 .pga-with-aside {
+    /* Named, because the page head's width is derived from them below. */
+    --aside-width: 190px;
+    --aside-gap: 2.5rem;
+
     display: grid;
-    grid-template-columns: 190px minmax(0, 1fr);
-    gap: 0 2.5rem;
+    grid-template-columns: var(--aside-width) minmax(0, 1fr);
+    gap: 0 var(--aside-gap);
     align-items: start;
 }
 
-.pga-with-aside > .pga-page-head { grid-column: 2; grid-row: 1; }
+/*
+ * Spans both columns, but stops where the prose stops rather than where the
+ * column does: the content column is wider than the measure the prose is capped
+ * at, so spanning the whole track would overhang the body text on the right by
+ * a hundred pixels.
+ */
+.pga-with-aside > .pga-page-head {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    max-width: calc(var(--aside-width) + var(--aside-gap) + var(--measure));
+}
 .pga-with-aside > .pga-onthispage { grid-column: 1; grid-row: 2; }
 .pga-with-aside > .pga-prose { grid-column: 2; grid-row: 2; }
 
