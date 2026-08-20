@@ -58,8 +58,8 @@ def privacy_policy(request):
 
 # Handle the Development level pages
 def development_index(request):
-    # Resources, translations and contributing were merged into this page, so it
-    # needs the translation catalogue analysis that the translations view did.
+    # Resources, translations and contributing were merged into this page, so
+    # it needs the translation catalogue analysis the translations view did.
     context = translation_status()
     context['section'] = 'development'
     return render(request, 'pgaweb/development/index.html', context)
@@ -185,15 +185,10 @@ def styleguide_index(request, page='typography', section=''):
     return response
 
 
-# Community absorbs what were the three support pages, and surfaces the news,
-# blogs and videos as a tabbed list. The old URLs redirect to anchors here.
+# Community absorbs what were the three support pages. The old URLs redirect to
+# anchors here.
 def community(request):
-    news = News.objects.filter(display=True, disable=False)[:5]
-    blogs = Blog.objects.filter(disable=False, display=True)[:5]
-    videos = Video.objects.filter(disable=False, display=True)[:4]
-    return render(request, 'pgaweb/community.html',
-                  {'news': news, 'blogs': blogs, 'videos': videos,
-                   'section': 'community'})
+    return render(request, 'pgaweb/community.html', {'section': 'community'})
 
 
 # Error handlers

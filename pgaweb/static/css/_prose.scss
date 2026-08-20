@@ -130,34 +130,6 @@
 
 .pga-callout p:last-child { margin-bottom: 0; }
 
-.pga-tabs {
-    display: flex;
-    gap: 0;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--line);
-}
-
-.pga-tabs button {
-    padding: .45rem .9rem;
-    font-family: var(--font-mono);
-    font-size: .8125rem;
-    color: var(--fg-muted);
-    background: none;
-    border: 1px solid transparent;
-    border-bottom: 0;
-    margin-bottom: -1px;
-    cursor: pointer;
-}
-
-.pga-tabs button.active {
-    color: var(--fg);
-    background: var(--bg);
-    border-color: var(--control-border);
-    border-bottom-color: var(--bg);
-    border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.pga-tabpanel[hidden] { display: none; }
 
 /* Warning variant of the callout, for pre-release documentation. */
 .pga-callout-warning {

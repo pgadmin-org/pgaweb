@@ -3,8 +3,10 @@
 {% comment %}
     Community absorbs what used to be four separate pages: the support
     introduction, the mailing list, the issue tracker, and the security reporting
-    section that was duplicated across two of them. News, blogs and videos are
-    surfaced here as a tabbed list, though each keeps its own page and feed.
+    section that was duplicated across two of them.
+
+    News, blogs and videos are deliberately not repeated here: the home page
+    already carries the latest of each, and each has its own page and feed.
 
     The old URLs redirect to the anchors here; see pgaweb/urls.py.
 {% endcomment %}
@@ -29,7 +31,6 @@
         <a href="#issues">Issue tracker</a>
         <a href="#security">Security issues</a>
         <a href="#etiquette">Helping us help you</a>
-        <a href="#media">News, blogs and videos</a>
     </nav>
 
     <div class="pga-prose">
@@ -121,88 +122,7 @@
             questions the smart way</a> describes the best way to get the help you
             need.</p>
 
-        <h2 id="media">News, blogs and videos</h2>
-
-        <div class="pga-tabs" role="tablist" aria-label="News, blogs and videos">
-            <button role="tab" class="active" data-tab="news" aria-selected="true">News</button>
-            <button role="tab" data-tab="blogs" aria-selected="false">Blog posts</button>
-            <button role="tab" data-tab="videos" aria-selected="false">Videos</button>
-        </div>
-
-        <div class="pga-tabpanel" data-panel="news">
-            {% for article in news %}
-            <article class="pga-news-item">
-                <span class="pga-meta">{{ article.date }}</span>
-                <div>
-                    <h3>{{ article.title }}</h3>
-                    <div class="pga-news-body">{{ article.content|safe }}</div>
-                </div>
-            </article>
-            {% empty %}
-            <p>No news at the moment.</p>
-            {% endfor %}
-            <p><a class="pga-btn pga-btn-sm" href="{% url 'news' %}">News archive
-                <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
-        </div>
-
-        <div class="pga-tabpanel" data-panel="blogs" hidden>
-            {% for blog in blogs %}
-            <article class="pga-news-item">
-                <span class="pga-meta">{{ blog.date }}</span>
-                <div>
-                    <h3><a href="{{ blog.url }}" target="_blank" rel="noopener">{{ blog.title }}</a></h3>
-                    <p class="pga-card-text">{{ blog.summary|safe|striptags|truncatewords:40 }}</p>
-                    <span class="pga-meta">{{ blog.author }}</span>
-                </div>
-            </article>
-            {% empty %}
-            <p>No blog posts at the moment.</p>
-            {% endfor %}
-            <p><a class="pga-btn pga-btn-sm" href="{% url 'blogs' %}">All posts
-                <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
-        </div>
-
-        <div class="pga-tabpanel" data-panel="videos" hidden>
-            <div class="pga-grid-2">
-                {% for video in videos %}
-                <article class="pga-media-card">
-                    <div class="pga-thumb pga-thumb-video">
-                        <iframe src="https://www.youtube-nocookie.com/embed/{{ video.youtube_id }}"
-                                title="Video: {{ video.title }}" frameborder="0" loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <span class="pga-meta">{{ video.date }}{% if video.publisher %} &middot; {{ video.publisher }}{% endif %}</span>
-                    <h3>{{ video.title }}</h3>
-                </article>
-                {% empty %}
-                <p>No videos at the moment.</p>
-                {% endfor %}
-            </div>
-            <p><a class="pga-btn pga-btn-sm" href="{% url 'videos' %}">All videos
-                <i class="fas fa-arrow-right" aria-hidden="true"></i></a></p>
-        </div>
-
-        <p class="pga-meta">Want your pgAdmin video or blog post listed here? Email
-            webmaster (at) pgadmin (dot) org.</p>
-
     </div>
 </div>
 {% endblock %}
 
-{% block footer %}
-<script>
-document.querySelectorAll('.pga-tabs button').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        var name = btn.getAttribute('data-tab');
-        btn.closest('.pga-tabs').querySelectorAll('button').forEach(function (b) {
-            b.classList.toggle('active', b === btn);
-            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-        });
-        document.querySelectorAll('.pga-tabpanel').forEach(function (p) {
-            p.hidden = p.getAttribute('data-panel') !== name;
-        });
-    });
-});
-</script>
-{% endblock %}
