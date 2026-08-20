@@ -73,10 +73,59 @@
     color: #dbe3ea;
     background: var(--grey-900);
     border: 1px solid var(--grey-800);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-window);
 }
 
 [data-bs-theme="dark"] .pga-terminal { background: #05090e; border-color: #1c242d; }
+
+/*
+ * Window chrome, so the panel reads as the same kind of object as the
+ * screenshot beside it rather than as a styled code block. The colours are
+ * sampled from that screenshot: #202629 for the bar and the system's own
+ * traffic light colours, so the two windows agree.
+ *
+ * It is decoration and nothing more. The lights are aria-hidden and are not
+ * buttons, because a control that looks like a close button and does nothing is
+ * worse than no control at all.
+ */
+.pga-terminal-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    padding-inline: .6rem;
+    background: #202629;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.pga-terminal-lights {
+    display: flex;
+    gap: 8px;
+}
+
+.pga-terminal-lights span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.pga-terminal-lights span:nth-child(1) { background: #ff5559; }
+.pga-terminal-lights span:nth-child(2) { background: #f9c228; }
+.pga-terminal-lights span:nth-child(3) { background: #29bf53; }
+
+/*
+ * Centred on the bar rather than on the space left over beside the lights,
+ * which is where macOS puts it. Taken out of the flow so the lights do not
+ * push it off centre.
+ */
+.pga-terminal-title {
+    position: absolute;
+    inset-inline: 0;
+    font-size: .75rem;
+    text-align: center;
+    color: var(--grey-400);
+    pointer-events: none;
+}
 
 /*
  * The install methods are tabs across the head of the terminal, so the hero

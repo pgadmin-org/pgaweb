@@ -60,6 +60,9 @@
 
     --radius: 3px;
     --radius-lg: 4px;
+    /* Only for things drawn as an operating system window, where the
+       near-square corners above would not read as one. */
+    --radius-window: 10px;
     --measure: 74ch;
 
     /* -------------------------------------------------- documentation */
