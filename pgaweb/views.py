@@ -191,22 +191,25 @@ def community(request):
     return render(request, 'pgaweb/community.html', {'section': 'community'})
 
 
-# Error handlers
-def bad_request(request, exception):
+# Error handlers. Django passes the exception positionally, whilst the
+# DEBUG-only preview routes in urls.py call these with just the request, so it
+# has to be optional or those routes raise a TypeError instead of rendering the
+# page they exist to show.
+def bad_request(request, exception=None):
     response = render(request, 'pgaweb/errors/400.html')
     response.status_code = 400
 
     return response
 
 
-def permission_denied(request, exception):
+def permission_denied(request, exception=None):
     response = render(request, 'pgaweb/errors/403.html', {'path': request.path})
     response.status_code = 403
 
     return response
 
 
-def page_not_found(request, exception):
+def page_not_found(request, exception=None):
     response = render(request, 'pgaweb/errors/404.html', {'path': request.path})
     response.status_code = 404
 

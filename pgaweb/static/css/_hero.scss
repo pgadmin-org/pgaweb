@@ -197,9 +197,41 @@
     overflow-x: auto;
 }
 
+/*
+ * The error pages use the terminal as the <pre> itself rather than wrapping
+ * one, so the padding above never applied and their text sat hard against the
+ * border.
+ */
+pre.pga-terminal {
+    margin: 0 0 1.5rem;
+    padding: .9rem 1rem;
+    overflow-x: auto;
+}
+
 .pga-terminal .p { color: #6fc78b; }
 .pga-terminal .c { color: var(--term-muted); }
 .pga-terminal .s { color: #9fdcaa; }
+
+/*
+ * The terminal is dark in both colour schemes, so a link inside it cannot take
+ * the page's link colour: in light mode that is #295477, which lands at 2.32:1
+ * on this background and is effectively unreadable. The documentation 404 page
+ * puts the "same page in other versions" links inside one of these, which is
+ * where it showed. Fixed to the dark scheme's accent instead, 8.7:1 here.
+ *
+ * Buttons are excluded because the install panel puts .pga-btn links in the
+ * terminal for the Windows and macOS downloads, and those carry their own
+ * colours.
+ */
+.pga-terminal a:not(.pga-btn) {
+    color: #79b8e8;
+    text-decoration-color: rgba(121, 184, 232, .5);
+}
+
+.pga-terminal a:not(.pga-btn):hover {
+    color: #a6d2f2;
+    text-decoration-color: currentColor;
+}
 
 /* A fixed height so switching install method does not shift the page. */
 .pga-install-panel { height: 15.5rem; overflow: auto; }

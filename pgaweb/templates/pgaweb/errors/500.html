@@ -3,9 +3,14 @@
 {% block title %}Internal Server Error{% endblock %}
 
 {% block content %}
-<h1>Internal Server Error (500)</h1>
+<div class="pga-page-head">
+    <span class="pga-eyebrow">error 500</span>
+    <h1>Internal Server Error</h1>
+</div>
 
-<p>Aww, nuts. Someone must have tripped over the power cord again.</p>
+<div class="pga-prose">
+    <p>Aww, nuts. Someone must have tripped over the power cord again.</p>
 
-<p>Please try your request again in a moment. Hopefully by then someone will have plugged the server back in.</p>
+    <p>Please try your request again in a moment. Hopefully by then someone will have plugged the server back in.</p>
+</div>
 {% endblock %}

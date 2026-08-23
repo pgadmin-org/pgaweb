@@ -3,12 +3,17 @@
 {% block title %}Forbidden{% endblock %}
 
 {% block content %}
-<h1>Forbidden (403)</h1>
+<div class="pga-page-head">
+    <span class="pga-eyebrow">error 403</span>
+    <h1>Forbidden</h1>
+</div>
 
-<p>Sorry, you do not have the required security clearances to access {{ path }}.</p>
+<div class="pga-prose">
+    <p>Sorry, you do not have the required security clearances to access {{ path }}.</p>
 
-<pre class="pga-terminal">
+    <pre class="pga-terminal">
 postgres=> SELECT page FROM website WHERE url = '{{ path }}';
 ERROR:  permission denied for relation website
 </pre>
+</div>
 {% endblock %}
