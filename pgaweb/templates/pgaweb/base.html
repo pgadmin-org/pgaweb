@@ -158,21 +158,25 @@
             ins.className = 'adsbygoogle';
             ins.setAttribute('data-ad-client', PGAWEB_AD_CLIENT);
             ins.setAttribute('data-ad-slot', slot);
-            ins.style.display = 'inline-block';
 
             if (isMobile) {
-                // 320x50 mobile leaderboard banner
+                // A fixed 320x100 large mobile banner rather than a responsive
+                // one, because the stylesheet reserves exactly that box and a
+                // known size means the advert arriving shifts nothing. The
+                // placeholder's own dimensions are deliberately left alone: this
+                // used to force it to 50px, which collapsed the 100px the css
+                // had reserved and moved the page under the reader.
+                ins.style.display = 'inline-block';
                 ins.style.width = '320px';
-                ins.style.height = '50px';
-                placeholder.style.width = '320px';
-                placeholder.style.height = '50px';
+                ins.style.height = '100px';
             } else {
-                // 160x600 wide skyscraper. The rails are designed at 300px for a
-                // 300x600 half page; that unit does not exist in the AdSense
-                // account yet, so the narrower one sits centred in the rail
-                // until it does.
-                ins.style.width = '160px';
-                ins.style.height = '600px';
+                // The rail is 300px wide above 1400px and 160px between 992 and
+                // 1400, so the unit has to suit both. Responsive sizing takes
+                // the width from the rail, and asking for a vertical format
+                // stops a short banner being served into a 600px column.
+                ins.style.display = 'block';
+                ins.setAttribute('data-ad-format', 'vertical');
+                ins.setAttribute('data-full-width-responsive', 'false');
             }
 
             placeholder.appendChild(ins);

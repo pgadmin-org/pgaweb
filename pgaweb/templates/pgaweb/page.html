@@ -20,7 +20,7 @@
 
     <aside class="ad-rail" aria-label="Advertisement">
         <div class="pga-rail-inner">
-            {% include "pgaweb/ad.html" %}
+            {% include "pgaweb/ad.html" with slot_desktop="4641019325" slot_mobile="3787987132" %}
         </div>
     </aside>
 
@@ -43,19 +43,19 @@
             it around 51px down, so the heading is still on screen beneath it.
         {% endcomment %}
         <div class="pga-inline-ad">
-            {% include "pgaweb/ad.html" %}
+            {% include "pgaweb/ad.html" with slot_desktop="4641019325" slot_mobile="3787987132" %}
         </div>
 
         {% block content %}{% endblock %}
 
         <div class="pga-inline-ad">
-            {% include "pgaweb/ad.html" %}
+            {% include "pgaweb/ad.html" with slot_desktop="5411175511" slot_mobile="2474905464" %}
         </div>
     </div>
 
     <aside class="ad-rail" aria-label="Advertisement">
         <div class="pga-rail-inner">
-            {% include "pgaweb/ad.html" %}
+            {% include "pgaweb/ad.html" with slot_desktop="5411175511" slot_mobile="2474905464" %}
         </div>
     </aside>
 

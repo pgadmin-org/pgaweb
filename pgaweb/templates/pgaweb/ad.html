@@ -3,11 +3,22 @@ Ad placeholder. Adverts are injected here by loadAds() in base.html, which reads
 the slot from the data attributes below: the desktop and mobile units are
 different sizes and therefore different AdSense units.
 
-Both rails currently share one desktop unit and one mobile unit, which means the
-two positions cannot be told apart in AdSense reporting. Create a second pair of
-units in AdSense and pass them in per rail, as:
+There are two advert positions on a page, and each has its own unit for each
+breakpoint, so all four can be told apart in AdSense reporting:
 
-    include "pgaweb/ad.html" with slot_desktop="1234567890" slot_mobile="0987654321"
+    first position   desktop 4641019325  pgadmin-rail-left
+                     mobile  3787987132  pgadmin-mobile-top
+    second position  desktop 5411175511  pgadmin-rail-right
+                     mobile  2474905464  pgadmin-mobile-bottom
+
+Only one of each pair is ever used, because the rails and the inline slots are
+never displayed at the same width: the rails carry the first and second desktop
+units, the inline pair carry the first and second mobile ones. Both are passed
+anyway so that a change of breakpoint cannot leave a position falling back to a
+default and quietly reporting under the wrong unit.
+
+The defaults below are the original shared units, kept only for a caller that
+passes nothing.
 {% endcomment %}
 <div class="ad-placeholder"
      data-ad-slot-desktop="{{ slot_desktop|default:'4114194323' }}"
