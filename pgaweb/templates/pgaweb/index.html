@@ -27,30 +27,68 @@
                 version in the RPM URLs will move, so that is the first thing to
                 check when this page is next revised.
             {% endcomment %}
-            <div class="pga-terminal" data-mode="commands">
+            <div class="pga-terminal" data-mode="download">
                 <div class="pga-terminal-bar">
                     <span class="pga-terminal-lights" aria-hidden="true"><span></span><span></span><span></span></span>
                     <span class="pga-terminal-title">Install pgAdmin</span>
                 </div>
                 <div class="pga-terminal-head">
                     <div class="pga-terminal-tabs" role="tablist" aria-label="Installation method">
-                        <button role="tab" class="active" data-install="container" aria-selected="true"><i class="fab fa-docker" aria-hidden="true"></i> Container</button>
-                        <button role="tab" data-install="pip" aria-selected="false"><i class="fab fa-python" aria-hidden="true"></i> pip</button>
-                        <button role="tab" data-install="rpm" aria-selected="false"><i class="fab fa-redhat" aria-hidden="true"></i> RPM</button>
-                        <button role="tab" data-install="deb" aria-selected="false"><i class="fab fa-ubuntu" aria-hidden="true"></i> DEB</button>
-                        <button role="tab" data-install="windows" aria-selected="false"><i class="fab fa-windows" aria-hidden="true"></i> Windows</button>
+                        <button role="tab" class="active" data-install="windows" aria-selected="true"><i class="fab fa-windows" aria-hidden="true"></i> Windows</button>
                         <button role="tab" data-install="macos" aria-selected="false"><i class="fab fa-apple" aria-hidden="true"></i> macOS</button>
+                        <button role="tab" data-install="container" aria-selected="false"><i class="fab fa-docker" aria-hidden="true"></i> Container</button>
+                        <button role="tab" data-install="deb" aria-selected="false"><i class="fab fa-ubuntu" aria-hidden="true"></i> DEB</button>
+                        <button role="tab" data-install="rpm" aria-selected="false"><i class="fab fa-redhat" aria-hidden="true"></i> RPM</button>
+                        <button role="tab" data-install="pip" aria-selected="false"><i class="fab fa-python" aria-hidden="true"></i> pip</button>
                     </div>
                     <button class="pga-terminal-copy" type="button" data-copy>
                         <i class="far fa-copy" aria-hidden="true"></i> copy</button>
                 </div>
 
-<pre class="pga-install-panel" data-install-panel="container"><span class="c"># Pull and run the container image</span>
+
+                <div class="pga-install-panel pga-install-get" data-install-panel="windows">
+                    <p>A signed installer for Windows, covering both desktop and server mode.
+                        Requires a 64-bit version of Windows.</p>
+                    <a class="pga-btn" href="{% url 'download_list' 'pgadmin-4-windows' %}">
+                        <i class="fas fa-download" aria-hidden="true"></i> Windows installers</a>
+                    <span class="pga-meta">Every release, with checksums, on the download page</span>
+                </div>
+
+
+                <div class="pga-install-panel pga-install-get" data-install-panel="macos" hidden>
+                    <p>A signed and notarised disk image for macOS, built as a universal
+                        binary for Apple silicon and Intel.</p>
+                    <a class="pga-btn" href="{% url 'download_list' 'pgadmin-4-macos' %}">
+                        <i class="fas fa-download" aria-hidden="true"></i> macOS disk images</a>
+                    <span class="pga-meta">Every release on the download page</span>
+                </div>
+
+<pre class="pga-install-panel" data-install-panel="container" hidden><span class="c"># Pull and run the container image</span>
 <span class="p">$</span> docker pull dpage/pgadmin4
 <span class="p">$</span> docker run -p <span class="s">80:80</span> \
     -e <span class="s">'PGADMIN_DEFAULT_EMAIL=user@domain.com'</span> \
     -e <span class="s">'PGADMIN_DEFAULT_PASSWORD=SuperSecret'</span> \
     -d dpage/pgadmin4
+</pre>
+
+<pre class="pga-install-panel" data-install-panel="deb" hidden><span class="c"># Install the signing key and the repository</span>
+<span class="p">$</span> curl -fsS <span class="s">https://www.pgadmin.org/static/packages_pgadmin_org.pub</span> | sudo gpg --dearmor -o /etc/apt/keyrings/packages-pgadmin-org.gpg
+<span class="p">$</span> sudo sh -c <span class="s">'echo "deb [signed-by=/etc/apt/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" &gt; /etc/apt/sources.list.d/pgadmin4.list &amp;&amp; apt update'</span>
+
+<span class="p">$</span> sudo apt install pgadmin4          <span class="c"># desktop and web</span>
+<span class="p">$</span> sudo apt install pgadmin4-desktop  <span class="c"># desktop only</span>
+<span class="p">$</span> sudo apt install pgadmin4-web      <span class="c"># web only</span>
+</pre>
+
+<pre class="pga-install-panel" data-install-panel="rpm" hidden><span class="c"># Set up the repository (Fedora)</span>
+<span class="p">$</span> sudo rpm -i <span class="s">https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-fedora-repo-2-1.noarch.rpm</span>
+
+<span class="c"># ...or AlmaLinux, Rocky, RHEL and CentOS</span>
+<span class="p">$</span> sudo rpm -i <span class="s">https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-2-1.noarch.rpm</span>
+
+<span class="p">$</span> sudo yum install pgadmin4          <span class="c"># desktop and web</span>
+<span class="p">$</span> sudo yum install pgadmin4-desktop  <span class="c"># desktop only</span>
+<span class="p">$</span> sudo yum install pgadmin4-web      <span class="c"># web only</span>
 </pre>
 
 <pre class="pga-install-panel" data-install-panel="pip" hidden><span class="c"># Create the data and log directories</span>
@@ -65,42 +103,6 @@
 <span class="p">(pgadmin4) $</span> pip install pgadmin4
 <span class="p">(pgadmin4) $</span> pgadmin4
 </pre>
-
-<pre class="pga-install-panel" data-install-panel="rpm" hidden><span class="c"># Set up the repository (Fedora)</span>
-<span class="p">$</span> sudo rpm -i <span class="s">https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-fedora-repo-2-1.noarch.rpm</span>
-
-<span class="c"># ...or AlmaLinux, Rocky, RHEL and CentOS</span>
-<span class="p">$</span> sudo rpm -i <span class="s">https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-2-1.noarch.rpm</span>
-
-<span class="p">$</span> sudo yum install pgadmin4          <span class="c"># desktop and web</span>
-<span class="p">$</span> sudo yum install pgadmin4-desktop  <span class="c"># desktop only</span>
-<span class="p">$</span> sudo yum install pgadmin4-web      <span class="c"># web only</span>
-</pre>
-
-<pre class="pga-install-panel" data-install-panel="deb" hidden><span class="c"># Install the signing key and the repository</span>
-<span class="p">$</span> curl -fsS <span class="s">https://www.pgadmin.org/static/packages_pgadmin_org.pub</span> | sudo gpg --dearmor -o /etc/apt/keyrings/packages-pgadmin-org.gpg
-<span class="p">$</span> sudo sh -c <span class="s">'echo "deb [signed-by=/etc/apt/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" &gt; /etc/apt/sources.list.d/pgadmin4.list &amp;&amp; apt update'</span>
-
-<span class="p">$</span> sudo apt install pgadmin4          <span class="c"># desktop and web</span>
-<span class="p">$</span> sudo apt install pgadmin4-desktop  <span class="c"># desktop only</span>
-<span class="p">$</span> sudo apt install pgadmin4-web      <span class="c"># web only</span>
-</pre>
-
-                <div class="pga-install-panel pga-install-get" data-install-panel="windows" hidden>
-                    <p>A signed installer for Windows, covering both desktop and server mode.
-                        Requires a 64-bit version of Windows.</p>
-                    <a class="pga-btn" href="{% url 'download_list' 'pgadmin-4-windows' %}">
-                        <i class="fas fa-download" aria-hidden="true"></i> Windows installers</a>
-                    <span class="pga-meta">Every release, with checksums, on the download page</span>
-                </div>
-
-                <div class="pga-install-panel pga-install-get" data-install-panel="macos" hidden>
-                    <p>A signed and notarised disk image for macOS, built as a universal
-                        binary for Apple silicon and Intel.</p>
-                    <a class="pga-btn" href="{% url 'download_list' 'pgadmin-4-macos' %}">
-                        <i class="fas fa-download" aria-hidden="true"></i> macOS disk images</a>
-                    <span class="pga-meta">Every release on the download page</span>
-                </div>
             </div>
 
             <div class="pga-platforms">
@@ -264,23 +266,70 @@
 {% block footer %}
 <script>
 /* Install method tabs. */
+function selectInstall(box, name) {
+    var found = false;
+    box.querySelectorAll('.pga-terminal-tabs button').forEach(function (b) {
+        var match = b.getAttribute('data-install') === name;
+        if (match) { found = true; }
+        b.classList.toggle('active', match);
+        b.setAttribute('aria-selected', match ? 'true' : 'false');
+    });
+    if (!found) { return false; }
+
+    var active = null;
+    box.querySelectorAll('.pga-install-panel').forEach(function (p) {
+        p.hidden = p.getAttribute('data-install-panel') !== name;
+        if (!p.hidden) { active = p; }
+    });
+    /* Nothing to copy when the panel is an installer download. */
+    box.setAttribute('data-mode',
+                     active && active.tagName === 'PRE' ? 'commands' : 'download');
+    return true;
+}
+
 document.querySelectorAll('.pga-terminal-tabs button').forEach(function (btn) {
     btn.addEventListener('click', function () {
-        var name = btn.getAttribute('data-install');
-        var box = btn.closest('.pga-terminal');
-        box.querySelectorAll('.pga-terminal-tabs button').forEach(function (b) {
-            b.classList.toggle('active', b === btn);
-            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-        });
-        var active = null;
-        box.querySelectorAll('.pga-install-panel').forEach(function (p) {
-            p.hidden = p.getAttribute('data-install-panel') !== name;
-            if (!p.hidden) { active = p; }
-        });
-        /* Nothing to copy when the panel is an installer download. */
-        box.setAttribute('data-mode', active && active.tagName === 'PRE' ? 'commands' : 'download');
+        selectInstall(btn.closest('.pga-terminal'),
+                      btn.getAttribute('data-install'));
     });
 });
+
+/*
+ * Open on the tab for the visitor's own platform, so the common case is the
+ * command they actually need rather than one they have to go looking for.
+ *
+ * userAgentData.platform is the modern, unspoofed source and is checked first;
+ * navigator.platform is deprecated but is all Firefox and Safari offer, and the
+ * user agent string is the last resort. Windows stays the markup default, so a
+ * browser that answers none of these is no worse off.
+ *
+ * Linux is deliberately not mapped to a package format. Nothing in the browser
+ * distinguishes a Debian derivative from a Red Hat one, and guessing wrong puts
+ * a Fedora user in front of an apt command; the container instructions work
+ * everywhere, so that is where an unrecognised Linux lands.
+ */
+(function () {
+    var box = document.querySelector('.pga-hero .pga-terminal');
+    if (!box) { return; }
+
+    var uaData = navigator.userAgentData;
+    var platform = (uaData && uaData.platform) || navigator.platform || '';
+    var ua = navigator.userAgent || '';
+    var haystack = (platform + ' ' + ua).toLowerCase();
+
+    var name = null;
+    if (haystack.indexOf('win') !== -1) {
+        name = 'windows';
+    } else if (haystack.indexOf('mac') !== -1 || haystack.indexOf('iphone') !== -1 ||
+               haystack.indexOf('ipad') !== -1) {
+        name = 'macos';
+    } else if (haystack.indexOf('linux') !== -1 || haystack.indexOf('android') !== -1 ||
+               haystack.indexOf('cros') !== -1) {
+        name = 'container';
+    }
+
+    if (name) { selectInstall(box, name); }
+})();
 
 /* Copy the commands from whichever panel is showing, without the prompt. */
 document.querySelectorAll('[data-copy]').forEach(function (btn) {
