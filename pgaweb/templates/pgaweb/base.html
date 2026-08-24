@@ -170,13 +170,20 @@
                 ins.style.width = '320px';
                 ins.style.height = '100px';
             } else {
-                // The rail is 300px wide above 1400px and 160px between 992 and
-                // 1400, so the unit has to suit both. Responsive sizing takes
-                // the width from the rail, and asking for a vertical format
-                // stops a short banner being served into a 600px column.
-                ins.style.display = 'block';
-                ins.setAttribute('data-ad-format', 'vertical');
-                ins.setAttribute('data-full-width-responsive', 'false');
+                // Fixed sizes rather than responsive, for the same reason the
+                // mobile unit is fixed: the reserved box and the advert are then
+                // the same size and nothing shifts.
+                //
+                // Responsive was tried and does not work here. A responsive unit
+                // takes its width from the element it is pushed into, and this
+                // element is a flex item in a centring container with no width
+                // of its own, so it measured zero and AdSense never filled it.
+                //
+                // The rail is 300px wide above 1400px and 160px below, matching
+                // .ad-placeholder in _ads.scss. Keep the two in step.
+                ins.style.display = 'inline-block';
+                ins.style.width = window.innerWidth >= 1400 ? '300px' : '160px';
+                ins.style.height = '600px';
             }
 
             placeholder.appendChild(ins);
