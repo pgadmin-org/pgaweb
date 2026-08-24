@@ -67,7 +67,7 @@ you will need to repeat this for the other fixtures:
 
 # Dependencies
 
-In order for yarn build to run successfully for generating critical css on 
+In order for the build to run successfully for generating critical css on 
 Debian or Centos systems, additional libraries need to be installed on the 
 system. Please install the dependencies below on respective systems.
 
@@ -95,8 +95,8 @@ apt-get install ca-certificates fonts-liberation gconf-service \
 # Run the build
 
 ```bash
-yarn install
-yarn run build
+npm ci
+npm run build
 ```
 
 # Start the application

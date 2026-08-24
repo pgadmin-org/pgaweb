@@ -43,7 +43,7 @@
     "dev": "webpack --config ./webpack.perform.js --node-env development --mode=development",
     "build": "webpack --config ./webpack.prod.js --node-env production --mode=production && cd static/COMPILED && gzip -f -k -9 *.js && cd ../..",
     "build:watch": "webpack --config ./webpack.prod.js --watch --node-env production --mode=production",
-    "lint": "yarn eslint --no-eslintrc -c .eslintrc.js --ext .js .",
+    "lint": "npx eslint --no-eslintrc -c .eslintrc.js --ext .js .",
     "pep8": "pycodestyle --config=./.pycodestyle ./news && pycodestyle --config=./.pycodestyle ./docs && pycodestyle --config=./.pycodestyle ./pgaweb && pycodestyle --config=./.pycodestyle ./faq && pycodestyle --config=./.pycodestyle ./download",
     "perform": "webpack --config ./webpack.perform.js"
   },
