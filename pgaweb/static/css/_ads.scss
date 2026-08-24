@@ -59,6 +59,21 @@
 }
 
 /*
+ * Below 360px the shell's 1rem of horizontal padding leaves only 288px, and the
+ * 320x100 unit cannot be made narrower: AdSense fills a slot at its declared
+ * size, so squeezing the placeholder would leave the advert overflowing it or
+ * not filling at all. The advert breaks out of the padding instead, which keeps
+ * its full 320px and stops the page scrolling sideways on an original iPhone
+ * SE. Nothing here clips or constrains it; see the warning at the top of this
+ * file.
+ */
+@media (max-width: 359.98px) {
+    .pga-inline-ad {
+        margin-inline: -1rem;
+    }
+}
+
+/*
  * An empty rail should not reserve 600px of nothing. Adverts are injected by
  * loadAds(), so until that has run the placeholder is empty; once it has, it
  * holds an <ins>.
