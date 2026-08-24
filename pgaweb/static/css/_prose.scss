@@ -105,6 +105,19 @@
 
 .pga-prose { max-width: var(--measure); }
 
+/*
+ * The measure exists so that paragraphs are readable, and putting it on the
+ * container also caps anything else inside: on the error pages that squeezed
+ * the terminal blocks to 74 characters and left them with a horizontal
+ * scrollbar whilst two thirds of the content column stood empty. Here the cap
+ * moves to the text itself, so prose stays at the measure and a terminal, a
+ * table or an image can use the width the page actually has.
+ */
+.pga-prose-wide { max-width: none; }
+.pga-prose-wide > p,
+.pga-prose-wide > ul,
+.pga-prose-wide > ol { max-width: var(--measure); }
+
 .pga-prose h2 {
     margin: 2.25rem 0 .75rem;
     padding-bottom: .35rem;
