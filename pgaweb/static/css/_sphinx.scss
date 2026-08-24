@@ -462,6 +462,21 @@
     border-radius: var(--doc-radius);
 }
 
+/*
+ * The border above is for screenshots, which need separating from the page. It
+ * is wrong on a transparent logo: the documentation index floats one over the
+ * "In this section" box, and the overlap reads as deliberate whilst a rectangle
+ * cutting across the box does not.
+ *
+ * Selected on the filename because the docloader renders Sphinx's own markup
+ * and no class can be added to it. Exactly one of the 507 images in the
+ * documentation is named this way.
+ */
+.pga-docbody img[src*="logo-"] {
+    border: 0;
+    border-radius: 0;
+}
+
 .pga-docbody img.align-center {
     display: block;
     margin: 1.35rem auto;

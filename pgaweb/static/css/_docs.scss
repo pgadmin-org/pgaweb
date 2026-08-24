@@ -64,7 +64,25 @@
 
 .pga-doc-side .ad-rail { flex: 0 0 auto; }
 
-.pga-docbody { max-width: 86ch; font-size: .9375rem; line-height: 1.65; }
+/*
+ * The measure sits on the running text rather than on the body, so the body
+ * fills the column its header already spans. With it on the body, the header
+ * was 896px and the content 826px, and the documentation looked inset from its
+ * own heading by 70px here and by more on a wider screen, since the column
+ * grows to 1016px at the shell's maximum.
+ *
+ * Paragraphs and lists keep 86ch so prose stays readable. Everything else, and
+ * Sphinx's tables above all, gets the width: those were the reason this layout
+ * was built, the old one having left them no room at all.
+ */
+.pga-docbody { font-size: .9375rem; line-height: 1.65; }
+
+.pga-docbody > p,
+.pga-docbody section > p,
+.pga-docbody section > ul,
+.pga-docbody section > ol {
+    max-width: 86ch;
+}
 
 .pga-doc-nav {
     display: flex;
