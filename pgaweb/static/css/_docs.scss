@@ -85,3 +85,31 @@
         border-top: 0;
     }
 }
+
+/*
+ * Line the two adverts up on a documentation page.
+ *
+ * The left column stacks the contents above its advert and is capped at the
+ * viewport height, and every page's contents is longer than the space, so the
+ * column always hits that cap and the advert ends up flush with its bottom.
+ * Measured at 312px lower than the right rail's on a 1000px viewport, and the
+ * same on every page, which looks like a mistake rather than a layout.
+ *
+ * The right rail takes the same shape rather than the contents moving into the
+ * body: doing that would leave the documentation 666px wide against 826px now,
+ * narrower even than the site this replaced, and Sphinx's tables were the
+ * reason for this layout in the first place. Given a column of the same height
+ * with its advert at the bottom, the two line up at any viewport height and
+ * neither needs to know anything about the other.
+ *
+ * Only above 1400px. Below that the left advert is dropped so the contents can
+ * have the whole column, so there is nothing to line up with.
+ */
+@media (min-width: 1400px) {
+    .pga-shell-docs > .ad-rail > .pga-rail-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: calc(100vh - 5.5rem);
+    }
+}
