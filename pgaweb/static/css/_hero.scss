@@ -157,15 +157,20 @@
 /* Nothing to copy when the panel is an installer download. */
 .pga-terminal[data-mode="download"] .pga-terminal-copy { visibility: hidden; }
 
+/*
+ * The row wraps rather than scrolling. It used to scroll with the scrollbar
+ * hidden, which looked tidy and made the last three methods unreachable in
+ * practice: a horizontal swipe is undiscoverable, and click and drag does not
+ * scroll an overflow container in any desktop browser, so on a narrow window
+ * there was no way to reach them at all. Wrapping costs a second line in the
+ * one band where it does not fit, and needs no gesture.
+ */
 .pga-terminal-tabs {
     flex: 1 1 auto;
     min-width: 0;
     display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
+    flex-wrap: wrap;
 }
-
-.pga-terminal-tabs::-webkit-scrollbar { display: none; }
 
 .pga-terminal-tabs button {
     flex: 0 0 auto;
@@ -302,4 +307,51 @@ pre.pga-terminal {
 
 @media (max-width: 991.98px) {
     .pga-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 2.25rem 1rem; }
+}
+
+/*
+ * On a phone the six install methods need 488px and have about 286px, so the
+ * row scrolled and the last three were unreachable in practice: a horizontal
+ * swipe is undiscoverable, and click and drag does not scroll an overflow
+ * container in any desktop browser, so it could not even be tested in Safari's
+ * responsive mode.
+ *
+ * So here they wrap onto a second line instead. Every tab is visible and
+ * tappable, with no gesture to discover and nothing to scroll. The fade
+ * affordance in _hero.scss still earns its place between 992px and 1400px,
+ * where the hero splits into two columns and the row is narrow again but a
+ * pointer with a scroll wheel is doing the work.
+ */
+@media (max-width: 575.98px) {
+    .pga-terminal-head {
+        flex-wrap: wrap;
+    }
+
+    /*
+     * Six tabs in two rows of three, rather than letting them wrap where they
+     * fall: flex wrapping packed them 2, 3 and 1 around the copy button, which
+     * reads as a mistake. A grid gives even columns and a predictable shape.
+     */
+    .pga-terminal-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+        overflow-x: visible;
+    }
+
+    .pga-terminal-tabs button {
+        justify-content: center;
+        padding-inline: .5rem;
+    }
+
+    /* Freed from the tab row, it becomes the strip under it. */
+    .pga-terminal-copy {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: .35rem;
+        width: 100%;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, .1);
+    }
 }
