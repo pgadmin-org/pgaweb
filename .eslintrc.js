@@ -34,18 +34,18 @@ module.exports = {
     'linebreak-style': 0,
     'quotes': [
       'error',
-      'single'
+      'single',
     ],
     'semi': [
       'error',
-      'always'
+      'always',
     ],
     'comma-dangle': [
       'error',
-      'always-multiline'
+      'always-multiline',
     ],
-    'no-console': ["error", { allow: ["warn", "error"] }],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     // We need to exclude below for RegEx case
-    "no-useless-escape": 0,
+    'no-useless-escape': 0,
   },
 };

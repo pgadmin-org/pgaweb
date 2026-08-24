@@ -14,7 +14,7 @@ BUCKET_NAME = 'pgadmin-archive.postgresql.org'
 # Format file sizes etc
 def format_bits(size):
     n = 0
-    labels = {0 : 'b', 1: 'Kb', 2: 'Mb', 3: 'Gb'}
+    labels = {0: 'b', 1: 'Kb', 2: 'Mb', 3: 'Gb'}
     while size > 1000:
         size /= 1000
         n += 1
@@ -43,7 +43,8 @@ def gen_index(path, dirs, files, output_dir):
         dirs.sort()
         for dir in dirs:
             if os.path.basename(dir) != 'snapshots' and os.path.basename(dir) != 'redmine':
-                f.write('<li><a href="{}/index.html">{}</a></li>\n'.format(dir, os.path.basename(dir)))
+                f.write('<li><a href="{}/index.html">{}</a></li>\n'
+                        .format(dir, os.path.basename(dir)))
 
         f.write('</ul>\n')
 
@@ -53,7 +54,9 @@ def gen_index(path, dirs, files, output_dir):
 
         files.sort()
         for file in files:
-            f.write('<li><a href="{}">{}</a> ({})</li>\n'.format(file[0], os.path.basename(file[0]), format_bits(file[1])))
+            f.write('<li><a href="{}">{}</a> ({})</li>\n'
+                    .format(file[0], os.path.basename(file[0]),
+                            format_bits(file[1])))
 
         f.write('</ul>\n')
 
@@ -65,7 +68,9 @@ def gen_index(path, dirs, files, output_dir):
 
 # Get all the objects to process
 def get_objects(BUCKET_NAME):
-    cmd = ['/usr/bin/aws', 's3api', 'list-objects', '--bucket', BUCKET_NAME, '--query', 'Contents[].{Key: Key, Size: Size}']
+    cmd = ['/usr/bin/aws', 's3api', 'list-objects',
+           '--bucket', BUCKET_NAME,
+           '--query', 'Contents[].{Key: Key, Size: Size}']
 
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
 
@@ -107,9 +112,11 @@ def process_paths(paths, output_dir):
         dirs = []
 
         for subdir in paths:
-            if subdir[:len(path)+1] == path + '/' or path == '':
-                if '/' not in subdir[len(path)+1:] and os.path.basename(subdir) not in dirs and os.path.basename(subdir) != '':
-                    dirs.append(os.path.basename(subdir))
+            if subdir[:len(path) + 1] == path + '/' or path == '':
+                base = os.path.basename(subdir)
+                immediate_child = '/' not in subdir[len(path) + 1:]
+                if immediate_child and base and base not in dirs:
+                    dirs.append(base)
 
         gen_index(path, dirs, paths[path], output_dir)
 
@@ -125,7 +132,8 @@ args = parser.parse_args()
 output_dir = tempfile.mkdtemp(prefix='pgadmin-archive-')
 
 # Sync content to s3
-sync_cmd = '/usr/bin/aws s3 sync /usr/local/ftp.pgadmin.org/ s3://pgadmin-archive.postgresql.org/ --exclude "*/snapshots/*"'
+sync_cmd = ('/usr/bin/aws s3 sync /usr/local/ftp.pgadmin.org/'
+            ' s3://pgadmin-archive.postgresql.org/ --exclude "*/snapshots/*"')
 os.system(sync_cmd)
 
 # Get all the objects to process
@@ -139,7 +147,8 @@ sync_cmd = '/usr/bin/aws s3 sync {} s3://pgadmin-archive.postgresql.org/'.format
 os.system(sync_cmd)
 
 # Invalidate CloudFront
-sync_cmd = '/usr/bin/aws cloudfront create-invalidation --distribution-id {} --paths "/*"'.format(args.cf_dist_id[0])
+sync_cmd = ('/usr/bin/aws cloudfront create-invalidation'
+            ' --distribution-id {} --paths "/*"').format(args.cf_dist_id[0])
 os.system(sync_cmd)
 
 # Be a little careful here

@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
 
@@ -117,7 +120,14 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        # pycodestyle is a development tool, so it is installed here rather than
+        # added to requirements.txt, which is what the site runs on.
+        run: |
+          pip install -r requirements.txt
+          pip install pycodestyle
+
+      - name: Check the Python style
+        run: pycodestyle --config=./.pycodestyle .
 
       # No settings_local.py and no database here, which is fine: settings.py
       # imports the local overrides inside a try/except, and check does not

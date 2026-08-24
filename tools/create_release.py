@@ -22,7 +22,7 @@ def get_package_id(cursor):
 
     try:
         package_id = cursor.fetchone()[0]
-    except:
+    except TypeError:
         print("Failed to get the package ID:\nZero rows matched the query.")
         sys.exit(1)
 
@@ -40,8 +40,9 @@ def create_version(cursor, package_id, version_name):
         version_name = version_name[1:]
 
     sql = """WITH e AS (
-                 INSERT INTO download_version 
-                     (package_id, name, slug, active, released, pre_release, pdf_doc, epub_doc, tarball_doc) 
+                 INSERT INTO download_version
+                     (package_id, name, slug, active, released,
+                      pre_release, pdf_doc, epub_doc, tarball_doc)
                  VALUES
                      (%s, %s, %s, false, now()::date, false, true, true, true)
                  ON CONFLICT (package_id, name) DO NOTHING
@@ -53,7 +54,7 @@ def create_version(cursor, package_id, version_name):
 
     if args.d:
         print("Executing:\n----\n{0}\nArgs: {1}, '{2}', '{3}', '{4}'\n----") \
-              .format(sql, package_id, version_name, version_name, version_name)
+            .format(sql, package_id, version_name, version_name, version_name)
 
     try:
         cursor.execute(sql, (package_id, version_name, version_name, version_name))
@@ -63,7 +64,7 @@ def create_version(cursor, package_id, version_name):
 
     try:
         version_id = cursor.fetchone()[0]
-    except:
+    except TypeError:
         print("Failed to get the version ID:\nZero rows matched the query.")
         sys.exit(1)
 
@@ -74,14 +75,14 @@ def create_version(cursor, package_id, version_name):
 
 
 def get_distribution_id(cursor, distribution_name, package_id):
-    sql = """SELECT id FROM download_distribution 
+    sql = """SELECT id FROM download_distribution
                  WHERE
                      name = %s AND
                      package_id = %s;"""
 
     if args.d:
         print("Executing:\n----\n{0}\nArgs: '{1}', {2}\n----") \
-              .format(sql, distribution_name, package_id)
+            .format(sql, distribution_name, package_id)
 
     try:
         cursor.execute(sql, (distribution_name, package_id))
@@ -91,7 +92,7 @@ def get_distribution_id(cursor, distribution_name, package_id):
 
     try:
         distribution_id = cursor.fetchone()[0]
-    except:
+    except TypeError:
         print("Failed to get the distribution ID:\nZero rows matched the query.")
         sys.exit(1)
 
@@ -112,9 +113,9 @@ def create_download(cursor, distribution_name, version_name, download_url, notes
 
     if args.d:
         print("Executing:\n----\n{0}\nArgs: {1}, {2}, '{3}', '{4}'\n----") \
-              .format(sql, distribution_id, version_id,
-                      download_url.format(version_name),
-                      notes_url.format(version_name[1:].replace('.', '_')))
+            .format(sql, distribution_id, version_id,
+                    download_url.format(version_name),
+                    notes_url.format(version_name[1:].replace('.', '_')))
 
     try:
         cursor.execute(sql, (distribution_id, version_id,
@@ -128,9 +129,9 @@ def create_download(cursor, distribution_name, version_name, download_url, notes
 # Command line arguments
 parser = argparse.ArgumentParser(description='Create a new pgAdmin release.')
 parser.add_argument('version', metavar='<pgAdmin version>', nargs=1,
-                   help='the pgAdmin version number to be released')
+                    help='the pgAdmin version number to be released')
 parser.add_argument('-d', action='store_true',
-                   help='display debug output')
+                    help='display debug output')
 
 args = parser.parse_args()
 

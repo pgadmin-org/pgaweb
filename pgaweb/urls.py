@@ -62,8 +62,8 @@ urlpatterns = [
         name='development_translations',
     ),
     re_path(r'^styleguide/$', pgaweb_views.styleguide_redirect, name='styleguide_redirect'),
-    re_path(r'^styleguide/(?P<page>[a-zA-Z]+)(?:/(?P<section>[a-zA-Z_]+))?/$', pgaweb_views.styleguide_index,
-        name='styleguide_index'),
+    re_path(r'^styleguide/(?P<page>[a-zA-Z]+)(?:/(?P<section>[a-zA-Z_]+))?/$',
+            pgaweb_views.styleguide_index, name='styleguide_index'),
     re_path(r'^community/$', pgaweb_views.community, name='community'),
 
     # Merged into the community page. Permanent, so that existing links and

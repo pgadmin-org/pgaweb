@@ -49,7 +49,7 @@ const webpackConfig = smp.wrap({
   context: __dirname,
   mode: 'production',
   entry: {
-    'webp': ['@babel/polyfill', './static/js/webp.js'],
+    'webp': './static/js/webp.js',
     'main': './static/js/index.js',
     'styleguide': './pgaweb/static/css/styleguide.scss',
   },
@@ -68,15 +68,7 @@ const webpackConfig = smp.wrap({
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: [
-              [
-                '@babel/plugin-transform-async-to-generator',
-                {
-                  module: 'bluebird',
-                  method: 'coroutine',
-                },
-              ],
-            ],
+            plugins: ['@babel/plugin-transform-async-to-generator'],
           },
         },
       },
@@ -121,18 +113,22 @@ const webpackConfig = smp.wrap({
     }),
     new webpack.ProvidePlugin({
     }),
-    new CopyPlugin([
-      {
-        from: './static/img/*.*',
-        to: 'assets/img',
-        flatten: true,
-      },
-      {
-        from: './static/img/screenshots',
-        to: 'assets/img/screenshots',
-        flatten: false,
-      },
-    ]),
+    // copy-webpack-plugin takes a { patterns: [...] } object rather than a bare
+    // array, and dropped the flatten option, which is now expressed by naming
+    // the destination file. This config still used the old shape, so it threw
+    // at load time and npm run dev and npm run perform could not run at all.
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './static/img/*.*',
+          to: 'assets/img/[name][ext]',
+        },
+        {
+          from: './static/img/screenshots',
+          to: 'assets/img/screenshots',
+        },
+      ],
+    }),
     new ImageminPlugin(
       {
         pngquant: ({ quality: '50' }),
@@ -154,9 +150,9 @@ const webpackConfig = smp.wrap({
   },
 });
 
-module.exports = (env, argv) => {
-
-  // const isProductionMode = argv.mode === 'production';
-  //   // const ifProd = (x) => isProductionMode && x;
-  return webpackConfig;
-};
+// Exported directly rather than as an (env, argv) function. The function form
+// exists so a config can vary with the command line, and this one never did:
+// both arguments were unused and the only code that would have read them was
+// commented out. webpack.prod.js keeps the function form, because it does read
+// argv.mode.
+module.exports = webpackConfig;

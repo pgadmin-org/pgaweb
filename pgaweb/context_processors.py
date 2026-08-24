@@ -12,6 +12,7 @@ from django.utils.functional import SimpleLazyObject
 from docs.models import Page
 from pgaweb import settings
 
+
 def get_docs(request):
     pages = Page.objects.filter(version__active=True,
                                 version__package__active=True,
@@ -30,9 +31,9 @@ def _get_gitrev():
         # A "git gc" will remove the ref and replace it with a packed-refs.
         try:
             with open('.git/packed-refs') as f:
-                for l in f.readlines():
-                    if l.endswith("refs/heads/main\n"):
-                        return l[:8]
+                for line in f.readlines():
+                    if line.endswith('refs/heads/main\n'):
+                        return line[:8]
                 # Not found in packed-refs. Meh, just make one up.
                 return 'ffffffff'
         except IOError:

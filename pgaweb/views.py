@@ -69,6 +69,17 @@ def development_team(request):
     return render(request, 'pgaweb/development/team.html', {})
 
 
+# The translation table shows a status icon per catalogue. They are markup
+# rather than classes because the template renders them with |safe.
+ICON_UNKNOWN = '<i class="fa fa-question-circle text-warning" aria-hidden="true">'
+ICON_GOOD = '<i class="fa fa-check-circle text-success" aria-hidden="true">'
+ICON_BAD = '<i class="fa fa-exclamation-circle text-danger" aria-hidden="true">'
+
+
+def pct(part, whole):
+    return 100 / whole * part
+
+
 def translation_status():
     base_path = os.path.join(settings.PGADMIN_TREE_PATH, 'web', 'pgadmin')
 
@@ -109,23 +120,32 @@ def translation_status():
             catalog['file'] = po[len(base_path) + 14:]
             catalog['language'] = languages[po[len(base_path) + 14:].split('/')[0]]
             try:
-                catalog['revised'] = c.revision_date.strftime("%Y-%m-%d")
-            except:
+                catalog['revised'] = c.revision_date.strftime('%Y-%m-%d')
+            except AttributeError:
                 catalog['revised'] = 'Unknown'
-            catalog['translator'] = ' '.join([i for i in c.last_translator.split() if '@' not in i])
+            catalog['translator'] = ' '.join(
+                i for i in c.last_translator.split() if '@' not in i)
             catalog['total_messages'] = len(c)
-            catalog['total_messages_pct'] = 100 / total_messages * catalog['total_messages']
-            catalog['translated_messages'] = catalog['total_messages'] - untranslated
-            catalog['translated_messages_pct'] = 100 / catalog['total_messages'] * catalog['translated_messages']
-            catalog['status_icon'] = '<i class="fa fa-question-circle text-warning" aria-hidden="true">'
+            catalog['total_messages_pct'] = \
+                100 / total_messages * catalog['total_messages']
+
+            translated = catalog['total_messages'] - untranslated
+            catalog['translated_messages'] = translated
+            catalog['translated_messages_pct'] = pct(translated,
+                                                     catalog['total_messages'])
+
+            catalog['status_icon'] = ICON_UNKNOWN
             if catalog['translated_messages_pct'] >= 95:
-                catalog['status_icon'] = '<i class="fa fa-check-circle text-success" aria-hidden="true">'
+                catalog['status_icon'] = ICON_GOOD
             elif catalog['translated_messages_pct'] < 75:
-                catalog['status_icon'] = '<i class="fa fa-exclamation-circle text-danger" aria-hidden="true">'
+                catalog['status_icon'] = ICON_BAD
+
             catalog['fuzzy_messages'] = fuzzy
-            catalog['fuzzy_messages_pct'] = 100 / catalog['total_messages'] * catalog['fuzzy_messages']
+            catalog['fuzzy_messages_pct'] = pct(fuzzy,
+                                                catalog['total_messages'])
             catalog['untranslated_messages'] = untranslated
-            catalog['untranslated_messages_pct'] = 100 / catalog['total_messages'] * catalog['untranslated_messages']
+            catalog['untranslated_messages_pct'] = \
+                pct(untranslated, catalog['total_messages'])
 
         catalogs.append(catalog)
 
@@ -217,7 +237,7 @@ def page_not_found(request, exception=None):
 
 
 def server_error(request):
-    response = render(request, 'pgaweb/errors/500.html', { })
+    response = render(request, 'pgaweb/errors/500.html', {})
     response.status_code = 500
 
     return response
