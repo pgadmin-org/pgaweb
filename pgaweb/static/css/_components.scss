@@ -138,3 +138,62 @@ p.pga-meta { font-family: var(--font-body); font-size: .8125rem; }
 
 /* News bodies arrive as stored HTML. */
 .pga-news-body > :last-child { margin-bottom: 0; }
+
+/* ===================================================================
+   Distribution grid on the download page
+   -------------------------------------------------------------------
+   One tile per distribution, each an icon above its name. It replaces a
+   single row table whose cells carried width percentages, which nothing in
+   this stylesheet styled: the icon sat at the left of the cell with the name
+   block beneath it, so the two never lined up.
+   =================================================================== */
+
+.pga-distributions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+    gap: .75rem;
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pga-distributions a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .6rem;
+    height: 100%;
+    padding: 1.1rem .75rem;
+    color: var(--fg-soft);
+    text-align: center;
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: border-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+.pga-distributions a:hover,
+.pga-distributions a:focus-visible {
+    color: var(--accent);
+    border-color: var(--control-border);
+    transform: translateY(-2px);
+}
+
+/*
+ * The icon is sized from the anchor rather than from the <i>, because Font
+ * Awesome runs in svg mode and replaces that element with an <svg> whose height
+ * is 1em. Styling the <i> would therefore style something no longer in the
+ * document. The label sets its own size below, so it is unaffected.
+ */
+.pga-distributions a {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.pga-distributions span {
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    line-height: 1.3;
+}

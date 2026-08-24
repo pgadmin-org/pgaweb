@@ -26,20 +26,22 @@
 <h2>{{ package.name }}</h2>
 
 {{ package.description | safe }}
-<div class="well">
-    <table class="table pga-downloads">
-        <tbody>
-            <tr class="pga-quicklinks">
-                {% for distribution in package.distribution_set.all %}
-                <td width="{% widthratio 100 package.distribution_set.count 1 %}%" class="align-middle">
-                    <a href="{% url 'download_list' distribution.slug %}"><i class="{{ distribution.icon }} fa-2x" aria-hidden="true"></i><div class="download-icon-padding">{{ distribution.name }}</div>
-                    </a>
-                </td>
-                {% endfor %}
-            </tr>
-        </tbody>
-    </table>
-</div>
+{% comment %}
+    A grid rather than a single row table. The table was left over from the old
+    site and nothing in the current stylesheet styled it, so the icons sat at
+    the left of each cell with the name block beneath them rather than centred
+    over it, and the per cell width percentages fought the column width.
+{% endcomment %}
+<ul class="pga-distributions">
+    {% for distribution in package.distribution_set.all %}
+    <li>
+        <a href="{% url 'download_list' distribution.slug %}">
+            <i class="{{ distribution.icon }}" aria-hidden="true"></i>
+            <span>{{ distribution.name }}</span>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
 
 
 

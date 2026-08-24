@@ -103,17 +103,36 @@
 .pga-prose { max-width: var(--measure); }
 
 /*
- * The measure exists so that paragraphs are readable, and putting it on the
- * container also caps anything else inside: on the error pages that squeezed
- * the terminal blocks to 74 characters and left them with a horizontal
- * scrollbar whilst two thirds of the content column stood empty. Here the cap
- * moves to the text itself, so prose stays at the measure and a terminal, a
- * table or an image can use the width the page actually has.
+ * The measure exists so that paragraphs stay readable, and putting it on the
+ * container caps everything inside, not just the text.
+ *
+ * That is right where a contents menu sits alongside, because the menu fills
+ * the rest of the column. Where there is none it left the content capped at
+ * 666px in an 896px column, so a third of the page was empty to the right and
+ * the content looked shoved to one side. Download, search, the FAQ, the news
+ * and blog lists, the team page and the error pages were all like this.
+ *
+ * The two cases are told apart by the markup, without a class per template: a
+ * page with a menu wraps its content in .pga-with-aside, so .pga-prose is only
+ * ever a direct child of .pga-main when there is no menu. There, the cap moves
+ * off the container and onto the running text, so paragraphs and lists keep the
+ * measure whilst a table, a grid or a terminal uses the column it is in.
+ *
+ * Only unclassed lists are capped. A bare <ul> is prose and wants the measure;
+ * one carrying a class is a component built out of a list, such as the
+ * distribution grid on the download page or the search results, and those want
+ * the column.
  */
-.pga-prose-wide { max-width: none; }
-.pga-prose-wide > p,
-.pga-prose-wide > ul,
-.pga-prose-wide > ol { max-width: var(--measure); }
+.pga-main > .pga-page-head,
+.pga-main > .pga-prose {
+    max-width: none;
+}
+
+.pga-main > .pga-prose > p,
+.pga-main > .pga-prose > ul:not([class]),
+.pga-main > .pga-prose > ol:not([class]) {
+    max-width: var(--measure);
+}
 
 .pga-prose h2 {
     margin: 2.25rem 0 .75rem;

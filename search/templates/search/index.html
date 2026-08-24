@@ -30,7 +30,7 @@
 {% if results %}
 <p>Results {{ first }} to {{ last }} of {% if results|length == 25 %}more than {% endif %}{{ last }}:</p>
 
-<ol start="{{ first }}">
+<ol class="pga-search-results" start="{{ first }}">
 {% for result in results|slice:":26" %}
   <li><a href="{% url 'page' result.package result.version_slug result.file %}" title="Search rank: {{ result.rank }}">{{ result.title|safe }}</a><br />
     {{ result.headline|safe }}<br />&nbsp;</li>
