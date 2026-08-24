@@ -305,19 +305,25 @@
             </li>
         </ul>
 
+        {% comment %}
+            The search sits alongside .pga-nav-tools rather than inside it. On a
+            phone the open menu gives it a full width row of its own, and a
+            100% wide child of the tools group would instead stretch the group
+            until it no longer fitted beside the wordmark, wrapping the header.
+        {% endcomment %}
+        <form class="pga-search" id="search_form" action="{% url 'search' %}" method="get">
+            <label for="search_q" class="visually-hidden">{% block search_prompt %}Search docs{% endblock %}</label>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input id="search_q" name="q" type="search"
+                   placeholder="{% block search_placeholder %}Search docs{% endblock %}">
+            {% block search_fields %}{% endblock %}
+        </form>
+
         <div class="pga-nav-tools">
             <button class="pga-nav-toggle" type="button" data-nav-toggle
                     aria-label="Menu" aria-expanded="false">
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
-
-            <form class="pga-search" id="search_form" action="{% url 'search' %}" method="get">
-                <label for="search_q" class="visually-hidden">{% block search_prompt %}Search docs{% endblock %}</label>
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input id="search_q" name="q" type="search"
-                       placeholder="{% block search_placeholder %}Search docs{% endblock %}">
-                {% block search_fields %}{% endblock %}
-            </form>
 
             <button class="pga-icon-btn" id="theme-toggle" type="button"
                     aria-label="Toggle dark mode" title="Toggle dark mode">
