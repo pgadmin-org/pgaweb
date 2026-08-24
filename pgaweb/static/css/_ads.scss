@@ -20,7 +20,14 @@
 .ad-placeholder {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    /*
+     * Aligned to the start rather than centred. The creative is a fixed size
+     * iframe that cannot shrink, so if the rail is ever narrower than the
+     * advert in it, centring spills the advert over both edges and one of those
+     * is the content. Starting it at the rail's own edge means any excess goes
+     * outwards, into the page margin, and never over the text.
+     */
+    justify-content: flex-start;
 
     /*
      * The rails are designed at 300px so that AdSense can fill a 300x600 half

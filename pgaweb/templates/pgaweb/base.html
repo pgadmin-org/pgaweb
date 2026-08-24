@@ -179,10 +179,12 @@
                 // element is a flex item in a centring container with no width
                 // of its own, so it measured zero and AdSense never filled it.
                 //
-                // The rail is 300px wide above 1400px and 160px below, matching
-                // .ad-placeholder in _ads.scss. Keep the two in step.
+                // Take the width from the rail itself rather than repeating
+                // _ads.scss's breakpoint here. The two cannot then disagree, and
+                // the rail is the thing that actually has to hold the advert.
+                var railWidth = Math.round(placeholder.getBoundingClientRect().width);
                 ins.style.display = 'inline-block';
-                ins.style.width = window.innerWidth >= 1400 ? '300px' : '160px';
+                ins.style.width = (railWidth || 160) + 'px';
                 ins.style.height = '600px';
             }
 
