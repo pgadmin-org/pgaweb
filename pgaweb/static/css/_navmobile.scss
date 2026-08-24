@@ -52,6 +52,19 @@
  * leaves no dangling flex gap beside the icon.
  */
 @media (max-width: 575.98px) {
+    /*
+     * With the label clipped the button's height came from the icon's line box
+     * alone, which left it 23px against the 30px of the icon buttons next to
+     * it. Icon only, it is the same kind of control as they are, so it takes
+     * the same square.
+     */
+    .pga-nav-tools .pga-btn-primary {
+        justify-content: center;
+        width: var(--nav-control-size);
+        height: var(--nav-control-size);
+        padding: 0;
+    }
+
     .pga-nav-tools .pga-btn-label {
         position: absolute;
         width: 1px;

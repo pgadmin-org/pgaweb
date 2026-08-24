@@ -60,6 +60,9 @@
 
     --radius: 3px;
     --radius-lg: 4px;
+    /* The square icon controls in the header, so an icon-only button can match
+       them without repeating the number. */
+    --nav-control-size: 30px;
     /* Only for things drawn as an operating system window, where the
        near-square corners above would not read as one. */
     --radius-window: 10px;

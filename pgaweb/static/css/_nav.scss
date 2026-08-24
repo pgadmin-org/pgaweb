@@ -91,8 +91,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: var(--nav-control-size);
+    height: var(--nav-control-size);
     font-size: .875rem;
     color: var(--fg-soft);
     text-decoration: none;
