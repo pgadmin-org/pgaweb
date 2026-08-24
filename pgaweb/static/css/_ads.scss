@@ -1,14 +1,14 @@
 /* ==========================================================================
    Advert rails
 
-   The mockups drew these with a placeholder harness; this is the real thing,
-   styling the .ad-placeholder that pgaweb/ad.html renders and loadAds() fills.
+   These style the .ad-placeholder that pgaweb/ad.html renders and loadAds()
+   fills.
 
-   Read the rules in .claude/mockups/HANDOFF.md before changing any of this. In
-   short: the rail must not clip its overflow and its grid track must not
-   shrink-wrap, or the sticky advert silently stops sticking. Both faults were
-   live on the site until 0f379e2, and each one alone is enough to break it, so
-   fixing only one looks like it has changed nothing.
+   Two rules before changing any of it: the rail must not clip its overflow, and
+   its grid track must not shrink-wrap. Either one silently stops the sticky
+   advert sticking, and each is enough on its own, so fixing only one looks like
+   it has changed nothing. Both were live on the site and cost real revenue
+   until 0f379e2, whose commit message has the full analysis.
    ========================================================================== */
 
 .ad-rail {

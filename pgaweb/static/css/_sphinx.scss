@@ -1,7 +1,7 @@
-/* Ported verbatim from .claude/mockups/shared/sphinx.css. Every rule hangs
-   off a class Sphinx itself emits, because the docloader stores the markup
-   and page.html renders it with |safe, so we cannot add a class to any of
-   it. Driven entirely by the --doc-* and --pyg-* tokens in _tokens.scss. */
+/* Every rule here hangs off a class Sphinx itself emits, because the docloader
+   stores the markup and page.html renders it with |safe, so we cannot add a
+   class to any of it. Driven entirely by the --doc-* and --pyg-* tokens in
+   _tokens.scss. */
 
 /*
  * Documentation styling for Sphinx "classic" theme output.

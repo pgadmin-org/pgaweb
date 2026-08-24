@@ -1,9 +1,7 @@
 /* ==========================================================================
    pgadmin.org
 
-   Direction C, "Technical", from the 2026 redesign. The design is documented in
-   .claude/specs/2026-08-19-website-redesign-design.md and the reference
-   implementation is .claude/mockups/c-technical/.
+   Direction C, "Technical", from the 2026 redesign.
 
    Everything is driven by the custom properties in _tokens.scss. Dark mode is a
    token swap rather than a parallel set of overrides, which is the main
