@@ -25,9 +25,29 @@
     </aside>
 
     <div class="pga-main">
+        {% comment %}
+            Below the lg breakpoint the rails are removed and these two take
+            over, so a phone sees the same two units a desktop does.
+
+            Both are needed because one is not enough on its own. With only the
+            slot at the end, the advert on the home page sat 11,406px down a
+            12,430px page, twenty screens below the fold on an iPhone SE, which
+            is indistinguishable from having none at all; Features was 88% down
+            and Community 76%. The documentation template already carried a slot
+            above its body for exactly this reason, which is why it was the only
+            page with an advert anybody saw.
+
+            This one sits above the page heading rather than below it, as the
+            documentation's does, because the heading belongs to the content
+            block and cannot be split from here. After the header bar that puts
+            it around 51px down, so the heading is still on screen beneath it.
+        {% endcomment %}
+        <div class="pga-inline-ad">
+            {% include "pgaweb/ad.html" %}
+        </div>
+
         {% block content %}{% endblock %}
 
-        {# Below the lg breakpoint the rails are removed and this takes over. #}
         <div class="pga-inline-ad">
             {% include "pgaweb/ad.html" %}
         </div>
