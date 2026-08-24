@@ -1,4 +1,8 @@
-Django>=4.2.13
+# Django 6 removed django.utils.itercompat.is_iterable, which the vendorised
+# tsvector_field imports, so the site does not start on it. Verified working
+# on 4.2.13 and 5.2.17, and failing on 6.1. Lift the ceiling once
+# tsvector_field is dealt with; see the note in that package.
+Django>=4.2.13,<6.0
 psycopg2-binary>=2.9.9
 beautifulsoup4>=4.7.1
 Babel>=2.9.1
