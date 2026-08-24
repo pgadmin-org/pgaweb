@@ -93,10 +93,19 @@ var plugins = [
 
 module.exports = (env, argv) => {
   const isProductionMode = argv.mode === 'production';
-  const isOptimizeMode = (argv.optimize === 'false') ? false : true;
 
-  isOptimizeMode ? plugins.push(new ProcessAfterBuild()) : false;
-  isProductionMode ?  plugins.push(new webpack.SourceMapDevToolPlugin({ filename: '[file].map[query]', exclude: ['vendor.js'] })) : false;
+  // The critical css step drives a browser and takes most of the build's
+  // wall clock, so it is production only: a development build wants the whole
+  // stylesheet anyway. This used to be a bespoke --optimize=false flag, which
+  // webpack-cli 5 rejects outright as an unknown option, so nothing could pass
+  // it and a development build was not possible.
+  if (isProductionMode) {
+    plugins.push(new ProcessAfterBuild());
+    plugins.push(new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map[query]',
+      exclude: ['vendor.js'],
+    }));
+  }
 
   return {
     context: __dirname,
