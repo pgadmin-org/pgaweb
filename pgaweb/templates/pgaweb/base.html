@@ -239,6 +239,11 @@
             .pga-inline-ad { display: block; }
             .ad-placeholder { width: 320px; min-height: 100px; }
         }
+        /* The 320x100 unit cannot shrink, so below 360px it breaks out of the
+           shell's padding rather than overflowing the page. */
+        @media (max-width: 359.98px) {
+            .pga-inline-ad { margin-inline: -1rem; }
+        }
     </style>
 
     <link rel="stylesheet" href="/static/COMPILED/assets/css/main.css?{{gitrev}}" />
@@ -336,7 +341,8 @@
             </a>
 
             <a class="pga-btn pga-btn-primary pga-btn-sm" href="{% url 'download_index' %}">
-                <i class="fas fa-download" aria-hidden="true"></i> Download
+                <i class="fas fa-download" aria-hidden="true"></i>
+                <span class="pga-btn-label">Download</span>
             </a>
         </div>
     </div>

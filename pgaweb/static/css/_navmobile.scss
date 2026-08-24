@@ -37,3 +37,30 @@
     .pga-search { display: none; }
     .pga-nav-inner.open .pga-search { order: 4; display: flex; width: 100%; }
 }
+
+/*
+ * The header runs out of room on the narrowest phones. The wordmark, the four
+ * controls and the word "Download" together need a 361px viewport, so an
+ * original iPhone SE at 320px wrapped the whole tools group onto a second row,
+ * and a 375px one cleared it by only fourteen pixels, which a different font
+ * fallback can easily eat.
+ *
+ * So the word goes and the icon stays. It is hidden rather than removed, by the
+ * same clipping the visually-hidden utility uses, because the text is what
+ * gives the button its accessible name: a screen reader still announces
+ * "Download" and only the pixels are gone. Being absolutely positioned, it also
+ * leaves no dangling flex gap beside the icon.
+ */
+@media (max-width: 575.98px) {
+    .pga-nav-tools .pga-btn-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+    }
+}
