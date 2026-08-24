@@ -1,0 +1,127 @@
+# Exercises the front end build, which is the part of this repository that can
+# break silently. The build has previously reported success whilst producing a
+# broken stylesheet, so this checks the artefacts rather than trusting the exit
+# status: see the "verify" step below.
+#
+# There is deliberately no schedule here. GitHub disables scheduled workflows in
+# a repository after 60 days without activity, and this one goes quiet for
+# months at a time, which is how the CodeQL workflow came to sit dormant for
+# years. On push and pull request only, it cannot be disabled that way.
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: Front end build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # The build script is a chain: webpack, then the critical css
+      # postprocessor, then gzip. A failure part way along used to leave webpack
+      # reporting success whilst the later steps never ran, so check that each
+      # stage actually produced something.
+      - name: Verify the build produced its artefacts
+        run: |
+          set -eu
+
+          check_nonempty() {
+            if [ ! -s "$1" ]; then
+              echo "::error::$1 is missing or empty"
+              exit 1
+            fi
+            echo "  ok  $1 ($(stat -c%s "$1") bytes)"
+          }
+
+          echo "webpack output:"
+          check_nonempty static/COMPILED/main.js
+          check_nonempty static/COMPILED/webp.js
+          check_nonempty static/COMPILED/assets/css/main.css
+          check_nonempty static/COMPILED/assets/css/styleguide.css
+
+          echo "gzip step, which is chained after webpack in the build script:"
+          check_nonempty static/COMPILED/main.js.gz
+          check_nonempty static/COMPILED/webp.js.gz
+
+          # The critical css step needs a browser and is allowed to fail without
+          # failing the build, in which case it writes this file empty on
+          # purpose, because base.html loads it asynchronously and a 404 helps
+          # nobody. So it must exist, but it may legitimately be empty.
+          echo "critical css step:"
+          if [ ! -f static/COMPILED/assets/css/main_uncritical.css ]; then
+            echo "::error::main_uncritical.css was not written at all"
+            exit 1
+          fi
+          size=$(stat -c%s static/COMPILED/assets/css/main_uncritical.css)
+          if [ "$size" -eq 0 ]; then
+            echo "::warning::critical css did not run; main_uncritical.css is empty"
+          else
+            echo "  ok  main_uncritical.css ($size bytes)"
+          fi
+
+      # The concatenated template the critical css is measured against was once
+      # built in the wrong order and prefixed with the literal text "undefined".
+      # Both are invisible in the output, so assert on them here.
+      - name: Verify the critical css snippet
+        run: |
+          set -eu
+          snippet=$(find static -name 'index_critical*' -type f | head -1)
+          if [ -z "$snippet" ]; then
+            echo "no critical css snippet was generated; skipping"
+            exit 0
+          fi
+          if head -c 200 "$snippet" | grep -q undefined; then
+            echo "::error::$snippet begins with an undefined accumulator"
+            exit 1
+          fi
+          if ! head -c 200 "$snippet" | grep -qi '<!doctype'; then
+            echo "::error::$snippet does not start with base.html's doctype"
+            exit 1
+          fi
+          echo "  ok  $snippet"
+
+  django:
+    name: Django checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # No settings_local.py and no database here, which is fine: settings.py
+      # imports the local overrides inside a try/except, and check does not
+      # connect. It still catches a broken URL conf, a bad template loader
+      # configuration or an app that will not import.
+      - name: Run the system checks
+        run: python manage.py check
