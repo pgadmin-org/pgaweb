@@ -77,7 +77,58 @@
  * An empty rail should not reserve 600px of nothing. Adverts are injected by
  * loadAds(), so until that has run the placeholder is empty; once it has, it
  * holds an <ins>.
+ *
+ * The rails only. A rail is its own grid column, so it growing from nothing to
+ * 600px moves no content and costs no layout shift, and collapsing spares the
+ * reader a tall empty column when nothing fills. The inline unit is in the
+ * content flow, where the same collapse would drop everything below it by 100px
+ * the moment an advert arrived, so that one keeps its space reserved and the
+ * advert lands in a hole already the right size.
  */
-.ad-placeholder:empty {
+.ad-rail .ad-placeholder:empty {
     min-height: 0;
+}
+
+/*
+ * Dark mode: give the advert something to sit on.
+ *
+ * Google serves the creative and gives publishers no control over it and no
+ * dark variant, so most arrive with a white or transparent background. On a
+ * #0d1117 page that lands as a bright rectangle floating on nothing, which
+ * reads as a rendering fault rather than as an advert. A light card underneath
+ * makes it deliberate, and it helps rather than hinders the requirement that
+ * adverts be distinguishable from the content around them. Styling the
+ * container is not modifying the ad code.
+ *
+ * Drawn entirely with box-shadow spread and no padding or border, because the
+ * geometry here is fixed: the placeholder is exactly the size of the unit, in a
+ * rail exactly as wide, so anything occupying layout space would push the
+ * advert out of its own column. Shadows paint outside the box and take none, so
+ * the reserved box is untouched and nothing shifts.
+ *
+ * Only when filled. An empty slot collapses, and a card around nothing would
+ * advertise the fact that no advert arrived.
+ */
+[data-bs-theme="dark"] .ad-placeholder:not(:empty) {
+    background: #f4f6f8;
+    box-shadow:
+        0 0 0 var(--ad-card-pad, 10px) #f4f6f8,
+        0 0 0 calc(var(--ad-card-pad, 10px) + 1px) var(--line);
+    border-radius: 2px;
+}
+
+/*
+ * The inline unit sits in the content flow, so the ring around its card needs
+ * clearance above and below or it laps over whatever is next. Padding rather
+ * than margin, because the wrapper's margins are set elsewhere and replacing
+ * them here shortened the page rather than lengthening it, and padding adds
+ * room without touching the advert's own box.
+ *
+ * Reserved whether or not an advert arrives. Gating it on a filled slot meant
+ * the clearance appeared at the same moment the advert did, moving the page
+ * 20px under the reader, which is the shift this whole arrangement is built to
+ * avoid. Unfilled, it is 20px of whitespace nobody can see.
+ */
+[data-bs-theme="dark"] .pga-inline-ad {
+    padding-block: var(--ad-card-pad, 10px);
 }

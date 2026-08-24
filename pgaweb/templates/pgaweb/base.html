@@ -232,7 +232,9 @@
             padding: 2rem 1.25rem 3.5rem;
         }
         .ad-placeholder { width: 300px; min-height: 600px; margin-inline: auto; }
-        .ad-placeholder:empty { min-height: 0; }
+        /* Rails only: see the note in _ads.scss. The inline unit keeps its
+           reserved height so an arriving advert does not push the page. */
+        .ad-rail .ad-placeholder:empty { min-height: 0; }
         .pga-inline-ad { display: none; }
         /* Which home page hero screenshot shows. Duplicated from _hero.scss so
            that a dark visitor does not see the light one first; see the note

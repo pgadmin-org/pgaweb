@@ -23,5 +23,11 @@ passes nothing.
 <div class="ad-placeholder"
      data-ad-slot-desktop="{{ slot_desktop|default:'4114194323' }}"
      data-ad-slot-mobile="{{ slot_mobile|default:'1132526293' }}"
-     aria-hidden="true">
-</div>
+     aria-hidden="true"></div>{% comment %}
+
+    The closing tag is deliberately on the same line. A newline between the tags
+    is a text node, which makes the div fail :empty, and two rules in _ads.scss
+    depend on that selector: the one that collapses an unfilled slot so a rail
+    does not reserve 600px of nothing, and the one that draws a card behind a
+    filled advert in dark mode. Neither had ever matched.
+{% endcomment %}
