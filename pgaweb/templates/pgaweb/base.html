@@ -233,6 +233,17 @@
             margin-inline: auto;
             padding: 2rem 1.25rem 3.5rem;
         }
+        /* Explicit placement, so that a blocker hiding .ad-rail (EasyList
+           carries a generic rule for it) cannot let .pga-main auto place into
+           a rail track and render the page in a 300px column. See the longer
+           note in _shell.scss. Above lg only: the shell is one column below
+           it. */
+        @media (min-width: 992px) {
+            .pga-shell > .ad-rail:first-child,
+            .pga-shell > .pga-doc-side { grid-column: 1; }
+            .pga-shell > .pga-main { grid-column: 2; }
+            .pga-shell > .ad-rail:last-child { grid-column: 3; }
+        }
         .ad-placeholder { width: 300px; min-height: 600px; margin-inline: auto; }
         /* Rails only: see the note in _ads.scss. The inline unit keeps its
            reserved height so an arriving advert does not push the page. */

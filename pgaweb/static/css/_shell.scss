@@ -13,6 +13,36 @@
 
 .pga-shell-docs { grid-template-columns: 300px minmax(0, 1fr) 300px; }
 
+/*
+ * Explicit column placement, which is load bearing rather than tidiness.
+ *
+ * EasyList carries two generic cosmetic rules that match this markup on every
+ * site using those class names: `##.ad-rail` and `##.ad-placeholder`. Every
+ * reader with uBlock Origin, AdGuard or Brave's built in blocker therefore gets
+ * display: none on both rails, which takes them out of the grid flow
+ * altogether, and with the children implicitly placed auto placement then drops
+ * .pga-main into the first track: the whole page rendered inside a 300px
+ * column, 160px below 1400px, which is what a blocked reader actually saw.
+ *
+ * Naming a column for each child makes the tracks fixed furniture, so a hidden
+ * rail leaves its own track empty instead of handing it to the content, and a
+ * blocked reader sees the same measure as everybody else with whitespace where
+ * the adverts would have been. Renaming the classes to something the lists do
+ * not know would also stop the collapse, but only until the lists caught up,
+ * and the layout would stay one cosmetic rule from breaking; this holds
+ * whatever is hidden, by a blocker or by us.
+ *
+ * Above the lg breakpoint only. Below it the shell is a single column, and
+ * grid-column: 3 there would create implicit columns and put the content back
+ * in the wrong place.
+ */
+@media (min-width: 992px) {
+    .pga-shell > .ad-rail:first-child,
+    .pga-shell > .pga-doc-side { grid-column: 1; }
+    .pga-shell > .pga-main { grid-column: 2; }
+    .pga-shell > .ad-rail:last-child { grid-column: 3; }
+}
+
 .pga-rail-inner { position: sticky; top: 4rem; }
 
 .pga-rail-note {
