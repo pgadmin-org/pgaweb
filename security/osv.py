@@ -101,14 +101,28 @@ def extract_severity(record):
     label from database_specific is used as a fallback when no vector is
     present.
     """
-    vector = None
-    for entry in record.get('severity', []) or []:
-        if entry.get('type', '').startswith('CVSS_V') and entry.get('score'):
-            vector = entry['score']
-            # Prefer the highest CVSS version present, so keep looking but
-            # remember the last (CVSS_V4 sorts after CVSS_V3 alphabetically).
+    # Highest CVSS version first, since CVSS_V4 sorts after CVSS_V3.
+    vectors = sorted(
+        (entry['score'] for entry in record.get('severity', []) or []
+         if entry.get('type', '').startswith('CVSS_V') and entry.get('score')),
+        reverse=True)
 
-    base_score = cvss_base_score(vector) if vector else None
+    # The highest version we can actually score, rather than simply the
+    # highest. A record carrying both a 4.0 and a 3.1 vector, which is how
+    # every advisory published since mid 2026 arrives, would otherwise show
+    # the 4.0 vector and no score at all, because cvss_base_score cannot
+    # compute 4.0: its scoring is a lookup table rather than a formula, and
+    # this module deliberately has no dependencies to bring one in. Since the
+    # score and the vector are displayed together, they have to come from the
+    # same vector or the page would be quoting one version's metrics beside
+    # another version's number.
+    vector = vectors[0] if vectors else None
+    base_score = None
+    for candidate in vectors:
+        score = cvss_base_score(candidate)
+        if score is not None:
+            vector, base_score = candidate, score
+            break
 
     label = None
     if base_score is not None:
