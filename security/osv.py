@@ -31,6 +31,12 @@ OSV_WEB_URL = 'https://osv.dev/vulnerability/{0}'
 DEFAULT_ECOSYSTEM = 'PyPI'
 DEFAULT_PACKAGE = 'pgadmin4'
 
+# Which source's record to keep when more than one describes the same CVE,
+# most preferred first. See merge_duplicates() for why the order is this way
+# round; anything not listed sorts last but is still kept if it is the only
+# record for that CVE.
+SOURCE_PREFERENCE = ('GHSA-', 'PYSEC-', 'CVE-')
+
 
 class OSVError(Exception):
     """Raised when an OSV request cannot be completed."""
@@ -248,10 +254,87 @@ def normalise(record, ecosystem, package):
     }
 
 
+def source_rank(osv_id):
+    """How much we would rather keep this record, lower being better.
+
+    Used only to choose between records describing the same CVE. GHSA wins
+    because GitHub assigns an advisory one identifier and keeps it, whereas
+    the PYSEC identifiers for pgAdmin were all reassigned within a single
+    year for CVEs going back to 2022, so keeping those as the stable key
+    would mean the whole table churning whenever that happens again.
+    """
+    for index, prefix in enumerate(SOURCE_PREFERENCE):
+        if osv_id.startswith(prefix):
+            return index
+    return len(SOURCE_PREFERENCE)
+
+
+def merge_duplicates(advisories):
+    """Collapse advisories that describe the same CVE into one.
+
+    OSV returns one record per source, so a single pgAdmin vulnerability
+    arrives twice, once from the GitHub Advisory Database and once from the
+    PyPA database: at the time of writing every one of the 28 CVEs affecting
+    pgAdmin came back as both a GHSA and a PYSEC record, and the security page
+    therefore listed each vulnerability twice. The two carry the same summary,
+    details and severity, so which one is kept matters less than keeping only
+    one of them.
+
+    References are unioned rather than taken from the winner alone, since the
+    record we discard usually links to a couple of places the other does not,
+    and a reader losing a link to the upstream advisory would be a poor trade
+    for tidiness. Aliases are unioned for the same reason: they are how a
+    reader searching for the identifier we dropped still finds the advisory.
+
+    Anything without a CVE identifier is passed through untouched, there being
+    nothing to match it against.
+    """
+    merged = {}
+    passthrough = []
+
+    for advisory in advisories:
+        cve_id = advisory.get('cve_id', '')
+        if not cve_id.startswith('CVE-'):
+            passthrough.append(advisory)
+            continue
+
+        existing = merged.get(cve_id)
+        if existing is None:
+            merged[cve_id] = advisory
+            continue
+
+        keep, drop = existing, advisory
+        if source_rank(advisory['osv_id']) < source_rank(existing['osv_id']):
+            keep, drop = advisory, existing
+
+        keep['references'] = union(keep['references'], drop['references'])
+        keep['aliases'] = union(keep['aliases'], drop['aliases'],
+                                [drop['osv_id']])
+        merged[cve_id] = keep
+
+    return passthrough + list(merged.values())
+
+
+def union(*lists):
+    """The given lists concatenated, keeping the first of each duplicate.
+
+    Order is preserved rather than sorted, because the first source's
+    references are the ones we would have shown before this merging existed.
+    """
+    seen = set()
+    result = []
+    for values in lists:
+        for value in values:
+            if value not in seen:
+                seen.add(value)
+                result.append(value)
+    return result
+
+
 def fetch_advisories(ecosystem=DEFAULT_ECOSYSTEM, package=DEFAULT_PACKAGE):
     """Fetch and normalise every advisory affecting the given package."""
     advisories = []
     for vuln_id in query_vuln_ids(ecosystem, package):
         record = fetch_vuln(vuln_id)
         advisories.append(normalise(record, ecosystem, package))
-    return advisories
+    return merge_duplicates(advisories)
