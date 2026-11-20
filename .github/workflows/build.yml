@@ -68,21 +68,23 @@ jobs:
           check_nonempty static/COMPILED/main.js.gz
           check_nonempty static/COMPILED/webp.js.gz
 
-          # The critical css step needs a browser and is allowed to fail without
-          # failing the build, in which case it writes this file empty on
-          # purpose, because base.html loads it asynchronously and a 404 helps
-          # nobody. So it must exist, but it may legitimately be empty.
+          # The critical css step is allowed to fail without failing a local
+          # build, in which case it leaves main.css complete and writes a stub
+          # main_uncritical.css. It needs no browser any more, so a failure
+          # here is a real bug. On success main.css holds only the critical
+          # rules and main_uncritical.css the complete stylesheet, so the
+          # latter must be the larger. A green build once hid this step
+          # failing on every run.
           echo "critical css step:"
-          if [ ! -f static/COMPILED/assets/css/main_uncritical.css ]; then
-            echo "::error::main_uncritical.css was not written at all"
+          css=static/COMPILED/assets/css
+          check_nonempty $css/main_uncritical.css
+          critical=$(stat -c%s $css/main.css)
+          full=$(stat -c%s $css/main_uncritical.css)
+          if [ "$full" -le "$critical" ]; then
+            echo "::error::critical css did not run: main.css is $critical bytes and main_uncritical.css $full"
             exit 1
           fi
-          size=$(stat -c%s static/COMPILED/assets/css/main_uncritical.css)
-          if [ "$size" -eq 0 ]; then
-            echo "::warning::critical css did not run; main_uncritical.css is empty"
-          else
-            echo "  ok  main_uncritical.css ($size bytes)"
-          fi
+          echo "  ok  main.css reduced to $critical of $full bytes"
 
       # The concatenated template the critical css is measured against was once
       # built in the wrong order and prefixed with the literal text "undefined".

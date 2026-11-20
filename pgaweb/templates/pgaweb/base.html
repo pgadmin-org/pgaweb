@@ -211,11 +211,11 @@
 
         The background stops a dark mode visitor getting a white flash before
         the stylesheet arrives. The grid stops the page laying out full width and
-        then snapping into three columns: the shell and advert rules are chosen
-        by the critical css step, which concatenates whole templates and measures
-        against a 1300x900 fold, and page.html's markup necessarily lands after
-        base.html's closing tag and so below that fold. It therefore never
-        selects them, and they end up in the deferred stylesheet.
+        then snapping into three columns: the critical css step keeps only the
+        rules that match base, index, action and ad.html concatenated, and
+        page.html, whose markup the shell and advert rules style, is not among
+        them. It therefore never selects them, and they are left to the
+        deferred stylesheet.
 
         Keep this in step with those partials. It is a handful of rules, and the
         alternative is layout shift on every page that has an advert rail.
@@ -285,9 +285,9 @@
              * the link *before* the head element, which put the deferred
              * stylesheet ahead of the critical one: any rule of equal
              * specificity in it silently lost. That is how the dark theme
-             * tokens were being beaten by the light ones, since the critical
-             * step puts :root in main.css and [data-bs-theme="dark"] in the
-             * deferred file.
+             * tokens were being beaten by the light ones. The deferred file is
+             * now the complete stylesheet, so appending it here means the
+             * cascade resolves exactly as it would with that sheet alone.
              */
             document.head.appendChild(l);
         };
