@@ -3,6 +3,14 @@ pgAdmin Website
 
 # Installation instructions
 
+## Prerequisites
+
+* Python 3 (CI uses 3.13).
+* A PostgreSQL server that you can create roles and databases on.
+* Node.js 24, which is what CI builds with. Newer releases have been reported
+  to leave puppeteer's copy of Chrome unextracted after `npm ci`, which breaks
+  the critical css step of the build.
+
 ## Install Python dependencies
 Run the command:
 
@@ -10,31 +18,46 @@ Run the command:
 pip install -r requirements.txt
 ```
 
-## Create local settings file
-Create a the file pgaweb/settings_local.py from pgaweb/settings.py changing the needed options to run locally.
-For connection complaints inquiring about postgres "running locally and accepting connections on Unix domain socket...",
-you'll need to change the `HOST` from the postgres data directory to `localhost`.
-
-
 ## Database setup
 
-### Create a new database
+### Create a role and database
 
-Create a new database using the command
+The site connects as the `pgaweb` role, so create it and give it ownership of
+the database. Since PostgreSQL 15 only the database owner can create tables in
+the `public` schema by default, so `migrate` will fail with `permission denied
+for schema public` if the database belongs to some other role.
 
 ```bash
-createdb pgaweb
+createuser -P pgaweb
+createdb -O pgaweb pgaweb
 ```
 
-### Create Migrations for individual modules
-```bash
-./manager.py makemigrations download
-./manager.py makemigrations faq
-./manager.py makemigrations news
-./manager.py makemigrations versions
+## Create local settings file
+
+`pgaweb/settings.py` imports `pgaweb/settings_local.py` at the end, if it
+exists, so the local file only needs the settings you want to override; do not
+copy the whole of `settings.py`. The defaults connect over the Unix socket in
+`/var/run/postgresql`, which uses peer authentication on most Linux
+distributions and so only works if your operating system user is also called
+`pgaweb`. Otherwise, connect over TCP with the password set above:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'pgaweb.db',
+        'NAME': 'pgaweb',
+        'USER': 'pgaweb',
+        'PASSWORD': 'the password you gave createuser',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 ```
 
 ### Migrate database
+
+The migrations are committed to the repository, so there is no need to run
+`makemigrations`.
 
 ```bash
 ./manage.py migrate
@@ -61,36 +84,33 @@ you will need to repeat this for the other fixtures:
 ./manage.py loaddata ./news/fixtures/news.json
 ```
 
-## Install frontend requirements
+# Front end build dependencies
 
-
-
-# Dependencies
-
-In order for the build to run successfully for generating critical css on 
-Debian or Centos systems, additional libraries need to be installed on the 
-system. Please install the dependencies below on respective systems.
-
-For CentOS:
+The build generates critical css using a copy of Chrome that puppeteer
+downloads during `npm ci`, and Chrome needs a number of shared libraries that
+a server or minimal install may not have. On Debian 13, and Ubuntu 24.04 or
+later, install:
 
 ```
-yum install alsa-lib atk cups-libs GConf2 gtk3 ipa-gothic-fonts libXcomposite \
-  libXcursor libXdamage libXext libXi libXrandr libXScrnSaver libXtst pango \
-  xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-fonts-cyrillic \
-  xorg-x11-fonts-misc xorg-x11-fonts-Type1 xorg-x11-utils
-```
-
-For Debian:
-
-```
-apt-get install ca-certificates fonts-liberation gconf-service \
-  libappindicator1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 \
-  libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 \
-  libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 \
-  libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
+apt-get install ca-certificates fonts-liberation libasound2t64 \
+  libatk-bridge2.0-0t64 libatk1.0-0t64 libatspi2.0-0t64 libc6 libcairo2 \
+  libcups2t64 libdbus-1-3 libexpat1 libgcc-s1 libgdk-pixbuf-2.0-0 \
+  libglib2.0-0t64 libgtk-3-0t64 libnspr4 libnss3 libpango-1.0-0 \
+  libpangocairo-1.0-0 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
   libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
-  libxss1 libxtst6 lsb-release wget xdg-utils
+  libxss1 libxtst6
 ```
+
+A desktop install usually has all of these except `libxss1`. On any other
+distribution, run `npm ci` first and then list what is missing with:
+
+```bash
+ldd node_modules/puppeteer/.local-chromium/*/chrome-linux/chrome | grep "not found"
+```
+
+If Chrome cannot start, the build still succeeds and the site still renders
+correctly, but with the complete stylesheet in place of the critical css, so
+check the build output for a `Critical css generation FAILED` warning.
 
 # Run the build
 
