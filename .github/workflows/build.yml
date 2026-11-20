@@ -135,3 +135,10 @@ jobs:
       # configuration or an app that will not import.
       - name: Run the system checks
         run: python manage.py check
+
+      # A model change once went in without its migration, which nobody noticed
+      # for years. Without a database this warns that it cannot check the
+      # migration history, but still compares the models against the
+      # migrations.
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run

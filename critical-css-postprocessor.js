@@ -90,6 +90,23 @@ class ProcessAfterBuild {
         }
 
         /*
+         * Launch the browser once ourselves before handing over to critical.
+         * penthouse 2.3.3, which critical uses, chains a .then() onto its launch
+         * promise with no catch, so a browser that cannot start (Chrome not
+         * extracted by npm ci, or a missing shared library) rejects that second
+         * promise unobserved, and Node aborts the build just after our catch
+         * below has logged the failure as harmless. A failure here lands in
+         * that catch instead, before penthouse is involved. This is the same
+         * puppeteer penthouse loads: npm hoists the single copy to the top of
+         * node_modules.
+         */
+        const puppeteer = require('puppeteer');
+        const probe = await puppeteer.launch({
+          args: ['--disable-setuid-sandbox', '--no-sandbox'],
+        });
+        await probe.close();
+
+        /*
          * This must be awaited. Without it the success message below was logged
          * unconditionally, whether or not anything had been generated, and a
          * failure arrived later as an unhandled rejection: Node aborted after
