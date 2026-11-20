@@ -94,9 +94,8 @@ var plugins = [
 module.exports = (env, argv) => {
   const isProductionMode = argv.mode === 'production';
 
-  // The critical css step drives a browser and takes most of the build's
-  // wall clock, so it is production only: a development build wants the whole
-  // stylesheet anyway. This used to be a bespoke --optimize=false flag, which
+  // The critical css step is production only, since a development build wants
+  // the whole stylesheet. This used to be a bespoke --optimize=false flag, which
   // webpack-cli 5 rejects outright as an unknown option, so nothing could pass
   // it and a development build was not possible.
   if (isProductionMode) {
