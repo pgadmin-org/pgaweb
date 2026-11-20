@@ -7,9 +7,8 @@ pgAdmin Website
 
 * Python 3 (CI uses 3.13).
 * A PostgreSQL server that you can create roles and databases on.
-* Node.js 24, which is what CI builds with. Newer releases have been reported
-  to leave puppeteer's copy of Chrome unextracted after `npm ci`, which breaks
-  the critical css step of the build.
+* Node.js 22.13 or later, which the critical css step of the build requires.
+  CI builds with Node.js 24.
 
 ## Install Python dependencies
 Run the command:
@@ -84,35 +83,12 @@ you will need to repeat this for the other fixtures:
 ./manage.py loaddata ./news/fixtures/news.json
 ```
 
-# Front end build dependencies
-
-The build generates critical css using a copy of Chrome that puppeteer
-downloads during `npm ci`, and Chrome needs a number of shared libraries that
-a server or minimal install may not have. On Debian 13, and Ubuntu 24.04 or
-later, install:
-
-```
-apt-get install ca-certificates fonts-liberation libasound2t64 \
-  libatk-bridge2.0-0t64 libatk1.0-0t64 libatspi2.0-0t64 libc6 libcairo2 \
-  libcups2t64 libdbus-1-3 libexpat1 libgcc-s1 libgdk-pixbuf-2.0-0 \
-  libglib2.0-0t64 libgtk-3-0t64 libnspr4 libnss3 libpango-1.0-0 \
-  libpangocairo-1.0-0 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
-  libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
-  libxss1 libxtst6
-```
-
-A desktop install usually has all of these except `libxss1`. On any other
-distribution, run `npm ci` first and then list what is missing with:
-
-```bash
-ldd node_modules/puppeteer/.local-chromium/*/chrome-linux/chrome | grep "not found"
-```
-
-If Chrome cannot start, the build still succeeds and the site still renders
-correctly, but with the complete stylesheet in place of the critical css, so
-check the build output for a `Critical css generation FAILED` warning.
-
 # Run the build
+
+The critical css step no longer needs a browser. If it fails, the build still
+succeeds and the site still renders correctly, but with the complete
+stylesheet in place of the critical css, so check the build output for a
+`Critical css generation FAILED` warning.
 
 ```bash
 npm ci

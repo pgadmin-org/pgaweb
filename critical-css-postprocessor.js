@@ -4,6 +4,7 @@
 let critical = null;
 const FS = require('fs');
 const PATH = require('path');
+const { parseHTML } = require('linkedom');
 
 /*
  * The templates whose markup, concatenated, stands in for a rendered page whilst
@@ -80,54 +81,69 @@ class ProcessAfterBuild {
     compiler.hooks.done.tapPromise('ProcessAfterBuild', async stats => {
       const { path } = stats.compilation.options.output;
       const cssPath = PATH.join(path, 'assets/css/');
+      const mainCss = PATH.join(cssPath, 'main.css');
       const uncriticalCss = PATH.join(cssPath, 'main_uncritical.css');
 
       try {
-        // Lazy load critical to avoid ESM top-level await issues
+        // critical is ESM only, so it has to be imported rather than required.
         if (!critical) {
-          critical = await import('critical');
-          critical = critical.default || critical;
+          const mod = await import('critical');
+          critical = mod.critical || mod.default;
         }
 
         /*
-         * Launch the browser once ourselves before handing over to critical.
-         * penthouse 2.3.3, which critical uses, chains a .then() onto its launch
-         * promise with no catch, so a browser that cannot start (Chrome not
-         * extracted by npm ci, or a missing shared library) rejects that second
-         * promise unobserved, and Node aborts the build just after our catch
-         * below has logged the failure as harmless. A failure here lands in
-         * that catch instead, before penthouse is involved. This is the same
-         * puppeteer penthouse loads: npm hoists the single copy to the top of
-         * node_modules.
+         * critical 9 uses its static engine here, which matches each rule in
+         * main.css against the stand-in document and needs no browser. It keeps
+         * every rule the markup uses, not just those above a fold, since it does
+         * not render anything.
+         *
+         * It also reads every stylesheet the document links to, and the inline
+         * <style> blocks, and merges them all into its output. That would fetch
+         * the cookieconsent stylesheet from its CDN on every build and copy it,
+         * and base.html's inline rules, into main.css. So the links and inline
+         * styles are removed, and main.css is handed over explicitly as the
+         * only stylesheet. This parses the document with linkedom, the parser
+         * critical itself uses, rather than editing the markup with regular
+         * expressions, so it removes exactly the elements critical would find.
          */
-        const puppeteer = require('puppeteer');
-        const probe = await puppeteer.launch({
-          args: ['--disable-setuid-sandbox', '--no-sandbox'],
+        const { document } = parseHTML(FS.readFileSync(index_critical_file, 'utf8'));
+        document.querySelectorAll('link[rel="stylesheet"], style')
+          .forEach((el) => el.remove());
+        const html = document.toString();
+
+        const full = FS.readFileSync(mainCss, 'utf8');
+
+        const { css, report } = await critical({
+          html,
+          css: mainCss,
+          // critical rewrites relative url()s to be relative to base, and the
+          // output replaces main.css, so it must be main.css's own directory.
+          base: cssPath,
+          engine: 'static',
         });
-        await probe.close();
+
+        if (!css.trim()) {
+          throw new Error('critical returned no css: ' +
+                          (report.warnings || []).join(' '));
+        }
 
         /*
-         * This must be awaited. Without it the success message below was logged
-         * unconditionally, whether or not anything had been generated, and a
-         * failure arrived later as an unhandled rejection: Node aborted after
-         * webpack had already reported the build good, which left a non-zero
-         * exit status and skipped everything chained after webpack in the build
-         * script, the gzip step included.
+         * critical 9 no longer produces the uncritical remainder, so the
+         * deferred stylesheet is the complete one. That downloads the critical
+         * rules twice, but base.html appends it after main.css, so every rule's
+         * last occurrence is in the complete sheet, in its original order, and
+         * the cascade resolves exactly as it would with the complete sheet
+         * alone. A remainder with the critical rules removed would not be
+         * guaranteed that.
+         *
+         * Written first, so that a failure part way leaves main.css complete.
          */
-        await critical.generate({
-          base: '/',
-          src: index_critical_file,
-          target: {
-            css: PATH.join(cssPath, 'main.css'),
-            uncritical: uncriticalCss,
-          },
-          width: 1300,
-          height: 900,
-          // Extract inlined styles from referenced stylesheets
-          extract: true,
-        });
+        FS.writeFileSync(uncriticalCss, full);
+        FS.writeFileSync(mainCss, css);
 
-        log.info('Critical css generated successfully..');
+        log.info(`Critical css generated: ${report.rules.kept} of ` +
+                 `${report.rules.total} rules, ${css.length} of ` +
+                 `${full.length} bytes..`);
       } catch (err) {
         /*
          * Not fatal. critical only rewrites main.css on success, so on failure
