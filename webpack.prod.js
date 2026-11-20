@@ -5,7 +5,6 @@ var autoprefixer = require('autoprefixer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var webpack = require('webpack');
 var CopyPlugin = require('copy-webpack-plugin');
-var ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 var ProcessAfterBuild = require('./critical-css-postprocessor');
 
@@ -82,12 +81,8 @@ var plugins = [
       },
     ],
   }),
-  new ImageminPlugin(
-    {
-      pngquant: ({ quality: '50' }),
-      jpegtran: ({ quality: '50' }),
-    },
-  ),
+  // The images are compressed once in the repository rather than on every
+  // build: see "Adding images" in the README.
   new CleanWebpackPlugin(),
 ];
 

@@ -95,6 +95,21 @@ npm ci
 npm run build
 ```
 
+## Adding images
+
+The build copies `static/img/*` and `static/img/screenshots/` into
+`static/COMPILED/assets/img/` as they are, without compressing them, so
+compress a new or changed image before committing it, for example with:
+
+```bash
+pngquant --quality=0-50 --skip-if-larger --force --ext .png image.png
+jpegtran -copy none -optimize -outfile out.jpg image.jpg
+npx svgo image.svg
+```
+
+Leave `static/img/bimi.svg` alone: it must stay in the SVG Tiny PS profile
+that BIMI requires, and `svgo` strips its `<title>`.
+
 # Start the application
 
 ```bash
