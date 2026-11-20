@@ -4,6 +4,7 @@
 let critical = null;
 const FS = require('fs');
 const PATH = require('path');
+const { parseHTML } = require('linkedom');
 
 /*
  * The templates whose markup, concatenated, stands in for a rendered page whilst
@@ -100,12 +101,15 @@ class ProcessAfterBuild {
          * <style> blocks, and merges them all into its output. That would fetch
          * the cookieconsent stylesheet from its CDN on every build and copy it,
          * and base.html's inline rules, into main.css. So the links and inline
-         * styles are stripped, and main.css is handed over explicitly as the
-         * only stylesheet.
+         * styles are removed, and main.css is handed over explicitly as the
+         * only stylesheet. This parses the document with linkedom, the parser
+         * critical itself uses, rather than editing the markup with regular
+         * expressions, so it removes exactly the elements critical would find.
          */
-        const html = FS.readFileSync(index_critical_file, 'utf8')
-          .replace(/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*>/gi, '')
-          .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
+        const { document } = parseHTML(FS.readFileSync(index_critical_file, 'utf8'));
+        document.querySelectorAll('link[rel="stylesheet"], style')
+          .forEach((el) => el.remove());
+        const html = document.toString();
 
         const full = FS.readFileSync(mainCss, 'utf8');
 
