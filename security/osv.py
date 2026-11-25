@@ -31,6 +31,13 @@ OSV_WEB_URL = 'https://osv.dev/vulnerability/{0}'
 DEFAULT_ECOSYSTEM = 'PyPI'
 DEFAULT_PACKAGE = 'pgadmin4'
 
+# The source repository, which OSV indexes as a package in the GIT ecosystem.
+# Since mid 2026 most pgAdmin CVEs have reached OSV only as records converted
+# from the CVE list, which name the repository and a range of commits but not
+# the PyPI package, so the package query alone misses them.
+GIT_ECOSYSTEM = 'GIT'
+GIT_REPOSITORY = 'https://github.com/pgadmin-org/pgadmin4'
+
 # Which source's record to keep when more than one describes the same CVE,
 # most preferred first. See merge_duplicates() for why the order is this way
 # round; anything not listed sorts last but is still kept if it is the only
@@ -39,7 +46,7 @@ SOURCE_PREFERENCE = ('GHSA-', 'PYSEC-', 'CVE-')
 
 
 class OSVError(Exception):
-    """Raised when an OSV request cannot be completed."""
+    """Raised when a request to OSV (or MITRE) cannot be completed."""
 
 
 def fetch_json(url, payload=None, timeout=30):
@@ -57,24 +64,38 @@ def fetch_json(url, payload=None, timeout=30):
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return json.loads(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
-        raise OSVError("OSV request to {0} failed: HTTP {1} {2}"
+        raise OSVError("Request to {0} failed: HTTP {1} {2}"
                        .format(url, e.code, e.reason))
     except urllib.error.URLError as e:
-        raise OSVError("OSV request to {0} failed: {1}".format(url, e.reason))
+        raise OSVError("Request to {0} failed: {1}".format(url, e.reason))
+
+
+def query_vulns(ecosystem, package):
+    """Return the summary records of the vulnerabilities affecting the given
+    package.
+
+    The /v1/query endpoint returns summary records that may omit some fields
+    (notably the full severity list), so we only use them to discover the IDs
+    and aliases, and fetch the full record for each one separately. OSV may
+    split a result across pages, in which case it returns a token for the
+    next one.
+    """
+    payload = {'package': {'ecosystem': ecosystem, 'name': package}}
+    vulns = []
+
+    while True:
+        result = fetch_json(OSV_QUERY_URL, payload=payload)
+        vulns.extend(v for v in result.get('vulns', []) or [] if 'id' in v)
+
+        token = result.get('next_page_token')
+        if not token:
+            return vulns
+        payload['page_token'] = token
 
 
 def query_vuln_ids(ecosystem, package):
-    """Return the list of vulnerability IDs affecting the given package.
-
-    The /v1/query endpoint returns summary records that may omit some fields
-    (notably the full severity list), so we only use it to discover the IDs and
-    fetch the full record for each one separately.
-    """
-    payload = {'package': {'ecosystem': ecosystem, 'name': package}}
-    result = fetch_json(OSV_QUERY_URL, payload=payload)
-
-    vulns = result.get('vulns', []) or []
-    return [v['id'] for v in vulns if 'id' in v]
+    """Return the list of vulnerability IDs affecting the given package."""
+    return [v['id'] for v in query_vulns(ecosystem, package)]
 
 
 def fetch_vuln(vuln_id):
@@ -345,10 +366,36 @@ def union(*lists):
     return result
 
 
-def fetch_advisories(ecosystem=DEFAULT_ECOSYSTEM, package=DEFAULT_PACKAGE):
-    """Fetch and normalise every advisory affecting the given package."""
+def fetch_advisories(ecosystem=DEFAULT_ECOSYSTEM, package=DEFAULT_PACKAGE,
+                     repository=GIT_REPOSITORY):
+    """Fetch and normalise every advisory affecting the given package or its
+    source repository.
+
+    The package's records come first and are preferred, since they carry
+    release version ranges. A repository record is fetched only for a
+    vulnerability the package query did not already return under any of its
+    identifiers, which avoids fetching a second copy of almost every older
+    advisory. Repository records describe their ranges as commits, so they
+    arrive here with no fixed versions; mitre.complete_advisories fills those
+    in afterwards.
+    """
     advisories = []
+    known = set()
+
     for vuln_id in query_vuln_ids(ecosystem, package):
         record = fetch_vuln(vuln_id)
+        known.add(record.get('id'))
+        known.update(record.get('aliases', []) or [])
         advisories.append(normalise(record, ecosystem, package))
+
+    if repository:
+        for vuln in query_vulns(GIT_ECOSYSTEM, repository):
+            ids = [vuln['id']] + list(vuln.get('aliases', []) or [])
+            if known.intersection(ids):
+                continue
+            record = fetch_vuln(vuln['id'])
+            known.add(record.get('id'))
+            known.update(record.get('aliases', []) or [])
+            advisories.append(normalise(record, ecosystem, package))
+
     return merge_duplicates(advisories)

@@ -7,9 +7,10 @@
 #
 ##########################################################################
 
-# Fetch the list of known pgAdmin 4 vulnerabilities from the OSV.dev database
+# Fetch the list of known pgAdmin 4 vulnerabilities from the OSV.dev database,
+# fill in any fixed versions or CVSS scores OSV lacks from MITRE's CVE records,
 # and upsert them into the SecurityAdvisory table, so the security page can be
-# served straight from the database with no live dependency on OSV.
+# served straight from the database with no live dependency on either.
 #
 # Intended to be run periodically (e.g. from cron):
 #
@@ -25,13 +26,13 @@ from django.db import transaction
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 
-from security import osv
+from security import mitre, osv
 from security.models import SecurityAdvisory
 
 
 class Command(BaseCommand):
-    help = ('Fetch pgAdmin 4 vulnerabilities from OSV.dev and update the '
-            'security advisories table.')
+    help = ('Fetch pgAdmin 4 vulnerabilities from OSV.dev and MITRE, and '
+            'update the security advisories table.')
 
     def add_arguments(self, parser):
         parser.add_argument('--ecosystem', default=osv.DEFAULT_ECOSYSTEM,
@@ -45,6 +46,9 @@ class Command(BaseCommand):
         try:
             advisories = osv.fetch_advisories(options['ecosystem'],
                                               options['package'])
+            # A failure here aborts the refresh like an OSV failure does,
+            # rather than writing advisories with their versions missing.
+            advisories = mitre.complete_advisories(advisories)
         except osv.OSVError as e:
             raise CommandError(str(e))
 
