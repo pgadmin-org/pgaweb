@@ -32,6 +32,15 @@
     grid-template-columns: var(--aside-width) minmax(0, 1fr);
     gap: 0 var(--aside-gap);
     align-items: start;
+
+    /*
+     * The prose keeps its measure, so on a wide screen the column has more
+     * room than the menu and the text can use. Centring the pair splits the
+     * surplus either side rather than leaving all of it as a gap on the right,
+     * which became 400px or so once the advert rails narrowed to 160px.
+     */
+    max-width: calc(var(--aside-width) + var(--aside-gap) + var(--measure));
+    margin-inline: auto;
 }
 
 /*
