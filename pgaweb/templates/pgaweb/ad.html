@@ -14,15 +14,14 @@ breakpoint, so all four can be told apart in AdSense reporting:
 Only one of each pair is ever used, because the rails and the inline slots are
 never displayed at the same width: the rails carry the first and second desktop
 units, the inline pair carry the first and second mobile ones. Both are passed
-anyway so that a change of breakpoint cannot leave a position falling back to a
-default and quietly reporting under the wrong unit.
+anyway so that a change of breakpoint cannot leave a position without a unit.
 
-The defaults below are the original shared units, kept only for a caller that
-passes nothing.
+There are no defaults. A caller that passes no slot gets an empty placeholder,
+which loadAds() skips and the :empty rule in _ads.scss collapses.
 {% endcomment %}
 <div class="ad-placeholder"
-     data-ad-slot-desktop="{{ slot_desktop|default:'4114194323' }}"
-     data-ad-slot-mobile="{{ slot_mobile|default:'1132526293' }}"
+     data-ad-slot-desktop="{{ slot_desktop }}"
+     data-ad-slot-mobile="{{ slot_mobile }}"
      aria-hidden="true"></div>{% comment %}
 
     The closing tag is deliberately on the same line. A newline between the tags
