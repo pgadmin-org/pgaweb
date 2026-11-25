@@ -258,6 +258,7 @@
            body does not lay out full width and then move across when the
            deferred stylesheet arrives. */
         @media (min-width: 1400px) {
+            .pga-docmain { width: 100%; max-width: calc(240px + 2.5rem + 52rem); justify-self: center; }
             .pga-doclayout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 2.5rem; align-items: start; }
             .pga-toc > summary { display: none; }
         }

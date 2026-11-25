@@ -101,6 +101,25 @@
 }
 
 @media (min-width: 1400px) {
+    /*
+     * Header, contents and body together are no wider than the contents, the
+     * gap and the 86ch the running text is capped at, and centred between the
+     * rails. On a wide screen the column has more room than that, and without
+     * this the surplus collected as a gap to the right of the text on any page
+     * without a wide table or figure. Tables lose the surplus too, but get no
+     * less than they already have at 1500px.
+     *
+     * In rem rather than ch, because ch is relative to the font size of the
+     * element it is used on, and this column's text is smaller than the
+     * body's: 86ch here came out 52px short of the 86ch the paragraphs reach.
+     * 52rem is that measure, 826px, in units that mean the same everywhere.
+     */
+    .pga-docmain {
+        width: 100%;
+        max-width: calc(240px + 2.5rem + 52rem);
+        justify-self: center;
+    }
+
     .pga-doclayout {
         display: grid;
         grid-template-columns: 240px minmax(0, 1fr);
