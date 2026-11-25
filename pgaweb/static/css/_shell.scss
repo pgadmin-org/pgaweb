@@ -17,9 +17,6 @@
     padding: 2rem 1.25rem 3.5rem;
 }
 
-/* The left column is the contents as well as an advert, so it stays wide. */
-.pga-shell-docs { grid-template-columns: 300px minmax(0, 1fr) 160px; }
-
 /*
  * Explicit column placement, which is load bearing rather than tidiness.
  *
@@ -44,8 +41,7 @@
  * in the wrong place.
  */
 @media (min-width: 992px) {
-    .pga-shell > .ad-rail:first-child,
-    .pga-shell > .pga-doc-side { grid-column: 1; }
+    .pga-shell > .ad-rail:first-child { grid-column: 1; }
     .pga-shell > .pga-main { grid-column: 2; }
     .pga-shell > .ad-rail:last-child { grid-column: 3; }
 }
@@ -64,14 +60,10 @@
 
 @media (max-width: 1399.98px) {
     .pga-shell { gap: 1.5rem; }
-    .pga-shell-docs { grid-template-columns: 240px minmax(0, 1fr) 160px; gap: 1.5rem; }
-    /* The contents need the whole column at this width, so the second unit goes. */
-    .pga-doc-side .ad-rail { display: none; }
 }
 
 @media (max-width: 991.98px) {
-    .pga-shell,
-    .pga-shell-docs { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 1.5rem 1rem 2.5rem; }
+    .pga-shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 1.5rem 1rem 2.5rem; }
     .ad-rail { display: none; }
     .pga-inline-ad { display: block; }
 }

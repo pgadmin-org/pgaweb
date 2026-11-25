@@ -37,20 +37,23 @@
 
 .pga-docmeta a { color: var(--accent); text-decoration: none; }
 
-.pga-doc-side {
-    position: sticky;
-    align-self: start;
-    top: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    max-height: calc(100vh - 5.5rem);
-}
+/*
+ * The contents and the body, under the page header.
+ *
+ * Below 1400px the contents are a disclosure above the body, collapsed by the
+ * script in docs/page.html, so the body keeps the whole column: a contents
+ * column there would leave it around 510px at 1200px, too narrow for the
+ * tables Sphinx emits. From 1400px the column has room for both, and the
+ * contents sit beside the body at full length, scrolling with the page. They
+ * are not sticky, because on most pages they are longer than the viewport and
+ * would need a scrollbar of their own to stay in view, which is what this
+ * replaced.
+ */
+.pga-doclayout { margin-top: 1.5rem; }
 
-.pga-toc { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+.pga-toc { margin-bottom: 1.5rem; }
 
 .pga-toc > summary {
-    display: none;
     padding: .45rem .75rem;
     font-family: var(--font-mono);
     font-size: .8125rem;
@@ -62,14 +65,12 @@
     border-radius: var(--radius);
 }
 
-.pga-doc-side .ad-rail { flex: 0 0 auto; }
-
 /*
  * The measure sits on the running text rather than on the body, so the body
  * fills the column its header already spans. With it on the body, the header
  * was 896px and the content 826px, and the documentation looked inset from its
- * own heading by 70px here and by more on a wider screen, since the column
- * grows to 1156px at the shell's maximum.
+ * own heading by 70px here and by more on a wider screen, since the body
+ * grows to 1016px at the shell's maximum.
  *
  * Paragraphs and lists keep 86ch so prose stays readable. Everything else, and
  * Sphinx's tables above all, gets the width: those were the reason this layout
@@ -93,41 +94,21 @@
     border-top: 1px solid var(--line);
 }
 
-@media (max-width: 991.98px) {
-    .pga-doc-side { position: static; max-height: none; }
-    .pga-toc { overflow: visible; margin-bottom: 1.5rem; }
-    .pga-toc > summary { display: block; }
-    .pga-toc .pga-doccontents {
-        padding: .85rem 1rem;
-        border: 1px solid var(--line);
-        border-top: 0;
-    }
+.pga-toc .pga-doccontents {
+    padding: .85rem 1rem;
+    border: 1px solid var(--line);
+    border-top: 0;
 }
 
-/*
- * Line the two adverts up on a documentation page.
- *
- * The left column stacks the contents above its advert and is capped at the
- * viewport height, and every page's contents is longer than the space, so the
- * column always hits that cap and the advert ends up flush with its bottom.
- * Measured at 312px lower than the right rail's on a 1000px viewport, and the
- * same on every page, which looks like a mistake rather than a layout.
- *
- * The right rail takes the same shape rather than the contents moving into the
- * body: doing that would leave the documentation 666px wide against 826px now,
- * narrower even than the site this replaced, and Sphinx's tables were the
- * reason for this layout in the first place. Given a column of the same height
- * with its advert at the bottom, the two line up at any viewport height and
- * neither needs to know anything about the other.
- *
- * Only above 1400px. Below that the left advert is dropped so the contents can
- * have the whole column, so there is nothing to line up with.
- */
 @media (min-width: 1400px) {
-    .pga-shell-docs > .ad-rail > .pga-rail-inner {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        min-height: calc(100vh - 5.5rem);
+    .pga-doclayout {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 0 2.5rem;
+        align-items: start;
     }
+
+    .pga-toc { margin-bottom: 0; }
+    .pga-toc > summary { display: none; }
+    .pga-toc .pga-doccontents { padding: 0; border: 0; }
 }

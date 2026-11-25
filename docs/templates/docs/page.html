@@ -2,17 +2,18 @@
 {% load static %}
 
 {% comment %}
-    The documentation page has its own shell rather than using pgaweb/page.html.
+    The same shell as pgaweb/page.html, an advert rail either side of the
+    content, written out here rather than extended because the inline adverts
+    sit inside the documentation's own markup.
 
-    The left column carries the Sphinx contents above an advert, the body takes
-    the middle at a full measure, and the second advert sits on the right. The
-    old layout put the contents in a col-md-3 inside the col-lg-8 content column,
-    which left the body around 726px on a 1700px screen: too narrow for the
-    tables Sphinx emits, one of which overflowed.
+    The Sphinx contents sit beside the body under the page header, from 1400px
+    up, and fold into a disclosure above the body below that. They used to have
+    a column of their own above the left advert, capped at the viewport height
+    and scrolling inside it, which hid most of the contents behind a second
+    scrollbar. Below 1400px a contents column would leave the body too narrow
+    for the tables Sphinx emits, which is why it folds there. See _docs.scss.
 
-    The whole left column sticks, with the contents scrolling inside it, so the
-    advert stays at the foot of the column rather than scrolling away. Do not put
-    overflow on the advert rail; see _ads.scss.
+    Do not put overflow on the advert rails; see _ads.scss.
 
     Nothing here can add a class to the Sphinx markup: docloader stores three
     fragments and they are rendered with |safe. All of the styling hangs off what
@@ -26,17 +27,13 @@
 {% block title %}{{ page.title|safe }}{% endblock %}
 
 {% block body %}
-<main class="pga-shell pga-shell-docs">
+<main class="pga-shell">
 
-    <div class="pga-doc-side">
-        <details class="pga-toc" open>
-            <summary>Contents</summary>
-            <div class="pga-doccontents">{{ page.contents|safe }}</div>
-        </details>
-        <aside class="ad-rail" aria-label="Advertisement">
+    <aside class="ad-rail" aria-label="Advertisement">
+        <div class="pga-rail-inner">
             {% include "pgaweb/ad.html" with slot_desktop="4641019325" slot_mobile="3787987132" %}
-        </aside>
-    </div>
+        </div>
+    </aside>
 
     <div class="pga-main">
         <div class="pga-docheader">
@@ -71,7 +68,14 @@
 
         <div class="pga-inline-ad">{% include "pgaweb/ad.html" with slot_desktop="4641019325" slot_mobile="3787987132" %}</div>
 
-        <div class="pga-docbody">{{ page.body|safe }}</div>
+        <div class="pga-doclayout">
+            <details class="pga-toc" open>
+                <summary>Contents</summary>
+                <div class="pga-doccontents">{{ page.contents|safe }}</div>
+            </details>
+
+            <div class="pga-docbody">{{ page.body|safe }}</div>
+        </div>
 
         <div class="pga-inline-ad">{% include "pgaweb/ad.html" with slot_desktop="5411175511" slot_mobile="2474905464" %}</div>
     </div>
@@ -87,11 +91,17 @@
 
 {% block footer %}
 <script>
-/* The contents are a sidebar above the lg breakpoint and a disclosure below it,
-   so start collapsed on a narrow screen rather than pushing the body down. */
+/* The contents are a column beside the body from 1400px up and a disclosure
+   below it, so start collapsed there rather than pushing the body down. Keep
+   the width in step with _docs.scss. */
 (function () {
     var toc = document.querySelector('.pga-toc');
-    if (toc && window.matchMedia('(max-width: 991.98px)').matches) { toc.open = false; }
+    if (!toc) return;
+    var narrow = window.matchMedia('(max-width: 1399.98px)');
+    if (narrow.matches) { toc.open = false; }
+    /* The column has no summary to click, so widening the window must not
+       leave a collapsed disclosure there with no way to open it. */
+    narrow.addEventListener('change', function (e) { if (!e.matches) { toc.open = true; } });
 })();
 </script>
 {% endblock %}
