@@ -26,8 +26,7 @@ passes nothing.
      aria-hidden="true"></div>{% comment %}
 
     The closing tag is deliberately on the same line. A newline between the tags
-    is a text node, which makes the div fail :empty, and two rules in _ads.scss
-    depend on that selector: the one that collapses an unfilled slot so a rail
-    does not reserve 600px of nothing, and the one that draws a card behind a
-    filled advert in dark mode. Neither had ever matched.
+    is a text node, which makes the div fail :empty, and the rule in _ads.scss
+    that collapses an unfilled slot, so a rail does not reserve 600px of
+    nothing, depends on that selector. It had never matched.
 {% endcomment %}
