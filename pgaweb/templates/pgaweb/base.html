@@ -227,15 +227,20 @@
         }
         .pga-shell {
             display: grid;
-            grid-template-columns: 300px minmax(0, 1fr) 300px;
+            grid-template-columns: 160px minmax(0, 1fr) 160px;
             gap: 2rem;
             max-width: 1720px;
             margin-inline: auto;
             padding: 2rem 1.25rem 3.5rem;
         }
+        /* The documentation's left column holds the contents as well as an
+           advert, so it is wider than the plain shell's. Here so that a docs
+           page does not lay out at 160px and then widen when _shell.scss
+           arrives. */
+        .pga-shell-docs { grid-template-columns: 300px minmax(0, 1fr) 160px; }
         /* Explicit placement, so that a blocker hiding .ad-rail (EasyList
            carries a generic rule for it) cannot let .pga-main auto place into
-           a rail track and render the page in a 300px column. See the longer
+           a rail track and render the page in a 160px column. See the longer
            note in _shell.scss. Above lg only: the shell is one column below
            it. */
         @media (min-width: 992px) {
@@ -244,7 +249,7 @@
             .pga-shell > .pga-main { grid-column: 2; }
             .pga-shell > .ad-rail:last-child { grid-column: 3; }
         }
-        .ad-placeholder { width: 300px; min-height: 600px; margin-inline: auto; }
+        .ad-placeholder { width: 160px; min-height: 600px; margin-inline: auto; }
         /* Rails only: see the note in _ads.scss. The inline unit keeps its
            reserved height so an arriving advert does not push the page. */
         .ad-rail .ad-placeholder:empty { min-height: 0; }
@@ -256,8 +261,8 @@
         [data-bs-theme="dark"] .pga-hero-shot-light { display: none; }
         [data-bs-theme="dark"] .pga-hero-shot-dark { display: block; }
         @media (max-width: 1399.98px) {
-            .pga-shell { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 1.5rem; }
-            .ad-placeholder { width: 160px; }
+            .pga-shell { gap: 1.5rem; }
+            .pga-shell-docs { grid-template-columns: 240px minmax(0, 1fr) 160px; }
         }
         @media (max-width: 991.98px) {
             .pga-shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 1.5rem 1rem 2.5rem; }

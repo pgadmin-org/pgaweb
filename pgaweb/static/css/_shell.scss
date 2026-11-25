@@ -4,14 +4,21 @@
 
 .pga-shell {
     display: grid;
-    grid-template-columns: 300px minmax(0, 1fr) 300px;
+    /*
+     * 160px rails carry a 160x600 wide skyscraper. They were 300px for the
+     * 300x600 half page, but a creative that size sits in the reader's eyeline
+     * and a bright one is glaring against the dark theme, so the narrower unit
+     * runs at every width now and the content takes the space back.
+     */
+    grid-template-columns: 160px minmax(0, 1fr) 160px;
     gap: 2rem;
     max-width: 1720px;
     margin-inline: auto;
     padding: 2rem 1.25rem 3.5rem;
 }
 
-.pga-shell-docs { grid-template-columns: 300px minmax(0, 1fr) 300px; }
+/* The left column is the contents as well as an advert, so it stays wide. */
+.pga-shell-docs { grid-template-columns: 300px minmax(0, 1fr) 160px; }
 
 /*
  * Explicit column placement, which is load bearing rather than tidiness.
@@ -21,8 +28,8 @@
  * reader with uBlock Origin, AdGuard or Brave's built in blocker therefore gets
  * display: none on both rails, which takes them out of the grid flow
  * altogether, and with the children implicitly placed auto placement then drops
- * .pga-main into the first track: the whole page rendered inside a 300px
- * column, 160px below 1400px, which is what a blocked reader actually saw.
+ * .pga-main into the first track: the whole page rendered inside a 160px
+ * column, which is what a blocked reader actually saw.
  *
  * Naming a column for each child makes the tracks fixed furniture, so a hidden
  * rail leaves its own track empty instead of handing it to the content, and a
@@ -56,7 +63,7 @@
 .pga-inline-ad { display: none; margin: 1.75rem 0; }
 
 @media (max-width: 1399.98px) {
-    .pga-shell { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 1.5rem; }
+    .pga-shell { gap: 1.5rem; }
     .pga-shell-docs { grid-template-columns: 240px minmax(0, 1fr) 160px; gap: 1.5rem; }
     /* The contents need the whole column at this width, so the second unit goes. */
     .pga-doc-side .ad-rail { display: none; }

@@ -69,7 +69,7 @@
  * fills the column its header already spans. With it on the body, the header
  * was 896px and the content 826px, and the documentation looked inset from its
  * own heading by 70px here and by more on a wider screen, since the column
- * grows to 1016px at the shell's maximum.
+ * grows to 1156px at the shell's maximum.
  *
  * Paragraphs and lists keep 86ch so prose stays readable. Everything else, and
  * Sphinx's tables above all, gets the width: those were the reason this layout

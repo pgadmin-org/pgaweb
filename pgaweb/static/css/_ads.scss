@@ -30,14 +30,12 @@
     justify-content: flex-start;
 
     /*
-     * The rails are designed at 300px so that AdSense can fill a 300x600 half
-     * page, which is worth considerably more than the 160x600 the site runs
-     * today. That unit does not exist in the account yet, so for now the
-     * existing 160x600 sits centred in the wider rail and the surplus shows as
-     * whitespace. When the half page unit is created, this is the only place
-     * that needs to change, along with the sizes in loadAds().
+     * A 160x600 wide skyscraper at every desktop width. The rails used to be
+     * 300px above 1400px for the 300x600 half page, which earned more but was
+     * the brightest thing on the page in dark mode; see _shell.scss. loadAds()
+     * takes the unit's width from this box, so it needs no change of its own.
      */
-    width: 300px;
+    width: 160px;
     min-height: 600px;
     margin-inline: auto;
 }
@@ -45,12 +43,6 @@
 .pga-rail-note {
     /* Only worth saying next to a filled unit. */
     &:empty { display: none; }
-}
-
-@media (max-width: 1399.98px) {
-    .ad-placeholder {
-        width: 160px;
-    }
 }
 
 /*
